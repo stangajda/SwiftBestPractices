@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC2C87792680A9FD00570234 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC2C87782680A9FD00570234 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			isa = PBXGroup;
 			children = (
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
+				CCF3A8BE267A8ED300CB5765 /* Preview Content */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
 				CCF3A8B6267A8ED100CB5765 /* Products */,
 			);
@@ -88,7 +91,7 @@
 				CCF3A8EE267CD5C500CB5765 /* ViewModel.swift */,
 				CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */,
 				CCF3A8C1267A8ED300CB5765 /* Info.plist */,
-				CCF3A8BE267A8ED300CB5765 /* Preview Content */,
+				CC2C87782680A9FD00570234 /* Movies.swift */,
 			);
 			path = FeedReader;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			files = (
 				CCF3A8E4267BE02B00CB5765 /* NetworkManager.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
+				CC2C87792680A9FD00570234 /* Movies.swift in Sources */,
 				CCF3A8EF267CD5C500CB5765 /* ViewModel.swift in Sources */,
 				CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */,
 			);

@@ -9,7 +9,7 @@ import XCTest
 @testable import FeedReader
 import Combine
 
-class FeedReaderTests: XCTestCase {
+class ErrorResponseTests: XCTestCase {
     var cancellable: AnyCancellable?
     var manager: NetworkManager?
     let stubError = "anyLocal"
