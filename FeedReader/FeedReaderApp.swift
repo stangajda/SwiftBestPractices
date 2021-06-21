@@ -15,7 +15,7 @@ struct FeedReaderApp: App {
     init(){
         let networkManager: NetworkManager = NetworkManager()
         let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!
-        
+
         cancellable = networkManager.fetchData(url: url)
             .print("received", to: nil)
             .sink(receiveCompletion: { completion in
