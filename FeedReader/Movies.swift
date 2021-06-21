@@ -6,7 +6,7 @@
 //
 
 struct Movies: Hashable, Codable{
-    var items: Array< MovieDetail >
+    var items: Array<MovieDetail>
     var errorMessage: String
 }
 
