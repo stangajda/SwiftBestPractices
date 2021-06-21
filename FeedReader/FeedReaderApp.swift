@@ -16,8 +16,8 @@ struct FeedReaderApp: App {
         let networkManager: NetworkManager = NetworkManager()
         let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!
 
-        cancellable = networkManager.fetchData(url: url)
-            .print("received", to: nil)
+        cancellable = networkManager.fetchDataAndMap(url: url)
+//            .print("received", to: nil)
             .sink(receiveCompletion: { completion in
                 switch completion {
                     case .finished:
@@ -26,8 +26,8 @@ struct FeedReaderApp: App {
                         print(error.localizedDescription)
                     }
             }, receiveValue: { data in
-                guard let response = String(data: data, encoding: .utf8) else { return }
-                print(response)
+                //guard let response = String(data: data, encoding: .utf8) else { return }
+                print(data.items[0].title)
             })
     }
     

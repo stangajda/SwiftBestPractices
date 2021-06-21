@@ -89,10 +89,10 @@
 			children = (
 				CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */,
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
-				CCF3A8E3267BE02B00CB5765 /* NetworkManager.swift */,
 				CCF3A8EE267CD5C500CB5765 /* ViewModel.swift */,
 				CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */,
 				CCF3A8C1267A8ED300CB5765 /* Info.plist */,
+				CCF3A8E3267BE02B00CB5765 /* NetworkManager.swift */,
 				CC2C87782680A9FD00570234 /* Movies.swift */,
 			);
 			path = FeedReader;

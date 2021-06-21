@@ -17,6 +17,10 @@ class NetworkManager{
         self.session = session
     }
     
+    func fetchDataAndMap(url: URL) -> Publishers.Decode<AnyPublisher<Data, Error>, Movies, JSONDecoder> {
+        fetchData(url: url).decode(type: Movies.self, decoder: JSONDecoder())
+    }
+    
     func fetchData(url: URL) -> AnyPublisher<Data, Error> {
         let request = URLRequest(url: url)
 
