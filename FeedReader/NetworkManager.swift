@@ -12,19 +12,6 @@ class NetworkManager{
     
     var cancellable: AnyCancellable?
     var session: URLSession = .shared
-   
-    enum APIError: Error, LocalizedError {
-        case unknown, apiError(error: Error)
-
-        var errorDescription: String? {
-            switch self {
-            case .unknown:
-                return "Unknown error"
-            case .apiError(let error):
-                return error.localizedDescription
-            }
-        }
-    }
 
     init(session: URLSession = .shared){
         self.session = session
@@ -40,20 +27,12 @@ class NetworkManager{
                 }
                 
                 if let response = response as? HTTPURLResponse, let url = response.url{
-                    let error = NSError(domain: url.absoluteString, code: response.statusCode, userInfo: nil)
+                    let error:NSError = NSError(domain: url.absoluteString, code: response.statusCode, userInfo: nil)
                     throw error
                 }
                 
-                throw APIError.unknown
+                throw NSError(domain: "localDomain", code: 444, userInfo: nil)
                 
-            }
-            .mapError { error in
-//                if let error = error as? APIError {
-//                    return error
-//                } else {
-//                    return APIError.apiError(error: error)
-//                }
-                error
             }
             .eraseToAnyPublisher()
     }
