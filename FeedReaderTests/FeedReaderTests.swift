@@ -34,7 +34,7 @@ class FeedReaderTests: XCTestCase {
         let manager = NetworkManager(session: mockSession)
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(url: stubAnyUrl, statusCode: stubSuccesfullResponse.statusCode, httpVersion: nil, headerFields: nil)!
-            return (response, stubSuccesfullResponse.data)
+            return (response, stubSuccesfullResponse.data, nil)
         }
         
         
@@ -59,10 +59,8 @@ class FeedReaderTests: XCTestCase {
     }
     
     func testFailureResponse() throws {
-        let stubAnyUrl = URL(string: "anyURL")!
+        let stubAnyUrl = URL(string: "https://anyExample.com")!
         
-        
-        var outputResult: (isFinished:Bool, data:Data?) = (false, nil)
         let expectation = self.expectation(description: "response result")
         
         let sessionConfiguration = URLSessionConfiguration.ephemeral
@@ -71,39 +69,29 @@ class FeedReaderTests: XCTestCase {
 
         let manager = NetworkManager(session: mockSession)
         
-        let userInfo: [String : Any] =
-                    [
-                        NSLocalizedDescriptionKey :  NSLocalizedString("Unauthorized", value: "Please activate your account", comment: "") ,
-                        NSLocalizedFailureReasonErrorKey : NSLocalizedString("Unauthorized", value: "Account not activated", comment: "")
-                ]
         
-        MockURLProtocol.errorRequest = NSError(domain: "com.example.error", code: 500, userInfo: userInfo)
-//        MockURLProtocol.requestHandler = { request in
-//            let response = HTTPURLResponse(url: stubAnyUrl, statusCode: 300, httpVersion: nil, headerFields: nil)!
-//            return (response, Data())
-//        }
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: 300, httpVersion: nil, headerFields: nil)!
+            return (response, Data(), nil)
+        }
         
         
         cancellable = manager.fetchData(url: stubAnyUrl)
             .sink { (completion) in
                 switch completion {
                     case .failure(let error):
-                        outputResult.isFinished = false
-                        print("-----\((error as NSError).code)----")
+                        print("-----  \(error )  ----")
+                        XCTAssertEqual((error as NSError).code, 300, "error code does not match")
                     case .finished:
-                        outputResult.isFinished = true
+                        XCTFail("it should not finished")
                 }
                 expectation.fulfill()
         } receiveValue: { value in
-            outputResult.data = value
-            
+            XCTFail("it should not get value")
         }
         
         waitForExpectations(timeout: 5, handler: nil)
-
-        XCTAssertFalse(outputResult.isFinished, "succesful result suppose to finish")
-//        XCTAssertEqual(outputResult.data, Data([0,1,0,1]), "data results does not matched")
-
+        
     }
     
     func testUnexpectedResponse() throws {
