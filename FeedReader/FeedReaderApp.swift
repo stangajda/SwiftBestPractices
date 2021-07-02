@@ -32,7 +32,7 @@ struct FeedReaderApp: App {
     }
     
     static func load(url: URL) -> AnyPublisher<Movies, Error>{
-        let networkManager: NetworkManager = NetworkManager()
+        let networkManager: Service = Service()
         return networkManager.fetchData(url)
     }
     

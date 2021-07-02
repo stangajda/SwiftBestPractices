@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  Service.swift
 //  FeedReader
 //
 //  Created by Stan Gajda on 17/06/2021.
@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class NetworkManager{
+struct Service{
     
     var cancellable: AnyCancellable?
     var session: URLSession = .shared

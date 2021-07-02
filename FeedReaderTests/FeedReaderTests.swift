@@ -11,7 +11,7 @@ import Combine
 
 class ErrorResponseTests: XCTestCase {
     var cancellable: AnyCancellable?
-    var manager: NetworkManager?
+    var manager: Service?
     let stubError = "anyLocal"
     let stubAnyUrl = URL(string: "https://test.com")!
     
@@ -21,7 +21,7 @@ class ErrorResponseTests: XCTestCase {
         sessionConfiguration.timeoutIntervalForRequest = 1
         sessionConfiguration.timeoutIntervalForResource = 1
         let mockSession = URLSession(configuration: sessionConfiguration)
-        manager = NetworkManager(session: mockSession)
+        manager = Service(session: mockSession)
     }
 
     override func tearDownWithError() throws {
