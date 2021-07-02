@@ -11,27 +11,22 @@ import Combine
 
 class ErrorResponseTests: XCTestCase {
     var cancellable: AnyCancellable?
-    var manager: Service?
+    var mockManager: Service?
     let stubError = "anyLocal"
     let stubAnyUrl = URL(string: "https://test.com")!
     
     override func setUpWithError() throws {
-        let sessionConfiguration = URLSessionConfiguration.default
-        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
-        sessionConfiguration.timeoutIntervalForRequest = 1
-        sessionConfiguration.timeoutIntervalForResource = 1
-        let mockSession = URLSession(configuration: sessionConfiguration)
-        manager = Service(session: mockSession)
+        let mockSession = URLSession.mockedResponseConfig
+        mockManager = Service(session: mockSession)
     }
 
     override func tearDownWithError() throws {
         cancellable?.cancel()
-        manager = nil
+        mockManager = nil
         cancellable = nil
     }
     
     func testSuccessfulResponse() throws {
-        let aQueue = DispatchQueue(label: "serial")
         let stubData = Data([0,1,0,1])
         
         let stubSuccesfullResponse: (data: Data, statusCode: Int) = (stubData, 200)
@@ -43,8 +38,7 @@ class ErrorResponseTests: XCTestCase {
             return (response, stubSuccesfullResponse.data, nil)
         }
         
-        cancellable = self.manager!.fetchData(url: stubAnyUrl)
-            .subscribe(on: aQueue)
+        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
             .sink { (completion) in
                     switch completion {
                         case .failure(_):
@@ -69,7 +63,7 @@ class ErrorResponseTests: XCTestCase {
         try testFailureResponse(errorCode: 404)
     }
     
-    func testFailureResponse(errorCode:Int) throws {
+    func testFailureResponse(errorCode: Int) throws {
         let expectation = self.expectation(description: "response result")
         
         MockURLProtocol.requestHandler = { request in
@@ -77,7 +71,7 @@ class ErrorResponseTests: XCTestCase {
             return (response, Data(), nil)
         }
         
-        cancellable = self.manager!.fetchData(url: stubAnyUrl)
+        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
             .sink { (completion) in
                 switch completion {
                     case .failure(let error):
@@ -102,7 +96,7 @@ class ErrorResponseTests: XCTestCase {
             return (response, nil, error)
         }
         
-        cancellable = self.manager!.fetchData(url: stubAnyUrl)
+        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
             .sink { (completion) in
                 switch completion {
                     case .failure(let error):

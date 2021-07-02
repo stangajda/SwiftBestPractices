@@ -12,7 +12,7 @@ class MappedObjectTest: ErrorResponseTests {
 
     func testMapObject() throws {
         
-        let dataFromFile = Helper.load("MockResponseResult.json")
+        let dataFromFile = MappedObjectTest.load("MockResponseResult.json")
 
         let stubSuccesfullResponse: (data: Data, statusCode: Int) = (dataFromFile, 200)
         let expectation = self.expectation(description: "response result")
@@ -53,7 +53,7 @@ class MappedObjectTest: ErrorResponseTests {
     }
     
     func load(url: URL) -> AnyPublisher<Movies, Error>{
-        return self.manager!.fetchData(url)
+        return self.mockManager!.fetchData(url)
     }
     
 }

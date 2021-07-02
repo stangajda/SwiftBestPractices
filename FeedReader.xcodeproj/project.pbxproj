@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		CC2C87792680A9FD00570234 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
+		CC456E52268FB79900FF2113 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APICall.swift */; };
+		CC456E53268FB7F600FF2113 /* APICall.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APICall.swift */; };
 		CC569503268128C70055C07C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
 		CC56950526812DB70055C07C /* MappedObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56950426812DB70055C07C /* MappedObjectTest.swift */; };
 		CC56950726812DE70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
@@ -17,7 +19,7 @@
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 		CCF3A8C0267A8ED300CB5765 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BF267A8ED300CB5765 /* Preview Assets.xcassets */; };
-		CCF3A8CB267A8ED300CB5765 /* FeedReaderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8CA267A8ED300CB5765 /* FeedReaderTests.swift */; };
+		CCF3A8CB267A8ED300CB5765 /* ErrorResponseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8CA267A8ED300CB5765 /* ErrorResponseTests.swift */; };
 		CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* Service.swift */; };
 		CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* Service.swift */; };
 		CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
@@ -36,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		CC2C87782680A9FD00570234 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
+		CC456E51268FB79900FF2113 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
 		CC56950426812DB70055C07C /* MappedObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappedObjectTest.swift; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
@@ -46,7 +49,7 @@
 		CCF3A8BF267A8ED300CB5765 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CCF3A8C1267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCF3A8CA267A8ED300CB5765 /* FeedReaderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderTests.swift; sourceTree = "<group>"; };
+		CCF3A8CA267A8ED300CB5765 /* ErrorResponseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorResponseTests.swift; sourceTree = "<group>"; };
 		CCF3A8CC267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8E3267BE02B00CB5765 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 				CCF3A8C1267A8ED300CB5765 /* Info.plist */,
 				CCF3A8E3267BE02B00CB5765 /* Service.swift */,
 				CC2C87782680A9FD00570234 /* Movies.swift */,
+				CC456E51268FB79900FF2113 /* APICall.swift */,
 			);
 			path = FeedReader;
 			sourceTree = "<group>";
@@ -116,7 +120,7 @@
 			isa = PBXGroup;
 			children = (
 				CC56950426812DB70055C07C /* MappedObjectTest.swift */,
-				CCF3A8CA267A8ED300CB5765 /* FeedReaderTests.swift */,
+				CCF3A8CA267A8ED300CB5765 /* ErrorResponseTests.swift */,
 				CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */,
 				CC5695012680ED070055C07C /* MockResponseResult.json */,
 				CC569509268205B00055C07C /* Helper.swift */,
@@ -228,6 +232,7 @@
 			files = (
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
+				CC456E53268FB7F600FF2113 /* APICall.swift in Sources */,
 				CC2C87792680A9FD00570234 /* Movies.swift in Sources */,
 				CCF3A8EF267CD5C500CB5765 /* ViewModel.swift in Sources */,
 				CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */,
@@ -242,7 +247,8 @@
 				CC56950526812DB70055C07C /* MappedObjectTest.swift in Sources */,
 				CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */,
 				CC569503268128C70055C07C /* Movies.swift in Sources */,
-				CCF3A8CB267A8ED300CB5765 /* FeedReaderTests.swift in Sources */,
+				CCF3A8CB267A8ED300CB5765 /* ErrorResponseTests.swift in Sources */,
+				CC456E52268FB79900FF2113 /* APICall.swift in Sources */,
 				CC56950B2682069A0055C07C /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
