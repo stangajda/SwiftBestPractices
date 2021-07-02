@@ -12,6 +12,7 @@
 		CC56950526812DB70055C07C /* MappedObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56950426812DB70055C07C /* MappedObjectTest.swift */; };
 		CC56950726812DE70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
+		CC56950B2682069A0055C07C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* Helper.swift */; };
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
@@ -37,6 +38,7 @@
 		CC2C87782680A9FD00570234 /* Movies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movies.swift; sourceTree = "<group>"; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
 		CC56950426812DB70055C07C /* MappedObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappedObjectTest.swift; sourceTree = "<group>"; };
+		CC569509268205B00055C07C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				CCF3A8CA267A8ED300CB5765 /* FeedReaderTests.swift */,
 				CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */,
 				CC5695012680ED070055C07C /* MockResponseResult.json */,
+				CC569509268205B00055C07C /* Helper.swift */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
 			);
 			path = FeedReaderTests;
@@ -240,6 +243,7 @@
 				CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */,
 				CC569503268128C70055C07C /* Movies.swift in Sources */,
 				CCF3A8CB267A8ED300CB5765 /* FeedReaderTests.swift in Sources */,
+				CC56950B2682069A0055C07C /* Helper.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

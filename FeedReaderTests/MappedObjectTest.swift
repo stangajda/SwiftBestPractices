@@ -10,7 +10,7 @@ import XCTest
 class MappedObjectTest: ErrorResponseTests {
 
     func testMapObject() throws {
-        let dataFromFile = load("MockResponseResult.json")
+        let dataFromFile = Helper.load("MockResponseResult.json")
 
         let stubSuccesfullResponse: (data: Data, statusCode: Int) = (dataFromFile, 200)
         let expectation = self.expectation(description: "response result")
@@ -23,32 +23,31 @@ class MappedObjectTest: ErrorResponseTests {
         cancellable = self.manager!.fetchDataAndMap(url: stubAnyUrl)
             .sink { (completion) in
                 switch completion {
-                    case .failure(let error):
-                        print("-----\(error)")
+                    case .failure( _ ):
                         XCTFail("result should not failure")
                     case .finished:
                         XCTAssert(true,"result must finish")
                 }
         } receiveValue: { value in
-            //XCTAssertEqual(value, Data([0,1,0,1]), "data results does not matched")
+            _ = value.items.enumerated().map{(index,item) in
+                XCTAssertEqual(item.id, "\(index)-id", "data results does not matched")
+                XCTAssertEqual(item.rank, "\(index)-rank", "data results does not matched")
+                XCTAssertEqual(item.title, "\(index)-title", "data results does not matched")
+                XCTAssertEqual(item.fullTitle, "\(index)-fullTitle", "data results does not matched")
+                XCTAssertEqual(item.year, "\(index)-year", "data results does not matched")
+                XCTAssertEqual(item.image, "\(index)-image", "data results does not matched")
+                XCTAssertEqual(item.crew, "\(index)-crew", "data results does not matched")
+                XCTAssertEqual(item.imDbRating, "\(index)-imDbRating", "data results does not matched")
+                XCTAssertEqual(item.imDbRatingCount, "\(index)-imDbRatingCount", "data results does not matched")
+            }
+            
+            XCTAssertEqual(value.errorMessage, "errorMessage", "data results does not matched")
+            XCTAssertEqual(value.items.count, 3, "number of records does not match")
+            
             expectation.fulfill()
         }
         
         waitForExpectations(timeout: 1, handler: nil)
-    }
-    
-    func load(_ filename: String) -> Data {
-        
-        guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
-            else {
-                fatalError("Couldn't find \(filename) in main bundle.")
-        }
-
-        do {
-            return try Data(contentsOf: file)
-        } catch {
-            fatalError("Couldn't load \(filename) from main bundle:\n\(error)")
-        }
     }
     
 }
