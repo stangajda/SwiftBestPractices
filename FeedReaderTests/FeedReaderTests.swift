@@ -13,11 +13,13 @@ class ErrorResponseTests: XCTestCase {
     var cancellable: AnyCancellable?
     var manager: NetworkManager?
     let stubError = "anyLocal"
-    let stubAnyUrl = URL(string: "http://anyURL.com")!
+    let stubAnyUrl = URL(string: "https://test.com")!
     
     override func setUpWithError() throws {
-        let sessionConfiguration = URLSessionConfiguration.ephemeral
+        let sessionConfiguration = URLSessionConfiguration.default
         sessionConfiguration.protocolClasses = [MockURLProtocol.self]
+        sessionConfiguration.timeoutIntervalForRequest = 1
+        sessionConfiguration.timeoutIntervalForResource = 1
         let mockSession = URLSession(configuration: sessionConfiguration)
         manager = NetworkManager(session: mockSession)
     }

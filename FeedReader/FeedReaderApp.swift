@@ -13,10 +13,10 @@ struct FeedReaderApp: App {
     var cancellable: AnyCancellable
     
     init(){
-        let networkManager: NetworkManager = NetworkManager()
+        
         let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!
 
-        cancellable = networkManager.fetchDataAndMap(url: url)
+        cancellable = FeedReaderApp.load(url: url)
 //            .print("received", to: nil)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -29,6 +29,11 @@ struct FeedReaderApp: App {
                 //guard let response = String(data: data, encoding: .utf8) else { return }
                 print(data.items[0].title)
             })
+    }
+    
+    static func load(url: URL) -> AnyPublisher<Movies, Error>{
+        let networkManager: NetworkManager = NetworkManager()
+        return networkManager.fetchData(url)
     }
     
     var body: some Scene {

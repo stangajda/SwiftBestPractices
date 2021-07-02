@@ -6,25 +6,27 @@
 //
 
 import XCTest
+import Combine
 
 class MappedObjectTest: ErrorResponseTests {
 
     func testMapObject() throws {
+        
         let dataFromFile = Helper.load("MockResponseResult.json")
 
         let stubSuccesfullResponse: (data: Data, statusCode: Int) = (dataFromFile, 200)
         let expectation = self.expectation(description: "response result")
         
         MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: stubSuccesfullResponse.statusCode, httpVersion: nil, headerFields: nil)!
+            let response = HTTPURLResponse(url: request.url!, statusCode: stubSuccesfullResponse.statusCode, httpVersion: "HTTP/1.1", headerFields: ["Content-Type": "application/json"])!
             return (response, stubSuccesfullResponse.data, nil)
         }
         
-        cancellable = self.manager!.fetchDataAndMap(url: stubAnyUrl)
+        cancellable = self.load(url: stubAnyUrl)
             .sink { (completion) in
                 switch completion {
-                    case .failure( _ ):
-                        XCTFail("result should not failure")
+                    case .failure( let error ):
+                        XCTFail("result should not failure \(error)")
                     case .finished:
                         XCTAssert(true,"result must finish")
                 }
@@ -48,6 +50,10 @@ class MappedObjectTest: ErrorResponseTests {
         }
         
         waitForExpectations(timeout: 1, handler: nil)
+    }
+    
+    func load(url: URL) -> AnyPublisher<Movies, Error>{
+        return self.manager!.fetchData(url)
     }
     
 }

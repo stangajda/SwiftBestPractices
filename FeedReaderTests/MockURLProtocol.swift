@@ -26,15 +26,17 @@ class MockURLProtocol: URLProtocol {
         }
         
         let (response, data, error) = handler(request)
-        if let data = data {
-            client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-            client?.urlProtocol(self, didLoad: data)
-            client?.urlProtocolDidFinishLoading(self)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            guard let self = self else { return }
+            if let data = data {
+                self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+                self.client?.urlProtocol(self, didLoad: data)
+                self.client?.urlProtocolDidFinishLoading(self)
+            }
+            else {
+                self.client?.urlProtocol(self, didFailWithError: error!)
+            }
         }
-        else {
-            client?.urlProtocol(self, didFailWithError: error!)
-        }
-        
     }
     
     override func stopLoading() {
