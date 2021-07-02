@@ -32,8 +32,9 @@ class ErrorResponseTests: XCTestCase {
     
     func testSuccessfulResponse() throws {
         let aQueue = DispatchQueue(label: "serial")
+        let stubData = Data([0,1,0,1])
         
-        let stubSuccesfullResponse: (data: Data, statusCode: Int) = (Data([0,1,0,1]), 200)
+        let stubSuccesfullResponse: (data: Data, statusCode: Int) = (stubData, 200)
         
         let expectation = self.expectation(description: "response result")
         
@@ -44,20 +45,17 @@ class ErrorResponseTests: XCTestCase {
         
         cancellable = self.manager!.fetchData(url: stubAnyUrl)
             .subscribe(on: aQueue)
-//            .receive(on: aQueue)
             .sink { (completion) in
-                switch completion {
-                    case .failure(_):
-                        XCTFail("result should not failure")
-                    case .finished:
-                        print("--thread-finish \(Thread.current)")
-                        XCTAssert(true,"result must finish")
+                    switch completion {
+                        case .failure(_):
+                            XCTFail("result should not failure")
+                        case .finished:
+                            XCTAssert(true,"result must finish")
+                    }
+                } receiveValue: { value in
+                    XCTAssertEqual(value, stubData, "data results does not matched")
+                    expectation.fulfill()
                 }
-        } receiveValue: { value in
-            print("--thread \(Thread.current)")
-            XCTAssertEqual(value, Data([0,1,0,1]), "data results does not matched")
-            expectation.fulfill()
-        }
         
         waitForExpectations(timeout: 1, handler: nil)
         
