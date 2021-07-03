@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-extension MappedObjectTest{
+extension ErrorResponseTests{
     
     static func load(_ filename: String) -> Data {
         
@@ -39,18 +39,6 @@ extension Result where Success: Equatable {
         }
     }
 }
-
-//extension Result where Success: Collection {
-//    func assertSuccess(value: Success, file: StaticString = #file, line: UInt = #line) {
-//        switch self {
-//        case let .success(resultValue):
-//            XCTAssertEqual(resultValue, value, file: file, line: line)
-//        break
-//        case let .failure(error):
-//            XCTFail("Unexpected error: \(error)", file: file, line: line)
-//        }
-//    }
-//}
 
 extension Result where Success == Void {
     func assertSuccess(file: StaticString = #file, line: UInt = #line) {

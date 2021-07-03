@@ -48,6 +48,29 @@ class ErrorResponseTests: XCTestCase {
         
     }
     
+    func testMapObject() throws {
+        
+        let dataFromFile = ErrorResponseTests.load("MockResponseResult.json")
+        let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
+                                                        from: dataFromFile)
+
+        let stubSuccesfullResponse: (data: Data, statusCode: Int) = (dataFromFile, 200)
+        let expectation = self.expectation(description: "response result")
+        
+        MockURLProtocol.requestHandler = { request in
+            let response = HTTPURLResponse(url: request.url!, statusCode: stubSuccesfullResponse.statusCode, httpVersion: "HTTP/1.1", headerFields: ["Content-Type": "application/json"])!
+            return (response, stubSuccesfullResponse.data, nil)
+        }
+        
+        cancellable = self.load(url: stubAnyUrl)
+            .sinkToResult({ result in
+                result.assertSuccess(value: moviesFromData)
+                expectation.fulfill()
+            })
+        
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+    
     func testFailure300Response() throws{
         try testFailureResponse(errorCode: 300)
     }
@@ -58,10 +81,11 @@ class ErrorResponseTests: XCTestCase {
     
     func testFailureResponse(errorCode: Int) throws {
         let expectation = self.expectation(description: "response result")
+        let error = NSError(domain: stubError, code: errorCode, userInfo: nil)
         
         MockURLProtocol.requestHandler = { request in
             let response = HTTPURLResponse(url: request.url!, statusCode: errorCode, httpVersion: nil, headerFields: nil)!
-            return (response, Data(), nil)
+            return (response, nil, error)
         }
         
         cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
@@ -73,24 +97,8 @@ class ErrorResponseTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testUnknownResponse() throws {
-        let stubCode = -1
-        let expectation = self.expectation(description: "response result")
-        let error = NSError(domain: stubError, code: stubCode, userInfo: nil)
-        
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: stubCode, httpVersion: nil, headerFields: nil)!
-            return (response, nil, error)
-        }
-        
-        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
-            .sinkToResult({ result in
-                result.assertFailure(stubCode)
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 1, handler: nil)
-
+    func load(url: URL) -> AnyPublisher<Movies, Error>{
+        return self.mockManager!.fetchData(url)
     }
 
 }

@@ -31,6 +31,7 @@ struct Service{
             .tryMap { data, response in
                 try response.mapError(data)
             }
+            .mapUnderlyingError()
             .eraseToAnyPublisher()
     }
     

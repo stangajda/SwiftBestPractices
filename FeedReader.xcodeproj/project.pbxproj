@@ -13,7 +13,6 @@
 		CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
 		CC456E56268FDA2B00FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
 		CC569503268128C70055C07C /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
-		CC56950526812DB70055C07C /* MappedObjectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC56950426812DB70055C07C /* MappedObjectTest.swift */; };
 		CC56950726812DE70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* Helper.swift */; };
@@ -43,7 +42,6 @@
 		CC456E51268FB79900FF2113 /* APICall.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICall.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceHelper.swift; path = FeedReaderTests/ServiceHelper.swift; sourceTree = SOURCE_ROOT; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
-		CC56950426812DB70055C07C /* MappedObjectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappedObjectTest.swift; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
@@ -123,7 +121,6 @@
 		CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC56950426812DB70055C07C /* MappedObjectTest.swift */,
 				CCF3A8CA267A8ED300CB5765 /* ErrorResponseTests.swift */,
 				CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */,
 				CC5695012680ED070055C07C /* MockResponseResult.json */,
@@ -249,7 +246,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */,
-				CC56950526812DB70055C07C /* MappedObjectTest.swift in Sources */,
 				CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */,
 				CC569503268128C70055C07C /* Movies.swift in Sources */,
 				CCF3A8CB267A8ED300CB5765 /* ErrorResponseTests.swift in Sources */,

@@ -9,7 +9,6 @@ import Foundation
 import Combine
 
 extension Publisher {
-    
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         return sink(receiveCompletion: { completion in
             switch completion {
@@ -22,6 +21,11 @@ extension Publisher {
         })
     }
     
+    func mapUnderlyingError() -> Publishers.MapError<Self, Failure> {
+        mapError { error in
+            (error.underlyingError as? Failure) ?? error
+        }
+    }
 }
 
 extension URLResponse{
@@ -36,5 +40,15 @@ extension URLResponse{
         }
         
         throw NSError(domain: "localDomain", code: 444, userInfo: nil)
+    }
+}
+
+private extension Error {
+    var underlyingError: Error? {
+        let nsError = self as NSError
+        if nsError.domain == NSURLErrorDomain && nsError.code == -1009 {
+            return self
+        }
+        return nsError.userInfo[NSUnderlyingErrorKey] as? Error
     }
 }

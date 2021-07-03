@@ -118,7 +118,9 @@ class MockURLProtocol: URLProtocol {
                 self.client?.urlProtocolDidFinishLoading(self)
             }
             else {
-                self.client?.urlProtocol(self, didFailWithError: error!)
+                let failure = NSError(domain: NSURLErrorDomain, code: 1,
+                                      userInfo: [NSUnderlyingErrorKey: error!])
+                self.client?.urlProtocol(self, didFailWithError: failure)
             }
         }
     }
