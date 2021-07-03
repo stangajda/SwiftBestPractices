@@ -39,17 +39,10 @@ class ErrorResponseTests: XCTestCase {
         }
         
         cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
-            .sink { (completion) in
-                    switch completion {
-                        case .failure(_):
-                            XCTFail("result should not failure")
-                        case .finished:
-                            XCTAssert(true,"result must finish")
-                    }
-                } receiveValue: { value in
-                    XCTAssertEqual(value, stubData, "data results does not matched")
-                    expectation.fulfill()
-                }
+            .sinkToResult({ result in
+                result.assertSuccess(value: stubData)
+                expectation.fulfill()
+            })
         
         waitForExpectations(timeout: 1, handler: nil)
         
@@ -72,42 +65,29 @@ class ErrorResponseTests: XCTestCase {
         }
         
         cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
-            .sink { (completion) in
-                switch completion {
-                    case .failure(let error):
-                        XCTAssertEqual((error as NSError).code, errorCode, "error code does not match")
-                    case .finished:
-                        XCTFail("it should not finished")
-                }
+            .sinkToResult({ result in
+                result.assertFailure(errorCode)
                 expectation.fulfill()
-        } receiveValue: { value in
-            XCTFail("it should not get value")
-        }
+            })
         
         waitForExpectations(timeout: 1, handler: nil)
     }
     
     func testUnknownResponse() throws {
+        let stubCode = -1
         let expectation = self.expectation(description: "response result")
-        let error = NSError(domain: stubError, code: -1, userInfo: nil)
+        let error = NSError(domain: stubError, code: stubCode, userInfo: nil)
         
         MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: -1, httpVersion: nil, headerFields: nil)!
+            let response = HTTPURLResponse(url: request.url!, statusCode: stubCode, httpVersion: nil, headerFields: nil)!
             return (response, nil, error)
         }
         
         cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
-            .sink { (completion) in
-                switch completion {
-                    case .failure(let error):
-                        XCTAssertEqual((error as NSError).code, -1, "error code does not match")
-                    case .finished:
-                        XCTFail("it should not finished")
-                }
+            .sinkToResult({ result in
+                result.assertFailure(stubCode)
                 expectation.fulfill()
-        } receiveValue: { value in
-            XCTFail("it should not get value")
-        }
+            })
         
         waitForExpectations(timeout: 1, handler: nil)
 
