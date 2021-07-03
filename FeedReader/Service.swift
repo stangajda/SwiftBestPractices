@@ -23,27 +23,13 @@ struct Service{
             .eraseToAnyPublisher()
     }
     
-    func fetchDataAndMap(url: URL) -> Publishers.Decode<AnyPublisher<Data, Error>, Movies, JSONDecoder> {
-        fetchData(url: url)
-            .decode(type: Movies.self, decoder: JSONDecoder())
-    }
     
     func fetchData(url: URL) -> AnyPublisher<Data, Error> {
         let request = URLRequest(url: url)
 
         return self.session.dataTaskPublisher(for: request)
             .tryMap { data, response in
-                if let httpResponse = response as? HTTPURLResponse, 200..<300 ~= httpResponse.statusCode {
-                    return data
-                }
-                
-                if let response = response as? HTTPURLResponse, let url = response.url{
-                    let error:NSError = NSError(domain: url.absoluteString, code: response.statusCode, userInfo: nil)
-                    throw error
-                }
-                
-                throw NSError(domain: "localDomain", code: 444, userInfo: nil)
-                
+                try response.mapError(data)
             }
             .eraseToAnyPublisher()
     }
