@@ -63,3 +63,19 @@ extension Result {
         }
     }
 }
+
+extension NSError {
+    static var test: NSError {
+        return NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test error"])
+    }
+    
+    static func stubCode(code: HTTPCode) -> NSError {
+        return NSError(domain: "test", code: code, userInfo: nil)
+    }
+}
+
+extension Data {
+    static var stubData: Data {
+        return Data([0,1,0,1])
+    }
+}
