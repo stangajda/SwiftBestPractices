@@ -7,6 +7,16 @@
 
 import Foundation
 
+extension URLSession {
+    static var mockedResponsesOnly: URLSession {
+        let configuration = URLSessionConfiguration.default
+        configuration.protocolClasses = [MockURLProtocol.self]
+        configuration.timeoutIntervalForRequest = 1
+        configuration.timeoutIntervalForResource = 1
+        return URLSession(configuration: configuration)
+    }
+}
+
 extension MockURLProtocol {
     struct MockedResponse {
         let url: URL
@@ -23,14 +33,13 @@ extension MockURLProtocol.MockedResponse {
         case failedMockCreation
     }
     
-    init<T>(apiCall: APICall, baseURL: String,
+    init<T>(
+            url: URL,
             result: Result<T, Swift.Error>,
             httpCode: HTTPCode = 200,
             headers: [String: String] = ["Content-Type": "application/json"],
             loadingTime: TimeInterval = 0.1
     ) throws where T: Encodable {
-        guard let url = try apiCall.urlRequest(baseURL: baseURL).url
-            else { throw Error.failedMockCreation }
         self.url = url
         switch result {
         case let .success(value):
@@ -44,25 +53,26 @@ extension MockURLProtocol.MockedResponse {
         customResponse = nil
     }
     
-    init(apiCall: APICall, baseURL: String, customResponse: URLResponse) throws {
-        guard let url = try apiCall.urlRequest(baseURL: baseURL).url
-            else { throw Error.failedMockCreation }
+    init(
+        url: URL,
+        result: Result<Data, Swift.Error>,
+        httpCode: HTTPCode = 200,
+        headers: [String: String] = ["Content-Type": "application/json"],
+        loadingTime: TimeInterval = 0.1
+    ) throws {
         self.url = url
-        result = .success(Data())
-        httpCode = 200
-        headers = [String: String]()
-        loadingTime = 0
-        self.customResponse = customResponse
-    }
-    
-    init(url: URL, result: Result<Data, Swift.Error>) {
-        self.url = url
-        self.result = result
-        httpCode = 200
-        headers = [String: String]()
-        loadingTime = 0
+        switch result {
+        case let .success(value):
+            self.result = .success(value)
+        case let .failure(error):
+            self.result = .failure(error)
+        }
+        self.httpCode = httpCode
+        self.headers = headers
+        self.loadingTime = loadingTime
         customResponse = nil
     }
+    
 }
 
 extension URLSession {
@@ -104,26 +114,50 @@ class MockURLProtocol: URLProtocol {
     }
     
     override func startLoading() {
-        
-        guard let handler = MockURLProtocol.requestHandler else {
-            return
-        }
-        
-        let (response, data, error) = handler(request)
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-            guard let self = self else { return }
-            if let data = data {
+        if let mock = MockURLProtocol.mock(for: request),
+            let url = request.url,
+            let response = mock.customResponse ??
+                HTTPURLResponse(url: url,
+                statusCode: mock.httpCode,
+                httpVersion: "HTTP/1.1",
+                headerFields: mock.headers) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + mock.loadingTime) { [weak self] in
+                guard let self = self else { return }
                 self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-                self.client?.urlProtocol(self, didLoad: data)
-                self.client?.urlProtocolDidFinishLoading(self)
-            }
-            else {
-                let failure = NSError(domain: NSURLErrorDomain, code: 1,
-                                      userInfo: [NSUnderlyingErrorKey: error!])
-                self.client?.urlProtocol(self, didFailWithError: failure)
+                switch mock.result {
+                case let .success(data):
+                    self.client?.urlProtocol(self, didLoad: data)
+                    self.client?.urlProtocolDidFinishLoading(self)
+                case let .failure(error):
+                    let failure = NSError(domain: NSURLErrorDomain, code: 1,
+                                          userInfo: [NSUnderlyingErrorKey: error])
+                    self.client?.urlProtocol(self, didFailWithError: failure)
+                }
             }
         }
     }
+    
+//    override func startLoading() {
+//
+//        guard let handler = MockURLProtocol.requestHandler else {
+//            return
+//        }
+//
+//        let (response, data, error) = handler(request)
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+//            guard let self = self else { return }
+//            if let data = data {
+//                self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+//                self.client?.urlProtocol(self, didLoad: data)
+//                self.client?.urlProtocolDidFinishLoading(self)
+//            }
+//            else {
+//                let failure = NSError(domain: NSURLErrorDomain, code: 1,
+//                                      userInfo: [NSUnderlyingErrorKey: error!])
+//                self.client?.urlProtocol(self, didFailWithError: failure)
+//            }
+//        }
+//    }
     
     override func stopLoading() {
 

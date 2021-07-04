@@ -10,17 +10,33 @@ import XCTest
 import Combine
 
 class ErrorResponseTests: XCTestCase {
+    
+//    private var sut: RealCountriesWebRepository!
+//    private var subscriptions = Set<AnyCancellable>()
+//
+//    typealias API = RealCountriesWebRepository.API
+//    typealias Mock = RequestMocking.MockedResponse
+//
+//    override func setUp() {
+//        subscriptions = Set<AnyCancellable>()
+//        sut = RealCountriesWebRepository(session: .mockedResponsesOnly,
+//                                         baseURL: "https://test.com")
+//    }
+    
     var cancellable: AnyCancellable?
-    var mockManager: Service?
+    var mockManager: Service!
     let stubError = "anyLocal"
     let stubAnyUrl = URL(string: "https://test.com")!
+    typealias Mock = MockURLProtocol.MockedResponse
+    lazy var requestURL: URL = URL(string: String())!
     
     override func setUpWithError() throws {
-        let mockSession = URLSession.mockedResponseConfig
-        mockManager = Service(session: mockSession)
+        mockManager = Service(session: .mockedResponsesOnly)
+        requestURL = try XCTUnwrap(stubAnyUrl)
     }
 
     override func tearDownWithError() throws {
+        MockURLProtocol.removeAllMocks()
         cancellable?.cancel()
         mockManager = nil
         cancellable = nil
@@ -28,17 +44,14 @@ class ErrorResponseTests: XCTestCase {
     
     func testSuccessfulResponse() throws {
         let stubData = Data([0,1,0,1])
-        
-        let stubSuccesfullResponse: (data: Data, statusCode: Int) = (stubData, 200)
-        
         let expectation = self.expectation(description: "response result")
+        let requestURL = try XCTUnwrap(stubAnyUrl)
+        let responseData = try XCTUnwrap(stubData)
         
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: stubSuccesfullResponse.statusCode, httpVersion: nil, headerFields: nil)!
-            return (response, stubSuccesfullResponse.data, nil)
-        }
+        let mock = try Mock(url: requestURL, result: .success(responseData))
+        MockURLProtocol.add(mock: mock)
         
-        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
+        cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: stubData)
                 expectation.fulfill()
@@ -53,14 +66,14 @@ class ErrorResponseTests: XCTestCase {
         let dataFromFile = ErrorResponseTests.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                         from: dataFromFile)
-
-        let stubSuccesfullResponse: (data: Data, statusCode: Int) = (dataFromFile, 200)
-        let expectation = self.expectation(description: "response result")
         
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: stubSuccesfullResponse.statusCode, httpVersion: "HTTP/1.1", headerFields: ["Content-Type": "application/json"])!
-            return (response, stubSuccesfullResponse.data, nil)
-        }
+        let expectation = self.expectation(description: "response result")
+
+        let requestURL = try XCTUnwrap(stubAnyUrl)
+        let responseData = try XCTUnwrap(moviesFromData)
+        
+        let mock = try Mock(url: requestURL, result: .success(responseData))
+        MockURLProtocol.add(mock: mock)
         
         cancellable = self.load(url: stubAnyUrl)
             .sinkToResult({ result in
@@ -79,16 +92,19 @@ class ErrorResponseTests: XCTestCase {
         try testFailureResponse(errorCode: 404)
     }
     
+    func testFailure500Response() throws{
+        try testFailureResponse(errorCode: 500)
+    }
+    
     func testFailureResponse(errorCode: Int) throws {
         let expectation = self.expectation(description: "response result")
         let error = NSError(domain: stubError, code: errorCode, userInfo: nil)
         
-        MockURLProtocol.requestHandler = { request in
-            let response = HTTPURLResponse(url: request.url!, statusCode: errorCode, httpVersion: nil, headerFields: nil)!
-            return (response, nil, error)
-        }
+        let requestURL = try XCTUnwrap(stubAnyUrl)
+        let mock = try Mock(url: requestURL, result: .failure(error), httpCode: errorCode)
+        MockURLProtocol.add(mock: mock)
         
-        cancellable = self.mockManager!.fetchData(url: stubAnyUrl)
+        cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertFailure(errorCode)
                 expectation.fulfill()
@@ -98,7 +114,7 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func load(url: URL) -> AnyPublisher<Movies, Error>{
-        return self.mockManager!.fetchData(url)
+        return self.mockManager.fetchData(url)
     }
 
 }
