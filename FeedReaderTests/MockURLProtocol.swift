@@ -137,28 +137,6 @@ class MockURLProtocol: URLProtocol {
         }
     }
     
-//    override func startLoading() {
-//
-//        guard let handler = MockURLProtocol.requestHandler else {
-//            return
-//        }
-//
-//        let (response, data, error) = handler(request)
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
-//            guard let self = self else { return }
-//            if let data = data {
-//                self.client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
-//                self.client?.urlProtocol(self, didLoad: data)
-//                self.client?.urlProtocolDidFinishLoading(self)
-//            }
-//            else {
-//                let failure = NSError(domain: NSURLErrorDomain, code: 1,
-//                                      userInfo: [NSUnderlyingErrorKey: error!])
-//                self.client?.urlProtocol(self, didFailWithError: failure)
-//            }
-//        }
-//    }
-    
     override func stopLoading() {
 
     }
