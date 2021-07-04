@@ -113,6 +113,26 @@ class ErrorResponseTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
+    func testFailure300ResponseWithSuccess() throws{
+        try testFailureResponseWithSuccess(errorCode: 300)
+    }
+    
+    func testFailureResponseWithSuccess(errorCode: Int) throws {
+        let expectation = self.expectation(description: "response result")
+        
+        let requestURL = try XCTUnwrap(stubAnyUrl)
+        let mock = try Mock(url: requestURL, result: .success(Data()), httpCode: errorCode)
+        MockURLProtocol.add(mock: mock)
+        
+        cancellable = self.mockManager.fetchData(url: stubAnyUrl)
+            .sinkToResult({ result in
+                result.assertFailure(0)
+                expectation.fulfill()
+            })
+        
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+    
     func load(url: URL) -> AnyPublisher<Movies, Error>{
         return self.mockManager.fetchData(url)
     }
