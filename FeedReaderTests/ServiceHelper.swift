@@ -29,17 +29,15 @@ extension Publisher {
 }
 
 extension URLResponse{
-    func mapError(_ data:Data) throws -> Data{
-        if let httpResponse = self as? HTTPURLResponse, HTTPCodes.success ~= httpResponse.statusCode {
-            return data
+    func mapError(_ data: Data) throws -> Data{
+        let httpCodes: HTTPCodes = .success
+        guard let code = (self as? HTTPURLResponse)?.statusCode else {
+            throw APIError.unexpectedResponse
         }
-        
-        if let response = self as? HTTPURLResponse, let url = self.url{
-            let error:NSError = NSError(domain: url.absoluteString, code: response.statusCode, userInfo: nil)
-            throw error
+        guard httpCodes.contains(code) else {
+            throw APIError.httpCode(code)
         }
-        
-        throw NSError(domain: "localDomain", code: 444, userInfo: nil)
+        return data
     }
 }
 
