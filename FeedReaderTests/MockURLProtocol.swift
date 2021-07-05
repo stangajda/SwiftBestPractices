@@ -97,14 +97,12 @@ extension MockURLProtocol {
     }
     
     static private func mock(for request: URLRequest) -> MockedResponse? {
-        return mocks.first { $0.url == request.url }
+        return mocks.first { mock in mock.url == request.url }
     }
 }
 
 class MockURLProtocol: URLProtocol {
        
-    static var requestHandler: ((URLRequest) -> (HTTPURLResponse, Data?, Error?))?
-    
     override class func canInit(with request: URLRequest) -> Bool {
         return true
     }

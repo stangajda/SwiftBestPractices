@@ -14,8 +14,8 @@ class ErrorResponseTests: XCTestCase {
     typealias Mock = MockURLProtocol.MockedResponse
     var cancellable: AnyCancellable?
     var mockManager: Service!
-    let stubError = "https://test.com"
-    lazy var stubAnyUrl = URL(string: String())!
+    let stubError: String = "https://test.com"
+    lazy var stubAnyUrl: URL = URL(string: String())!
     lazy var requestURL: URL = URL(string: String())!
     
     override func setUpWithError() throws {
@@ -49,7 +49,7 @@ class ErrorResponseTests: XCTestCase {
         
     }
     
-    func testMapObject() throws {
+    func testMappedObject() throws {
         
         let dataFromFile = ErrorResponseTests.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
