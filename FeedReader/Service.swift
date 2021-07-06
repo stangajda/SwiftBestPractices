@@ -9,20 +9,14 @@ import Foundation
 import Combine
 
 struct Service{
-    
-    var cancellable: AnyCancellable?
     var session: URLSession = .shared
-
-    init(session: URLSession = .shared){
-        self.session = session
-    }
+    var cancellable: AnyCancellable?
     
     func fetchData<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
         fetchData(url: url)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
     
     func fetchData(url: URL) -> AnyPublisher<Data, Error> {
         let request = URLRequest(url: url)
