@@ -48,14 +48,12 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func testMappedObject() throws {
+        let expectation = self.expectation(description: "response result")
+        let requestURL = try XCTUnwrap(stubAnyUrl)
         
         let dataFromFile = ErrorResponseTests.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                         from: dataFromFile)
-        
-        let expectation = self.expectation(description: "response result")
-
-        let requestURL = try XCTUnwrap(stubAnyUrl)
         let responseData = try XCTUnwrap(moviesFromData)
         
         MockURLProtocol.mock = try Mock(url: requestURL, result: .success(responseData))
