@@ -25,7 +25,7 @@ class ErrorResponseTests: XCTestCase {
     }
 
     override func tearDownWithError() throws {
-        MockURLProtocol.removeAllMocks()
+        MockURLProtocol.mock = nil
         cancellable?.cancel()
         mockManager = nil
         cancellable = nil
@@ -36,9 +36,7 @@ class ErrorResponseTests: XCTestCase {
         let requestURL = try XCTUnwrap(stubAnyUrl)
         let responseData = try XCTUnwrap(Data.stubData)
         
-        let mock = try Mock(url: requestURL, result: .success(responseData))
-        MockURLProtocol.add(mock: mock)
-        
+        MockURLProtocol.mock = try Mock(url: requestURL, result: .success(responseData))
         cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: Data.stubData)
@@ -60,9 +58,7 @@ class ErrorResponseTests: XCTestCase {
         let requestURL = try XCTUnwrap(stubAnyUrl)
         let responseData = try XCTUnwrap(moviesFromData)
         
-        let mock = try Mock(url: requestURL, result: .success(responseData))
-        MockURLProtocol.add(mock: mock)
-        
+        MockURLProtocol.mock = try Mock(url: requestURL, result: .success(responseData))
         cancellable = self.load(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: moviesFromData)
@@ -86,11 +82,9 @@ class ErrorResponseTests: XCTestCase {
     
     func testFailureResponse(errorCode: HTTPCode) throws {
         let expectation = self.expectation(description: "response result")
-        
         let requestURL = try XCTUnwrap(stubAnyUrl)
-        let mock = try Mock(url: requestURL, result: .failure(NSError.stubCode(code: errorCode)), httpCode: errorCode)
-        MockURLProtocol.add(mock: mock)
         
+        MockURLProtocol.mock = try Mock(url: requestURL, result: .failure(NSError.stubCode(code: errorCode)), httpCode: errorCode)
         cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertFailure(errorCode)
@@ -103,11 +97,9 @@ class ErrorResponseTests: XCTestCase {
     func testFailureResponse() throws {
         let stubErrorCode = 0
         let expectation = self.expectation(description: "response result")
-        
         let requestURL = try XCTUnwrap(stubAnyUrl)
-        let mock = try Mock(url: requestURL, result: .success(false), httpCode: stubErrorCode)
-        MockURLProtocol.add(mock: mock)
         
+        MockURLProtocol.mock = try Mock(url: requestURL, result: .success(false), httpCode: stubErrorCode)
         cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertFailure(0)

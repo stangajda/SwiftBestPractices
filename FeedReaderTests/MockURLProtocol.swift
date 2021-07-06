@@ -86,19 +86,7 @@ extension URLSession {
 }
 
 extension MockURLProtocol {
-    static private var mocks: [MockedResponse] = []
-    
-    static func add(mock: MockedResponse) {
-        mocks.append(mock)
-    }
-    
-    static func removeAllMocks() {
-        mocks.removeAll()
-    }
-    
-    static private func mock(for request: URLRequest) -> MockedResponse? {
-        return mocks.first { mock in mock.url == request.url }
-    }
+    static var mock: MockedResponse?
 }
 
 class MockURLProtocol: URLProtocol {
@@ -112,7 +100,7 @@ class MockURLProtocol: URLProtocol {
     }
     
     override func startLoading() {
-        if let mock = MockURLProtocol.mock(for: request),
+        if let mock = MockURLProtocol.mock,
             let url = request.url,
             let response = mock.customResponse ??
                 HTTPURLResponse(url: url,
