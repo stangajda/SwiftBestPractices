@@ -22,6 +22,7 @@ extension MockURLProtocol {
         let url: URL
         let result: Result<Data, Swift.Error>
         let httpCode: HTTPCode
+        let httpVersion: String
         let headers: [String: String]
         let loadingTime: TimeInterval
         let customResponse: URLResponse?
@@ -37,6 +38,7 @@ extension MockURLProtocol.MockedResponse {
             url: URL,
             result: Result<T, Swift.Error>,
             httpCode: HTTPCode = 200,
+            httpVersion: String = "HTTP/1.1",
             headers: [String: String] = ["Content-Type": "application/json"],
             loadingTime: TimeInterval = 0.1
     ) throws where T: Encodable {
@@ -48,6 +50,7 @@ extension MockURLProtocol.MockedResponse {
             self.result = .failure(error)
         }
         self.httpCode = httpCode
+        self.httpVersion = httpVersion
         self.headers = headers
         self.loadingTime = loadingTime
         customResponse = nil
@@ -57,6 +60,7 @@ extension MockURLProtocol.MockedResponse {
         url: URL,
         result: Result<Data, Swift.Error>,
         httpCode: HTTPCode = 200,
+        httpVersion: String = "HTTP/1.1",
         headers: [String: String] = ["Content-Type": "application/json"],
         loadingTime: TimeInterval = 0.1
     ) throws {
@@ -68,6 +72,7 @@ extension MockURLProtocol.MockedResponse {
             self.result = .failure(error)
         }
         self.httpCode = httpCode
+        self.httpVersion = httpVersion
         self.headers = headers
         self.loadingTime = loadingTime
         customResponse = nil
@@ -105,7 +110,7 @@ class MockURLProtocol: URLProtocol {
             let response = mock.customResponse ??
                 HTTPURLResponse(url: url,
                 statusCode: mock.httpCode,
-                httpVersion: "HTTP/1.1",
+                httpVersion: mock.httpVersion,
                 headerFields: mock.headers) {
             DispatchQueue.main.asyncAfter(deadline: .now() + mock.loadingTime) { [weak self] in
                 guard let self = self else { return }

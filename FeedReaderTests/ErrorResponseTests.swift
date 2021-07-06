@@ -36,7 +36,8 @@ class ErrorResponseTests: XCTestCase {
         let requestURL = try XCTUnwrap(stubAnyUrl)
         let responseData = try XCTUnwrap(Data.stubData)
         
-        MockURLProtocol.mock = try Mock(url: requestURL, result: .success(responseData))
+        let result: Result<Data, Swift.Error> = .success(responseData)
+        MockURLProtocol.mock = try Mock(url: requestURL, result: result)
         cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: Data.stubData)
@@ -82,7 +83,8 @@ class ErrorResponseTests: XCTestCase {
         let expectation = self.expectation(description: "response result")
         let requestURL = try XCTUnwrap(stubAnyUrl)
         
-        MockURLProtocol.mock = try Mock(url: requestURL, result: .failure(NSError.stubCode(code: errorCode)), httpCode: errorCode)
+        let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
+        MockURLProtocol.mock = try Mock(url: requestURL, result: result, httpCode: errorCode)
         cancellable = self.mockManager.fetchData(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertFailure(errorCode)
