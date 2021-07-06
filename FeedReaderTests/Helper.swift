@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-extension ErrorResponseTests{
+extension Data{
     
     static func load(_ filename: String) -> Data {
         

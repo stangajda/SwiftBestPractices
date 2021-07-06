@@ -29,4 +29,7 @@ struct Service{
             .eraseToAnyPublisher()
     }
     
+    func fetchMovies(url: URL) -> AnyPublisher<Movies, Error>{
+        return self.fetchData(url)
+    }
 }

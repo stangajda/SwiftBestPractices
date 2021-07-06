@@ -51,13 +51,13 @@ class ErrorResponseTests: XCTestCase {
         let expectation = self.expectation(description: "response result")
         let requestURL = try XCTUnwrap(stubAnyUrl)
         
-        let dataFromFile = ErrorResponseTests.load("MockResponseResult.json")
+        let dataFromFile = Data.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                         from: dataFromFile)
         let responseData = try XCTUnwrap(moviesFromData)
         
         MockURLProtocol.mock = try Mock(url: requestURL, result: .success(responseData))
-        cancellable = self.load(url: stubAnyUrl)
+        cancellable = self.mockManager.fetchMovies(url: stubAnyUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: moviesFromData)
                 expectation.fulfill()
@@ -105,10 +105,6 @@ class ErrorResponseTests: XCTestCase {
             })
         
         waitForExpectations(timeout: 1, handler: nil)
-    }
-    
-    func load(url: URL) -> AnyPublisher<Movies, Error>{
-        return self.mockManager.fetchData(url)
     }
 
 }
