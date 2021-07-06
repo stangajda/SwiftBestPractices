@@ -9,7 +9,6 @@ import Foundation
 import XCTest
 
 extension Data{
-    
     static func load(_ filename: String) -> Data {
         
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
@@ -24,7 +23,6 @@ extension Data{
         }
         
     }
-    
 }
 
 // MARK: - Result
