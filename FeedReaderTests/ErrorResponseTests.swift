@@ -12,22 +12,21 @@ import Combine
 class ErrorResponseTests: XCTestCase {
     
     typealias Mock = MockURLProtocol.MockedResponse
+    
     var cancellable: AnyCancellable?
-    var mockManager: Service!
-    let stubError: String = "https://test.com"
-    lazy var stubAnyUrl: URL = URL(string: String())!
-    lazy var requestURL: URL = URL(string: String())!
+    let stubURlString: String = "https://test.com"
+    lazy var mockManager: Service = Service(session: .mockedResponsesOnly)
+    lazy var stubAnyUrl: URL = URL(string: stubURlString)!
+    lazy var requestURL: URL = URL(string: stubURlString)!
     
     override func setUpWithError() throws {
-        mockManager = Service(session: .mockedResponsesOnly)
-        stubAnyUrl = try XCTUnwrap(URL(string: "https://test.com"))
+        stubAnyUrl = try XCTUnwrap(URL(string: stubURlString))
         requestURL = try XCTUnwrap(stubAnyUrl)
     }
 
     override func tearDownWithError() throws {
         MockURLProtocol.mock = nil
         cancellable?.cancel()
-        mockManager = nil
         cancellable = nil
     }
     
