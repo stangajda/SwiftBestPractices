@@ -7,6 +7,13 @@
 
 import Foundation
 
+struct MockAPIRequest: APIRequestInterface {
+    static var baseURLString: String { "https://any.test.com/" }
+    static var language: String { "stubLanguage" }
+    static var prefixPath: String { "stubAPI" }
+    static var apiKey: String { "stubKey" }
+}
+
 extension URLSession {
     static var mockURLSession: URLSession {
         let configuration = URLSessionConfiguration.ephemeral

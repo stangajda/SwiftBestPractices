@@ -7,11 +7,20 @@
 
 import Foundation
 
-protocol APICall {
-    var path: String { get }
-    var method: String { get }
-    var headers: [String: String]? { get }
-    func body() throws -> Data?
+
+
+//static func trending() -> AnyPublisher<PageDTO<MovieDTO>, Error> {
+//    let request = URLComponents(url: base.appendingPathComponent("trending/movie/week"), resolvingAgainstBaseURL: true)?
+//        .addingApiKey(apiKey)
+//        .request
+//    return agent.fetchData(request!)
+//}
+
+protocol APIRequestInterface {
+    static var baseURLString: String { get }
+    static var language: String { get }
+    static var prefixPath: String { get }
+    static var apiKey: String { get }
 }
 
 enum APIError: Swift.Error {
@@ -32,15 +41,17 @@ extension APIError: LocalizedError {
     }
 }
 
-extension APICall {
-    func urlRequest(baseURL: String) throws -> URLRequest {
-        guard let url = URL(string: baseURL + path) else {
+extension APIRequestInterface {
+    static func get(path: String) throws -> URLRequest {
+        guard var url = URL(string: baseURLString) else {
             throw APIError.invalidURL
         }
+        url.appendPathComponent(language)
+        url.appendPathComponent(prefixPath)
+        url.appendPathComponent(path)
+        url.appendPathComponent(apiKey)
         var request = URLRequest(url: url)
-        request.httpMethod = method
-        request.allHTTPHeaderFields = headers
-        request.httpBody = try body()
+        request.httpMethod = "GET"
         return request
     }
 }

@@ -14,7 +14,7 @@ struct FeedReaderApp: App {
     
     init(){
         
-        let urlRequest = URLRequest(url: URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!)
+        let urlRequest = try! APIRequest.get(path: "Top250Movies")
 
         cancellable = FeedReaderApp.load(request: urlRequest)
 //            .print("received", to: nil)
