@@ -19,8 +19,6 @@ struct Service{
     }
     
     func fetchData(request: URLRequest) -> AnyPublisher<Data, Error> {
-//        let request = URLRequest(url: url)
-
         return self.session.dataTaskPublisher(for: request)
             .tryMap { data, response in
                 try response.mapError(data)
