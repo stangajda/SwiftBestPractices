@@ -19,7 +19,7 @@ extension URLSession {
 
 extension MockURLProtocol {
     struct MockedResponse {
-        let url: URL
+        let urlRequest: URLRequest
         let result: Result<Data, Swift.Error>
         let httpCode: HTTPCode
         let httpVersion: String
@@ -35,14 +35,14 @@ extension MockURLProtocol.MockedResponse {
     }
     
     init<T>(
-            url: URL,
+            urlRequest: URLRequest,
             result: Result<T, Swift.Error>,
             httpCode: HTTPCode = 200,
             httpVersion: String = "HTTP/1.1",
             headers: [String: String] = ["Content-Type": "application/json"],
             loadingTime: TimeInterval = 0.1
     ) throws where T: Encodable {
-        self.url = url
+        self.urlRequest = urlRequest
         switch result {
         case let .success(value):
             self.result = .success(try JSONEncoder().encode(value))
@@ -57,14 +57,14 @@ extension MockURLProtocol.MockedResponse {
     }
     
     init(
-        url: URL,
+        urlRequest: URLRequest,
         result: Result<Data, Swift.Error>,
         httpCode: HTTPCode = 200,
         httpVersion: String = "HTTP/1.1",
         headers: [String: String] = ["Content-Type": "application/json"],
         loadingTime: TimeInterval = 0.1
     ) throws {
-        self.url = url
+        self.urlRequest = urlRequest
         switch result {
         case let .success(value):
             self.result = .success(value)

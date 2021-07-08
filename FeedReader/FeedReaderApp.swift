@@ -14,9 +14,9 @@ struct FeedReaderApp: App {
     
     init(){
         
-        let url = URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!
+        let urlRequest = URLRequest(url: URL(string: "https://imdb-api.com/en/API/Top250Movies/k_66zz106x")!)
 
-        cancellable = FeedReaderApp.load(url: url)
+        cancellable = FeedReaderApp.load(request: urlRequest)
 //            .print("received", to: nil)
             .sink(receiveCompletion: { completion in
                 switch completion {
@@ -31,9 +31,9 @@ struct FeedReaderApp: App {
             })
     }
     
-    static func load(url: URL) -> AnyPublisher<Movies, Error>{
+    static func load(request: URLRequest) -> AnyPublisher<Movies, Error>{
         let networkManager: Service = Service()
-        return networkManager.fetchData(url)
+        return networkManager.fetchData(request)
     }
     
     var body: some Scene {

@@ -12,14 +12,14 @@ struct Service{
     var session: URLSession = .shared
     var cancellable: AnyCancellable?
     
-    func fetchData<T: Decodable>(_ url: URL) -> AnyPublisher<T, Error> {
-        fetchData(url: url)
+    func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
+        fetchData(request: request)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
     
-    func fetchData(url: URL) -> AnyPublisher<Data, Error> {
-        let request = URLRequest(url: url)
+    func fetchData(request: URLRequest) -> AnyPublisher<Data, Error> {
+//        let request = URLRequest(url: url)
 
         return self.session.dataTaskPublisher(for: request)
             .tryMap { data, response in
@@ -29,7 +29,7 @@ struct Service{
             .eraseToAnyPublisher()
     }
     
-    func fetchMovies(url: URL) -> AnyPublisher<Movies, Error>{
-        return self.fetchData(url)
+    func fetchMovies(request: URLRequest) -> AnyPublisher<Movies, Error>{
+        return self.fetchData(request)
     }
 }
