@@ -15,7 +15,7 @@ class ErrorResponseTests: XCTestCase {
     
     var cancellable: AnyCancellable?
     let stubURlString: String = "https://test.com"
-    lazy var mockManager: Service = Service(session: .mockedResponsesOnly)
+    lazy var mockManager: Service = Service(session: .mockURLSession)
     lazy var stubAnyUrl: URL = URL(string: stubURlString)!
     lazy var requestURL: URL = URL(string: stubURlString)!
     

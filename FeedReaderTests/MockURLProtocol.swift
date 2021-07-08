@@ -8,8 +8,8 @@
 import Foundation
 
 extension URLSession {
-    static var mockedResponsesOnly: URLSession {
-        let configuration = URLSessionConfiguration.default
+    static var mockURLSession: URLSession {
+        let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         configuration.timeoutIntervalForRequest = 1
         configuration.timeoutIntervalForResource = 1
