@@ -28,7 +28,7 @@ extension MockURLProtocol {
     struct MockedResponse {
         let request: URLRequest
         let result: Result<Data, Swift.Error>
-        let httpCode: APICode
+        let apiCode: APICode
         let httpVersion: String
         let headers: [String: String]
         let loadingTime: TimeInterval
@@ -44,7 +44,7 @@ extension MockURLProtocol.MockedResponse {
     init<T>(
             request: URLRequest,
             result: Result<T, Swift.Error>,
-            httpCode: APICode = 200,
+            apiCode: APICode = 200,
             httpVersion: String = "HTTP/1.1",
             headers: [String: String] = ["Content-Type": "application/json"],
             loadingTime: TimeInterval = 0.1
@@ -56,7 +56,7 @@ extension MockURLProtocol.MockedResponse {
         case let .failure(error):
             self.result = .failure(error)
         }
-        self.httpCode = httpCode
+        self.apiCode = apiCode
         self.httpVersion = httpVersion
         self.headers = headers
         self.loadingTime = loadingTime
@@ -66,7 +66,7 @@ extension MockURLProtocol.MockedResponse {
     init(
         request: URLRequest,
         result: Result<Data, Swift.Error>,
-        httpCode: APICode = 200,
+        apiCode: APICode = 200,
         httpVersion: String = "HTTP/1.1",
         headers: [String: String] = ["Content-Type": "application/json"],
         loadingTime: TimeInterval = 0.1
@@ -78,7 +78,7 @@ extension MockURLProtocol.MockedResponse {
         case let .failure(error):
             self.result = .failure(error)
         }
-        self.httpCode = httpCode
+        self.apiCode = apiCode
         self.httpVersion = httpVersion
         self.headers = headers
         self.loadingTime = loadingTime
@@ -116,7 +116,7 @@ class MockURLProtocol: URLProtocol {
             let url = request.url,
             let response = mock.customResponse ??
                 HTTPURLResponse(url: url,
-                statusCode: mock.httpCode,
+                statusCode: mock.apiCode,
                 httpVersion: mock.httpVersion,
                 headerFields: mock.headers) {
             DispatchQueue.main.asyncAfter(deadline: .now() + mock.loadingTime) { [weak self] in

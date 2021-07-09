@@ -38,11 +38,11 @@ extension URLRequest {
 
 extension URLResponse {
     func mapError(_ data: Data) throws -> Data{
-        let httpCodes: HTTPCodes = .success
+        let apiCodes: APICodes = .success
         guard let code = (self as? HTTPURLResponse)?.statusCode else {
             throw APIError.unexpectedResponse
         }
-        guard httpCodes.contains(code) else {
+        guard apiCodes.contains(code) else {
             throw APIError.apiCode(code)
         }
         return data

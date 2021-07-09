@@ -77,7 +77,7 @@ class ErrorResponseTests: XCTestCase {
         let expectation = self.expectation(description: "response result")
         
         let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
-        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, httpCode: errorCode)
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
         cancellable = self.mockManager.fetchData(request: mockRequestUrl)
             .sinkToResult({ result in
                 result.assertFailure(errorCode)
@@ -91,7 +91,7 @@ class ErrorResponseTests: XCTestCase {
         let stubErrorCode = 0
         let expectation = self.expectation(description: "response result")
         
-        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(false), httpCode: stubErrorCode)
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(false), apiCode: stubErrorCode)
         cancellable = self.mockManager.fetchData(request: mockRequestUrl)
             .sinkToResult({ result in
                 result.assertFailure(0)

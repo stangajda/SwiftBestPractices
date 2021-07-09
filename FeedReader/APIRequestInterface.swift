@@ -46,8 +46,8 @@ extension APIRequestInterface {
 }
 
 typealias APICode = Int
-typealias HTTPCodes = Range<APICode>
+typealias APICodes = Range<APICode>
 
-extension HTTPCodes {
+extension APICodes {
     static let success = 200 ..< 300
 }
