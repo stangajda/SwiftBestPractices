@@ -40,7 +40,7 @@ extension URLResponse {
     func mapError(_ data: Data) throws -> Data{
         let apiCodes: APICodes = .success
         guard let code = (self as? HTTPURLResponse)?.statusCode else {
-            throw APIError.unexpectedResponse
+            throw APIError.unknownResponse
         }
         guard apiCodes.contains(code) else {
             throw APIError.apiCode(code)

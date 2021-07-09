@@ -17,17 +17,17 @@ protocol APIRequestInterface {
 enum APIError: Swift.Error {
     case invalidURL
     case apiCode(APICode)
-    case unexpectedResponse
-    case imageProcessing([URLRequest])
+    case unknownResponse
+    case imageConversion([URLRequest])
 }
 
 extension APIError: LocalizedError {
     var errorDescription: String? {
         switch self {
         case .invalidURL: return "Invalid URL"
-        case let .apiCode(code): return "Unexpected HTTP code: \(code)"
-        case .unexpectedResponse: return "Unexpected response from the server"
-        case .imageProcessing: return "Unable to load image"
+        case let .apiCode(code): return "Unexpected API code: \(code)"
+        case .unknownResponse: return "Unknown response from the server"
+        case .imageConversion: return "Unable to load image"
         }
     }
 }
