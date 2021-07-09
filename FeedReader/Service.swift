@@ -13,6 +13,10 @@ struct Service{
     var session: URLSession = .shared
     var cancellable: AnyCancellable?
     
+    init(session: URLSession = .shared){
+        self.session = session
+    }
+    
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         fetchData(request)
             .tryMap { data in

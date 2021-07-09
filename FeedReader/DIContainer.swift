@@ -8,7 +8,7 @@
 import Foundation
 
 extension Service {
-    init(session: URLSession = .shared){
-        self.session = session
-    }
+//    init(session: URLSession = .shared){
+//        self.session = session
+//    }
 }

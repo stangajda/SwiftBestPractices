@@ -61,6 +61,37 @@ class ErrorResponseTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
+    func testImageSuccessfulConversion() throws {
+        let expectation = self.expectation(description: "response result")
+        
+        let uiImage = UIImage(named: "stubImage")
+        let imageData = uiImage?.pngData()
+        let responseData: Data = try XCTUnwrap(imageData)
+        
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
+        cancellable = self.mockManager.fetchImage(mockRequestUrl)
+            .sinkToResult({ result in
+                XCTAssertTrue(result.isSuccess)
+                expectation.fulfill()
+            })
+        
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+    
+    func testImageFailureConversion() throws {
+        let expectation = self.expectation(description: "response result")
+        let responseData: Data = try XCTUnwrap(Data.stubData)
+        
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
+        cancellable = self.mockManager.fetchImage(mockRequestUrl)
+            .sinkToResult({ result in
+                XCTAssertFalse(result.isSuccess)
+                expectation.fulfill()
+            })
+        
+        waitForExpectations(timeout: 1, handler: nil)
+    }
+    
     func testFailureResponses() throws {
         let errorCodes = [300,404,500]
         for errorCode in errorCodes {

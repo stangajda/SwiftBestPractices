@@ -59,6 +59,17 @@ extension Data {
     }
 }
 
+extension Result {
+    var isSuccess: Bool {
+        switch self {
+            case .success:
+                return true
+            case .failure:
+                return false
+            }
+    }
+}
+
 private extension Error {
     var underlyingError: Error? {
         let nsError = self as NSError
