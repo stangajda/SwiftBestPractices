@@ -67,7 +67,7 @@ extension NSError {
         return NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test error"])
     }
     
-    static func stubCode(code: HTTPCode) -> NSError {
+    static func stubCode(code: APICode) -> NSError {
         return NSError(domain: "test", code: code, userInfo: nil)
     }
 }

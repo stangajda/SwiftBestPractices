@@ -73,7 +73,7 @@ class ErrorResponseTests: XCTestCase {
         try testFailureResponse(errorCode: 500)
     }
     
-    func testFailureResponse(errorCode: HTTPCode) throws {
+    func testFailureResponse(errorCode: APICode) throws {
         let expectation = self.expectation(description: "response result")
         
         let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))

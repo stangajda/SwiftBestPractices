@@ -28,7 +28,7 @@ extension MockURLProtocol {
     struct MockedResponse {
         let request: URLRequest
         let result: Result<Data, Swift.Error>
-        let httpCode: HTTPCode
+        let httpCode: APICode
         let httpVersion: String
         let headers: [String: String]
         let loadingTime: TimeInterval
@@ -44,7 +44,7 @@ extension MockURLProtocol.MockedResponse {
     init<T>(
             request: URLRequest,
             result: Result<T, Swift.Error>,
-            httpCode: HTTPCode = 200,
+            httpCode: APICode = 200,
             httpVersion: String = "HTTP/1.1",
             headers: [String: String] = ["Content-Type": "application/json"],
             loadingTime: TimeInterval = 0.1
@@ -66,7 +66,7 @@ extension MockURLProtocol.MockedResponse {
     init(
         request: URLRequest,
         result: Result<Data, Swift.Error>,
-        httpCode: HTTPCode = 200,
+        httpCode: APICode = 200,
         httpVersion: String = "HTTP/1.1",
         headers: [String: String] = ["Content-Type": "application/json"],
         loadingTime: TimeInterval = 0.1

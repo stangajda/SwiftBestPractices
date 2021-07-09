@@ -43,7 +43,7 @@ extension URLResponse {
             throw APIError.unexpectedResponse
         }
         guard httpCodes.contains(code) else {
-            throw APIError.httpCode(code)
+            throw APIError.apiCode(code)
         }
         return data
     }
