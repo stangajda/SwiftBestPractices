@@ -28,7 +28,15 @@ extension Publisher {
     }
 }
 
-extension URLResponse{
+extension URLRequest {
+    func get() -> URLRequest {
+        var copy = self
+        copy.httpMethod = "GET"
+        return copy
+    }
+}
+
+extension URLResponse {
     func mapError(_ data: Data) throws -> Data{
         let httpCodes: HTTPCodes = .success
         guard let code = (self as? HTTPURLResponse)?.statusCode else {
