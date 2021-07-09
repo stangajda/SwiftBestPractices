@@ -61,16 +61,11 @@ class ErrorResponseTests: XCTestCase {
         waitForExpectations(timeout: 1, handler: nil)
     }
     
-    func testFailure300Response() throws{
-        try testFailureResponse(errorCode: 300)
-    }
-    
-    func testFailure404Response() throws{
-        try testFailureResponse(errorCode: 404)
-    }
-    
-    func testFailure500Response() throws{
-        try testFailureResponse(errorCode: 500)
+    func testFailureResponses() throws {
+        let errorCodes = [300,404,500]
+        for errorCode in errorCodes {
+            try testFailureResponse(errorCode: errorCode)
+        }
     }
     
     func testFailureResponse(errorCode: APICode) throws {
