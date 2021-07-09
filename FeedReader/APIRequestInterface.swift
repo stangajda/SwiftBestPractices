@@ -7,15 +7,6 @@
 
 import Foundation
 
-
-
-//static func trending() -> AnyPublisher<PageDTO<MovieDTO>, Error> {
-//    let request = URLComponents(url: base.appendingPathComponent("trending/movie/week"), resolvingAgainstBaseURL: true)?
-//        .addingApiKey(apiKey)
-//        .request
-//    return agent.fetchData(request!)
-//}
-
 protocol APIRequestInterface {
     static var baseURLString: String { get }
     static var language: String { get }
