@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import UIKit
 
 extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
@@ -46,6 +47,15 @@ extension URLResponse {
             throw APIError.apiCode(code)
         }
         return data
+    }
+}
+
+extension Data {
+    func toImage(_ request: URLRequest) throws -> UIImage{
+        guard let image = UIImage(data: self) else {
+            throw APIError.imageConversion(request)
+        }
+        return image
     }
 }
 
