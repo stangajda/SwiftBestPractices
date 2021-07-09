@@ -15,7 +15,7 @@ class ErrorResponseTests: XCTestCase {
     var cancellable: AnyCancellable?
     let stubURlString: String = "https://test.com"
     lazy var mockManager: Service = Service(session: .mockURLSession)
-    lazy var mockRequestUrl: URLRequest = MockAPIRequest.call(path: "stubPath")
+    lazy var mockRequestUrl: URLRequest = MockAPIRequest["stubPath"]
     
     override func setUpWithError() throws {
         mockRequestUrl = try XCTUnwrap(mockRequestUrl)
