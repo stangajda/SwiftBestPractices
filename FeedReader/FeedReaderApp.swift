@@ -14,7 +14,7 @@ struct FeedReaderApp: App {
     
     init(){
         
-        let urlRequest = try! APIRequest.get(path: "Top250Movies")
+        let urlRequest = APIRequest.call(path: "Top250Movies")
 
         cancellable = FeedReaderApp.load(request: urlRequest)
 //            .print("received", to: nil)

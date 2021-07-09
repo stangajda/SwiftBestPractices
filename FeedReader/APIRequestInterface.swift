@@ -42,17 +42,15 @@ extension APIError: LocalizedError {
 }
 
 extension APIRequestInterface {
-    static func get(path: String) throws -> URLRequest {
+    static func call(path: String) -> URLRequest{
         guard var url = URL(string: baseURLString) else {
-            throw APIError.invalidURL
+            fatalError("invalid URL")
         }
         url.appendPathComponent(language)
         url.appendPathComponent(prefixPath)
         url.appendPathComponent(path)
         url.appendPathComponent(apiKey)
-        var request = URLRequest(url: url)
-        request.httpMethod = "GET"
-        return request
+        return URLRequest(url: url)
     }
 }
 

@@ -12,11 +12,10 @@ import Combine
 class ErrorResponseTests: XCTestCase {
     
     typealias Mock = MockURLProtocol.MockedResponse
-    
     var cancellable: AnyCancellable?
     let stubURlString: String = "https://test.com"
     lazy var mockManager: Service = Service(session: .mockURLSession)
-    lazy var mockRequestUrl: URLRequest = try! MockAPIRequest.get(path: "stubPath")
+    lazy var mockRequestUrl: URLRequest = MockAPIRequest.call(path: "stubPath")
     
     override func setUpWithError() throws {
         mockRequestUrl = try XCTUnwrap(mockRequestUrl)
