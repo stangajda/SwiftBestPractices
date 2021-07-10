@@ -51,7 +51,7 @@ class ErrorResponseTests: XCTestCase {
         let responseData: Movies = try XCTUnwrap(moviesFromData)
         
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
-        cancellable = self.mockManager.fetchMovies(request: mockRequestUrl)
+        cancellable = self.mockManager.fetchMovies(mockRequestUrl)
             .sinkToResult({ result in
                 result.assertSuccess(value: moviesFromData)
                 expectation.fulfill()

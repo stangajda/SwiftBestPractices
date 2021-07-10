@@ -8,14 +8,11 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    var viewModel = ViewModel()
+    let moviesService = MoviesService()
     var body: some View {
-        
-        Text("Hello, world!")
-            .padding()
+        MoviesList()
+            .onAppear(perform: moviesService.loadMovies)
     }
-    
 }
 
 struct ContentView_Previews: PreviewProvider {

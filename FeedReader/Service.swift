@@ -9,6 +9,27 @@ import Foundation
 import Combine
 import UIKit
 
+class MoviesService: ObservableObject{
+    @Published var movies: Array<MovieDetail>?
+    
+    let service = Service()
+    var cancellable: AnyCancellable?
+    let request = APIRequest["Top250Movies"].get()
+    
+    func loadMovies(){
+        cancellable = service.fetchMovies(request)
+            .sinkToResult({ result in
+            switch result{
+                case .success(let data):
+                    self.movies = data.items
+                    break
+                case .failure(_):
+                    break
+                }
+            })
+    }
+}
+
 struct Service{
     var session: URLSession = .shared
     var cancellable: AnyCancellable?
@@ -39,7 +60,7 @@ struct Service{
             .eraseToAnyPublisher()
     }
     
-    func fetchMovies(request: URLRequest) -> AnyPublisher<Movies, Error>{
+    func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>{
         return self.fetchData(request)
     }
 }
