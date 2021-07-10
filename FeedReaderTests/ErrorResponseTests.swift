@@ -63,7 +63,7 @@ class ErrorResponseTests: XCTestCase {
     func testImageSuccessfulConversion() throws {
         let expectation = self.expectation(description: "response result")
         
-        let uiImage = UIImage(named: "stubImage")
+        let uiImage = UIImage(named: "StubImage")
         let imageData = uiImage?.pngData()
         let responseData: Data = try XCTUnwrap(imageData)
         
