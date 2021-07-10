@@ -50,13 +50,25 @@ extension Result where Success == Void {
 }
 
 extension Result {
-    func assertFailure(_ value: Int? = nil, file: StaticString = #file, line: UInt = #line) {
+    func assertFailure(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(value):
             XCTFail("Unexpected success: \(value)", file: file, line: line)
         case let .failure(error):
-            if let value = value {
-                XCTAssertEqual((error as NSError).code , value, file: file, line: line)
+            if let message = message {
+                XCTAssertEqual(error.localizedDescription , message, file: file, line: line)
+            }
+        }
+    }
+    
+    func assertFailureContains(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
+        switch self {
+        case let .success(value):
+            XCTFail("Unexpected success: \(value)", file: file, line: line)
+        case let .failure(error):
+            if let message = message {
+                let isContain = error.localizedDescription.contains(message)
+                XCTAssertTrue(isContain , message, file: file, line: line)
             }
         }
     }
@@ -64,11 +76,11 @@ extension Result {
 
 extension NSError {
     static var test: NSError {
-        return NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "Test error"])
+        return NSError(domain: "test", code: 0, userInfo: [NSLocalizedDescriptionKey: "error"])
     }
     
     static func stubCode(code: APICode) -> NSError {
-        return NSError(domain: "test", code: code, userInfo: nil)
+        return NSError(domain: "Unexpected API code:", code: code, userInfo: nil)
     }
 }
 

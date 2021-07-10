@@ -71,7 +71,12 @@ class ErrorResponseTests: XCTestCase {
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
         cancellable = self.mockManager.fetchImage(mockRequestUrl)
             .sinkToResult({ result in
-                XCTAssertTrue(result.isSuccess)
+                switch result{
+                case .success(_):
+                    XCTAssert(true)
+                case .failure(_):
+                    XCTFail()
+                }
                 expectation.fulfill()
             })
         
@@ -84,8 +89,8 @@ class ErrorResponseTests: XCTestCase {
         
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
         cancellable = self.mockManager.fetchImage(mockRequestUrl)
-            .sinkToResult({ result in
-                XCTAssertFalse(result.isSuccess)
+            .sinkToResult({ [self] result in
+                result.assertFailure(APIError.imageConversion(mockRequestUrl).errorDescription)
                 expectation.fulfill()
             })
         
@@ -106,7 +111,7 @@ class ErrorResponseTests: XCTestCase {
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
         cancellable = self.mockManager.fetchData(mockRequestUrl)
             .sinkToResult({ result in
-                result.assertFailure(errorCode)
+                result.assertFailureContains(APIError.apiCode(errorCode).errorDescription)
                 expectation.fulfill()
             })
         
@@ -120,7 +125,7 @@ class ErrorResponseTests: XCTestCase {
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(false), apiCode: stubErrorCode)
         cancellable = self.mockManager.fetchData(mockRequestUrl)
             .sinkToResult({ result in
-                result.assertFailure(0)
+                result.assertFailure(APIError.apiCode(0).errorDescription)
                 expectation.fulfill()
             })
         
