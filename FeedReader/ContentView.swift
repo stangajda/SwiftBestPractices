@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct ContentView: View {
-    let moviesService = MoviesService()
+    @StateObject var service = MoviesService()
     var body: some View {
-        MoviesList()
-            .onAppear(perform: moviesService.loadMovies)
+        MoviesList(movies: service.movies)
+            .onAppear(perform: service.loadMovies)
     }
 }
 
