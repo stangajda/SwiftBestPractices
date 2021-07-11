@@ -16,6 +16,10 @@ class MoviesService: ObservableObject{
     var cancellable: AnyCancellable?
     let request = APIRequest["Top250Movies"].get()
     
+    init(){
+    
+    }
+    
     func loadMovies(){
         cancellable = service.fetchMovies(request)
             .sinkToResult({ result in

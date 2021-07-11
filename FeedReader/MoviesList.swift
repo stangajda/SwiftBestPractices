@@ -8,21 +8,25 @@
 import SwiftUI
 
 struct MoviesList: View {
-    @State var movies: Array<MovieDetail>?
+    @ObservedObject var service: MoviesService = MoviesService()
     
     var body: some View {
-        if let movies = movies{
+        if let movies = service.movies{
             List(movies){ movie in
                 Text(movie.title)
             }
         } else {
-            Text("Loading...")
+            Text("Loading...").onAppear {
+                service.loadMovies()
+            }
         }
     }
 }
 
-//struct MoviesList_Previews: PreviewProvider {
-//    static var previews: some View {
-//        MoviesList()
-//    }
-//}
+
+
+struct MoviesList_Previews: PreviewProvider {
+    static var previews: some View {
+        MoviesList()
+    }
+}
