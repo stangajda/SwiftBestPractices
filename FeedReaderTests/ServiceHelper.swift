@@ -5,14 +5,8 @@
 //  Created by Stan Gajda on 03/07/2021.
 //
 
-import Foundation
 import Combine
 import UIKit
-import SwiftUI
-
-extension View {
-    func eraseToAnyView() -> AnyView { AnyView(self) }
-}
 
 extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {

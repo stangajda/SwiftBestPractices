@@ -12,6 +12,8 @@
 		CC351E13269A580F0037DB34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
 		CC351E15269A5C020037DB34 /* MoviesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E14269A5C020037DB34 /* MoviesList.swift */; };
 		CC351E17269B77590037DB34 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */; };
+		CC351E19269B838E0037DB34 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E18269B838E0037DB34 /* ViewHelper.swift */; };
+		CC351E1B269BA2070037DB34 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1A269BA2070037DB34 /* MovieRow.swift */; };
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
@@ -47,6 +49,8 @@
 		CC351E1026979BBF0037DB34 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		CC351E14269A5C020037DB34 /* MoviesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesList.swift; sourceTree = "<group>"; };
 		CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
+		CC351E18269B838E0037DB34 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
+		CC351E1A269BA2070037DB34 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* APIRequestInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterface.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceHelper.swift; path = FeedReaderTests/ServiceHelper.swift; sourceTree = SOURCE_ROOT; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 				CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */,
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
 				CC351E14269A5C020037DB34 /* MoviesList.swift */,
+				CC351E1A269BA2070037DB34 /* MovieRow.swift */,
 				CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */,
 				CCF3A8EE267CD5C500CB5765 /* ViewModel.swift */,
 				CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */,
@@ -117,6 +122,7 @@
 				CCF3A8E3267BE02B00CB5765 /* Service.swift */,
 				CC2C87782680A9FD00570234 /* Movies.swift */,
 				CC456E51268FB79900FF2113 /* APIRequestInterface.swift */,
+				CC351E18269B838E0037DB34 /* ViewHelper.swift */,
 				CC456E54268FD9E600FF2113 /* ServiceHelper.swift */,
 				CC798A572694CB4D00DBE7DF /* DIContainer.swift */,
 			);
@@ -245,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
+				CC351E1B269BA2070037DB34 /* MovieRow.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */,
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
@@ -254,6 +261,7 @@
 				CC2C87792680A9FD00570234 /* Movies.swift in Sources */,
 				CCF3A8EF267CD5C500CB5765 /* ViewModel.swift in Sources */,
 				CC351E15269A5C020037DB34 /* MoviesList.swift in Sources */,
+				CC351E19269B838E0037DB34 /* ViewHelper.swift in Sources */,
 				CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

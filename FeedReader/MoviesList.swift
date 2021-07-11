@@ -14,16 +14,17 @@ struct MoviesList: View {
         if let movies = service.movies{
             listMovies(movies)
         } else {
-            Text("Loading...").onAppear {
-                service.loadMovies()
-            }
+            Text("Loading...")
+                .onAppear {
+                    service.loadMovies()
+                }
             ActivityIndicator(isAnimating: .constant(true), style: .large)
         }
     }
     
     func listMovies(_ movies: [Movie]) -> some View {
         List(movies){ movie in
-            Text(movie.title)
+            MovieRow(movie: movie)
         }
     }
 }
