@@ -17,6 +17,7 @@ struct MoviesList: View {
             Text("Loading...").onAppear {
                 service.loadMovies()
             }
+            ActivityIndicator(isAnimating: .constant(true), style: .large)
         }
     }
     
