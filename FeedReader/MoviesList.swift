@@ -21,7 +21,7 @@ struct MoviesList: View {
         }
     }
     
-    func listMovies(_ movies: [MovieDetail]) -> some View {
+    func listMovies(_ movies: [Movie]) -> some View {
         List(movies){ movie in
             Text(movie.title)
         }

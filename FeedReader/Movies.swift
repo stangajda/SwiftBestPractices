@@ -6,11 +6,11 @@
 //
 
 struct Movies: Hashable, Codable{
-    var items: Array<MovieDetail>
+    var items: Array<Movie>
     var errorMessage: String
 }
 
-struct MovieDetail: Hashable, Codable, Identifiable {
+struct Movie: Hashable, Codable, Identifiable {
     var id: String
     var rank: String
     var title: String

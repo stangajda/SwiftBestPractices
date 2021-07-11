@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 class MoviesService: ObservableObject{
-    @Published var movies: Array<MovieDetail>?
+    @Published var movies: Array<Movie>?
     
     let service = Service()
     var cancellable: AnyCancellable?
