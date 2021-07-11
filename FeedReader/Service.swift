@@ -47,6 +47,7 @@ struct Service{
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)
+            .receive(on: DispatchQueue.main)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
