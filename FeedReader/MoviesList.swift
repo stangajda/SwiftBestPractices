@@ -12,13 +12,17 @@ struct MoviesList: View {
     
     var body: some View {
         if let movies = service.movies{
-            List(movies){ movie in
-                Text(movie.title)
-            }
+            listMovies(movies)
         } else {
             Text("Loading...").onAppear {
                 service.loadMovies()
             }
+        }
+    }
+    
+    func listMovies(_ movies: [MovieDetail]) -> some View {
+        List(movies){ movie in
+            Text(movie.title)
         }
     }
 }
