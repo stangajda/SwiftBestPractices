@@ -11,12 +11,24 @@ struct MovieRow: View {
     @State var movie: Movie
     
     var body: some View {
-        Text(movie.title)
+        HStack{
+            Image("StubImageMovieSmall")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+
+                
+            Text(movie.title)
+                .font(.title)
+        }
+        .frame(height: 120)
     }
 }
 
-struct MovieList_Previews: PreviewProvider {
+struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        MoviesList()
+        Group{
+            MovieRow(movie: mockMovie)
+        }
+        .previewLayout(.sizeThatFits)
     }
 }

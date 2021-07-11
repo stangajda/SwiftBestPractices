@@ -14,6 +14,7 @@
 		CC351E17269B77590037DB34 /* ActivityIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */; };
 		CC351E19269B838E0037DB34 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E18269B838E0037DB34 /* ViewHelper.swift */; };
 		CC351E1B269BA2070037DB34 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1A269BA2070037DB34 /* MovieRow.swift */; };
+		CC351E1D269BA7B80037DB34 /* MockMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1C269BA7B80037DB34 /* MockMovie.swift */; };
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
@@ -51,6 +52,7 @@
 		CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorView.swift; sourceTree = "<group>"; };
 		CC351E18269B838E0037DB34 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		CC351E1A269BA2070037DB34 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
+		CC351E1C269BA7B80037DB34 /* MockMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovie.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* APIRequestInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterface.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceHelper.swift; path = FeedReaderTests/ServiceHelper.swift; sourceTree = SOURCE_ROOT; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				CCF3A8C1267A8ED300CB5765 /* Info.plist */,
 				CCF3A8E3267BE02B00CB5765 /* Service.swift */,
 				CC2C87782680A9FD00570234 /* Movies.swift */,
+				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
 				CC456E51268FB79900FF2113 /* APIRequestInterface.swift */,
 				CC351E18269B838E0037DB34 /* ViewHelper.swift */,
 				CC456E54268FD9E600FF2113 /* ServiceHelper.swift */,
@@ -262,6 +265,7 @@
 				CCF3A8EF267CD5C500CB5765 /* ViewModel.swift in Sources */,
 				CC351E15269A5C020037DB34 /* MoviesList.swift in Sources */,
 				CC351E19269B838E0037DB34 /* ViewHelper.swift in Sources */,
+				CC351E1D269BA7B80037DB34 /* MockMovie.swift in Sources */,
 				CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
