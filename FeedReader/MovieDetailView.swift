@@ -13,12 +13,10 @@ struct MovieDetailView: View {
     var body: some View {
         VStack{
             if let movieDetail = service.movieDetail{
-//                ScrollView {
                     ImageView(imageUrl: movieDetail.image)
                         .detailMovieImageSize
                     Text(movieDetail.plot)
                         .font(.body)
-//                }
             } else {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             }
