@@ -1,5 +1,5 @@
 //
-//  MovieRow.swift
+//  MovieRowView.swift
 //  FeedReader
 //
 //  Created by Stan Gajda on 12/07/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct MovieRow: View {
+struct MovieRowView: View {
     @State var movie: Movie
     
     var body: some View {
@@ -24,7 +24,7 @@ struct MovieRow: View {
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            MovieRow(movie: mockMovie)
+            MovieRowView(movie: Movie.mock)
         }
         .previewLayout(.sizeThatFits)
     }

@@ -1,5 +1,5 @@
 //
-//  MoviesList.swift
+//  MoviesListView.swift
 //  FeedReader
 //
 //  Created by Stan Gajda on 11/07/2021.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-struct MoviesList: View {
+struct MoviesListView: View {
     @ObservedObject var service: MoviesService = MoviesService()
     
     var body: some View {
         if let movies = service.movies{
-            listMovies(movies)
+                listMovies(movies)
         } else {
             Text("Loading...")
                 .onAppear {
@@ -24,7 +24,7 @@ struct MoviesList: View {
     
     func listMovies(_ movies: [Movie]) -> some View {
         List(movies){ movie in
-            MovieRow(movie: movie)
+            MovieRowView(movie: movie)
         }
     }
 }
@@ -33,6 +33,6 @@ struct MoviesList: View {
 
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        MoviesList()
+        MoviesListView()
     }
 }

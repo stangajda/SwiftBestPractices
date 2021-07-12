@@ -43,7 +43,7 @@ class ImageService: ObservableObject{
     }
     
     func loadImage(_ urlString: String){
-        let request = URLRequest(url: URL(string: urlString)!)
+        let request = URLRequest(url: URL(string: urlString)!).get()
         cancellable = service.fetchImage(request)
             .sinkToResult({ result in
             switch result{

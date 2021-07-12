@@ -16,7 +16,7 @@ struct APIRequest: APIRequestInterface {
 
 extension View {
     var rowSize: some View {
-        frame(height: 100)
+        frame(height: 96)
     }
     
     var rowImageSize: some View{
