@@ -8,25 +8,16 @@
 import SwiftUI
 
 struct MovieRow: View {
-    @ObservedObject var service: ImageService = ImageService()
     @State var movie: Movie
     
     var body: some View {
         HStack{
-            if let image = service.image {
-                Image(uiImage: image)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-            }else{
-                ActivityIndicator(isAnimating: .constant(true), style: .medium)
-            }
+            ImageView(imageUrl: movie.image)
             Text(movie.title)
                 .font(.title)
         }
         .frame(height: 120)
-        .onAppear{
-            service.loadImage(movie.image)
-        }
+        
     }
 }
 

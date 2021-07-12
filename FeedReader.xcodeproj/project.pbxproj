@@ -15,6 +15,7 @@
 		CC351E19269B838E0037DB34 /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E18269B838E0037DB34 /* ViewHelper.swift */; };
 		CC351E1B269BA2070037DB34 /* MovieRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1A269BA2070037DB34 /* MovieRow.swift */; };
 		CC351E1D269BA7B80037DB34 /* MockMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1C269BA7B80037DB34 /* MockMovie.swift */; };
+		CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1E269BC7B50037DB34 /* ImageView.swift */; };
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
@@ -53,6 +54,7 @@
 		CC351E18269B838E0037DB34 /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		CC351E1A269BA2070037DB34 /* MovieRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieRow.swift; sourceTree = "<group>"; };
 		CC351E1C269BA7B80037DB34 /* MockMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovie.swift; sourceTree = "<group>"; };
+		CC351E1E269BC7B50037DB34 /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* APIRequestInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterface.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ServiceHelper.swift; path = FeedReaderTests/ServiceHelper.swift; sourceTree = SOURCE_ROOT; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
 				CC351E14269A5C020037DB34 /* MoviesList.swift */,
 				CC351E1A269BA2070037DB34 /* MovieRow.swift */,
+				CC351E1E269BC7B50037DB34 /* ImageView.swift */,
 				CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */,
 				CCF3A8EE267CD5C500CB5765 /* ViewModel.swift */,
 				CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */,
@@ -253,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
 				CC351E1B269BA2070037DB34 /* MovieRow.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */,
