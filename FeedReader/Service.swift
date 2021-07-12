@@ -17,7 +17,6 @@ class MoviesService: ObservableObject{
     let request = APIRequest["Top250Movies"].get()
     
     init(){
-    
     }
     
     func loadMovies(){
@@ -26,6 +25,30 @@ class MoviesService: ObservableObject{
             switch result{
                 case .success(let data):
                     self.movies = data.items
+                    break
+                case .failure(_):
+                    break
+                }
+            })
+    }
+}
+
+class ImageService: ObservableObject{
+    @Published var image: UIImage?
+    
+    let service = Service()
+    var cancellable: AnyCancellable?
+    
+    init(){
+    }
+    
+    func loadImage(_ urlString: String){
+        let request = URLRequest(url: URL(string: urlString)!)
+        cancellable = service.fetchImage(request)
+            .sinkToResult({ result in
+            switch result{
+                case .success(let image):
+                    self.image = image
                     break
                 case .failure(_):
                     break
