@@ -13,12 +13,11 @@ struct MovieRow: View {
     var body: some View {
         HStack{
             ImageView(imageUrl: movie.image)
-                .frame(width: 64.0, height: 88.0)
+                .rowImageSize
             Text(movie.title)
                 .font(.title)
         }
-        .frame(height: 100)
-        
+        .rowSize
     }
 }
 
