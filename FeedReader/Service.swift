@@ -69,12 +69,12 @@ struct Service{
         fetchData(request)
             .tryMap { data in
                 try data.toImage(request)
-            }.eraseToAnyPublisher()
+            }
+            .eraseToAnyPublisher()
     }
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)
-            .receive(on: DispatchQueue.main)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
@@ -84,6 +84,7 @@ struct Service{
             .tryMap { data, response in
                 try response.mapError(data)
             }
+            .receive(on: DispatchQueue.main)
             .mapUnderlyingError()
             .eraseToAnyPublisher()
     }
