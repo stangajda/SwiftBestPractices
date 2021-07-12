@@ -24,6 +24,6 @@ extension View {
     }
     
     var detailMovieImageSize: some View{
-        frame(width: 320.0, height: 400.0)
+        frame(width: 400.0, height: 340.0)
     }
 }

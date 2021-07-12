@@ -10,20 +10,19 @@ import SwiftUI
 struct MovieDetailView: View {
     @ObservedObject var service = MovieDetailService()
     var movie: Movie
-//https://imdb-api.com/en/API/Title/k_66zz106x/tt1375666/Images
     var body: some View {
-        ScrollView{
+        VStack{
             if let movieDetail = service.movieDetail{
-                VStack {
+//                ScrollView {
                     ImageView(imageUrl: movieDetail.image)
                         .detailMovieImageSize
                     Text(movieDetail.plot)
                         .font(.body)
-                }
+//                }
             } else {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             }
-        }
+        }.padding(.horizontal)
         .navigationTitle(movie.fullTitle)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
