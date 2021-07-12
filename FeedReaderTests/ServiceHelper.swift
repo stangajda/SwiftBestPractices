@@ -34,14 +34,6 @@ extension URLRequest {
         copy.httpMethod = "GET"
         return copy
     }
-    
-    mutating func id(_ id: String){
-        self.url?.appendPathComponent(id)
-    }
-    
-    mutating func option(_ option: String){
-        self.url?.appendPathComponent(option)
-    }
 }
 
 extension URLResponse {

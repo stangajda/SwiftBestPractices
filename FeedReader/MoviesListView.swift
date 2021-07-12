@@ -23,8 +23,12 @@ struct MoviesListView: View {
     }
     
     func listMovies(_ movies: [Movie]) -> some View {
-        List(movies){ movie in
-            MovieRowView(movie: movie)
+        NavigationView {
+            List(movies){ movie in
+                NavigationLink(destination: MovieDetailView(movie: movie)){
+                    MovieRowView(movie: movie)
+                }
+            }
         }
     }
 }

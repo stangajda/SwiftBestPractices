@@ -33,6 +33,32 @@ class MoviesService: ObservableObject{
     }
 }
 
+class MovieDetailService: ObservableObject{
+    @Published var movieDetail: MovieDetail?
+    
+    let service = Service()
+    var cancellable: AnyCancellable?
+    
+    init(){
+    }
+    
+    func loadMovies(id: String){
+        
+        let request = APIRequest["Title", id, "Images"]
+        cancellable = service.fetchMovieDetail(request)
+            .sinkToResult({ result in
+            switch result{
+                case .success(let movieDetail):
+                    self.movieDetail = movieDetail
+                    break
+                case .failure(let error):
+                    print(error)
+                    break
+                }
+            })
+    }
+}
+
 class ImageService: ObservableObject{
     @Published var image: UIImage?
     
@@ -90,6 +116,10 @@ struct Service{
     }
     
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>{
+        return self.fetchData(request)
+    }
+    
+    func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<MovieDetail, Error>{
         return self.fetchData(request)
     }
 }

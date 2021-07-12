@@ -22,4 +22,8 @@ extension View {
     var rowImageSize: some View{
         frame(width: 64.0, height: 88.0)
     }
+    
+    var detailMovieImageSize: some View{
+        frame(width: 320.0, height: 400.0)
+    }
 }

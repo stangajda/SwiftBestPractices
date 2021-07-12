@@ -37,7 +37,7 @@ extension APIError: LocalizedError {
 }
 
 extension APIRequestInterface {
-    static subscript(_ path: String) -> URLRequest{
+    static subscript(_ path: String, id: String = String(), option: String = String()) -> URLRequest{
         guard var url = URL(string: Self.baseURLString) else {
             fatalError("invalid URL")
         }
@@ -45,6 +45,8 @@ extension APIRequestInterface {
         url.appendPathComponent(Self.prefixPath)
         url.appendPathComponent(path)
         url.appendPathComponent(Self.apiKey)
+        if !id.isEmpty { url.appendPathComponent(id) }
+        if !id.isEmpty { url.appendPathComponent(option) }
         return URLRequest(url: url)
     }
 }
