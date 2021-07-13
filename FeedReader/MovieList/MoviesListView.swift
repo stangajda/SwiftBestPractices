@@ -23,7 +23,7 @@ struct MoviesListView: View {
         }
     }
     
-    var listMovies = {(_ movies: [Movie]) -> AnyView in
+    private var listMovies = {(_ movies: [Movie]) -> AnyView in
         NavigationView {
             List(movies){ movie in
                 NavigationLink(destination: MovieDetailView(movie: movie)){
@@ -33,7 +33,7 @@ struct MoviesListView: View {
         }.eraseToAnyView()
     }
     
-    var loadingSpinner = { () -> AnyView in
+    private var loadingSpinner = { () -> AnyView in
         VStack{
             Text("Loading...")
             Spinner(isAnimating: .constant(true), style: .large)

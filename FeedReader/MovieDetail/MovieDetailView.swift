@@ -13,10 +13,7 @@ struct MovieDetailView: View {
     var body: some View {
         VStack{
             if let movieDetail = service.movieDetail{
-                    ImageView(imageUrl: movieDetail.image)
-                        .detailMovieImageSize
-                    Text(movieDetail.plot)
-                        .font(.body)
+                    movieContent(movieDetail)
             } else {
                 Spinner(isAnimating: .constant(true), style: .large)
             }
@@ -26,6 +23,16 @@ struct MovieDetailView: View {
         .onAppear{
             service.loadMovies(id: movie.id)
         }
+    }
+    
+    var movieContent = { (movieDetail: MovieDetail) -> AnyView in
+        VStack{
+            ImageView(imageUrl: movieDetail.image)
+                .detailMovieImageSize
+            Text(movieDetail.plot)
+                .font(.body)
+        }
+        .eraseToAnyView()
     }
 }
 
