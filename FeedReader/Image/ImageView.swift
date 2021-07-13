@@ -17,7 +17,7 @@ struct ImageView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         }else{
-            ActivityIndicator(isAnimating: .constant(true), style: .medium)
+            Spinner(isAnimating: .constant(true), style: .medium)
                 .onAppear{
                 service.loadImage(imageUrl)
             }

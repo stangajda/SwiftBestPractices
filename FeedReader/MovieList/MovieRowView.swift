@@ -17,6 +17,7 @@ struct MovieRowView: View {
             Text(movie.title)
                 .font(.title)
         }
+        .padding()
         .rowSize
     }
 }

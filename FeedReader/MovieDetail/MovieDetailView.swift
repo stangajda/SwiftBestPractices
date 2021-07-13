@@ -18,7 +18,7 @@ struct MovieDetailView: View {
                     Text(movieDetail.plot)
                         .font(.body)
             } else {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
+                Spinner(isAnimating: .constant(true), style: .large)
             }
         }.padding(.horizontal)
         .navigationTitle(movie.fullTitle)

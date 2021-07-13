@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+//babcada8d42a5fd4857231c42240debd
+//https://api.themoviedb.org/3/movie/550?api_key=babcada8d42a5fd4857231c42240debd
+
 struct APIRequest: APIRequestInterface {
     static var baseURLString: String { "https://imdb-api.com/" }
     static var language: String { "en" }
@@ -16,7 +19,7 @@ struct APIRequest: APIRequestInterface {
 
 extension View {
     var rowSize: some View {
-        frame(height: 96)
+        frame(maxWidth: .infinity, maxHeight: 96, alignment: .leading)
     }
     
     var rowImageSize: some View{

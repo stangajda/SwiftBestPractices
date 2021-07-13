@@ -20,7 +20,7 @@ struct MoviesListView: View {
                 .onAppear {
                     service.loadMovies()
                 }
-            ActivityIndicator(isAnimating: .constant(true), style: .large)
+            Spinner(isAnimating: .constant(true), style: .large)
         }
     }
     

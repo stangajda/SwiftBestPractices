@@ -46,7 +46,7 @@ extension APIRequestInterface {
         url.appendPathComponent(path)
         url.appendPathComponent(Self.apiKey)
         if !id.isEmpty { url.appendPathComponent(id) }
-        if !id.isEmpty { url.appendPathComponent(option) }
+        if !option.isEmpty { url.appendPathComponent(option) }
         return URLRequest(url: url)
     }
 }

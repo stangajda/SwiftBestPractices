@@ -6,16 +6,16 @@
 //
 import SwiftUI
 
-struct ActivityIndicator: UIViewRepresentable {
+struct Spinner: UIViewRepresentable {
 
     @Binding var isAnimating: Bool
     let style: UIActivityIndicatorView.Style
 
-    func makeUIView(context: UIViewRepresentableContext<ActivityIndicator>) -> UIActivityIndicatorView {
+    func makeUIView(context: UIViewRepresentableContext<Spinner>) -> UIActivityIndicatorView {
         return UIActivityIndicatorView(style: style)
     }
 
-    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<ActivityIndicator>) {
+    func updateUIView(_ uiView: UIActivityIndicatorView, context: UIViewRepresentableContext<Spinner>) {
         isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }
