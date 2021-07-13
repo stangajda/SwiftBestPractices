@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 class MoviesService: ObservableObject{
-    @Published var movies: Array<Movie>?
+    @Published var movies: Movies?
     
     let service = Service()
     var cancellable: AnyCancellable?
@@ -24,7 +24,7 @@ class MoviesService: ObservableObject{
             .sinkToResult({ result in
             switch result{
                 case .success(let data):
-                    self.movies = data.items
+                    self.movies = data
                     break
                 case .failure(let error):
                     Helper.printLog(error)

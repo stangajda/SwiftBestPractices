@@ -18,6 +18,7 @@
 		CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1E269BC7B50037DB34 /* ImageView.swift */; };
 		CC351E21269CA9960037DB34 /* MovieDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E20269CA9960037DB34 /* MovieDetailView.swift */; };
 		CC351E23269CAF990037DB34 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E22269CAF990037DB34 /* MovieDetail.swift */; };
+		CC351E24269D19210037DB34 /* MovieDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E22269CAF990037DB34 /* MovieDetail.swift */; };
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ServiceHelper.swift */; };
@@ -289,6 +290,7 @@
 				CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */,
 				CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */,
 				CC569503268128C70055C07C /* Movies.swift in Sources */,
+				CC351E24269D19210037DB34 /* MovieDetail.swift in Sources */,
 				CCF3A8CB267A8ED300CB5765 /* ErrorResponseTests.swift in Sources */,
 				CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */,
 				CC351E13269A580F0037DB34 /* Config.swift in Sources */,

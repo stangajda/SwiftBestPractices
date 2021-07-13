@@ -12,7 +12,9 @@ struct MoviesListView: View {
     
     var body: some View {
         if let movies = service.movies{
-                listMovies(movies)
+            listMovies(movies.items)
+            Text(movies.errorMessage)
+                .foregroundColor(Color.red)
         } else {
             Text("Loading...")
                 .onAppear {
