@@ -184,8 +184,8 @@
 		CCF3A8B7267A8ED100CB5765 /* FeedReader */ = {
 			isa = PBXGroup;
 			children = (
-				CC351E1026979BBF0037DB34 /* Config.swift */,
 				CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */,
+				CC351E1026979BBF0037DB34 /* Config.swift */,
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
 				CC351E25269DB0660037DB34 /* MovieList */,
 				CC351E26269DB0B00037DB34 /* MovieDetail */,

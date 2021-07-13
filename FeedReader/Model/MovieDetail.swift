@@ -1,3 +1,10 @@
+//
+//  MovieDetail.swift
+//  FeedReader
+//
+//  Created by Stan Gajda on 21/06/2021.
+//
+
 struct MovieDetail: Hashable, Codable{
     var id: String
     var fullTitle: String
