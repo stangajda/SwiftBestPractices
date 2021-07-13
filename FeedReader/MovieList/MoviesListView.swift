@@ -16,22 +16,28 @@ struct MoviesListView: View {
             Text(movies.errorMessage)
                 .foregroundColor(Color.red)
         } else {
-            Text("Loading...")
-                .onAppear {
+            loadingSpinner()
+                .onAppear{
                     service.loadMovies()
                 }
-            Spinner(isAnimating: .constant(true), style: .large)
         }
     }
     
-    func listMovies(_ movies: [Movie]) -> some View {
+    var listMovies = {(_ movies: [Movie]) -> AnyView in
         NavigationView {
             List(movies){ movie in
                 NavigationLink(destination: MovieDetailView(movie: movie)){
                     MovieRowView(movie: movie)
                 }
             }
-        }
+        }.eraseToAnyView()
+    }
+    
+    var loadingSpinner = { () -> AnyView in
+        VStack{
+            Text("Loading...")
+            Spinner(isAnimating: .constant(true), style: .large)
+        }.eraseToAnyView()
     }
 }
 
