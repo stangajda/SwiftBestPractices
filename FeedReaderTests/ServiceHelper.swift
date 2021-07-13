@@ -8,6 +8,15 @@
 import Combine
 import UIKit
 
+struct Helper{
+    static func printLog(_ message: Any, file: String = #file, function: String = #function, line: Int = #line) {
+        #if DEBUG
+            let className = file.components(separatedBy: "/").last
+            print(" ❌ Error ----> File: \(className ?? ""), Function: \(function), Line: \(line), Message: \(message)")
+        #endif
+    }
+}
+
 extension Publisher {
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         return sink(receiveCompletion: { completion in

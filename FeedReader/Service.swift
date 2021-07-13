@@ -26,7 +26,8 @@ class MoviesService: ObservableObject{
                 case .success(let data):
                     self.movies = data.items
                     break
-                case .failure(_):
+                case .failure(let error):
+                    Helper.printLog(error)
                     break
                 }
             })
@@ -52,7 +53,7 @@ class MovieDetailService: ObservableObject{
                     self.movieDetail = movieDetail
                     break
                 case .failure(let error):
-                    print(error)
+                    Helper.printLog(error)
                     break
                 }
             })
@@ -76,7 +77,8 @@ class ImageService: ObservableObject{
                 case .success(let image):
                     self.image = image
                     break
-                case .failure(_):
+                case .failure(let error):
+                    Helper.printLog(error)
                     break
                 }
             })
