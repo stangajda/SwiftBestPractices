@@ -22,7 +22,7 @@ struct MovieDetailView: View {
             case .failedLoaded(let error): 
                 Text(verbatim: error.localizedDescription)
             }
-        }.padding(.horizontal)
+        }
         .navigationTitle(movie.fullTitle)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
@@ -32,12 +32,12 @@ struct MovieDetailView: View {
     
     var movieContent = { (movieDetail: MovieDetail) -> AnyView in
         VStack{
-            
             ImageView(imageUrl: movieDetail.image)
                 .detailMovieImageSize
             Text(movieDetail.plot)
                 .font(.body)
         }
+        .padding()
         .eraseToAnyView()
     }
 }

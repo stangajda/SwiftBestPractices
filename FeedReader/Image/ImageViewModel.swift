@@ -5,10 +5,10 @@
 //  Created by Stan Gajda on 14/07/2021.
 //
 import Combine
-import SwiftUI
+import UIKit
 
-class ImageService: ObservableObject{
-    @Published var image: UIImage?
+class ImageViewModel: ObservableObject{
+    @Published private(set) var state = State.idle
     
     let service = Service()
     var cancellable: AnyCancellable?
@@ -16,15 +16,34 @@ class ImageService: ObservableObject{
     init(){
     }
     
+    func onAppear(url: String){
+        state = .loading
+        loadImage(url)
+    }
+}
+
+extension ImageViewModel{
+    enum State {
+        case idle
+        case loading
+        case loaded(UIImage)
+        case failedLoaded(Error)
+    }
+}
+
+
+extension ImageViewModel {
     func loadImage(_ urlString: String){
+        state = .loading
         let request = URLRequest(url: URL(string: urlString)!).get()
         cancellable = service.fetchImage(request)
             .sinkToResult({ result in
             switch result{
                 case .success(let image):
-                    self.image = image
+                    self.state = .loaded(image)
                     break
                 case .failure(let error):
+                    self.state = .failedLoaded(error)
                     Helper.printFailure(error)
                     break
                 }

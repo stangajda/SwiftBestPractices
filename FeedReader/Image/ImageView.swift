@@ -8,22 +8,28 @@
 import SwiftUI
 
 struct ImageView: View {
-    @ObservedObject var viewModel: ImageService = ImageService()
+    @ObservedObject var viewModel: ImageViewModel = ImageViewModel()
     @State var imageUrl: String
     
     var body: some View {
-        if let image = viewModel.image {
+        switch viewModel.state{
+        case .idle:
+            Color.clear.eraseToAnyView()
+                .onAppear{
+                    viewModel.onAppear(url: imageUrl)
+                }
+        case .loading:
+            Spinner(isAnimating: .constant(true), style: .large)
+        case .loaded(let image):
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
-        }else{
-            Spinner(isAnimating: .constant(true), style: .medium)
-                .onAppear{
-                viewModel.loadImage(imageUrl)
-            }
+        case .failedLoaded(let error):
+            Text(verbatim: error.localizedDescription)
         }
     }
 }
+
 
 //struct ImageView_Previews: PreviewProvider {
 //    static var previews: some View {
