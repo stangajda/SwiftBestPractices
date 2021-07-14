@@ -8,17 +8,17 @@
 import SwiftUI
 
 struct MoviesListView: View {
-    @ObservedObject var service: MoviesListViewModel = MoviesListViewModel()
+    @ObservedObject var viewModel: MoviesListViewModel = MoviesListViewModel()
     
     var body: some View {
-        if let movies = service.movies{
+        if let movies = viewModel.movies{
             listMovies(movies.items)
             Text(movies.errorMessage)
                 .foregroundColor(Color.red)
         } else {
             Spinner(isAnimating: .constant(true), style: .large)
                 .onAppear{
-                    service.loadMovies()
+                    viewModel.loadMovies()
                 }
         }
     }

@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    @ObservedObject var service = MovieDetailViewModel()
+    @ObservedObject var viewModel = MovieDetailViewModel()
     var movie: Movie
     var body: some View {
         VStack{
-            if let movieDetail = service.movieDetail{
+            if let movieDetail = viewModel.movieDetail{
                     movieContent(movieDetail)
             } else {
                 Spinner(isAnimating: .constant(true), style: .large)
@@ -21,7 +21,7 @@ struct MovieDetailView: View {
         .navigationTitle(movie.fullTitle)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
-            service.loadMovies(id: movie.id)
+            viewModel.loadMovies(id: movie.id)
         }
     }
     

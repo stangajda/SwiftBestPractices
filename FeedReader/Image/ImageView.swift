@@ -8,18 +8,18 @@
 import SwiftUI
 
 struct ImageView: View {
-    @ObservedObject var service: ImageService = ImageService()
+    @ObservedObject var viewModel: ImageService = ImageService()
     @State var imageUrl: String
     
     var body: some View {
-        if let image = service.image {
+        if let image = viewModel.image {
             Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
         }else{
             Spinner(isAnimating: .constant(true), style: .medium)
                 .onAppear{
-                service.loadImage(imageUrl)
+                viewModel.loadImage(imageUrl)
             }
         }
     }
