@@ -14,7 +14,7 @@ struct MovieDetailView: View {
         VStack{
             switch viewModel.state{
             case .idle:
-                AnyView(self)
+                Color.clear.eraseToAnyView()
             case .loading(_):
                 Spinner(isAnimating: .constant(true), style: .large)
             case .loaded(let movDetail):
