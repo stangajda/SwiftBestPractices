@@ -33,7 +33,6 @@ struct MoviesListView: View {
         }
     }
     
-    
     private var listMovies = {(_ movies: [Movie]) -> AnyView in
         List(movies){ movie in
             NavigationLink(destination: MovieDetailView(movie: movie)){

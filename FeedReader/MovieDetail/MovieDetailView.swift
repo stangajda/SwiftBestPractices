@@ -12,10 +12,15 @@ struct MovieDetailView: View {
     var movie: Movie
     var body: some View {
         VStack{
-            if let movieDetail = viewModel.movieDetail{
-                    movieContent(movieDetail)
-            } else {
+            switch viewModel.state{
+            case .idle:
+                AnyView(self)
+            case .loading(_):
                 Spinner(isAnimating: .constant(true), style: .large)
+            case .loaded(let movDetail):
+                movieContent(movDetail)
+            case .failedLoaded(let error): 
+                Text(verbatim: error.localizedDescription)
             }
         }.padding(.horizontal)
         .navigationTitle(movie.fullTitle)
@@ -27,6 +32,7 @@ struct MovieDetailView: View {
     
     var movieContent = { (movieDetail: MovieDetail) -> AnyView in
         VStack{
+            
             ImageView(imageUrl: movieDetail.image)
                 .detailMovieImageSize
             Text(movieDetail.plot)
