@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    @ObservedObject var service = MovieDetailService()
+    @ObservedObject var service = MovieDetailViewModel()
     var movie: Movie
     var body: some View {
         VStack{

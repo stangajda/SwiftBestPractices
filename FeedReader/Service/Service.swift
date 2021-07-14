@@ -5,85 +5,8 @@
 //  Created by Stan Gajda on 17/06/2021.
 //
 
-import Foundation
 import Combine
 import UIKit
-
-class MoviesService: ObservableObject{
-    @Published var movies: Movies?
-    
-    let service = Service()
-    var cancellable: AnyCancellable?
-    let request = APIRequest["Top250Movies"].get()
-    
-    init(){
-    }
-    
-    func loadMovies(){
-        cancellable = service.fetchMovies(request)
-            .sinkToResult({ result in
-            switch result{
-                case .success(let data):
-                    self.movies = data
-                    break
-                case .failure(let error):
-                    Helper.printFailure(error)
-                    break
-                }
-            })
-    }
-}
-
-class MovieDetailService: ObservableObject{
-    @Published var movieDetail: MovieDetail?
-    
-    let service = Service()
-    var cancellable: AnyCancellable?
-    
-    init(){
-    }
-    
-    func loadMovies(id: String){
-        
-        let request = APIRequest["Title", id, "Images"]
-        cancellable = service.fetchMovieDetail(request)
-            .sinkToResult({ result in
-            switch result{
-                case .success(let movieDetail):
-                    self.movieDetail = movieDetail
-                    break
-                case .failure(let error):
-                    Helper.printFailure(error)
-                    break
-                }
-            })
-    }
-}
-
-class ImageService: ObservableObject{
-    @Published var image: UIImage?
-    
-    let service = Service()
-    var cancellable: AnyCancellable?
-    
-    init(){
-    }
-    
-    func loadImage(_ urlString: String){
-        let request = URLRequest(url: URL(string: urlString)!).get()
-        cancellable = service.fetchImage(request)
-            .sinkToResult({ result in
-            switch result{
-                case .success(let image):
-                    self.image = image
-                    break
-                case .failure(let error):
-                    Helper.printFailure(error)
-                    break
-                }
-            })
-    }
-}
 
 struct Service{
     var session: URLSession = .shared

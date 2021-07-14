@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MoviesListView: View {
-    @ObservedObject var service: MoviesService = MoviesService()
+    @ObservedObject var service: MoviesListViewModel = MoviesListViewModel()
     
     var body: some View {
         if let movies = service.movies{
