@@ -11,24 +11,32 @@ struct MoviesListView: View {
     @ObservedObject var viewModel: MoviesListViewModel = MoviesListViewModel()
     
     var body: some View {
-        if let movies = viewModel.movies{
-            listMovies(movies.items)
-            Text(movies.errorMessage)
-                .foregroundColor(Color.red)
-        } else {
-            Spinner(isAnimating: .constant(true), style: .large)
-                .onAppear{
-                    viewModel.loadMovies()
-                }
+        NavigationView {
+            content
+        }
+        .onAppear{
+            viewModel.send(event: .onAppear)
         }
     }
     
+    private var content: some View{
+        switch viewModel.state {
+        case .idle:
+            return AnyView(self)
+        case .loading:
+            return Spinner(isAnimating: .constant(true), style: .large).eraseToAnyView()
+        case .loaded(let movies):
+            return listMovies(movies)
+        case .error(let error):
+            return Text(error.localizedDescription).eraseToAnyView()
+        }
+    }
+    
+    
     private var listMovies = {(_ movies: [Movie]) -> AnyView in
-        NavigationView {
-            List(movies){ movie in
-                NavigationLink(destination: MovieDetailView(movie: movie)){
-                    MovieRowView(movie: movie)
-                }
+        List(movies){ movie in
+            NavigationLink(destination: MovieDetailView(movie: movie)){
+                MovieRowView(movie: movie)
             }
         }.eraseToAnyView()
     }
