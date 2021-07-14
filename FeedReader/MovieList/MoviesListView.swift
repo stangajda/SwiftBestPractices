@@ -16,7 +16,7 @@ struct MoviesListView: View {
             Text(movies.errorMessage)
                 .foregroundColor(Color.red)
         } else {
-            loadingSpinner()
+            Spinner(isAnimating: .constant(true), style: .large)
                 .onAppear{
                     service.loadMovies()
                 }
@@ -33,12 +33,6 @@ struct MoviesListView: View {
         }.eraseToAnyView()
     }
     
-    private var loadingSpinner = { () -> AnyView in
-        VStack{
-            Text("Loading...")
-            Spinner(isAnimating: .constant(true), style: .large)
-        }.eraseToAnyView()
-    }
 }
 
 
