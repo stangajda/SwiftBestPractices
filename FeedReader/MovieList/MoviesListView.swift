@@ -15,11 +15,11 @@ struct MoviesListView: View {
             content
         }
         .onAppear{
-            viewModel.send(event: .onAppear)
+            viewModel.onAppear()
         }
     }
     
-    private var content: some View{
+    private var content: AnyView{
         switch viewModel.state {
         case .idle:
             return AnyView(self)
@@ -27,8 +27,9 @@ struct MoviesListView: View {
             return Spinner(isAnimating: .constant(true), style: .large).eraseToAnyView()
         case .loaded(let movies):
             return listMovies(movies)
-        case .error(let error):
-            return Text(error.localizedDescription).eraseToAnyView()
+        case .failedLoaded(let error):
+            return Text(error.localizedDescription)
+                .eraseToAnyView()
         }
     }
     

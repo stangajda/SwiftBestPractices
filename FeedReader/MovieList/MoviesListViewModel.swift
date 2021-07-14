@@ -15,8 +15,9 @@ class MoviesListViewModel: ObservableObject{
     init(){
     }
     
-    func send(event: Event) {
-        self.state = self.reduce(self.state, event)
+    func onAppear() {
+        state = .loading
+        loadMovies()
     }
     
 }
@@ -26,40 +27,8 @@ extension MoviesListViewModel{
         case idle
         case loading
         case loaded(Array<Movie>)
-        case error(Error)
+        case failedLoaded(Error)
     }
-    enum Event {
-        case onAppear
-        case onLoadedMovies(Array<Movie>)
-        case onFailedMovies(Error)
-    }
-    
-    func reduce(_ state: State, _ event: Event) -> State {
-        switch state {
-        case .idle:
-            switch event {
-            case .onAppear:
-                return .loading
-            default:
-                return state
-            }
-        case .loading:
-            self.loadMovies()
-            switch event {
-            case .onFailedMovies(let error):
-                return .error(error)
-            case .onLoadedMovies(let movies):
-                return .loaded(movies)
-            default:
-                return state
-            }
-        case .loaded:
-            return state
-        case .error:
-            return state
-        }
-    }
-    
 }
 
 extension MoviesListViewModel{
@@ -69,10 +38,10 @@ extension MoviesListViewModel{
             .sinkToResult({ result in
             switch result{
                 case .success(let data):
-                    self.state = self.reduce(self.state, .onLoadedMovies(data.items))
+                    self.state = .loaded(data.items)
                     break
                 case .failure(let error):
-                    self.state = self.reduce(self.state, .onFailedMovies(error))
+                    self.state = .failedLoaded(error)
                     Helper.printFailure(error)
                     break
                 }
