@@ -9,8 +9,7 @@ import Foundation
 
 protocol APIRequestInterface {
     static var baseURLString: String { get }
-    static var language: String { get }
-    static var prefixPath: String { get }
+    static var prefix: String { get }
     static var apiKey: String { get }
 }
 
@@ -36,18 +35,29 @@ extension APIError: LocalizedError {
     }
 }
 
+//https://api.themoviedb.org/3/trending/movie/week?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
+
 extension APIRequestInterface {
-    static subscript(_ path: String, id: String = String(), option: String = String()) -> URLRequest{
+    static subscript(_ path: String) -> URLRequest{
         guard var url = URL(string: Self.baseURLString) else {
             fatalError("invalid URL")
         }
-        url.appendPathComponent(Self.language)
-        url.appendPathComponent(Self.prefixPath)
+        url.appendPathComponent(Self.prefix)
         url.appendPathComponent(path)
-        url.appendPathComponent(Self.apiKey)
-        if !id.isEmpty { url.appendPathComponent(id) }
-        if !option.isEmpty { url.appendPathComponent(option) }
+        let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)?
+            .addQueryItem(Self.apiKey, forName: "api_key")
+        guard let url = urlComponents?.url else {
+            fatalError("invalid URL")
+        }
         return URLRequest(url: url)
+    }
+}
+
+extension URLComponents {
+    func addQueryItem(_ apiKey: String, forName name: String) -> URLComponents {
+        var copy = self
+        copy.queryItems = [URLQueryItem(name: name, value: apiKey)]
+        return copy
     }
 }
 

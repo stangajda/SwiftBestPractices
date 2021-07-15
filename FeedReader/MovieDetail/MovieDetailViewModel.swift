@@ -16,7 +16,7 @@ class MovieDetailViewModel: ObservableObject{
     init(){
     }
     
-    func onAppear(id: String){
+    func onAppear(id: Int){
         state = .loading(id)
         loadMovies(id: id)
     }
@@ -25,16 +25,15 @@ class MovieDetailViewModel: ObservableObject{
 extension MovieDetailViewModel{
     enum State {
         case idle
-        case loading(String)
+        case loading(Int)
         case loaded(MovieDetail)
         case failedLoaded(Error)
     }
 }
 
 extension MovieDetailViewModel{
-    func loadMovies(id: String){
-        
-        let request = APIRequest["Title", id, "Images"]
+    func loadMovies(id: Int){
+        let request = APIRequest["movie/" + String(id)]
         cancellable = service.fetchMovieDetail(request)
             .sinkToResult({ result in
             switch result{

@@ -9,8 +9,9 @@ import Foundation
 
 struct MockAPIRequest: APIRequestInterface {
     static var baseURLString: String { "https://any.test.com/" }
-    static var language: String { "stubLanguage" }
-    static var prefixPath: String { "stubAPI" }
+    static var prefix: String { "stubPrefix" }
+    static var type: String { "stubTypeI" }
+    static var timeWindow: String { "stubTimeWindow" }
     static var apiKey: String { "stubKey" }
 }
 

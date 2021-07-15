@@ -10,11 +10,13 @@ import SwiftUI
 //babcada8d42a5fd4857231c42240debd
 //https://api.themoviedb.org/3/movie/550?api_key=babcada8d42a5fd4857231c42240debd
 
+//https://api.themoviedb.org/3/trending/movie/week?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
+//https://api.themoviedb.org/3/movie/497698?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
+
 struct APIRequest: APIRequestInterface {
-    static var baseURLString: String { "https://imdb-api.com/" }
-    static var language: String { "en" }
-    static var prefixPath: String { "API" }
-    static var apiKey: String { "k_66zz106x" }
+    static var baseURLString: String { "https://api.themoviedb.org/" }
+    static var prefix: String { "3" }
+    static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
 extension View {

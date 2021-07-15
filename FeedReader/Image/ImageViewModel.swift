@@ -9,6 +9,7 @@ import UIKit
 
 class ImageViewModel: ObservableObject{
     @Published private(set) var state = State.idle
+    private let baseURL = "https://image.tmdb.org/t/p/original"
     
     let service = Service()
     var cancellable: AnyCancellable?
@@ -35,7 +36,7 @@ extension ImageViewModel{
 extension ImageViewModel {
     func loadImage(_ urlString: String){
         state = .loading
-        let request = URLRequest(url: URL(string: urlString)!).get()
+        let request = URLRequest(url: URL(string: baseURL + urlString)!).get()
         cancellable = service.fetchImage(request)
             .sinkToResult({ result in
             switch result{

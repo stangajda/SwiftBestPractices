@@ -23,7 +23,7 @@ struct MovieDetailView: View {
                 Text(verbatim: error.localizedDescription)
             }
         }
-        .navigationTitle(movie.fullTitle)
+        .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
         .onAppear{
             viewModel.loadMovies(id: movie.id)
@@ -32,9 +32,9 @@ struct MovieDetailView: View {
     
     var movieContent = { (movieDetail: MovieDetail) -> AnyView in
         VStack{
-            ImageView(imageUrl: movieDetail.image)
+            ImageView(imageUrl: movieDetail.backdrop_path)
                 .detailMovieImageSize
-            Text(movieDetail.plot)
+            Text(movieDetail.overview)
                 .font(.body)
         }
         .padding()

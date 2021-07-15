@@ -6,5 +6,5 @@
 //
 
 extension Movie{
-    static let mock = Movie(id: "tt0111161", rank: "rank", title: "mock title of movie", fullTitle: "fullTitle", year: "year", image: "imageUrl", crew: "crew", imDbRating: "imDbRating", imDbRatingCount: "imDbRatingCount")
+    static let mock = Movie(id: 497698, title: "title", vote_average: 8.2, poster_path: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg")
 }

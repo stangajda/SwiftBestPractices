@@ -6,20 +6,15 @@
 //
 
 struct Movies: Hashable, Codable{
-    var items: Array<Movie>
-    var errorMessage: String
+    var results: Array<Movie>
+    var page: Int
 }
 
 struct Movie: Hashable, Codable, Identifiable {
-    var id: String
-    var rank: String
+    var id: Int
     var title: String
-    var fullTitle: String
-    var year: String
-    var image: String
-    var crew: String
-    var imDbRating: String
-    var imDbRatingCount: String
+    var vote_average: Double
+    var poster_path: String
 }
 
 

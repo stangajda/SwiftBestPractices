@@ -12,7 +12,7 @@ struct MovieRowView: View {
     
     var body: some View {
         HStack{
-            ImageView(imageUrl: movie.image)
+            ImageView(imageUrl: movie.poster_path)
                 .rowImageSize
             Text(movie.title)
                 .font(.title)

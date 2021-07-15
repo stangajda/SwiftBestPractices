@@ -33,12 +33,12 @@ extension MoviesListViewModel{
 
 extension MoviesListViewModel{
     func loadMovies(){
-        let request = APIRequest["Top250Movies"].get()
+        let request = APIRequest["trending/movie/week"].get()
         cancellable = service.fetchMovies(request)
             .sinkToResult({ result in
             switch result{
                 case .success(let data):
-                    self.state = .loaded(data.items)
+                    self.state = .loaded(data.results)
                     break
                 case .failure(let error):
                     self.state = .failedLoaded(error)
