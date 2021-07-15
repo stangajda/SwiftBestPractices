@@ -88,7 +88,7 @@ class ErrorResponseTests: XCTestCase {
         
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
         cancellable = self.mockManager.fetchImage(mockRequestUrl)
-            .sinkToResult({ [self] result in
+            .sinkToResult({ [unowned self] result in
                 result.assertFailure(APIError.imageConversion(mockRequestUrl).errorDescription)
                 expectation.fulfill()
             })

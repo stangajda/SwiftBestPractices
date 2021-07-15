@@ -35,7 +35,7 @@ extension MovieDetailViewModel{
     func loadMovies(id: Int){
         let request = APIRequest["movie/" + String(id)]
         cancellable = service.fetchMovieDetail(request)
-            .sinkToResult({ result in
+            .sinkToResult({ [unowned self] result in
             switch result{
                 case .success(let movieDetail):
                     self.state = .loaded(movieDetail)

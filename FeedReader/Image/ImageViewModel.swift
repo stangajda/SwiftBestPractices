@@ -38,7 +38,7 @@ extension ImageViewModel {
         state = .loading
         let request = URLRequest(url: URL(string: baseURL + urlString)!).get()
         cancellable = service.fetchImage(request)
-            .sinkToResult({ result in
+            .sinkToResult({ [unowned self] result in
             switch result{
                 case .success(let image):
                     self.state = .loaded(image)
