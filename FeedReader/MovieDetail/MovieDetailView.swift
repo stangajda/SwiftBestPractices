@@ -12,16 +12,7 @@ struct MovieDetailView: View {
     var movie: Movie
     var body: some View {
         VStack{
-            switch viewModel.state{
-            case .idle:
-                Color.clear.eraseToAnyView()
-            case .loading(_):
-                Spinner(isAnimating: .constant(true), style: .large)
-            case .loaded(let movDetail):
-                movieContent(movDetail)
-            case .failedLoaded(let error): 
-                Text(verbatim: error.localizedDescription)
-            }
+            content
         }
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
@@ -30,7 +21,21 @@ struct MovieDetailView: View {
         }
     }
     
-    var movieContent = { (movieDetail: MovieDetail) -> AnyView in
+    private var content: AnyView{
+        switch viewModel.state {
+        case .idle:
+            return Color.clear.eraseToAnyView()
+        case .loading(_):
+            return Spinner(isAnimating: .constant(true), style: .large).eraseToAnyView()
+        case .loaded(let movDetail):
+            return movieContent(movDetail)
+        case .failedLoaded(let error):
+            return Text(error.localizedDescription)
+                .eraseToAnyView()
+        }
+    }
+    
+    internal var movieContent = { (movieDetail: MovieDetail) -> AnyView in
         VStack{
             ImageView(imageUrl: movieDetail.backdrop_path)
                 .detailMovieImageSize
@@ -44,6 +49,8 @@ struct MovieDetailView: View {
 
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        MovieDetailView(movie: Movie.mock)
+        Group {
+            MovieDetailView(movie: Movie.mock)
+        }
     }
 }
