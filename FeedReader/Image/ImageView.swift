@@ -12,20 +12,28 @@ struct ImageView: View {
     @State var imageUrl: String
     
     var body: some View {
-        switch viewModel.state{
+        content
+    }
+    
+    private var content: AnyView {
+        switch viewModel.state {
         case .idle:
-            Color.clear.eraseToAnyView()
-                .onAppear{
-                    viewModel.onAppear(url: imageUrl)
-                }
+            return Color.clear
+                        .onAppear {
+                            viewModel.onAppear(url: imageUrl)
+                        }
+                        .eraseToAnyView()
         case .loading:
-            Spinner(isAnimating: .constant(true), style: .large)
+            return Spinner(isAnimating: .constant(true), style: .large)
+                    .eraseToAnyView()
         case .loaded(let image):
-            Image(uiImage: image)
+            return Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fit)
+                .eraseToAnyView()
         case .failedLoaded(let error):
-            Text(verbatim: error.localizedDescription)
+            return Text(error.localizedDescription)
+                .eraseToAnyView()
         }
     }
 }
