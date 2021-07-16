@@ -44,7 +44,7 @@ private extension MoviesListView {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
-    func loadedView(_ movies: [MoviesListViewModel.MovieItem]) -> some View {
+    func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         listMovies(movies)
     }
     
@@ -52,7 +52,7 @@ private extension MoviesListView {
         ErrorView(error: error)
     }
     
-    func listMovies(_ movies: [MoviesListViewModel.MovieItem]) -> some View {
+    func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
             NavigationLink(destination: MovieDetailView(movie: movie)){
                 MovieRowView(movie: movie)
