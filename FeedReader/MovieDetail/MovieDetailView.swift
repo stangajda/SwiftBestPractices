@@ -46,7 +46,7 @@ private extension MovieDetailView {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
-    func loadedView(_ movieDetail: MovieDetail) -> some View {
+    func loadedView(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         movieContent(movieDetail)
     }
     
@@ -54,7 +54,7 @@ private extension MovieDetailView {
         ErrorView(error: error)
     }
     
-    func movieContent(_ movieDetail: MovieDetail) -> some View {
+    func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         VStack{
             ImageView(imageUrl: movieDetail.backdrop_path)
                 .detailMovieImageSize

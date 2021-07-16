@@ -6,6 +6,7 @@
 //
 import Combine
 import UIKit
+import SwiftUI
 
 class ImageViewModel: ObservableObject{
     @Published private(set) var state = State.initial
@@ -27,8 +28,15 @@ extension ImageViewModel{
     enum State {
         case initial
         case loading
-        case loaded(UIImage)
+        case loaded(Image)
         case failedLoaded(Error)
+    }
+    
+    struct ImageItem{
+        let image: Image
+        init(_ uiImage: UIImage) {
+            image = Image(uiImage: uiImage)
+        }
     }
 }
 
@@ -38,10 +46,13 @@ extension ImageViewModel {
         state = .loading
         let request = URLRequest(url: URL(string: baseURL + urlString)!).get()
         cancellable = service.fetchImage(request)
+            .map { item in
+                ImageItem(item)
+            }
             .sinkToResult({ [unowned self] result in
             switch result{
-                case .success(let image):
-                    self.state = .loaded(image)
+                case .success(let item):
+                    self.state = .loaded(item.image)
                     break
                 case .failure(let error):
                     self.state = .failedLoaded(error)

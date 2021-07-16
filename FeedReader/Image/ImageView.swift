@@ -41,8 +41,8 @@ private extension ImageView {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
-    func loadedView(_ image: UIImage) -> some View {
-        Image(uiImage: image)
+    func loadedView(_ image: Image) -> some View {
+        image
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
@@ -51,15 +51,6 @@ private extension ImageView {
         ErrorView(error: error)
     }
     
-    func movieContent(_ movieDetail: MovieDetail) -> some View {
-        VStack{
-            ImageView(imageUrl: movieDetail.backdrop_path)
-                .detailMovieImageSize
-            Text(movieDetail.overview)
-                .font(.body)
-        }
-        .padding()
-    }
 }
 
 #if DEBUG
