@@ -13,7 +13,7 @@ struct MoviesListView: View {
     var body: some View {
         NavigationView {
             content
-                .navigationBarTitle("Trending Weekly")
+                .navigationBarTitle("Trending Daily")
         }
         .onAppear {
             Helper.printTrace(viewModel.state)

@@ -45,7 +45,7 @@ extension MoviesListViewModel{
 
 extension MoviesListViewModel{
     func loadMovies(){
-        let request = APIRequest["trending/movie/week"].get()
+        let request = APIRequest["trending/movie/day"].get()
         cancellable = service.fetchMovies(request)
             .sinkToResult({ [unowned self] result in
             switch result{
