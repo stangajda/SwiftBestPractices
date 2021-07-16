@@ -41,7 +41,7 @@ private extension MoviesListView {
     }
     
     var loadingView: some View {
-        Spinner(isAnimating: .constant(true), style: .large)
+        ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
     func loadedView(_ movies: [Movie]) -> some View {

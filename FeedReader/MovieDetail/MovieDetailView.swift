@@ -43,7 +43,7 @@ private extension MovieDetailView {
     }
     
     var loadingView: some View {
-        Spinner(isAnimating: .constant(true), style: .large)
+        ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
     func loadedView(_ movieDetail: MovieDetail) -> some View {

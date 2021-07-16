@@ -38,7 +38,7 @@ private extension ImageView {
     }
     
     var loadingView: some View {
-        Spinner(isAnimating: .constant(true), style: .large)
+        ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
     func loadedView(_ image: UIImage) -> some View {
