@@ -32,8 +32,7 @@ struct ImageView: View {
                 .aspectRatio(contentMode: .fit)
                 .eraseToAnyView()
         case .failedLoaded(let error):
-            return Text(error.localizedDescription)
-                .eraseToAnyView()
+            return ErrorView(error: error).eraseToAnyView()
         }
     }
 }

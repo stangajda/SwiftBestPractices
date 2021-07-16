@@ -29,6 +29,18 @@ extension MoviesListViewModel{
         case loaded(Array<Movie>)
         case failedLoaded(Error)
     }
+    
+    struct ListItem: Identifiable {
+        let id: Int
+        let title: String
+        let poster_path: String
+        
+        init(movie: Movie) {
+            id = movie.id
+            title = movie.title
+            poster_path = movie.poster_path
+        }
+    }
 }
 
 extension MoviesListViewModel{

@@ -13,8 +13,10 @@ struct MoviesListView: View {
     var body: some View {
         NavigationView {
             content
+                .navigationBarTitle("Trending Weekly")
         }
-        .onAppear{
+        .onAppear {
+            Helper.printTrace(viewModel.state)
             viewModel.onAppear()
         }
     }
@@ -28,8 +30,7 @@ struct MoviesListView: View {
         case .loaded(let movies):
             return listMovies(movies)
         case .failedLoaded(let error):
-            return Text(error.localizedDescription)
-                .eraseToAnyView()
+            return ErrorView(error: error).eraseToAnyView()
         }
     }
     

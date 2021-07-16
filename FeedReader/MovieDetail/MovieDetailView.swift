@@ -30,8 +30,7 @@ struct MovieDetailView: View {
         case .loaded(let movDetail):
             return movieContent(movDetail)
         case .failedLoaded(let error):
-            return Text(error.localizedDescription)
-                .eraseToAnyView()
+            return ErrorView(error: error).eraseToAnyView()
         }
     }
     
