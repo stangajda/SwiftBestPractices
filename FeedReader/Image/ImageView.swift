@@ -17,23 +17,48 @@ struct ImageView: View {
     
     private var content: AnyView {
         switch viewModel.state {
-        case .idle:
-            return Color.clear
-                        .onAppear {
-                            viewModel.onAppear(url: imageUrl)
-                        }
-                        .eraseToAnyView()
+        case .initial:
+            return AnyView(initialView)
         case .loading:
-            return Spinner(isAnimating: .constant(true), style: .large)
-                    .eraseToAnyView()
+            return AnyView(loadingView)
         case .loaded(let image):
-            return Image(uiImage: image)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .eraseToAnyView()
+            return AnyView(loadedView(image))
         case .failedLoaded(let error):
-            return ErrorView(error: error).eraseToAnyView()
+            return AnyView(failedView(error))
         }
+    }
+}
+
+private extension ImageView {
+    var initialView: some View {
+        Color.clear
+            .onAppear {
+                viewModel.onAppear(url: imageUrl)
+            }
+    }
+    
+    var loadingView: some View {
+        Spinner(isAnimating: .constant(true), style: .large)
+    }
+    
+    func loadedView(_ image: UIImage) -> some View {
+        Image(uiImage: image)
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+    }
+    
+    func failedView(_ error: Error) -> some View {
+        ErrorView(error: error)
+    }
+    
+    func movieContent(_ movieDetail: MovieDetail) -> some View {
+        VStack{
+            ImageView(imageUrl: movieDetail.backdrop_path)
+                .detailMovieImageSize
+            Text(movieDetail.overview)
+                .font(.body)
+        }
+        .padding()
     }
 }
 

@@ -8,7 +8,7 @@ import Combine
 import UIKit
 
 class ImageViewModel: ObservableObject{
-    @Published private(set) var state = State.idle
+    @Published private(set) var state = State.initial
     private let baseURL = "https://image.tmdb.org/t/p/original"
     
     let service = Service()
@@ -25,7 +25,7 @@ class ImageViewModel: ObservableObject{
 
 extension ImageViewModel{
     enum State {
-        case idle
+        case initial
         case loading
         case loaded(UIImage)
         case failedLoaded(Error)
