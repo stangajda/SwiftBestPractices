@@ -16,25 +16,45 @@ struct MovieDetailView: View {
         }
         .navigationTitle(movie.title)
         .navigationBarTitleDisplayMode(.inline)
-        .onAppear{
-            viewModel.loadMovies(id: movie.id)
-        }
     }
     
     private var content: AnyView{
         switch viewModel.state {
-        case .idle:
-            return Color.clear.eraseToAnyView()
+        case .initial:
+            return AnyView(initialView)
         case .loading(_):
-            return Spinner(isAnimating: .constant(true), style: .large).eraseToAnyView()
+            return AnyView(loadingView)
         case .loaded(let movDetail):
-            return movieContent(movDetail)
+            return AnyView(loadedView(movDetail))
         case .failedLoaded(let error):
-            return ErrorView(error: error).eraseToAnyView()
+            return AnyView(failedView(error))
         }
     }
     
-    internal var movieContent = { (movieDetail: MovieDetail) -> AnyView in
+    
+}
+
+private extension MovieDetailView {
+    var initialView: some View {
+        Color.clear
+            .onAppear {
+                viewModel.onAppear(id: movie.id)
+            }
+    }
+    
+    var loadingView: some View {
+        Spinner(isAnimating: .constant(true), style: .large)
+    }
+    
+    func loadedView(_ movieDetail: MovieDetail) -> some View {
+        movieContent(movieDetail)
+    }
+    
+    func failedView(_ error: Error) -> some View {
+        ErrorView(error: error)
+    }
+    
+    func movieContent(_ movieDetail: MovieDetail) -> some View {
         VStack{
             ImageView(imageUrl: movieDetail.backdrop_path)
                 .detailMovieImageSize
@@ -42,7 +62,6 @@ struct MovieDetailView: View {
                 .font(.body)
         }
         .padding()
-        .eraseToAnyView()
     }
 }
 
