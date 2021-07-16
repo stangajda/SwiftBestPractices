@@ -15,33 +15,50 @@ struct MoviesListView: View {
             content
                 .navigationBarTitle("Trending Daily")
         }
-        .onAppear {
-            Helper.printTrace(viewModel.state)
-            viewModel.onAppear()
-        }
     }
     
     private var content: AnyView{
         switch viewModel.state {
-        case .idle:
-            return AnyView(self)
+        case .initial:
+            return AnyView(initialView)
         case .loading:
-            return Spinner(isAnimating: .constant(true), style: .large).eraseToAnyView()
+            return AnyView(loadingView)
         case .loaded(let movies):
-            return listMovies(movies)
+            return AnyView(loadedView(movies))
         case .failedLoaded(let error):
-            return ErrorView(error: error).eraseToAnyView()
+            return AnyView(failedView(error))
         }
     }
     
-    private var listMovies = {(_ movies: [Movie]) -> AnyView in
+}
+
+private extension MoviesListView {
+    var initialView: some View {
+        Color.clear
+            .onAppear {
+                viewModel.onAppear()
+            }
+    }
+    
+    var loadingView: some View {
+        Spinner(isAnimating: .constant(true), style: .large)
+    }
+    
+    func loadedView(_ movies: [Movie]) -> some View {
+        listMovies(movies)
+    }
+    
+    func failedView(_ error: Error) -> some View {
+        ErrorView(error: error)
+    }
+    
+    func listMovies(_ movies: [Movie]) -> some View {
         List(movies){ movie in
             NavigationLink(destination: MovieDetailView(movie: movie)){
                 MovieRowView(movie: movie)
             }
-        }.eraseToAnyView()
+        }
     }
-    
 }
 
 

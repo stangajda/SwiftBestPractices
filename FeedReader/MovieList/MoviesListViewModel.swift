@@ -8,7 +8,7 @@
 import Combine
 
 class MoviesListViewModel: ObservableObject{
-    @Published private(set) var state = State.idle
+    @Published private(set) var state = State.initial
     let service = Service()
     var cancellable: AnyCancellable?
     
@@ -24,7 +24,7 @@ class MoviesListViewModel: ObservableObject{
 
 extension MoviesListViewModel{
     enum State {
-        case idle
+        case initial
         case loading
         case loaded(Array<Movie>)
         case failedLoaded(Error)
