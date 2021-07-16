@@ -9,7 +9,7 @@ import SwiftUI
 
 struct MovieDetailView: View {
     @ObservedObject var viewModel = MovieDetailViewModel()
-    var movie: Movie
+    var movie: MoviesListViewModel.MovieItem
     var body: some View {
         VStack{
             content
@@ -69,7 +69,7 @@ private extension MovieDetailView {
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MovieDetailView(movie: Movie.mock)
+            MovieDetailView(movie: MoviesListViewModel.MovieItem.mock)
         }
     }
 }

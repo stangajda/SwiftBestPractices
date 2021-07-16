@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MovieRowView: View {
-    @State var movie: Movie
+    @State var movie: MoviesListViewModel.MovieItem
     
     var body: some View {
         HStack{
@@ -26,7 +26,7 @@ struct MovieRowView: View {
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Group{
-            MovieRowView(movie: Movie.mock)
+            MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
         }
         .previewLayout(.sizeThatFits)
     }

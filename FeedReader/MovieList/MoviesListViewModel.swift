@@ -19,23 +19,22 @@ class MoviesListViewModel: ObservableObject{
         state = .loading
         loadMovies()
     }
-    
 }
 
 extension MoviesListViewModel{
     enum State {
         case initial
         case loading
-        case loaded(Array<Movie>)
+        case loaded(Array<MovieItem>)
         case failedLoaded(Error)
     }
     
-    struct ListItem: Identifiable {
+    struct MovieItem: Identifiable {
         let id: Int
         let title: String
         let poster_path: String
         
-        init(movie: Movie) {
+        init(_ movie: Movie) {
             id = movie.id
             title = movie.title
             poster_path = movie.poster_path
@@ -47,10 +46,13 @@ extension MoviesListViewModel{
     func loadMovies(){
         let request = APIRequest["trending/movie/day"].get()
         cancellable = service.fetchMovies(request)
+            .map { item in
+                item.results.map(MovieItem.init)
+            }
             .sinkToResult({ [unowned self] result in
             switch result{
                 case .success(let data):
-                    self.state = .loaded(data.results)
+                    self.state = .loaded(data)
                     break
                 case .failure(let error):
                     self.state = .failedLoaded(error)
