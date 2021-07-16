@@ -4,29 +4,51 @@
 //
 //  Created by Stan Gajda on 14/07/2021.
 //
-
+import Foundation
 import Combine
 
 class MoviesListViewModel: ObservableObject{
-    @Published private(set) var state = State.initial
+    @Published private(set) var state = State.start
     let service = Service()
-    var cancellable: AnyCancellable?
+    private var storage = Set<AnyCancellable>()
+    private let input = PassthroughSubject<Event, Never>()
     
-    init(){
+    init() {
+        Publishers.system(
+            initial: state,
+            reduce: Self.reduce,
+            scheduler: RunLoop.main,
+            feedbacks: [
+                self.whenLoading(),
+                Self.userInput(input: input.eraseToAnyPublisher())
+            ]
+        )
+        .assign(to: \.state, on: self)
+        .store(in: &storage)
     }
     
-    func onAppear() {
-        state = .loading
-        loadMovies()
+    deinit {
+        storage.removeAll()
+    }
+    
+    func send(event: Event) {
+        input.send(event)
     }
 }
 
 extension MoviesListViewModel{
     enum State {
-        case initial
+        case start
         case loading
         case loaded(Array<MovieItem>)
         case failedLoaded(Error)
+    }
+    
+    enum Event {
+        case onAppear
+        case onSelectMovie(Int)
+        case onMoviesLoaded(Array<MovieItem>)
+        case onFailedToLoadMovies(Error)
     }
     
     struct MovieItem: Identifiable {
@@ -42,23 +64,69 @@ extension MoviesListViewModel{
     }
 }
 
-extension MoviesListViewModel{
-    func loadMovies(){
-        let request = APIRequest["trending/movie/day"].get()
-        cancellable = service.fetchMovies(request)
-            .map { item in
-                item.results.map(MovieItem.init)
+extension MoviesListViewModel {
+    static func reduce(_ state: State, _ event: Event) -> State {
+        switch state {
+        case .start:
+            switch event {
+            case .onAppear:
+                return .loading
+            default:
+                return state
             }
-            .sinkToResult({ [unowned self] result in
-            switch result{
-                case .success(let data):
-                    self.state = .loaded(data)
-                    break
-                case .failure(let error):
-                    self.state = .failedLoaded(error)
-                    Helper.printFailure(error)
-                    break
+        case .loading:
+            switch event {
+            case .onFailedToLoadMovies(let error):
+                return .failedLoaded(error)
+            case .onMoviesLoaded(let movies):
+                return .loaded(movies)
+            default:
+                return state
+            }
+        case .loaded:
+            return state
+        case .failedLoaded:
+            return state
+        }
+    }
+    
+    func whenLoading() -> Feedback<State, Event> {
+        Feedback { (state: State) -> AnyPublisher<Event, Never> in
+            guard case .loading = state else { return Empty().eraseToAnyPublisher() }
+            let request = APIRequest["trending/movie/day"].get()
+            
+            return self.service.fetchMovies(request)
+                .map { item in
+                    item.results.map(MovieItem.init)
                 }
-            })
+                .map(Event.onMoviesLoaded)
+                .catch { Just(Event.onFailedToLoadMovies($0)) }
+                .eraseToAnyPublisher()
+        }
+    }
+    
+    static func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
+        Feedback { _ in input }
     }
 }
+
+//extension MoviesListViewModel{
+//    func loadMovies(){
+//        let request = APIRequest["trending/movie/day"].get()
+//        cancellable = service.fetchMovies(request)
+//            .map { item in
+//                item.results.map(MovieItem.init)
+//            }
+//            .sinkToResult({ [unowned self] result in
+//            switch result{
+//                case .success(let data):
+//                    self.state = .loaded(data)
+//                    break
+//                case .failure(let error):
+//                    self.state = .failedLoaded(error)
+//                    Helper.printFailure(error)
+//                    break
+//                }
+//            })
+//    }
+//}

@@ -19,8 +19,8 @@ struct MoviesListView: View {
     
     private var content: AnyView{
         switch viewModel.state {
-        case .initial:
-            return AnyView(initialView)
+        case .start:
+            return AnyView(startView)
         case .loading:
             return AnyView(loadingView)
         case .loaded(let movies):
@@ -33,10 +33,10 @@ struct MoviesListView: View {
 }
 
 private extension MoviesListView {
-    var initialView: some View {
+    var startView: some View {
         Color.clear
             .onAppear {
-                viewModel.onAppear()
+                viewModel.send(event: .onAppear)
             }
     }
     
