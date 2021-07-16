@@ -158,7 +158,6 @@
 		CC351E2F269DC3E80037DB34 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				CC351E18269B838E0037DB34 /* HelperView.swift */,
 				CC456E51268FB79900FF2113 /* APIRequestInterface.swift */,
 				CC456E54268FD9E600FF2113 /* ExtensionsService.swift */,
 			);
@@ -178,6 +177,7 @@
 			children = (
 				CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */,
 				CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */,
+				CC351E18269B838E0037DB34 /* HelperView.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";

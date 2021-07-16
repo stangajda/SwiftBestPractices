@@ -22,6 +22,7 @@ struct MovieRowView: View {
     }
 }
 
+#if DEBUG
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Group{
@@ -30,3 +31,4 @@ struct MovieRow_Previews: PreviewProvider {
         .previewLayout(.sizeThatFits)
     }
 }
+#endif

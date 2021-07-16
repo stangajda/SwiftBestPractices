@@ -45,9 +45,10 @@ struct MoviesListView: View {
 }
 
 
-
+#if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
         MoviesListView()
     }
 }
+#endif

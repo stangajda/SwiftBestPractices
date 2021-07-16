@@ -37,9 +37,10 @@ struct ImageView: View {
     }
 }
 
-
+#if DEBUG
 //struct ImageView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        ImageView()
 //    }
 //}
+#endif

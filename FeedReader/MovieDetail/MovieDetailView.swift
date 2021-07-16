@@ -46,6 +46,7 @@ struct MovieDetailView: View {
     }
 }
 
+#if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
@@ -53,3 +54,4 @@ struct MovieDetailView_Previews: PreviewProvider {
         }
     }
 }
+#endif
