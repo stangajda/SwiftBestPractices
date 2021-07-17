@@ -64,17 +64,17 @@ extension MoviesListViewModel {
         case onFailedLoaded(Error)
     }
     
-    func reduce(_ state: State, _ event: Action) -> State {
+    func reduce(_ state: State, _ action: Action) -> State {
         switch state {
         case .start:
-            switch event {
+            switch action {
             case .onAppear:
                 return .loading
             default:
                 return state
             }
         case .loading:
-            switch event {
+            switch action {
             case .onFailedLoaded(let error):
                 return .failedLoaded(error)
             case .onLoaded(let movies):
