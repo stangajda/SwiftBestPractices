@@ -9,8 +9,8 @@ import Combine
 
 class MoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start
-    let service = Service()
-    private var storage = Set<AnyCancellable>()
+    private let service = Service()
+    private var cancellableStorage = Set<AnyCancellable>()
     private let input = PassthroughSubject<Event, Never>()
     
     init() {
@@ -19,16 +19,16 @@ class MoviesListViewModel: ObservableObject{
             reduce: Self.reduce,
             scheduler: RunLoop.main,
             feedbacks: [
-                self.whenLoading(),
-                Self.userInput(input: input.eraseToAnyPublisher())
+                self.onStateChanged(),
+                self.userInput(input: input.eraseToAnyPublisher())
             ]
         )
         .assign(to: \.state, on: self)
-        .store(in: &storage)
+        .store(in: &cancellableStorage)
     }
     
     deinit {
-        storage.removeAll()
+        cancellableStorage.removeAll()
     }
     
     func send(event: Event) {
@@ -90,43 +90,30 @@ extension MoviesListViewModel {
         }
     }
     
-    func whenLoading() -> Feedback<State, Event> {
+    func onStateChanged() -> Feedback<State, Event> {
         Feedback { (state: State) -> AnyPublisher<Event, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-            let request = APIRequest["trending/movie/day"].get()
-            
-            return self.service.fetchMovies(request)
-                .map { item in
-                    item.results.map(MovieItem.init)
-                }
+            return self.loadMovies()
                 .map(Event.onMoviesLoaded)
-                .catch { Just(Event.onFailedToLoadMovies($0)) }
+                .catch { error in
+                    Just(Event.onFailedToLoadMovies(error))
+                }
                 .eraseToAnyPublisher()
         }
     }
     
-    static func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
+    func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
         Feedback { _ in input }
     }
 }
 
-//extension MoviesListViewModel{
-//    func loadMovies(){
-//        let request = APIRequest["trending/movie/day"].get()
-//        cancellable = service.fetchMovies(request)
-//            .map { item in
-//                item.results.map(MovieItem.init)
-//            }
-//            .sinkToResult({ [unowned self] result in
-//            switch result{
-//                case .success(let data):
-//                    self.state = .loaded(data)
-//                    break
-//                case .failure(let error):
-//                    self.state = .failedLoaded(error)
-//                    Helper.printFailure(error)
-//                    break
-//                }
-//            })
-//    }
-//}
+extension MoviesListViewModel{
+    func loadMovies() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
+        let request = APIRequest["trending/movie/day"].get()
+        return self.service.fetchMovies(request)
+            .map { item in
+                item.results.map(MovieItem.init)
+            }
+            .eraseToAnyPublisher()
+    }
+}
