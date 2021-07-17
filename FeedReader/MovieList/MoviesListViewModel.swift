@@ -60,9 +60,8 @@ extension MoviesListViewModel {
     
     enum Action {
         case onAppear
-        case onSelectMovie(Int)
-        case onMoviesLoaded(Array<MovieItem>)
-        case onFailedToLoadMovies(Error)
+        case onLoaded(Array<MovieItem>)
+        case onFailedLoaded(Error)
     }
     
     func reduce(_ state: State, _ event: Action) -> State {
@@ -76,9 +75,9 @@ extension MoviesListViewModel {
             }
         case .loading:
             switch event {
-            case .onFailedToLoadMovies(let error):
+            case .onFailedLoaded(let error):
                 return .failedLoaded(error)
-            case .onMoviesLoaded(let movies):
+            case .onLoaded(let movies):
                 return .loaded(movies)
             default:
                 return state
@@ -94,9 +93,9 @@ extension MoviesListViewModel {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.loadMovies()
-                .map(Action.onMoviesLoaded)
+                .map(Action.onLoaded)
                 .catch { error in
-                    Just(Action.onFailedToLoadMovies(error))
+                    Just(Action.onFailedLoaded(error))
                 }
                 .eraseToAnyPublisher()
         }
