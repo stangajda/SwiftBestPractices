@@ -16,7 +16,7 @@ class MoviesListViewModel: ObservableObject{
     init() {
         Publishers.system(
             initial: state,
-            reduce: Self.reduce,
+            reduce: self.reduce,
             scheduler: RunLoop.main,
             feedbacks: [
                 self.onStateChanged(),
@@ -37,20 +37,6 @@ class MoviesListViewModel: ObservableObject{
 }
 
 extension MoviesListViewModel{
-    enum State {
-        case start
-        case loading
-        case loaded(Array<MovieItem>)
-        case failedLoaded(Error)
-    }
-    
-    enum Event {
-        case onAppear
-        case onSelectMovie(Int)
-        case onMoviesLoaded(Array<MovieItem>)
-        case onFailedToLoadMovies(Error)
-    }
-    
     struct MovieItem: Identifiable {
         let id: Int
         let title: String
@@ -65,7 +51,21 @@ extension MoviesListViewModel{
 }
 
 extension MoviesListViewModel {
-    static func reduce(_ state: State, _ event: Event) -> State {
+    enum State {
+        case start
+        case loading
+        case loaded(Array<MovieItem>)
+        case failedLoaded(Error)
+    }
+    
+    enum Event {
+        case onAppear
+        case onSelectMovie(Int)
+        case onMoviesLoaded(Array<MovieItem>)
+        case onFailedToLoadMovies(Error)
+    }
+    
+    func reduce(_ state: State, _ event: Event) -> State {
         switch state {
         case .start:
             switch event {
