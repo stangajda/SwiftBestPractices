@@ -11,7 +11,7 @@ class MoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start
     private let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
-    private let input = PassthroughSubject<Event, Never>()
+    private let input = PassthroughSubject<Action, Never>()
     
     init() {
         Publishers.system(
@@ -31,8 +31,8 @@ class MoviesListViewModel: ObservableObject{
         cancellableStorage.removeAll()
     }
     
-    func send(event: Event) {
-        input.send(event)
+    func send(action: Action) {
+        input.send(action)
     }
 }
 
@@ -58,14 +58,14 @@ extension MoviesListViewModel {
         case failedLoaded(Error)
     }
     
-    enum Event {
+    enum Action {
         case onAppear
         case onSelectMovie(Int)
         case onMoviesLoaded(Array<MovieItem>)
         case onFailedToLoadMovies(Error)
     }
     
-    func reduce(_ state: State, _ event: Event) -> State {
+    func reduce(_ state: State, _ event: Action) -> State {
         switch state {
         case .start:
             switch event {
@@ -90,19 +90,19 @@ extension MoviesListViewModel {
         }
     }
     
-    func onStateChanged() -> Feedback<State, Event> {
-        Feedback { (state: State) -> AnyPublisher<Event, Never> in
+    func onStateChanged() -> Feedback<State, Action> {
+        Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.loadMovies()
-                .map(Event.onMoviesLoaded)
+                .map(Action.onMoviesLoaded)
                 .catch { error in
-                    Just(Event.onFailedToLoadMovies(error))
+                    Just(Action.onFailedToLoadMovies(error))
                 }
                 .eraseToAnyPublisher()
         }
     }
     
-    func userInput(input: AnyPublisher<Event, Never>) -> Feedback<State, Event> {
+    func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in input }
     }
 }

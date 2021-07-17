@@ -9,11 +9,11 @@ import Combine
 
 extension Publishers {
     
-    static func system<State, Event, Scheduler: Combine.Scheduler>(
+    static func system<State, Action, Scheduler: Combine.Scheduler>(
         initial: State,
-        reduce: @escaping (State, Event) -> State,
+        reduce: @escaping (State, Action) -> State,
         scheduler: Scheduler,
-        feedbacks: [Feedback<State, Event>]
+        feedbacks: [Feedback<State, Action>]
     ) -> AnyPublisher<State, Never> {
         let state = CurrentValueSubject<State, Never>(initial)
         let events = feedbacks.map { feedback in

@@ -36,7 +36,7 @@ private extension MoviesListView {
     var startView: some View {
         Color.clear
             .onAppear {
-                viewModel.send(event: .onAppear)
+                viewModel.send(action: .onAppear)
             }
     }
     
