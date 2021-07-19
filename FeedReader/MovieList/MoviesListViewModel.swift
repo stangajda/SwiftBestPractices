@@ -38,22 +38,17 @@ class LoadableViewModel<T>: ObservableObject{
     func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-            return Empty().eraseToAnyPublisher()
+            return self.fetch()
+                .map(Action.onLoaded)
+                .catch { error in
+                    Just(Action.onFailedLoaded(error))
+                }
+                .eraseToAnyPublisher()
         }
     }
-}
-
-extension MoviesListViewModel{
-    struct MovieItem: Identifiable {
-        let id: Int
-        let title: String
-        let poster_path: String
-        
-        init(_ movie: Movie) {
-            id = movie.id
-            title = movie.title
-            poster_path = movie.poster_path
-        }
+    
+    func fetch() -> AnyPublisher<T, Error>{
+        return Empty().eraseToAnyPublisher()
     }
 }
 
@@ -106,20 +101,19 @@ extension LoadableViewModel {
 class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>{
     private let service = Service()
     
-    override func onStateChanged() -> Feedback<State, Action> {
-        Feedback { (state: State) -> AnyPublisher<Action, Never> in
-            guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-            return self.loadMovies()
-                .map(Action.onLoaded)
-                .catch { error in
-                    Just(Action.onFailedLoaded(error))
-                }
-                .eraseToAnyPublisher()
+    struct MovieItem: Identifiable {
+        let id: Int
+        let title: String
+        let poster_path: String
+        
+        init(_ movie: Movie) {
+            id = movie.id
+            title = movie.title
+            poster_path = movie.poster_path
         }
     }
     
-    
-    func loadMovies() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
+    override func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
         let request = APIRequest["trending/movie/day"].get()
         return self.service.fetchMovies(request)
             .map { item in
@@ -127,4 +121,5 @@ class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem
             }
             .eraseToAnyPublisher()
     }
+    
 }
