@@ -7,13 +7,11 @@
 import Foundation
 import Combine
 
-class LoadableViewModel<T>: ObservableObject{
-    @Published private(set) var state = State.start
-    private let service = Service()
-    private var cancellableStorage = Set<AnyCancellable>()
+class LoadableViewModel<T>{
+    
     private let input = PassthroughSubject<Action, Never>()
     
-    init() {
+    func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
             initial: state,
             reduce: self.reduce,
@@ -23,12 +21,6 @@ class LoadableViewModel<T>: ObservableObject{
                 self.userInput(input: input.eraseToAnyPublisher())
             ]
         )
-        .assign(to: \.state, on: self)
-        .store(in: &cancellableStorage)
-    }
-    
-    deinit {
-        cancellableStorage.removeAll()
     }
     
     func send(action: Action) {
@@ -98,8 +90,19 @@ extension LoadableViewModel {
     }
 }
 
-class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>{
+final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>, ObservableObject{
+    @Published private(set) var state = State.start
     private let service = Service()
+    
+    private var cancellableStorage = Set<AnyCancellable>()
+    
+    
+    override init() {
+        super.init()
+        self.publishersSystem(state)
+        .assign(to: \.state, on: self)
+        .store(in: &cancellableStorage)
+    }
     
     struct MovieItem: Identifiable {
         let id: Int
