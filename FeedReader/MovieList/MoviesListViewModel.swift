@@ -7,7 +7,7 @@
 import Foundation
 import Combine
 
-class MoviesListViewModel: ObservableObject{
+class LoadableViewModel<T>: ObservableObject{
     @Published private(set) var state = State.start
     private let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
@@ -34,6 +34,13 @@ class MoviesListViewModel: ObservableObject{
     func send(action: Action) {
         input.send(action)
     }
+    
+    func onStateChanged() -> Feedback<State, Action> {
+        Feedback { (state: State) -> AnyPublisher<Action, Never> in
+            guard case .loading = state else { return Empty().eraseToAnyPublisher() }
+            return Empty().eraseToAnyPublisher()
+        }
+    }
 }
 
 extension MoviesListViewModel{
@@ -50,17 +57,17 @@ extension MoviesListViewModel{
     }
 }
 
-extension MoviesListViewModel {
+extension LoadableViewModel {
     enum State {
         case start
         case loading
-        case loaded(Array<MovieItem>)
+        case loaded(T)
         case failedLoaded(Error)
     }
     
     enum Action {
         case onAppear
-        case onLoaded(Array<MovieItem>)
+        case onLoaded(T)
         case onFailedLoaded(Error)
     }
     
@@ -89,7 +96,17 @@ extension MoviesListViewModel {
         }
     }
     
-    func onStateChanged() -> Feedback<State, Action> {
+    
+    
+    func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
+        Feedback { _ in input }
+    }
+}
+
+class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>{
+    private let service = Service()
+    
+    override func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.loadMovies()
@@ -101,12 +118,7 @@ extension MoviesListViewModel {
         }
     }
     
-    func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
-        Feedback { _ in input }
-    }
-}
-
-extension MoviesListViewModel{
+    
     func loadMovies() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
         let request = APIRequest["trending/movie/day"].get()
         return self.service.fetchMovies(request)
