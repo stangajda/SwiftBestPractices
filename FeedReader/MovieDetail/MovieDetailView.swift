@@ -69,7 +69,7 @@ private extension MovieDetailView {
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            //MovieDetailView(movieList: MoviesListViewModel.MovieItem.mock)
+            MovieDetailView(viewModel: MovieDetailViewModel(movieList: MoviesListViewModel.MovieItem.mock))
         }
     }
 }

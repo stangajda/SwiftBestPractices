@@ -11,9 +11,7 @@ import Combine
 final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>, ObservableObject{
     @Published private(set) var state = State.start
     private let service = Service()
-    
     private var cancellableStorage = Set<AnyCancellable>()
-    
     
     override init() {
         super.init()
