@@ -20,9 +20,9 @@ struct MovieDetailView: View {
     
     private var content: AnyView{
         switch viewModel.state {
-        case .initial:
+        case .start:
             return AnyView(initialView)
-        case .loading(_):
+        case .loading:
             return AnyView(loadingView)
         case .loaded(let movDetail):
             return AnyView(loadedView(movDetail))
@@ -37,7 +37,7 @@ private extension MovieDetailView {
     var initialView: some View {
         Color.clear
             .onAppear {
-                viewModel.onAppear(id: viewModel.movieList.id)
+                viewModel.send(action: .onAppear)
             }
     }
     

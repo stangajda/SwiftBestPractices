@@ -7,32 +7,32 @@
 
 import Combine
 
-final class MovieDetailViewModel: ObservableObject{
-    @Published private(set) var state: State
+final class MovieDetailViewModel: LoadableViewModel<MovieDetailViewModel.MovieDetailItem>, ObservableObject{
+    @Published private(set) var state = State.start
     var movieList: MoviesListViewModel.MovieItem
     
     let service = Service()
-    var cancellable: AnyCancellable?
+    private var cancellableStorage = Set<AnyCancellable>()
     
     init(movieList: MoviesListViewModel.MovieItem){
-        state = .initial
         self.movieList = movieList
+        super.init()
+        self.publishersSystem(state)
+        .assign(to: \.state, on: self)
+        .store(in: &cancellableStorage)
     }
     
-    func onAppear(id: Int){
-        state = .loading(id)
-        loadMovies(id: id)
+    override func fetch() -> AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>{
+        let request = APIRequest["movie/" + String(self.movieList.id)]
+        return self.service.fetchMovieDetail(request)
+            .map { item in
+                MovieDetailItem(item)
+            }
+            .eraseToAnyPublisher()
     }
 }
 
 extension MovieDetailViewModel{
-    enum State {
-        case initial
-        case loading(Int)
-        case loaded(MovieDetailItem)
-        case failedLoaded(Error)
-    }
-    
     struct MovieDetailItem {
         let id: Int
         let title: String
@@ -45,26 +45,5 @@ extension MovieDetailViewModel{
             overview = movie.overview
             backdrop_path = movie.backdrop_path
         }
-    }
-}
-
-extension MovieDetailViewModel{
-    func loadMovies(id: Int){
-        let request = APIRequest["movie/" + String(id)]
-        cancellable = service.fetchMovieDetail(request)
-            .map { item in
-                MovieDetailItem(item)
-            }
-            .sinkToResult({ [unowned self] result in
-            switch result{
-                case .success(let movieDetail):
-                    self.state = .loaded(movieDetail)
-                    break
-                case .failure(let error):
-                    self.state = .failedLoaded(error)
-                    Helper.printFailure(error)
-                    break
-                }
-            })
     }
 }
