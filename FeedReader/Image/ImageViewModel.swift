@@ -8,57 +8,37 @@ import Combine
 import UIKit
 import SwiftUI
 
-class ImageViewModel: ObservableObject{
-    @Published private(set) var state = State.initial
+class ImageViewModel: LoadableViewModel<ImageViewModel.ImageItem>, ObservableObject{
+    @Published private(set) var state = State.start
     private let baseURL = "https://image.tmdb.org/t/p/original"
+    var imageUrl: String
     
     let service = Service()
-    var cancellable: AnyCancellable?
+    private var cancellableStorage = Set<AnyCancellable>()
     
-    init(){
+    init(imageURL: String){
+        self.imageUrl = imageURL
+        super.init()
+        self.publishersSystem(state)
+        .assign(to: \.state, on: self)
+        .store(in: &cancellableStorage)
     }
     
-    func onAppear(url: String){
-        state = .loading
-        loadImage(url)
+    override func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error>{
+        let request = URLRequest(url: URL(string: baseURL + self.imageUrl)!).get()
+        return self.service.fetchImage(request)
+            .map { item in
+                ImageItem(item)
+            }
+            .eraseToAnyPublisher()
     }
 }
 
 extension ImageViewModel{
-    enum State {
-        case initial
-        case loading
-        case loaded(Image)
-        case failedLoaded(Error)
-    }
-    
     struct ImageItem{
         let image: Image
         init(_ uiImage: UIImage) {
             image = Image(uiImage: uiImage)
         }
-    }
-}
-
-
-extension ImageViewModel {
-    func loadImage(_ urlString: String){
-        state = .loading
-        let request = URLRequest(url: URL(string: baseURL + urlString)!).get()
-        cancellable = service.fetchImage(request)
-            .map { item in
-                ImageItem(item)
-            }
-            .sinkToResult({ [unowned self] result in
-            switch result{
-                case .success(let item):
-                    self.state = .loaded(item.image)
-                    break
-                case .failure(let error):
-                    self.state = .failedLoaded(error)
-                    Helper.printFailure(error)
-                    break
-                }
-            })
     }
 }

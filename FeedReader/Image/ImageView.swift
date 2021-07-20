@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct ImageView: View {
-    @ObservedObject var viewModel: ImageViewModel = ImageViewModel()
-    @State var imageUrl: String
+    @ObservedObject var viewModel: ImageViewModel
     
     var body: some View {
         content
@@ -17,12 +16,12 @@ struct ImageView: View {
     
     private var content: AnyView {
         switch viewModel.state {
-        case .initial:
+        case .start:
             return AnyView(initialView)
         case .loading:
             return AnyView(loadingView)
         case .loaded(let image):
-            return AnyView(loadedView(image))
+            return AnyView(loadedView(image.image))
         case .failedLoaded(let error):
             return AnyView(failedView(error))
         }
@@ -33,7 +32,7 @@ private extension ImageView {
     var initialView: some View {
         Color.clear
             .onAppear {
-                viewModel.onAppear(url: imageUrl)
+                viewModel.send(action: .onAppear)
             }
     }
     

@@ -55,7 +55,7 @@ private extension MovieDetailView {
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         VStack{
-            ImageView(imageUrl: movieDetail.backdrop_path)
+            ImageView(viewModel: ImageViewModel(imageURL: movieDetail.backdrop_path))
                 .detailMovieImageSize
             Text(movieDetail.overview)
                 .font(.body)
