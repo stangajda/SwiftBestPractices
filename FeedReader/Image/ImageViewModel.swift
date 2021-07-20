@@ -24,6 +24,10 @@ class ImageViewModel: LoadableViewModel<ImageViewModel.ImageItem>, ObservableObj
         .store(in: &cancellableStorage)
     }
     
+    deinit {
+        cancellableStorage.removeAll()
+    }
+    
     override func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error>{
         let request = URLRequest(url: URL(string: baseURL + self.imageUrl)!).get()
         return self.service.fetchImage(request)

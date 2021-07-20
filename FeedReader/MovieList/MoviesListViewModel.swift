@@ -20,6 +20,10 @@ final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.Mov
         .store(in: &cancellableStorage)
     }
     
+    deinit {
+        cancellableStorage.removeAll()
+    }
+    
     struct MovieItem: Identifiable {
         let id: Int
         let title: String

@@ -22,6 +22,10 @@ final class MovieDetailViewModel: LoadableViewModel<MovieDetailViewModel.MovieDe
         .store(in: &cancellableStorage)
     }
     
+    deinit {
+        cancellableStorage.removeAll()
+    }
+    
     override func fetch() -> AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>{
         let request = APIRequest["movie/" + String(self.movieList.id)]
         return self.service.fetchMovieDetail(request)
