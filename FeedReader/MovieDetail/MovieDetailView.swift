@@ -10,6 +10,10 @@ import SwiftUI
 struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
     
+    init(_ viewModel: MovieDetailViewModel){
+        self.viewModel = viewModel
+    }
+    
     var body: some View {
         VStack{
             content
@@ -68,7 +72,7 @@ private extension MovieDetailView {
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MovieDetailView(viewModel: MovieDetailViewModel(movieList: MoviesListViewModel.MovieItem.mock))
+            MovieDetailView(MovieDetailViewModel(movieList: MoviesListViewModel.MovieItem.mock))
         }
     }
 }

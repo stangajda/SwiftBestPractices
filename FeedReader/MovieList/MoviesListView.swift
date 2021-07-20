@@ -54,7 +54,7 @@ private extension MoviesListView {
     
     func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
-            NavigationLink(destination: MovieDetailView(viewModel: MovieDetailViewModel(movieList: movie)),
+            NavigationLink(destination: MovieDetailView( MovieDetailViewModel(movieList: movie)),
             label: {MovieRowView(movie: movie)}
             )
         }
