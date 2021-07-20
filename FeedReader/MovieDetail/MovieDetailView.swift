@@ -31,7 +31,6 @@ struct MovieDetailView: View {
         }
     }
     
-    
 }
 
 private extension MovieDetailView {
