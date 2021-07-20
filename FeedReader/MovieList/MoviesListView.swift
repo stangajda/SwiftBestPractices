@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct MoviesListView: View {
-    @ObservedObject var viewModel: MoviesListViewModel = MoviesListViewModel()
+    @ObservedObject var viewModel: MoviesListViewModel
     
     var body: some View {
         NavigationView {
@@ -51,21 +51,27 @@ private extension MoviesListView {
     func failedView(_ error: Error) -> some View {
         ErrorView(error: error)
     }
+//    return List(movies) { movie in
+//        NavigationLink(
+//            destination: MovieDetailView(viewModel: MovieDetailViewModel(movieID: movie.id)),
+//            label: { MovieListItemView(movie: movie) }
+//        )
+//    }
     
     func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
-            NavigationLink(destination: MovieDetailView(movie: movie)){
-                MovieRowView(movie: movie)
-            }
+            NavigationLink(destination: MovieDetailView(viewModel: MovieDetailViewModel(movieList: movie)),
+            label: {MovieRowView(movie: movie)}
+            )
         }
     }
 }
 
 
 #if DEBUG
-struct MoviesList_Previews: PreviewProvider {
-    static var previews: some View {
-        MoviesListView()
-    }
-}
+//struct MoviesList_Previews: PreviewProvider {
+//    static var previews: some View {
+////        MoviesListView()
+//    }
+//}
 #endif

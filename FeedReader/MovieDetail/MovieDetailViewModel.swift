@@ -7,13 +7,16 @@
 
 import Combine
 
-class MovieDetailViewModel: ObservableObject{
-    @Published private(set) var state = State.initial
+final class MovieDetailViewModel: ObservableObject{
+    @Published private(set) var state: State
+    var movieList: MoviesListViewModel.MovieItem
     
     let service = Service()
     var cancellable: AnyCancellable?
     
-    init(){
+    init(movieList: MoviesListViewModel.MovieItem){
+        state = .initial
+        self.movieList = movieList
     }
     
     func onAppear(id: Int){
@@ -30,7 +33,7 @@ extension MovieDetailViewModel{
         case failedLoaded(Error)
     }
     
-    struct MovieDetailItem: Identifiable {
+    struct MovieDetailItem {
         let id: Int
         let title: String
         let overview: String

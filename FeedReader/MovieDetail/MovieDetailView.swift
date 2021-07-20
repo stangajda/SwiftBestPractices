@@ -8,13 +8,13 @@
 import SwiftUI
 
 struct MovieDetailView: View {
-    @ObservedObject var viewModel = MovieDetailViewModel()
-    var movie: MoviesListViewModel.MovieItem
+    @ObservedObject var viewModel: MovieDetailViewModel
+    
     var body: some View {
         VStack{
             content
         }
-        .navigationTitle(movie.title)
+        .navigationTitle(viewModel.movieList.title)
         .navigationBarTitleDisplayMode(.inline)
     }
     
@@ -38,7 +38,7 @@ private extension MovieDetailView {
     var initialView: some View {
         Color.clear
             .onAppear {
-                viewModel.onAppear(id: movie.id)
+                viewModel.onAppear(id: viewModel.movieList.id)
             }
     }
     
@@ -69,7 +69,7 @@ private extension MovieDetailView {
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            MovieDetailView(movie: MoviesListViewModel.MovieItem.mock)
+            //MovieDetailView(movieList: MoviesListViewModel.MovieItem.mock)
         }
     }
 }
