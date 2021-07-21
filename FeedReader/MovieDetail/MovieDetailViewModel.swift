@@ -8,19 +8,19 @@ import Foundation
 import Combine
 
 final class MovieDetailViewModel: ObservableObject{
+    @Published private(set) var state: LoadableEnums<T>.State = LoadableEnums<T>.State.start
     
-    typealias T = MovieDetailViewModel.MovieDetailItem
-    var input = PassthroughSubject<LoadableViewModel2<MovieDetailItem>.Action, Never>()
-    
-    @Published private(set) var state: LoadableViewModel2<T>.State = LoadableViewModel2<T>.State.start
+    var input = PassthroughSubject<LoadableEnums<T>.Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
     
     let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
     
+    typealias T = MovieDetailViewModel.MovieDetailItem
+    
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
-        self.publishersSystem2(state)
+        self.publishersSystem(state)
         .assign(to: \.state, on: self)
         .store(in: &cancellableStorage)
     }
@@ -30,8 +30,8 @@ final class MovieDetailViewModel: ObservableObject{
     }
 }
 
-extension MovieDetailViewModel: Loadable2 {
-    var fetch: AnyPublisher<MovieDetailItem, Error> {
+extension MovieDetailViewModel: Loadable {
+    var fetch: AnyPublisher<T, Error> {
         let request = APIRequest["movie/" + String(self.movieList.id)]
         return self.service.fetchMovieDetail(request)
             .map { item in
@@ -57,14 +57,14 @@ extension MovieDetailViewModel{
     }
 }
 
-protocol Loadable2 {
+protocol Loadable {
     associatedtype T
-    var input: PassthroughSubject<LoadableViewModel2<T>.Action, Never> { get }
+    var input: PassthroughSubject<LoadableEnums<T>.Action, Never> { get }
     var fetch: AnyPublisher<T, Error> { get }
 }
 
-extension Loadable2 {
-    func publishersSystem2(_ state: LoadableViewModel2<T>.State) -> AnyPublisher<LoadableViewModel2<T>.State, Never> {
+extension Loadable {
+    func publishersSystem(_ state: LoadableEnums<T>.State) -> AnyPublisher<LoadableEnums<T>.State, Never> {
         Publishers.system(
             initial: state,
             reduce: self.reduce,
@@ -76,23 +76,23 @@ extension Loadable2 {
         )
     }
     
-    func send(action: LoadableViewModel2<T>.Action) {
+    func send(action: LoadableEnums<T>.Action) {
         input.send(action)
     }
     
-    func onStateChanged() -> Feedback<LoadableViewModel2<T>.State, LoadableViewModel2<T>.Action> {
-        Feedback { (state: LoadableViewModel2<T>.State) -> AnyPublisher<LoadableViewModel2<T>.Action, Never> in
+    func onStateChanged() -> Feedback<LoadableEnums<T>.State, LoadableEnums<T>.Action> {
+        Feedback { (state: LoadableEnums<T>.State) -> AnyPublisher<LoadableEnums<T>.Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.fetch
-                .map(LoadableViewModel2<T>.Action.onLoaded)
+                .map(LoadableEnums<T>.Action.onLoaded)
                 .catch { error in
-                    Just(LoadableViewModel2<T>.Action.onFailedLoaded(error))
+                    Just(LoadableEnums<T>.Action.onFailedLoaded(error))
                 }
                 .eraseToAnyPublisher()
         }
     }
     
-    func reduce(_ state: LoadableViewModel2<T>.State, _ action: LoadableViewModel2<T>.Action) -> LoadableViewModel2<T>.State {
+    func reduce(_ state: LoadableEnums<T>.State, _ action: LoadableEnums<T>.Action) -> LoadableEnums<T>.State {
         switch state {
         case .start:
             switch action {
@@ -117,14 +117,12 @@ extension Loadable2 {
         }
     }
     
-    func userInput(input: AnyPublisher<LoadableViewModel2<T>.Action, Never>) -> Feedback<LoadableViewModel2<T>.State, LoadableViewModel2<T>.Action> {
+    func userInput(input: AnyPublisher<LoadableEnums<T>.Action, Never>) -> Feedback<LoadableEnums<T>.State, LoadableEnums<T>.Action> {
         Feedback { _ in input }
     }
 }
 
-
-
-struct LoadableViewModel2<T>{
+struct LoadableEnums<T>{
     enum State {
         case start
         case loading
