@@ -8,15 +8,17 @@ import Foundation
 import Combine
 
 final class MovieDetailViewModel: ObservableObject{
-    @Published private(set) var state: LoadableEnums<T>.State = LoadableEnums<T>.State.start
+    @Published private(set) var state: State = State.start
     
-    var input = PassthroughSubject<LoadableEnums<T>.Action, Never>()
+    var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
     
     let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
     
     typealias T = MovieDetailViewModel.MovieDetailItem
+    typealias State = LoadableEnums<T>.State
+    typealias Action = LoadableEnums<T>.Action
     
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
