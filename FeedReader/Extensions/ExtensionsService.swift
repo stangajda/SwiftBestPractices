@@ -30,8 +30,8 @@ extension Publisher {
 
 extension Publisher where Failure == Never {
     func assign<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output>, on root: Root) -> AnyCancellable {
-       sink { [weak root] in
-            root?[keyPath: keyPath] = $0
+       sink { [weak root] (value) in
+            root?[keyPath: keyPath] = value
         }
     }
 }
