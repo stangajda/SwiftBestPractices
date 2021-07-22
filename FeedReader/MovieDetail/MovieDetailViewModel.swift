@@ -84,7 +84,7 @@ extension Loadable {
         input.send(action)
     }
     
-    func onStateChanged() -> Feedback<State, Action> {
+    private func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.fetch
@@ -96,7 +96,7 @@ extension Loadable {
         }
     }
     
-    func reduce(_ state: State, _ action: Action) -> State {
+    private func reduce(_ state: State, _ action: Action) -> State {
         switch state {
         case .start:
             switch action {
@@ -121,7 +121,7 @@ extension Loadable {
         }
     }
     
-    func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
+    private func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in input }
     }
 }
