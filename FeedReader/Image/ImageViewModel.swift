@@ -8,17 +8,17 @@ import Combine
 import UIKit
 import SwiftUI
 
-class ImageViewModel: LoadableViewModel<ImageViewModel.ImageItem>, ObservableObject{
+class ImageViewModel: ObservableObject{
     @Published private(set) var state = State.start
+    var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     var imageUrl: String
-    
     let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
+    typealias T = ImageViewModel.ImageItem
     
     init(imageURL: String){
         self.imageUrl = imageURL
-        super.init()
         self.publishersSystem(state)
         .assign(to: \.state, on: self)
         .store(in: &cancellableStorage)
@@ -28,7 +28,10 @@ class ImageViewModel: LoadableViewModel<ImageViewModel.ImageItem>, ObservableObj
         cancellableStorage.removeAll()
     }
     
-    override func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error>{
+}
+
+extension ImageViewModel: Loadable {
+    var fetch: AnyPublisher<T, Error>{
         let request = URLRequest(url: URL(string: baseURL + self.imageUrl)!).get()
         return self.service.fetchImage(request)
             .map { item in
