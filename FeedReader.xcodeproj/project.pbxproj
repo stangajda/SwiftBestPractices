@@ -28,13 +28,14 @@
 		CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* Feedback.swift */; };
 		CC3EC7B526A238D9005D71A9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B426A238D9005D71A9 /* System.swift */; };
-		CC3EC7B826A6040B005D71A9 /* LoadableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B726A6040A005D71A9 /* LoadableViewModel.swift */; };
+		CC3EC7B826A6040B005D71A9 /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B726A6040A005D71A9 /* Loadable.swift */; };
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ExtensionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ExtensionsService.swift */; };
 		CC56950726812DE70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
+		CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA021F26A953B90056D018 /* LoadableEnums.swift */; };
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
@@ -71,11 +72,12 @@
 		CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		CC3EC7B426A238D9005D71A9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
-		CC3EC7B726A6040A005D71A9 /* LoadableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableViewModel.swift; sourceTree = "<group>"; };
+		CC3EC7B726A6040A005D71A9 /* Loadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* APIRequestInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRequestInterface.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* ExtensionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ExtensionsService.swift; path = FeedReader/Extensions/ExtensionsService.swift; sourceTree = SOURCE_ROOT; };
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
+		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -194,12 +196,13 @@
 			path = Feedback;
 			sourceTree = "<group>";
 		};
-		CC3EC7B626A603C6005D71A9 /* ViewModel */ = {
+		CC3EC7B626A603C6005D71A9 /* Loadable */ = {
 			isa = PBXGroup;
 			children = (
-				CC3EC7B726A6040A005D71A9 /* LoadableViewModel.swift */,
+				CC3EC7B726A6040A005D71A9 /* Loadable.swift */,
+				CCCA021F26A953B90056D018 /* LoadableEnums.swift */,
 			);
-			path = ViewModel;
+			path = Loadable;
 			sourceTree = "<group>";
 		};
 		CCF3A8AC267A8ED100CB5765 = {
@@ -229,7 +232,7 @@
 				CC351E25269DB0660037DB34 /* MovieList */,
 				CC351E26269DB0B00037DB34 /* MovieDetail */,
 				CC351E27269DB1650037DB34 /* Image */,
-				CC3EC7B626A603C6005D71A9 /* ViewModel */,
+				CC3EC7B626A603C6005D71A9 /* Loadable */,
 				CC351E28269DC1E80037DB34 /* Service */,
 				CC351E2E269DC32D0037DB34 /* Model */,
 				CC351E2F269DC3E80037DB34 /* Extensions */,
@@ -371,7 +374,8 @@
 				CC2C87792680A9FD00570234 /* Movies.swift in Sources */,
 				CC351E15269A5C020037DB34 /* MoviesListView.swift in Sources */,
 				CC351E1D269BA7B80037DB34 /* MockMovie.swift in Sources */,
-				CC3EC7B826A6040B005D71A9 /* LoadableViewModel.swift in Sources */,
+				CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */,
+				CC3EC7B826A6040B005D71A9 /* Loadable.swift in Sources */,
 				CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */,
 				CC351E23269CAF990037DB34 /* MovieDetail.swift in Sources */,
 				CC351E21269CA9960037DB34 /* MovieDetailView.swift in Sources */,
