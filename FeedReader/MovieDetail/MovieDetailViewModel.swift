@@ -61,12 +61,14 @@ extension MovieDetailViewModel{
 
 protocol Loadable {
     associatedtype T
-    var input: PassthroughSubject<LoadableEnums<T>.Action, Never> { get }
+    var input: PassthroughSubject<Action, Never> { get }
     var fetch: AnyPublisher<T, Error> { get }
 }
 
 extension Loadable {
-    func publishersSystem(_ state: LoadableEnums<T>.State) -> AnyPublisher<LoadableEnums<T>.State, Never> {
+    typealias State = LoadableEnums<T>.State
+    typealias Action = LoadableEnums<T>.Action
+    func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
             initial: state,
             reduce: self.reduce,
@@ -78,23 +80,23 @@ extension Loadable {
         )
     }
     
-    func send(action: LoadableEnums<T>.Action) {
+    func send(action: Action) {
         input.send(action)
     }
     
-    func onStateChanged() -> Feedback<LoadableEnums<T>.State, LoadableEnums<T>.Action> {
-        Feedback { (state: LoadableEnums<T>.State) -> AnyPublisher<LoadableEnums<T>.Action, Never> in
+    func onStateChanged() -> Feedback<State, Action> {
+        Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.fetch
-                .map(LoadableEnums<T>.Action.onLoaded)
+                .map(Action.onLoaded)
                 .catch { error in
-                    Just(LoadableEnums<T>.Action.onFailedLoaded(error))
+                    Just(Action.onFailedLoaded(error))
                 }
                 .eraseToAnyPublisher()
         }
     }
     
-    func reduce(_ state: LoadableEnums<T>.State, _ action: LoadableEnums<T>.Action) -> LoadableEnums<T>.State {
+    func reduce(_ state: State, _ action: Action) -> State {
         switch state {
         case .start:
             switch action {
@@ -119,7 +121,7 @@ extension Loadable {
         }
     }
     
-    func userInput(input: AnyPublisher<LoadableEnums<T>.Action, Never>) -> Feedback<LoadableEnums<T>.State, LoadableEnums<T>.Action> {
+    func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in input }
     }
 }
