@@ -21,8 +21,8 @@ extension Loadable {
             switch action {
             case .onFailedLoaded(let error):
                 return .failedLoaded(error)
-            case .onLoaded(let movies):
-                return .loaded(movies)
+            case .onLoaded(let result):
+                return .loaded(result)
             default:
                 return state
             }
