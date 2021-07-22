@@ -8,13 +8,15 @@
 import Foundation
 import Combine
 
-final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.MovieItem>>, ObservableObject{
+final class MoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start
+    var input = PassthroughSubject<Action, Never>()
+    typealias T = Array<MoviesListViewModel.MovieItem>
+    
     private let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
     
-    override init() {
-        super.init()
+    init() {
         self.publishersSystem(state)
         .assign(to: \.state, on: self)
         .store(in: &cancellableStorage)
@@ -24,6 +26,20 @@ final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.Mov
         cancellableStorage.removeAll()
     }
     
+}
+
+extension MoviesListViewModel: Loadable{
+    var fetch: AnyPublisher<T, Error>{
+        let request = APIRequest["trending/movie/day"].get()
+        return self.service.fetchMovies(request)
+            .map { item in
+                item.results.map(MovieItem.init)
+            }
+            .eraseToAnyPublisher()
+    }
+}
+
+extension MoviesListViewModel {
     struct MovieItem: Identifiable {
         let id: Int
         let title: String
@@ -35,14 +51,4 @@ final class MoviesListViewModel: LoadableViewModel<Array<MoviesListViewModel.Mov
             poster_path = movie.poster_path
         }
     }
-    
-    override func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
-        let request = APIRequest["trending/movie/day"].get()
-        return self.service.fetchMovies(request)
-            .map { item in
-                item.results.map(MovieItem.init)
-            }
-            .eraseToAnyPublisher()
-    }
-    
 }

@@ -17,8 +17,6 @@ final class MovieDetailViewModel: ObservableObject{
     private var cancellableStorage = Set<AnyCancellable>()
     
     typealias T = MovieDetailViewModel.MovieDetailItem
-    typealias State = LoadableEnums<T>.State
-    typealias Action = LoadableEnums<T>.Action
     
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
@@ -68,6 +66,7 @@ protocol Loadable {
 extension Loadable {
     typealias State = LoadableEnums<T>.State
     typealias Action = LoadableEnums<T>.Action
+    
     func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
             initial: state,
