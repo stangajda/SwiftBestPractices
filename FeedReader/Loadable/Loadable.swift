@@ -46,31 +46,6 @@ extension Loadable {
         }
     }
     
-    private func reduce(_ state: State, _ action: Action) -> State {
-        switch state {
-        case .start:
-            switch action {
-            case .onAppear:
-                return .loading
-            default:
-                return state
-            }
-        case .loading:
-            switch action {
-            case .onFailedLoaded(let error):
-                return .failedLoaded(error)
-            case .onLoaded(let movies):
-                return .loaded(movies)
-            default:
-                return state
-            }
-        case .loaded:
-            return state
-        case .failedLoaded:
-            return state
-        }
-    }
-    
     private func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in input }
     }

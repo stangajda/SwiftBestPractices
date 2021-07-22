@@ -36,6 +36,7 @@
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
 		CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA021F26A953B90056D018 /* LoadableEnums.swift */; };
+		CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA022126A9740A0056D018 /* LoadableReduce.swift */; };
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
@@ -78,6 +79,7 @@
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
+		CCCA022126A9740A0056D018 /* LoadableReduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableReduce.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				CC3EC7B726A6040A005D71A9 /* Loadable.swift */,
 				CCCA021F26A953B90056D018 /* LoadableEnums.swift */,
+				CCCA022126A9740A0056D018 /* LoadableReduce.swift */,
 			);
 			path = Loadable;
 			sourceTree = "<group>";
@@ -361,6 +364,7 @@
 				CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */,
 				CC3EC7B526A238D9005D71A9 /* System.swift in Sources */,
 				CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */,
+				CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */,
 				CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
 				CC351E1B269BA2070037DB34 /* MovieRowView.swift in Sources */,
