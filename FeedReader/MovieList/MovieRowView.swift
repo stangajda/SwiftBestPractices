@@ -25,7 +25,8 @@ struct MovieRowView: View {
 #if DEBUG
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        Group{
+        Resolver.setupPreviewMode()
+        return Group{
             MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
         }
         .previewLayout(.sizeThatFits)
