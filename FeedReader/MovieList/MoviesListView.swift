@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct MoviesListView: View {
     @ObservedObject var viewModel: MoviesListViewModel
@@ -65,7 +66,8 @@ private extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        Resolver.setupMockMode()
+        return Group {
             MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
             MoviesListView(viewModel: MockMoviesListViewModel(.loading))
         }

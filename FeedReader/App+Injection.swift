@@ -24,5 +24,6 @@ extension Resolver {
     static func setupMockMode() {
         Resolver.mock = Resolver(parent: .main)
         Resolver.root = .mock
+        register { MockImageViewModel() as ImageViewModel}
     }
 }
