@@ -20,10 +20,10 @@ extension Resolver: ResolverRegistering {
 }
 
 extension Resolver {
-    static var mock: Resolver!
-    static func setupMockMode() {
-        Resolver.mock = Resolver(parent: .main)
-        Resolver.root = .mock
+    static var preview: Resolver!
+    static func setupPreviewMode() {
+        Resolver.preview = Resolver(parent: .main)
+        Resolver.root = .preview
         register { MockImageViewModel() as ImageViewModel}
     }
 }

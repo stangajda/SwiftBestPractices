@@ -66,7 +66,7 @@ private extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.setupMockMode()
+        Resolver.setupPreviewMode()
         return Group {
             MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
             MoviesListView(viewModel: MockMoviesListViewModel(.loading))
