@@ -14,9 +14,3 @@ struct ContentView: View {
         MoviesListView(viewModel: viewModel)
     }
 }
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
