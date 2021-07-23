@@ -8,15 +8,17 @@
 import XCTest
 @testable import FeedReader
 import Combine
+import Resolver
 
 class ErrorResponseTests: XCTestCase {
     
     typealias Mock = MockURLProtocol.MockedResponse
     var cancellable: AnyCancellable?
-    lazy var mockManager: Service = Service(session: .mockURLSession)
+    lazy var mockManager: Service = Service()
     lazy var mockRequestUrl: URLRequest = MockAPIRequest["stubPath"].get()
     
     override func setUpWithError() throws {
+        Resolver.registerMockServices()
         mockRequestUrl = try XCTUnwrap(mockRequestUrl)
     }
 
@@ -128,7 +130,7 @@ class ErrorResponseTests: XCTestCase {
                 expectation.fulfill()
             })
         
-        waitForExpectations(timeout: 1, handler: nil)
+        waitForExpectations(timeout: 2, handler: nil)
     }
 
 }

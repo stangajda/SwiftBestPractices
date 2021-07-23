@@ -7,14 +7,11 @@
 
 import Combine
 import UIKit
+import Resolver
 
 struct Service{
-    var session: URLSession = .shared
+    @Injected var session: URLSession
     var cancellable: AnyCancellable?
-    
-    init(session: URLSession = .shared){
-        self.session = session
-    }
     
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         fetchData(request)
