@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct ContentView: View {
+    @Injected var viewModel: MoviesListViewModel
     var body: some View {
-        MoviesListView(viewModel: MoviesListViewModel())
+        MoviesListView(viewModel: viewModel)
     }
 }
 

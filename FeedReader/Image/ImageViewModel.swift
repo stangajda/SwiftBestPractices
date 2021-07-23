@@ -7,6 +7,7 @@
 import Combine
 import UIKit
 import SwiftUI
+import Resolver
 
 class ImageViewModel: ObservableObject{
     @Published private(set) var state = State.start

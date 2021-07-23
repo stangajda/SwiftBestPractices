@@ -29,6 +29,7 @@
 		CC35563126AAFCF1002D0B07 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563026AAFCF1002D0B07 /* App+Injection.swift */; };
 		CC35563226AB018B002D0B07 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
 		CC35563426AB03AB002D0B07 /* Resolver+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */; };
+		CC35563626AB23C2002D0B07 /* MockMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */; };
 		CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* Feedback.swift */; };
 		CC3EC7B526A238D9005D71A9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B426A238D9005D71A9 /* System.swift */; };
@@ -89,6 +90,7 @@
 		CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
 		CC35563026AAFCF1002D0B07 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Tests.swift"; sourceTree = "<group>"; };
+		CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesListViewModel.swift; sourceTree = "<group>"; };
 		CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		CC3EC7B426A238D9005D71A9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
@@ -196,6 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
+				CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */,
 			);
 			path = Mock;
 			sourceTree = "<group>";
@@ -421,6 +424,7 @@
 				CC3EC7B826A6040B005D71A9 /* Loadable.swift in Sources */,
 				CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */,
 				CC351E23269CAF990037DB34 /* MovieDetail.swift in Sources */,
+				CC35563626AB23C2002D0B07 /* MockMoviesListViewModel.swift in Sources */,
 				CC351E21269CA9960037DB34 /* MovieDetailView.swift in Sources */,
 				CC351E39269F1ADD0037DB34 /* ImageViewModel.swift in Sources */,
 				CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */,

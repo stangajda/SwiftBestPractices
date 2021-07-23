@@ -7,12 +7,12 @@
 
 import Foundation
 import Combine
+import Resolver
 
-final class MoviesListViewModel: ObservableObject{
+class MoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start
     var input = PassthroughSubject<Action, Never>()
     typealias T = Array<MoviesListViewModel.MovieItem>
-    
     private let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
     

@@ -6,13 +6,13 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
-    
     var body: some View {
         HStack{
-            ImageView(viewModel: ImageViewModel(imageURL: movie.poster_path))
+            ImageView(viewModel: Resolver.resolve(args:movie.poster_path))
                 .rowImageSize
             Text(movie.title)
                 .font(.title)

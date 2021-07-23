@@ -65,7 +65,10 @@ private extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        MoviesListView(viewModel: MoviesListViewModel())
+        Group {
+            MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
+            MoviesListView(viewModel: MockMoviesListViewModel(.loading))
+        }
     }
 }
 #endif
