@@ -12,14 +12,14 @@ class MockMoviesListViewModel: MoviesListViewModel{
     enum MockState {
         case loading
         case loaded
-        case error
+        case failedLoaded
     }
     
     override var state: State{
         return internalState
     }
     
-    init(_ state:MockState){
+    init(_ state: MockState){
         super.init()
         switchState(state)
     }
@@ -29,13 +29,14 @@ class MockMoviesListViewModel: MoviesListViewModel{
     }
     
     func switchState(_ state:MockState){
+        let error = NSError(domain: "AnyDomain", code: 404, userInfo: nil)
         switch state {
         case .loading:
             internalState = .loading
         case .loaded:
             internalState = .loaded(mockItemsArray)
-        default:
-            break
+        case .failedLoaded:
+            internalState = .failedLoaded(error)
         }
     }
 }

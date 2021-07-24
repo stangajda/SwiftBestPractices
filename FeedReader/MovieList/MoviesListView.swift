@@ -70,6 +70,7 @@ struct MoviesList_Previews: PreviewProvider {
         return Group {
             MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
             MoviesListView(viewModel: MockMoviesListViewModel(.loading))
+            MoviesListView(viewModel: MockMoviesListViewModel(.failedLoaded))
         }
     }
 }
