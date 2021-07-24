@@ -21,7 +21,7 @@ class ImageViewModel: ObservableObject{
     init(imageURL: String){
         self.imageUrl = imageURL
         self.publishersSystem(state)
-        .assign(to: \.state, on: self)
+        .assignNoRetain(to: \.state, on: self)
         .store(in: &cancellableStorage)
     }
     

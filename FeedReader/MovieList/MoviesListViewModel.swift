@@ -18,7 +18,7 @@ class MoviesListViewModel: ObservableObject{
     
     init() {
         self.publishersSystem(state)
-        .assign(to: \.state, on: self)
+        .assignNoRetain(to: \.state, on: self)
         .store(in: &cancellableStorage)
     }
     
