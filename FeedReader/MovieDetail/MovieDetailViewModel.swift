@@ -7,7 +7,7 @@
 import Foundation
 import Combine
 
-final class MovieDetailViewModel: ObservableObject{
+class MovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State = State.start
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem

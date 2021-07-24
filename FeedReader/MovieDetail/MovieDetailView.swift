@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
@@ -59,7 +60,7 @@ private extension MovieDetailView {
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         VStack{
-            ImageView(viewModel: ImageViewModel(imageURL: movieDetail.backdrop_path))
+            ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:movieDetail.backdrop_path))
                 .detailMovieImageSize
             Text(movieDetail.overview)
                 .font(.body)
@@ -71,8 +72,11 @@ private extension MovieDetailView {
 #if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            MovieDetailView(MovieDetailViewModel(movieList: MoviesListViewModel.MovieItem.mock))
+        Resolver.setupPreviewMode()
+        return Group {
+            MovieDetailView(MockMovieDetailViewModel(.loaded))
+            MovieDetailView(MockMovieDetailViewModel(.loading))
+            MovieDetailView(MockMovieDetailViewModel(.failedLoaded))
         }
     }
 }

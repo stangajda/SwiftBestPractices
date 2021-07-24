@@ -13,7 +13,10 @@ extension Resolver: ResolverRegistering {
     defaultScope = .graph
     register { URLSession.shared }
     register { MoviesListViewModel() as MoviesListViewModel}
-    register { _, args in
+    register(name:.itemList){ _, args in
+        ImageViewModel(imageURL: args())
+    }
+    register(name:.itemDetail){ _, args in
         ImageViewModel(imageURL: args())
     }
   }
@@ -24,6 +27,12 @@ extension Resolver {
     static func setupPreviewMode() {
         Resolver.preview = Resolver(parent: .main)
         Resolver.root = .preview
-        register { MockImageViewModel() as ImageViewModel}
+        register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
+        register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
     }
+}
+
+extension Resolver.Name {
+    static let itemList = Self("ItemList")
+    static let itemDetail = Self("ItemDetail")
 }
