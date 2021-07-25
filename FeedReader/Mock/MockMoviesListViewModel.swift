@@ -25,7 +25,7 @@ class MockMoviesListViewModel: MoviesListViewModel{
     }
     
     var mockItemsArray: Array<MovieItem>{
-        Array(repeating: MovieItem(Movie.mock), count: 20)
+        Array(repeating: MovieItem.mock, count: 20)
     }
     
     func switchState(_ state:MockState){
