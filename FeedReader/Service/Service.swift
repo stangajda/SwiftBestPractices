@@ -32,7 +32,6 @@ struct Service{
             .tryMap { data, response in
                 try response.mapError(data)
             }
-            .receive(on: DispatchQueue.main)
             .mapUnderlyingError()
             .eraseToAnyPublisher()
     }
