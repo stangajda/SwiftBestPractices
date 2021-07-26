@@ -10,7 +10,7 @@ import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
-    @State var cache: ImageCache?
+    @Environment(\.imageCache) var cache: ImageCache
     
     var body: some View {
         HStack{

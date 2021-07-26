@@ -10,6 +10,7 @@ import Resolver
 
 struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
+    @Environment(\.imageCache) var cache: ImageCache
     
     init(_ viewModel: MovieDetailViewModel){
         self.viewModel = viewModel
@@ -60,7 +61,7 @@ private extension MovieDetailView {
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         VStack{
-            ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:movieDetail.backdrop_path))
+            ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                 .detailMovieImageSize
             Text(movieDetail.overview)
                 .font(.body)

@@ -10,7 +10,6 @@ import Resolver
 
 struct MoviesListView: View {
     @ObservedObject var viewModel: MoviesListViewModel
-    var cache = TemporaryImageCache()
     
     var body: some View {
         NavigationView {
@@ -57,7 +56,7 @@ private extension MoviesListView {
     func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
             NavigationLink(destination: MovieDetailView( MovieDetailViewModel(movieList: movie)),
-                           label: {MovieRowView(movie: movie, cache: cache)}
+                           label: {MovieRowView(movie: movie)}
             )
         }
     }

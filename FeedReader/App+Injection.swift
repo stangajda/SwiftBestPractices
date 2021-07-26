@@ -17,7 +17,7 @@ extension Resolver: ResolverRegistering {
         ImageViewModel(imageURL: args("imageURL"), cache: args("cache"))
     }
     register(name:.itemDetail){ _, args in
-        ImageViewModel(imageURL: args())
+        ImageViewModel(imageURL: args("imageURL"), cache: args("cache"))
     }
   }
 }
