@@ -18,17 +18,3 @@ struct APIRequest: APIRequestInterface {
     static var prefix: String { "3" }
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
-
-extension View {
-    var rowSize: some View {
-        frame(maxWidth: .infinity, maxHeight: 96, alignment: .leading)
-    }
-    
-    var rowImageSize: some View{
-        frame(width: 64.0, height: 88.0)
-    }
-    
-    var detailMovieImageSize: some View{
-        frame(width: 400.0, height: 340.0)
-    }
-}

@@ -33,6 +33,7 @@
 		CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */; };
 		CC35563A26AC5189002D0B07 /* MockMoviesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */; };
 		CC35563C26AE2F4A002D0B07 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563B26AE2F4A002D0B07 /* ImageCache.swift */; };
+		CC35563E26AF50FE002D0B07 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563D26AF50FE002D0B07 /* Styles.swift */; };
 		CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* Feedback.swift */; };
 		CC3EC7B526A238D9005D71A9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B426A238D9005D71A9 /* System.swift */; };
@@ -97,6 +98,7 @@
 		CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageViewModel.swift; sourceTree = "<group>"; };
 		CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesDetailViewModel.swift; sourceTree = "<group>"; };
 		CC35563B26AE2F4A002D0B07 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
+		CC35563D26AF50FE002D0B07 /* Styles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Styles.swift; sourceTree = "<group>"; };
 		CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		CC3EC7B426A238D9005D71A9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */,
 				CC35563026AAFCF1002D0B07 /* App+Injection.swift */,
 				CC351E1026979BBF0037DB34 /* Config.swift */,
+				CC35563D26AF50FE002D0B07 /* Styles.swift */,
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
 				CC351E25269DB0660037DB34 /* MovieList */,
 				CC351E26269DB0B00037DB34 /* MovieDetail */,
@@ -416,6 +419,7 @@
 				CC3EC7B526A238D9005D71A9 /* System.swift in Sources */,
 				CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */,
 				CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */,
+				CC35563E26AF50FE002D0B07 /* Styles.swift in Sources */,
 				CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */,
 				CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
