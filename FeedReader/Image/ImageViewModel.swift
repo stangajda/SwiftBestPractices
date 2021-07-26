@@ -13,12 +13,14 @@ class ImageViewModel: ObservableObject{
     @Published private(set) var state = State.start
     var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
+    private var cache: ImageCache?
     var imageUrl: String
     let service = Service()
     private var cancellableStorage = Set<AnyCancellable>()
     typealias T = ImageViewModel.ImageItem
     
-    init(imageURL: String){
+    init(imageURL: String, cache: ImageCache? = nil){
+        self.cache = cache
         self.imageUrl = imageURL
         self.publishersSystem(state)
         .assignNoRetain(to: \.state, on: self)
@@ -33,10 +35,23 @@ class ImageViewModel: ObservableObject{
 
 extension ImageViewModel: Loadable {
     var fetch: AnyPublisher<T, Error>{
-        let request = URLRequest(url: URL(string: baseURL + self.imageUrl)!).get()
+        let url = URL(string: baseURL + self.imageUrl)!
+        let request = URLRequest(url: url).get()
+        
+        if let image = cache?[url] {
+            return Just(image)
+                .map { item in
+                    ImageItem(item)
+                }
+                .setFailureType(to: Error.self)
+                .receive(on: DispatchQueue.main)
+                .eraseToAnyPublisher()
+        }
+        
         return self.service.fetchImage(request)
-            .map { item in
-                ImageItem(item)
+            .map { [unowned self] item in
+                cache?[url] = item
+                return ImageItem(item)
             }
             .eraseToAnyPublisher()
     }

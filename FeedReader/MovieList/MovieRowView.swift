@@ -10,9 +10,11 @@ import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
+    @State var cache: ImageCache?
+    
     var body: some View {
         HStack{
-            ImageView(viewModel: Resolver.resolve(name:.itemList,args:movie.poster_path))
+            ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"cache": cache as Any]))
                 .rowImageSize
             Text(movie.title)
                 .font(.title)

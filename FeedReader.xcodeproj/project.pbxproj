@@ -32,6 +32,7 @@
 		CC35563626AB23C2002D0B07 /* MockMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */; };
 		CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */; };
 		CC35563A26AC5189002D0B07 /* MockMoviesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */; };
+		CC35563C26AE2F4A002D0B07 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563B26AE2F4A002D0B07 /* ImageCache.swift */; };
 		CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* Feedback.swift */; };
 		CC3EC7B526A238D9005D71A9 /* System.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B426A238D9005D71A9 /* System.swift */; };
@@ -95,6 +96,7 @@
 		CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesListViewModel.swift; sourceTree = "<group>"; };
 		CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageViewModel.swift; sourceTree = "<group>"; };
 		CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesDetailViewModel.swift; sourceTree = "<group>"; };
+		CC35563B26AE2F4A002D0B07 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* Feedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Feedback.swift; sourceTree = "<group>"; };
 		CC3EC7B426A238D9005D71A9 /* System.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = System.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 			children = (
 				CC351E1E269BC7B50037DB34 /* ImageView.swift */,
 				CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */,
+				CC35563B26AE2F4A002D0B07 /* ImageCache.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -407,6 +410,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC35563C26AE2F4A002D0B07 /* ImageCache.swift in Sources */,
 				CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */,
 				CC35563A26AC5189002D0B07 /* MockMoviesDetailViewModel.swift in Sources */,
 				CC3EC7B526A238D9005D71A9 /* System.swift in Sources */,

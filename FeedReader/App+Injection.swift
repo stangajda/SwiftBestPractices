@@ -14,7 +14,7 @@ extension Resolver: ResolverRegistering {
     register { URLSession.shared }
     register { MoviesListViewModel() as MoviesListViewModel}
     register(name:.itemList){ _, args in
-        ImageViewModel(imageURL: args())
+        ImageViewModel(imageURL: args("imageURL"), cache: args("cache"))
     }
     register(name:.itemDetail){ _, args in
         ImageViewModel(imageURL: args())
