@@ -26,6 +26,10 @@ class MovieDetailViewModel: ObservableObject{
     deinit {
         cancellableStorage.removeAll()
     }
+    
+    func cancel() {
+        cancellableStorage.removeAll()
+    }
 }
 
 extension MovieDetailViewModel: Loadable {

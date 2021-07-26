@@ -41,6 +41,10 @@ class ImageViewModel: ObservableObject{
         cancellableStorage.removeAll()
     }
     
+    func cancel() {
+        cancellableStorage.removeAll()
+    }
+    
 }
 
 extension ImageViewModel: Loadable {

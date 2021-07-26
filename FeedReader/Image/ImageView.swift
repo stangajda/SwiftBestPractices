@@ -12,6 +12,9 @@ struct ImageView: View {
     
     var body: some View {
         content
+            .onDisappear{
+                viewModel.cancel()
+            }
     }
     
     private var content: AnyView {
@@ -31,9 +34,6 @@ struct ImageView: View {
 private extension ImageView {
     var initialView: some View {
         Color.clear
-            .onAppear {
-                viewModel.send(action: .onAppear)
-            }
     }
     
     var loadingView: some View {

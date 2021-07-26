@@ -22,6 +22,9 @@ struct MovieDetailView: View {
         }
         .navigationTitle(viewModel.movieList.title)
         .navigationBarTitleDisplayMode(.inline)
+        .onDisappear{
+            viewModel.cancel()
+        }
     }
     
     private var content: AnyView{
