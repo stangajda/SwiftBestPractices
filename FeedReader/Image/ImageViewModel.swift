@@ -38,7 +38,7 @@ class ImageViewModel: ObservableObject{
     }
     
     deinit {
-        cancellableStorage.removeAll()
+        cancel()
     }
     
     func cancel() {

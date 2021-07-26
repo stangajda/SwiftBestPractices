@@ -23,6 +23,10 @@ class MoviesListViewModel: ObservableObject{
     }
     
     deinit {
+        cancel()
+    }
+    
+    func cancel(){
         cancellableStorage.removeAll()
     }
     

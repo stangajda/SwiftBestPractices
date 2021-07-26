@@ -24,7 +24,7 @@ class MovieDetailViewModel: ObservableObject{
     }
     
     deinit {
-        cancellableStorage.removeAll()
+        cancel()
     }
     
     func cancel() {
