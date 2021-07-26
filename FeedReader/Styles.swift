@@ -15,11 +15,11 @@ extension View {
     }
     
     func withRowImageSize() -> some View{
-        frame(width: 64.0, height: 88.0)
+        frame(maxWidth: 64.0, maxHeight: 88.0)
     }
     
     func withMovieDetailsStyle() -> some View{
-        frame(maxWidth: .infinity, maxHeight: 360.0, alignment: .top)
+        frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding()
             .font(.body)
             .multilineTextAlignment(.center)
