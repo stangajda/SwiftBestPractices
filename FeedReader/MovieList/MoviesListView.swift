@@ -59,6 +59,7 @@ private extension MoviesListView {
                            label: {MovieRowView(movie: movie)}
             )
         }
+        .padding(.trailing)
     }
 }
 
