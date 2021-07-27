@@ -67,6 +67,8 @@ private extension MovieDetailView {
                 Text(viewModel.movieList.title)
                     .frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
                     .font(.title)
+                    .minimumScaleFactor(0.5)
+                    .lineLimit(1)
                     .padding()
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
