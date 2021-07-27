@@ -63,8 +63,8 @@ private extension MovieDetailView {
     
     func taglineGenreView(_ tagline: String, _ genre: String) -> some View {
         VStack(alignment: .leading){
-            LabeledValue(label: "tagline", value: tagline)
-            LabeledValue(label: "genre", value: genre)
+            LabeledValueView(label: "tagline", value: tagline)
+            LabeledValueView(label: "genre", value: genre)
         }
         .font(.callout)
         .padding(.bottom)
@@ -81,17 +81,17 @@ private extension MovieDetailView {
                     .padding()
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
-                StarsVotedView(rating: 4.1, voteCount: 412)
+                StarsVotedView(rating: 3.5, voteCount: 412)
                     .padding(.bottom)
-                LabeledValue(label: "budget", value: "$17,739,525")
+                LabeledValueView(label: "budget", value: "$17,739,525")
                     .padding(.bottom)
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
                     .padding(.bottom)
-                LabeledValue(label: "released", value: "30 July 21")
+                LabeledValueView(label: "released", value: "30 July 21")
                     .padding(.bottom)
                 taglineGenreView("taline value", "genre value")
-                LabeledValue(label: "languages", value: "Deutch, English")
+                LabeledValueView(label: "languages", value: "Deutch, English")
                     .font(.callout)
             }
             .withMovieDetailsStyle()

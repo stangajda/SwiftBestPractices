@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LabeledValue: View {
+struct LabeledValueView: View {
     @State var label: String
     @State var value: String
     var body: some View {
@@ -21,6 +21,6 @@ struct LabeledValue: View {
 
 struct LabeledValue_Previews: PreviewProvider {
     static var previews: some View {
-        LabeledValue(label: "label", value: "value")
+        LabeledValueView(label: "label", value: "value")
     }
 }
