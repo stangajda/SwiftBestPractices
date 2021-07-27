@@ -15,7 +15,7 @@ struct MovieRowView: View {
     var body: some View {
         HStack{
             ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"cache": cache as Any]))
-                .withRowImageSize()
+                .withRowListImageSize()
             Text(movie.title)
         }
         .withRowListStyles()

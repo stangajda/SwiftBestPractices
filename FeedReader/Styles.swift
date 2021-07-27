@@ -14,7 +14,7 @@ extension View {
             .padding()
     }
     
-    func withRowImageSize() -> some View{
+    func withRowListImageSize() -> some View{
         frame(maxWidth: 64.0, maxHeight: 88.0)
     }
     
@@ -23,5 +23,17 @@ extension View {
             .padding()
             .font(.body)
             .multilineTextAlignment(.center)
+    }
+    
+    func withMovieDetailsImageViewStyle() -> some View{
+        padding(.bottom, 20.0)
+    }
+    
+}
+
+extension Image{
+    func withImageStyles() -> some View{
+        resizable()
+        .aspectRatio(contentMode: .fit)
     }
 }

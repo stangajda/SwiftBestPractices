@@ -65,6 +65,7 @@ private extension MovieDetailView {
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         VStack{
             ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
+                .withMovieDetailsImageViewStyle()
             Text(movieDetail.overview)
         }
         .withMovieDetailsStyle()

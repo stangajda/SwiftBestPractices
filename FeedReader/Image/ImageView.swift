@@ -42,8 +42,7 @@ private extension ImageView {
     
     func loadedView(_ image: Image) -> some View {
         image
-            .resizable()
-            .aspectRatio(contentMode: .fit)
+            .withImageStyles()
     }
     
     func failedView(_ error: Error) -> some View {
