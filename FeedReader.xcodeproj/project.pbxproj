@@ -45,6 +45,8 @@
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
 		CCBF629826B0806100BB0592 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629726B0806100BB0592 /* StarsRatingView.swift */; };
+		CCBF629A26B0BF8F00BB0592 /* StarsVotedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */; };
+		CCBF629C26B0C23A00BB0592 /* LabeledValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629B26B0C23A00BB0592 /* LabeledValue.swift */; };
 		CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA021F26A953B90056D018 /* LoadableEnums.swift */; };
 		CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA022126A9740A0056D018 /* LoadableReduce.swift */; };
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
@@ -109,6 +111,8 @@
 		CC5695012680ED070055C07C /* MockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		CCBF629726B0806100BB0592 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
+		CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsVotedView.swift; sourceTree = "<group>"; };
+		CCBF629B26B0C23A00BB0592 /* LabeledValue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledValue.swift; sourceTree = "<group>"; };
 		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
 		CCCA022126A9740A0056D018 /* LoadableReduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableReduce.swift; sourceTree = "<group>"; };
 		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,9 +230,11 @@
 		CC3EC7B026A189E3005D71A9 /* HelperView */ = {
 			isa = PBXGroup;
 			children = (
+				CCBF629726B0806100BB0592 /* StarsRatingView.swift */,
 				CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */,
 				CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */,
-				CCBF629726B0806100BB0592 /* StarsRatingView.swift */,
+				CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */,
+				CCBF629B26B0C23A00BB0592 /* LabeledValue.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";
@@ -431,6 +437,7 @@
 				CC351E1B269BA2070037DB34 /* MovieRowView.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* ExtensionsService.swift in Sources */,
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
+				CCBF629C26B0C23A00BB0592 /* LabeledValue.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* Helper.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
 				CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */,
@@ -442,6 +449,7 @@
 				CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */,
 				CC3EC7B826A6040B005D71A9 /* Loadable.swift in Sources */,
 				CC3EC7AF26A189AA005D71A9 /* ErrorView.swift in Sources */,
+				CCBF629A26B0BF8F00BB0592 /* StarsVotedView.swift in Sources */,
 				CC351E23269CAF990037DB34 /* MovieDetail.swift in Sources */,
 				CC35563626AB23C2002D0B07 /* MockMoviesListViewModel.swift in Sources */,
 				CC351E21269CA9960037DB34 /* MovieDetailView.swift in Sources */,

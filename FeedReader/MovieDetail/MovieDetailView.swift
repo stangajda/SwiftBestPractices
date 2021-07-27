@@ -61,6 +61,15 @@ private extension MovieDetailView {
         ErrorView(error: error)
     }
     
+    func taglineGenreView(_ tagline: String, _ genre: String) -> some View {
+        VStack(alignment: .leading){
+            LabeledValue(label: "tagline", value: tagline)
+            LabeledValue(label: "genre", value: genre)
+        }
+        .font(.callout)
+        .padding(.bottom)
+    }
+    
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -72,26 +81,17 @@ private extension MovieDetailView {
                     .padding()
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
-                HStack(){
-                    StarsRatingView(rating: 3.7, maxRating: 5)
-                        .frame(maxWidth: 100, maxHeight: 20.0, alignment: .leading)
-                        Text("(212)")
-                }
-                .padding(.bottom)
-                Text("budget $17,739,525")
+                StarsVotedView(rating: 4.1, voteCount: 412)
+                    .padding(.bottom)
+                LabeledValue(label: "budget", value: "$17,739,525")
                     .padding(.bottom)
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
                     .padding(.bottom)
-                Text("released 30 July 21")
+                LabeledValue(label: "released", value: "30 July 21")
                     .padding(.bottom)
-                VStack(alignment: .leading){
-                    Text("horror, thriller, action")
-                    Text("tagline: Hibernate. Inject. Survive. Shoot.")
-                }
-                .font(.callout)
-                .padding(.bottom)
-                Text("languages: Deutch, English")
+                taglineGenreView("taline value", "genre value")
+                LabeledValue(label: "languages", value: "Deutch, English")
                     .font(.callout)
             }
             .withMovieDetailsStyle()
