@@ -63,32 +63,34 @@ private extension MovieDetailView {
     }
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
-        VStack(alignment: .leading){
-            ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
-                .withMovieDetailsImageViewStyle()
-            HStack(){
-                StarsRatingView(rating: 3.7, maxRating: 5)
-                    .frame(maxWidth: 100, maxHeight: 20.0, alignment: .leading)
-                    Text("(212)")
-            }
-            .padding(.bottom)
-            Text("budget $17,739,525")
-                .padding(.bottom)
-            Text(movieDetail.overview)
-                .multilineTextAlignment(.leading)
-                .padding(.bottom)
-            Text("released 30 July 21")
-                .padding(.bottom)
+        ScrollView {
             VStack(alignment: .leading){
-                Text("horror, thriller, action")
-                Text("tagline: Hibernate. Inject. Survive. Shoot.")
-            }
-            .font(.callout)
-            .padding(.bottom)
-            Text("languages: Deutch, English")
+                ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
+                    .withMovieDetailsImageViewStyle()
+                HStack(){
+                    StarsRatingView(rating: 3.7, maxRating: 5)
+                        .frame(maxWidth: 100, maxHeight: 20.0, alignment: .leading)
+                        Text("(212)")
+                }
+                .padding(.bottom)
+                Text("budget $17,739,525")
+                    .padding(.bottom)
+                Text(movieDetail.overview)
+                    .multilineTextAlignment(.leading)
+                    .padding(.bottom)
+                Text("released 30 July 21")
+                    .padding(.bottom)
+                VStack(alignment: .leading){
+                    Text("horror, thriller, action")
+                    Text("tagline: Hibernate. Inject. Survive. Shoot.")
+                }
                 .font(.callout)
+                .padding(.bottom)
+                Text("languages: Deutch, English")
+                    .font(.callout)
+            }
+            .withMovieDetailsStyle()
         }
-        .withMovieDetailsStyle()
         
         
     }

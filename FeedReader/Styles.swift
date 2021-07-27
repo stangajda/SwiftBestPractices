@@ -8,7 +8,7 @@ import SwiftUI
 
 extension View {
     func withRowListStyles() -> some View {
-            frame(maxWidth: .infinity, maxHeight: 96, alignment: .leading)
+        frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
             .foregroundColor(.black)
             .font(.title)
             .padding()
@@ -26,7 +26,8 @@ extension View {
     }
     
     func withMovieDetailsImageViewStyle() -> some View{
-        padding(.bottom, 20.0)
+        frame(maxWidth: .infinity, minHeight: 200, alignment: .center)
+            .padding(.bottom, 20.0)
     }
     
 }
@@ -34,6 +35,6 @@ extension View {
 extension Image{
     func withImageStyles() -> some View{
         resizable()
-        .aspectRatio(contentMode: .fit)
+            .aspectRatio(contentMode: .fit)
     }
 }
