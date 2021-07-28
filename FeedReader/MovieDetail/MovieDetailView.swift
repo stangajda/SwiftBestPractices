@@ -84,7 +84,6 @@ private extension MovieDetailView {
                 IconValueView(iconName: "calendar", textValue: "30 July 21")
                     .padding(.bottom)
                 IconValueView(iconName: "speaker", textValue: "Deutch, English")
-                    .font(.callout)
                     .padding(.bottom)
                 OverlayTextView(stringArray: ["thriller","horror","comedy"])
                     .padding(.bottom)
