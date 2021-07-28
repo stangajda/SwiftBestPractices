@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC12EA6226B1E8DE00BD2BCB /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = CC12EA6126B1E8DE00BD2BCB /* Resolver */; };
 		CC2C87792680A9FD00570234 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
 		CC351E1126979BBF0037DB34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
 		CC351E13269A580F0037DB34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
@@ -25,7 +26,6 @@
 		CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */; };
 		CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */; };
 		CC351E39269F1ADD0037DB34 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */; };
-		CC35562F26AA4012002D0B07 /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = CC35562E26AA4012002D0B07 /* Resolver */; };
 		CC35563126AAFCF1002D0B07 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563026AAFCF1002D0B07 /* App+Injection.swift */; };
 		CC35563226AB018B002D0B07 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
 		CC35563426AB03AB002D0B07 /* Resolver+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */; };
@@ -134,7 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC35562F26AA4012002D0B07 /* Resolver in Frameworks */,
+				CC12EA6226B1E8DE00BD2BCB /* Resolver in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -336,7 +336,7 @@
 			);
 			name = FeedReader;
 			packageProductDependencies = (
-				CC35562E26AA4012002D0B07 /* Resolver */,
+				CC12EA6126B1E8DE00BD2BCB /* Resolver */,
 			);
 			productName = FeedReader;
 			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
@@ -388,7 +388,7 @@
 			);
 			mainGroup = CCF3A8AC267A8ED100CB5765;
 			packageReferences = (
-				CC35562C26AA3FB3002D0B07 /* XCRemoteSwiftPackageReference "Resolver" */,
+				CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -729,7 +729,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC35562C26AA3FB3002D0B07 /* XCRemoteSwiftPackageReference "Resolver" */ = {
+		CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Resolver";
 			requirement = {
@@ -740,9 +740,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC35562E26AA4012002D0B07 /* Resolver */ = {
+		CC12EA6126B1E8DE00BD2BCB /* Resolver */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CC35562C26AA3FB3002D0B07 /* XCRemoteSwiftPackageReference "Resolver" */;
+			package = CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
 		};
 /* End XCSwiftPackageProductDependency section */
