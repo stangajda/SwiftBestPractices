@@ -73,6 +73,7 @@ private extension MovieDetailView {
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
                 StarsVotedView(rating: 3.5, voteCount: 412)
+                    .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
                     .padding(.bottom)
                 IconValueView(iconName: "banknote", textValue: "$17,739,525")
                     .padding(.bottom)
