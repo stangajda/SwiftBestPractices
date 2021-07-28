@@ -8,19 +8,23 @@
 import SwiftUI
 
 struct LabeledValueView: View {
-    @State var label: String
-    @State var value: String
+    @State var iconName: String
+    @State var textValue: String
     var body: some View {
         HStack(spacing:8){
-            Text(label)
-                .fontWeight(.bold)
-            Text(value)
+            Image(systemName: iconName )
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.orange)
+                .frame(maxWidth: 30, maxHeight: 20, alignment: .leading)
+            Text(textValue)
+                .font(.callout)
         }
     }
 }
 
 struct LabeledValue_Previews: PreviewProvider {
     static var previews: some View {
-        LabeledValueView(label: "label", value: "value")
+        LabeledValueView(iconName: "banknote", textValue: "17,000,000")
     }
 }

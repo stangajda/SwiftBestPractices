@@ -26,7 +26,7 @@ struct StarsRatingView: View {
                 ZStack(alignment: .leading) {
                     Rectangle()
                         .frame(width: width)
-                        .foregroundColor(.yellow)
+                        .foregroundColor(.orange)
                 }
             }
             .mask(stars)

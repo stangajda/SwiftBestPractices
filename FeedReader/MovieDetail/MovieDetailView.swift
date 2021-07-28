@@ -61,15 +61,6 @@ private extension MovieDetailView {
         ErrorView(error: error)
     }
     
-    func taglineGenreView(_ tagline: String, _ genre: String) -> some View {
-        VStack(alignment: .leading){
-            LabeledValueView(label: "tagline", value: tagline)
-            LabeledValueView(label: "genre", value: genre)
-        }
-        .font(.callout)
-        .padding(.bottom)
-    }
-    
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         ScrollView {
             VStack(alignment: .leading){
@@ -83,16 +74,18 @@ private extension MovieDetailView {
                     .withMovieDetailsImageViewStyle()
                 StarsVotedView(rating: 3.5, voteCount: 412)
                     .padding(.bottom)
-                LabeledValueView(label: "budget", value: "$17,739,525")
+                LabeledValueView(iconName: "banknote", textValue: "$17,739,525")
                     .padding(.bottom)
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
                     .padding(.bottom)
-                LabeledValueView(label: "released", value: "30 July 21")
+                LabeledValueView(iconName: "calendar", textValue: "30 July 21")
                     .padding(.bottom)
-                taglineGenreView("taline value", "genre value")
-                LabeledValueView(label: "languages", value: "Deutch, English")
+                LabeledValueView(iconName: "speaker", textValue: "Deutch, English")
                     .font(.callout)
+                    .padding(.bottom)
+                OverlayTextView(stringArray: ["thriller","horror","comedy"])
+                    .padding(.bottom)
             }
             .withMovieDetailsStyle()
         }
