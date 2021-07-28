@@ -23,7 +23,7 @@ struct IconValueView: View {
     }
 }
 
-struct LabeledValue_Previews: PreviewProvider {
+struct IconValueView_Previews: PreviewProvider {
     static var previews: some View {
         IconValueView(iconName: "banknote", textValue: "17,000,000")
     }
