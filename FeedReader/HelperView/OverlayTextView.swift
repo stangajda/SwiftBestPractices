@@ -15,7 +15,7 @@ struct OverlayTextView: View {
             ForEach(stringArray, id: \.self) { string in
                 Text(string)
                         .font(.caption)
-                        .padding(4.0)
+                        .padding(6.0)
                         .foregroundColor(.primary)
                         .overlay(
                             RoundedRectangle(cornerRadius: 10.0)

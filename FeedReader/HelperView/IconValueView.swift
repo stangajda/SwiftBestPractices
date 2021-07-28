@@ -16,7 +16,7 @@ struct IconValueView: View {
                 .resizable()
                 .aspectRatio(contentMode: .fit)
                 .foregroundColor(.orange)
-                .frame(maxWidth: 30, maxHeight: 20, alignment: .leading)
+                .frame(maxWidth: 40, maxHeight: 25, alignment: .leading)
             Text(textValue)
                 .font(.callout)
         }
