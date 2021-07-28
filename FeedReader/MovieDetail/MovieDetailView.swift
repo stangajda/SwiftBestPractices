@@ -74,14 +74,15 @@ private extension MovieDetailView {
                     .withMovieDetailsImageViewStyle()
                 StarsVotedView(rating: 3.5, voteCount: 412)
                     .padding(.bottom)
-                LabeledValueView(iconName: "banknote", textValue: "$17,739,525")
+                IconValueView(iconName: "banknote", textValue: "$17,739,525")
                     .padding(.bottom)
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom)
-                LabeledValueView(iconName: "calendar", textValue: "30 July 21")
+                IconValueView(iconName: "calendar", textValue: "30 July 21")
                     .padding(.bottom)
-                LabeledValueView(iconName: "speaker", textValue: "Deutch, English")
+                IconValueView(iconName: "speaker", textValue: "Deutch, English")
                     .font(.callout)
                     .padding(.bottom)
                 OverlayTextView(stringArray: ["thriller","horror","comedy"])
@@ -89,8 +90,6 @@ private extension MovieDetailView {
             }
             .withMovieDetailsStyle()
         }
-        
-        
     }
 }
 

@@ -46,7 +46,7 @@
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
 		CCBF629826B0806100BB0592 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629726B0806100BB0592 /* StarsRatingView.swift */; };
 		CCBF629A26B0BF8F00BB0592 /* StarsVotedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */; };
-		CCBF629C26B0C23A00BB0592 /* LabeledValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629B26B0C23A00BB0592 /* LabeledValueView.swift */; };
+		CCBF629C26B0C23A00BB0592 /* IconValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629B26B0C23A00BB0592 /* IconValueView.swift */; };
 		CCC199F526B1A77C00134803 /* OverlayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC199F426B1A77C00134803 /* OverlayTextView.swift */; };
 		CCCA022026A953B90056D018 /* LoadableEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA021F26A953B90056D018 /* LoadableEnums.swift */; };
 		CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCA022126A9740A0056D018 /* LoadableReduce.swift */; };
@@ -113,7 +113,7 @@
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		CCBF629726B0806100BB0592 /* StarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsRatingView.swift; sourceTree = "<group>"; };
 		CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsVotedView.swift; sourceTree = "<group>"; };
-		CCBF629B26B0C23A00BB0592 /* LabeledValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabeledValueView.swift; sourceTree = "<group>"; };
+		CCBF629B26B0C23A00BB0592 /* IconValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconValueView.swift; sourceTree = "<group>"; };
 		CCC199F426B1A77C00134803 /* OverlayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTextView.swift; sourceTree = "<group>"; };
 		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
 		CCCA022126A9740A0056D018 /* LoadableReduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableReduce.swift; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 				CC351E16269B77590037DB34 /* ActivityIndicatorView.swift */,
 				CC3EC7AE26A189AA005D71A9 /* ErrorView.swift */,
 				CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */,
-				CCBF629B26B0C23A00BB0592 /* LabeledValueView.swift */,
+				CCBF629B26B0C23A00BB0592 /* IconValueView.swift */,
 				CCC199F426B1A77C00134803 /* OverlayTextView.swift */,
 			);
 			path = HelperView;
@@ -441,7 +441,7 @@
 				CC351E1B269BA2070037DB34 /* MovieRowView.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* ExtensionsService.swift in Sources */,
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
-				CCBF629C26B0C23A00BB0592 /* LabeledValueView.swift in Sources */,
+				CCBF629C26B0C23A00BB0592 /* IconValueView.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* Helper.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
 				CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */,
