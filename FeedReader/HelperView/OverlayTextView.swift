@@ -14,6 +14,7 @@ struct OverlayTextView: View {
         HStack {
             ForEach(stringArray, id: \.self) { string in
                 Text(string)
+                        .font(.caption)
                         .padding(4.0)
                         .foregroundColor(.primary)
                         .overlay(
