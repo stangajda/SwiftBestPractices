@@ -16,7 +16,14 @@ struct MovieRowView: View {
         HStack{
             ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"cache": cache as Any]))
                 .withRowListImageSize()
-            Text(movie.title)
+            VStack(alignment:.leading){
+                Text(movie.title)
+                    .font(.title2)
+                    .minimumScaleFactor(0.5)
+                StarsVotedView(rating: 3.7, voteCount: 212)
+                    .frame(maxWidth: 120, maxHeight: 20, alignment: .leading)
+                    .font(.caption)
+            }
         }
         .withRowListStyles()
     }
