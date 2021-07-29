@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import XCTest
 import Nimble
 
 extension Data{
@@ -33,7 +32,6 @@ extension Result where Success: Equatable {
         switch self {
         case let .success(resultValue):
             expect(file: file, line: line, resultValue) == value
-            printTrace("success")
         case let .failure(error):
             fail("Unexpected error: \(error)", file: file, line: line)
         }
@@ -44,7 +42,7 @@ extension Result where Success == Void {
     func assertSuccess(file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .failure(error):
-            XCTFail("Unexpected error: \(error)", file: file, line: line)
+            fail("Unexpected error: \(error)", file: file, line: line)
         case .success:
             break
         }
@@ -55,10 +53,10 @@ extension Result {
     func assertFailure(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(value):
-            XCTFail("Unexpected success: \(value)", file: file, line: line)
+            fail("Unexpected error: \(value)", file: file, line: line)
         case let .failure(error):
             if let message = message {
-                XCTAssertEqual(error.localizedDescription , message, file: file, line: line)
+                expect(file: file, line: line, error.localizedDescription) == message
             }
         }
     }
@@ -66,11 +64,11 @@ extension Result {
     func assertFailureContains(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(value):
-            XCTFail("Unexpected success: \(value)", file: file, line: line)
+            fail("Unexpected error: \(value)", file: file, line: line)
         case let .failure(error):
             if let message = message {
                 let isContain = error.localizedDescription.contains(message)
-                XCTAssertTrue(isContain , message, file: file, line: line)
+                expect(file: file, line: line, isContain).to(beTrue())
             }
         }
     }

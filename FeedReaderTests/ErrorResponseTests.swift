@@ -31,73 +31,66 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func testSuccessfulResponse() throws {
-        let expectation = self.expectation(description: "response result")
         let responseData = try XCTUnwrap(Data.stubData)
         
         let result: Result<Data, Swift.Error> = .success(responseData)
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
-        cancellable = self.mockManager.fetchData(mockRequestUrl)
-            .sinkToResult({ result in
-                result.assertSuccess(value: Data.stubData)
-                expectation.fulfill()
-            })
         
-        waitForExpectations(timeout: 1, handler: nil)
-        
+        waitUntil{ [unowned self] done in
+            self.cancellable = self.mockManager.fetchData(self.mockRequestUrl)
+                .sinkToResult({ result in
+                    result.assertSuccess(value: Data.stubData)
+                    done()
+                })
+        }
     }
     
     func testMappedObject() throws {
-        let expectation = self.expectation(description: "response result")
-        
         let dataFromFile = Data.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                         from: dataFromFile)
         let responseData: Movies = try XCTUnwrap(moviesFromData)
         
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
-        cancellable = self.mockManager.fetchMovies(mockRequestUrl)
-            .sinkToResult({ result in
-                result.assertSuccess(value: moviesFromData)
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        waitUntil{ [unowned self] done in
+            self.cancellable = self.mockManager.fetchMovies(self.mockRequestUrl)
+                .sinkToResult({ result in
+                    result.assertSuccess(value: moviesFromData)
+                    done()
+                })
+        }
     }
     
     func testImageSuccessfulConversion() throws {
-        let expectation = self.expectation(description: "response result")
-        
         let uiImage = UIImage(named: "StubImage")
         let imageData = uiImage?.pngData()
         let responseData: Data = try XCTUnwrap(imageData)
         
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
-        cancellable = self.mockManager.fetchImage(mockRequestUrl)
-            .sinkToResult({ result in
-                switch result{
-                case .success(_):
-                    XCTAssert(true)
-                case .failure(_):
-                    XCTFail()
-                }
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        waitUntil{ [unowned self] done in
+            cancellable = self.mockManager.fetchImage(mockRequestUrl)
+                .sinkToResult({ result in
+                    switch result{
+                    case .success(_):
+                        _ = succeed()
+                    case .failure(_):
+                        fail()
+                    }
+                    done()
+                })
+        }
     }
     
     func testImageFailureConversion() throws {
-        let expectation = self.expectation(description: "response result")
         let responseData: Data = try XCTUnwrap(Data.stubData)
-        
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
-        cancellable = self.mockManager.fetchImage(mockRequestUrl)
-            .sinkToResult({ [unowned self] result in
-                result.assertFailure(APIError.imageConversion(mockRequestUrl).errorDescription)
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        waitUntil { [unowned self] done in
+            cancellable = self.mockManager.fetchImage(mockRequestUrl)
+                .sinkToResult({ [unowned self] result in
+                    result.assertFailure(APIError.imageConversion(mockRequestUrl).errorDescription)
+                    done()
+                })
+        }
     }
     
     func testFailureResponses() throws {
@@ -108,31 +101,27 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func testFailureResponse(errorCode: APICode) throws {
-        let expectation = self.expectation(description: "response result")
-        
         let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
-        cancellable = self.mockManager.fetchData(mockRequestUrl)
-            .sinkToResult({ result in
-                result.assertFailureContains(APIError.apiCode(errorCode).errorDescription)
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 1, handler: nil)
+        waitUntil { [unowned self] done in
+            cancellable = self.mockManager.fetchData(mockRequestUrl)
+                .sinkToResult({ result in
+                    result.assertFailureContains(APIError.apiCode(errorCode).errorDescription)
+                    done()
+                })
+        }
     }
     
     func testFailureResponse() throws {
         let stubErrorCode = 0
-        let expectation = self.expectation(description: "response result")
-        
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(false), apiCode: stubErrorCode)
-        cancellable = self.mockManager.fetchData(mockRequestUrl)
-            .sinkToResult({ result in
-                result.assertFailure(APIError.apiCode(0).errorDescription)
-                expectation.fulfill()
-            })
-        
-        waitForExpectations(timeout: 2, handler: nil)
+        waitUntil { [unowned self] done in
+            cancellable = self.mockManager.fetchData(mockRequestUrl)
+                .sinkToResult({ result in
+                    result.assertFailure(APIError.apiCode(0).errorDescription)
+                    done()
+                })
+        }
     }
 
 }
