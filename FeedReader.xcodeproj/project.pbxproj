@@ -41,6 +41,8 @@
 		CC456E52268FB79900FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E53268FB7F600FF2113 /* APIRequestInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIRequestInterface.swift */; };
 		CC456E55268FD9E600FF2113 /* ExtensionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* ExtensionsService.swift */; };
+		CC45F75126B32A3F0050B77C /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = CC45F75026B32A3F0050B77C /* Quick */; };
+		CC45F75326B32C3B0050B77C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = CC45F75226B32C3B0050B77C /* Nimble */; };
 		CC56950726812DE70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC569508268135E70055C07C /* MockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
@@ -142,6 +144,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC45F75126B32A3F0050B77C /* Quick in Frameworks */,
+				CC45F75326B32C3B0050B77C /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -356,6 +360,10 @@
 				CCF3A8C8267A8ED300CB5765 /* PBXTargetDependency */,
 			);
 			name = FeedReaderTests;
+			packageProductDependencies = (
+				CC45F75026B32A3F0050B77C /* Quick */,
+				CC45F75226B32C3B0050B77C /* Nimble */,
+			);
 			productName = FeedReaderTests;
 			productReference = CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -389,6 +397,8 @@
 			mainGroup = CCF3A8AC267A8ED100CB5765;
 			packageReferences = (
 				CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */,
+				CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */,
+				CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -495,7 +505,7 @@
 		CCF3A8D8267A8ED300CB5765 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -556,7 +566,7 @@
 		CCF3A8D9267A8ED300CB5765 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
+				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -737,6 +747,22 @@
 				version = 1.4.3;
 			};
 		};
+		CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Nimble";
+			requirement = {
+				kind = exactVersion;
+				version = 9.2.0;
+			};
+		};
+		CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Quick/Quick";
+			requirement = {
+				kind = exactVersion;
+				version = 4.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -744,6 +770,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */;
 			productName = Resolver;
+		};
+		CC45F75026B32A3F0050B77C /* Quick */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */;
+			productName = Quick;
+		};
+		CC45F75226B32C3B0050B77C /* Nimble */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */;
+			productName = Nimble;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

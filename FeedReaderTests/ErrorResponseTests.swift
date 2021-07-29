@@ -9,8 +9,10 @@ import XCTest
 @testable import FeedReader
 import Combine
 import Resolver
+import Nimble
+import Quick
 
-class ErrorResponseTests: XCTestCase {
+class ErrorResponseTests: QuickSpec {
     
     typealias Mock = MockURLProtocol.MockedResponse
     var cancellable: AnyCancellable?
