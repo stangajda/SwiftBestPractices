@@ -12,7 +12,7 @@ import Resolver
 import Nimble
 import Quick
 
-class ErrorResponseTests: QuickSpec {
+class ErrorResponseTests: XCTestCase {
     
     typealias Mock = MockURLProtocol.MockedResponse
     var cancellable: AnyCancellable?

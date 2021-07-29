@@ -7,6 +7,7 @@
 
 import Foundation
 import XCTest
+import Nimble
 
 extension Data{
     static func load(_ filename: String) -> Data {
@@ -31,9 +32,10 @@ extension Result where Success: Equatable {
     func assertSuccess(value: Success, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(resultValue):
-            XCTAssertEqual(resultValue, value, file: file, line: line)
+            expect(file: file, line: line, resultValue) == value
+            printTrace("success")
         case let .failure(error):
-            XCTFail("Unexpected error: \(error)", file: file, line: line)
+            fail("Unexpected error: \(error)", file: file, line: line)
         }
     }
 }
