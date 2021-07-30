@@ -28,7 +28,7 @@ extension Data{
 // MARK: - Result
 
 extension Result where Success: Equatable {
-    func assertSuccess(value: Success, file: StaticString = #file, line: UInt = #line) {
+    func isExpectSuccessToEqual(_ value: Success, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(resultValue):
             expect(file: file, line: line, resultValue) == value
@@ -38,19 +38,18 @@ extension Result where Success: Equatable {
     }
 }
 
-extension Result where Success == Void {
-    func assertSuccess(file: StaticString = #file, line: UInt = #line) {
+extension Result {
+    func isExpectSuccess(file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .failure(error):
             fail("Unexpected error: \(error)", file: file, line: line)
         case .success:
+            _ = succeed()
             break
         }
     }
-}
-
-extension Result {
-    func assertFailure(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
+    
+    func isExpectFailedToEqual(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(value):
             fail("Unexpected error: \(value)", file: file, line: line)
@@ -61,7 +60,7 @@ extension Result {
         }
     }
     
-    func assertFailureContains(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
+    func isExpectFailedToContain(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .success(value):
             fail("Unexpected error: \(value)", file: file, line: line)

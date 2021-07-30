@@ -38,7 +38,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil{ [unowned self] done in
             self.cancellable = self.mockManager.fetchData(self.mockRequestUrl)
                 .sinkToResult({ result in
-                    result.assertSuccess(value: Data.stubData)
+                    result.isExpectSuccessToEqual(Data.stubData)
                     done()
                 })
         }
@@ -53,7 +53,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil{ [unowned self] done in
             self.cancellable = self.mockManager.fetchMovies(self.mockRequestUrl)
                 .sinkToResult({ result in
-                    result.assertSuccess(value: moviesFromData)
+                    result.isExpectSuccessToEqual(moviesFromData)
                     done()
                 })
         }
@@ -69,12 +69,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil{ [unowned self] done in
             cancellable = self.mockManager.fetchImage(mockRequestUrl)
                 .sinkToResult({ result in
-                    switch result{
-                    case .success(_):
-                        _ = succeed()
-                    case .failure(_):
-                        fail()
-                    }
+                    result.isExpectSuccess()
                     done()
                 })
         }
@@ -85,7 +80,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil { [unowned self] done in
             cancellable = self.mockManager.fetchImage(mockRequestUrl)
                 .sinkToResult({ [unowned self] result in
-                    result.assertFailure(APIError.imageConversion(mockRequestUrl).errorDescription)
+                    result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
                     done()
                 })
         }
@@ -104,7 +99,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil { [unowned self] done in
             cancellable = self.mockManager.fetchData(mockRequestUrl)
                 .sinkToResult({ result in
-                    result.assertFailureContains(APIError.apiCode(errorCode).errorDescription)
+                    result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
                     done()
                 })
         }
@@ -116,7 +111,7 @@ class ErrorResponseTests: XCTestCase {
         waitUntil { [unowned self] done in
             cancellable = self.mockManager.fetchData(mockRequestUrl)
                 .sinkToResult({ result in
-                    result.assertFailure(APIError.apiCode(0).errorDescription)
+                    result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
                     done()
                 })
         }
