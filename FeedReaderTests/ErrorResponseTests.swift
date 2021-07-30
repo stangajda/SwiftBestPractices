@@ -21,7 +21,6 @@ class ErrorResponseTests: XCTestCase {
     
     override func setUpWithError() throws {
         Resolver.registerMockServices()
-        mockRequestUrl = try XCTUnwrap(mockRequestUrl)
     }
 
     override func tearDownWithError() throws {
@@ -31,7 +30,7 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func testSuccessfulResponse() throws {
-        let responseData = try XCTUnwrap(Data.stubData)
+        let responseData = Data.stubData
         
         let result: Result<Data, Swift.Error> = .success(responseData)
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
@@ -49,9 +48,8 @@ class ErrorResponseTests: XCTestCase {
         let dataFromFile = Data.load("MockResponseResult.json")
         let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                         from: dataFromFile)
-        let responseData: Movies = try XCTUnwrap(moviesFromData)
         
-        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
         waitUntil{ [unowned self] done in
             self.cancellable = self.mockManager.fetchMovies(self.mockRequestUrl)
                 .sinkToResult({ result in
@@ -63,10 +61,11 @@ class ErrorResponseTests: XCTestCase {
     
     func testImageSuccessfulConversion() throws {
         let uiImage = UIImage(named: "StubImage")
-        let imageData = uiImage?.pngData()
-        let responseData: Data = try XCTUnwrap(imageData)
-        
-        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
+        guard let imageData = uiImage?.pngData() else {
+            throw APIError.imageConversion(nil)
+        }
+       
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
         waitUntil{ [unowned self] done in
             cancellable = self.mockManager.fetchImage(mockRequestUrl)
                 .sinkToResult({ result in
@@ -82,8 +81,7 @@ class ErrorResponseTests: XCTestCase {
     }
     
     func testImageFailureConversion() throws {
-        let responseData: Data = try XCTUnwrap(Data.stubData)
-        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(responseData))
+        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(Data.stubData))
         waitUntil { [unowned self] done in
             cancellable = self.mockManager.fetchImage(mockRequestUrl)
                 .sinkToResult({ [unowned self] result in

@@ -17,7 +17,7 @@ enum APIError: Swift.Error {
     case invalidURL
     case apiCode(APICode)
     case unknownResponse
-    case imageConversion(URLRequest)
+    case imageConversion(URLRequest?)
 }
 
 extension APIError: LocalizedError {
