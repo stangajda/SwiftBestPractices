@@ -25,8 +25,6 @@ class ServiceSpec: QuickSpec {
             var result: Result<Data, Swift.Error>!
             let mockRequestUrl: URLRequest = MockAPIRequest["stubPath"].get()
             
-            var dataFromFile: Data!
-            
             context("given succesful data in service") {
                 
                 beforeEach {
@@ -47,7 +45,8 @@ class ServiceSpec: QuickSpec {
                 
             }
             
-            context("given suucesful json data") {
+            var dataFromFile: Data!
+            context("given succesful json data") {
                 beforeEach {
                     dataFromFile = Data.load("MockResponseResult.json")
                 }
