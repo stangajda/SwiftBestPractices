@@ -21,8 +21,11 @@ class ServiceSpec: QuickSpec {
             Resolver.registerMockServices()
             let mockManager: Service = Service()
             var responseData = Data.stubData
+            
             var result: Result<Data, Swift.Error>!
             let mockRequestUrl: URLRequest = MockAPIRequest["stubPath"].get()
+            
+            var dataFromFile: Data!
             
             context("given succesful data in service") {
                 
@@ -42,13 +45,33 @@ class ServiceSpec: QuickSpec {
                     }
                 })
                 
-                afterEach {
-                    MockURLProtocol.mock = nil
-                    cancellable?.cancel()
-                    cancellable = nil
+            }
+            
+            context("given suucesful json data") {
+                beforeEach {
+                    dataFromFile = Data.load("MockResponseResult.json")
                 }
                 
+                it("it should get succesfull response match mapped object", closure:{
+                    let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
+                                                                    from: dataFromFile)
+                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
+                            waitUntil{ done in
+                                cancellable = mockManager.fetchMovies(mockRequestUrl)
+                                    .sinkToResult({ result in
+                                        result.isExpectSuccessToEqual(moviesFromData)
+                                        done()
+                                    })
+                            }
+                })
             }
+            
+            afterEach {
+                MockURLProtocol.mock = nil
+                cancellable?.cancel()
+                cancellable = nil
+            }
+            
         }
     }
     
