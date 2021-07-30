@@ -62,7 +62,7 @@ class ErrorResponseTests: XCTestCase {
     func testImageSuccessfulConversion() throws {
         let uiImage = UIImage(named: "StubImage")
         guard let imageData = uiImage?.pngData() else {
-            throw APIError.imageConversion(nil)
+            throw APIError.imageConversion(mockRequestUrl)
         }
        
         MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
