@@ -66,7 +66,7 @@ class ServiceSpec: QuickSpec {
             }
             
             var uiImage: UIImage!
-            context("given image") {
+            context("given succesful image") {
                 beforeEach {
                     uiImage = UIImage(named: "StubImage")
                 }
@@ -87,6 +87,63 @@ class ServiceSpec: QuickSpec {
                 }
             }
             
+            var stubData:Data!
+            context("given failure not image stubdata"){
+                beforeEach {
+                    stubData = Data.stubData
+                }
+                
+                it("it should get failure response match error"){
+                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(stubData))
+                    waitUntil { done in
+                        cancellable = mockManager.fetchImage(mockRequestUrl)
+                            .sinkToResult({ result in
+                                result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+                                done()
+                            })
+                    }
+                }
+            }
+            
+            let errorCodes: Array<Int> = [300,404,500]
+            
+            errorCodes.forEach { errorCode in
+                context("given failure error code \(errorCode)"){
+                    
+                    it("it should get failure response match given error code \(errorCode)"){
+                        let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
+                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
+                        waitUntil { done in
+                            cancellable = mockManager.fetchData(mockRequestUrl)
+                                .sinkToResult({ result in
+                                    result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
+                                    done()
+                                })
+                        }
+                    }
+                }
+            }
+            
+            var stubErrorCode: Int!
+            var stubResult: Result<Bool, Swift.Error>!
+            context("given succes response with error code 0"){
+                beforeEach {
+                    stubErrorCode = 0
+                    stubResult = .success(false)
+                }
+                
+                it("it should failure response match error code"){
+                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: stubResult, apiCode: stubErrorCode)
+                    waitUntil { done in
+                        cancellable = mockManager.fetchData(mockRequestUrl)
+                            .sinkToResult({ result in
+                                result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
+                                done()
+                            })
+                    }
+                }
+            }
+            
             afterEach {
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()
@@ -95,106 +152,4 @@ class ServiceSpec: QuickSpec {
             
         }
     }
-    
-//    typealias Mock = MockURLProtocol.MockedResponse
-//    var cancellable: AnyCancellable?
-//    lazy var mockManager: Service = Service()
-//    lazy var mockRequestUrl: URLRequest = MockAPIRequest["stubPath"].get()
-//
-//    override func setUpWithError() throws {
-//        Resolver.registerMockServices()
-//    }
-//
-//    override func tearDownWithError() throws {
-//        MockURLProtocol.mock = nil
-//        cancellable?.cancel()
-//        cancellable = nil
-//    }
-//
-//    func testSuccessfulResponse() throws {
-//        let responseData = Data.stubData
-//        let result: Result<Data, Swift.Error> = .success(responseData)
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
-//        waitUntil{ [unowned self] done in
-//            self.cancellable = self.mockManager.fetchData(self.mockRequestUrl)
-//                .sinkToResult({ result in
-//                    result.isExpectSuccessToEqual(Data.stubData)
-//                    done()
-//                })
-//        }
-//    }
-//
-//    func testMappedObject() throws {
-//        let dataFromFile = Data.load("MockResponseResult.json")
-//        let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
-//                                                        from: dataFromFile)
-//
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
-//        waitUntil{ [unowned self] done in
-//            self.cancellable = self.mockManager.fetchMovies(self.mockRequestUrl)
-//                .sinkToResult({ result in
-//                    result.isExpectSuccessToEqual(moviesFromData)
-//                    done()
-//                })
-//        }
-//    }
-//
-//    func testImageSuccessfulConversion() throws {
-//        let uiImage = UIImage(named: "StubImage")
-//        guard let imageData = uiImage?.pngData() else {
-//            throw APIError.imageConversion(mockRequestUrl)
-//        }
-//
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
-//        waitUntil{ [unowned self] done in
-//            cancellable = self.mockManager.fetchImage(mockRequestUrl)
-//                .sinkToResult({ result in
-//                    result.isExpectSuccess()
-//                    done()
-//                })
-//        }
-//    }
-//
-//    func testImageFailureConversion() throws {
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(Data.stubData))
-//        waitUntil { [unowned self] done in
-//            cancellable = self.mockManager.fetchImage(mockRequestUrl)
-//                .sinkToResult({ [unowned self] result in
-//                    result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
-//                    done()
-//                })
-//        }
-//    }
-//
-//    func testFailureResponses() throws {
-//        let errorCodes = [300,404,500]
-//        for errorCode in errorCodes {
-//            try testFailureResponse(errorCode: errorCode)
-//        }
-//    }
-//
-//    func testFailureResponse(errorCode: APICode) throws {
-//        let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
-//        waitUntil { [unowned self] done in
-//            cancellable = self.mockManager.fetchData(mockRequestUrl)
-//                .sinkToResult({ result in
-//                    result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
-//                    done()
-//                })
-//        }
-//    }
-//
-//    func testFailureResponse() throws {
-//        let stubErrorCode = 0
-//        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(false), apiCode: stubErrorCode)
-//        waitUntil { [unowned self] done in
-//            cancellable = self.mockManager.fetchData(mockRequestUrl)
-//                .sinkToResult({ result in
-//                    result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
-//                    done()
-//                })
-//        }
-//    }
-
 }
