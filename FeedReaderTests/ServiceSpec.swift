@@ -32,7 +32,7 @@ class ServiceSpec: QuickSpec {
                     result = .success(responseData)
                 }
                 
-                it("it should get succesful response match to data", closure: {
+                it("it should get succesful response match to data"){
                     MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
                     waitUntil{ done in
                         cancellable = mockManager.fetchData(mockRequestUrl)
@@ -41,7 +41,7 @@ class ServiceSpec: QuickSpec {
                                 done()
                         })
                     }
-                })
+                }
                 
             }
             
@@ -51,7 +51,7 @@ class ServiceSpec: QuickSpec {
                     dataFromFile = Data.load("MockResponseResult.json")
                 }
                 
-                it("it should get succesfull response match mapped object", closure:{
+                it("it should get succesfull response match mapped object"){
                     let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                                     from: dataFromFile)
                     MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
@@ -62,7 +62,29 @@ class ServiceSpec: QuickSpec {
                                         done()
                                     })
                             }
-                })
+                }
+            }
+            
+            var uiImage: UIImage!
+            context("given image") {
+                beforeEach {
+                    uiImage = UIImage(named: "StubImage")
+                }
+                
+                it("it should get succesful response") {
+                    guard let imageData = uiImage?.pngData() else {
+                        throw APIError.imageConversion(mockRequestUrl)
+                    }
+            
+                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
+                    waitUntil{ done in
+                        cancellable = mockManager.fetchImage(mockRequestUrl)
+                            .sinkToResult({ result in
+                                result.isExpectSuccess()
+                                done()
+                            })
+                    }
+                }
             }
             
             afterEach {
