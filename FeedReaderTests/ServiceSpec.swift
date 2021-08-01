@@ -71,7 +71,7 @@ class ServiceSpec: QuickSpec {
                     uiImage = UIImage(named: "StubImage")
                 }
                 
-                it("it should get succesful response") {
+                it("it should get succesful response on Type UIImage") {
                     guard let imageData = uiImage?.pngData() else {
                         throw APIError.imageConversion(mockRequestUrl)
                     }
@@ -80,7 +80,7 @@ class ServiceSpec: QuickSpec {
                     waitUntil{ done in
                         cancellable = mockManager.fetchImage(mockRequestUrl)
                             .sinkToResult({ result in
-                                result.isExpectSuccess()
+                                result.isExpectSuccessType(UIImage())
                                 done()
                             })
                     }
@@ -106,7 +106,6 @@ class ServiceSpec: QuickSpec {
             }
             
             let errorCodes: Array<Int> = [300,404,500]
-            
             errorCodes.forEach { errorCode in
                 context("given failure error code \(errorCode)"){
                     

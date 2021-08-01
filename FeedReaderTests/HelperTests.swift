@@ -7,6 +7,7 @@
 
 import Foundation
 import Nimble
+import UIKit
 
 extension Data{
     static func load(_ filename: String) -> Data {
@@ -39,12 +40,12 @@ extension Result where Success: Equatable {
 }
 
 extension Result {
-    func isExpectSuccess(file: StaticString = #file, line: UInt = #line) {
+    func isExpectSuccessType<T>(_ type: T,file: StaticString = #file, line: UInt = #line) {
         switch self {
         case let .failure(error):
             fail("Unexpected error: \(error)", file: file, line: line)
-        case .success:
-            _ = succeed()
+        case let .success(resultValue):
+            expect(resultValue).to(beAnInstanceOf(T.self))
             break
         }
     }
