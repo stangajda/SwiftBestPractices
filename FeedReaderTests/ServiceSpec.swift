@@ -25,14 +25,14 @@ class ServiceSpec: QuickSpec {
             var result: Result<Data, Swift.Error>!
             let mockRequestUrl: URLRequest = MockAPIRequest["stubPath"].get()
             
-            context("given succesful data in service") {
+            context("given successful data in service") {
                 
                 beforeEach {
                     responseData = Data.stubData
                     result = .success(responseData)
                 }
                 
-                it("it should get succesful response match to data"){
+                it("it should get successful response match to data"){
                     MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
                     waitUntil{ done in
                         cancellable = mockManager.fetchData(mockRequestUrl)
@@ -46,12 +46,12 @@ class ServiceSpec: QuickSpec {
             }
             
             var dataFromFile: Data!
-            context("given succesful json data") {
+            context("given successful json data") {
                 beforeEach {
                     dataFromFile = Data.load("MockResponseResult.json")
                 }
                 
-                it("it should get succesfull response match mapped object"){
+                it("it should get successful response match mapped object"){
                     let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
                                                                     from: dataFromFile)
                     MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
@@ -125,7 +125,7 @@ class ServiceSpec: QuickSpec {
             
             var stubErrorCode: Int!
             var stubResult: Result<Bool, Swift.Error>!
-            context("given succes response with error code 0"){
+            context("given successful response with error code 0"){
                 beforeEach {
                     stubErrorCode = 0
                     stubResult = .success(false)
