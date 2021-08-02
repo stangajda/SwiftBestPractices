@@ -12,15 +12,15 @@ class FDRMovieDetailViewModel: ObservableObject{
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
     let service = FDRMovieDetailService()
-    private var cancellableStorage = Set<AnyCancellable>()
+    private var cancellable: AnyCancellable?
     
     typealias T = FDRMovieDetailViewModel.MovieDetailItem
     
     init(movieList: FDRMoviesListViewModel.MovieItem){
         self.movieList = movieList
-        self.publishersSystem(state)
-        .assignNoRetain(to: \.state, on: self)
-        .store(in: &cancellableStorage)
+        cancellable = self.publishersSystem(state)
+                        .assignNoRetain(to: \.state, on: self)
+        
     }
     
     deinit {
@@ -28,7 +28,7 @@ class FDRMovieDetailViewModel: ObservableObject{
     }
     
     func cancel() {
-        cancellableStorage.removeAll()
+        cancellable?.cancel()
     }
 }
 

@@ -16,8 +16,8 @@ class FDRImageViewModel: ObservableObject{
     private var cache: FDRImageCache?
     var imageUrl: String
     let service = FDRImageService()
-    private var cancellableStorage = Set<AnyCancellable>()
     typealias T = FDRImageViewModel.ImageItem
+    private var cancellable: AnyCancellable?
     
     init(imageURL: String, cache: FDRImageCache? = nil){
         self.cache = cache
@@ -32,9 +32,8 @@ class FDRImageViewModel: ObservableObject{
             return
         }
         
-        self.publishersSystem(state)
-        .assignNoRetain(to: \.state, on: self)
-        .store(in: &cancellableStorage)
+        cancellable = self.publishersSystem(state)
+                        .assignNoRetain(to: \.state, on: self)
     }
     
     deinit {
@@ -42,7 +41,7 @@ class FDRImageViewModel: ObservableObject{
     }
     
     func cancel() {
-        cancellableStorage.removeAll()
+        cancellable?.cancel()
     }
     
 }
