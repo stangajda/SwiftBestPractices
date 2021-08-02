@@ -10,7 +10,7 @@ import Combine
 import Resolver
 
 class FDRMoviesListViewModel: ObservableObject{
-    @Published private(set) var state = State.start
+    @Published private(set) var state = State.start()
     var input = PassthroughSubject<Action, Never>()
     typealias T = Array<FDRMoviesListViewModel.MovieItem>
     private let service = FDRMovieListService()

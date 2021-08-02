@@ -10,7 +10,7 @@ import SwiftUI
 import Resolver
 
 class FDRImageViewModel: ObservableObject{
-    @Published private(set) var state = State.loading
+    @Published private(set) var state = State.loading()
     var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?

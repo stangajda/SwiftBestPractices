@@ -13,7 +13,7 @@ extension FDRLoadable {
         case .start:
             switch action {
             case .onAppear:
-                return .loading
+                return .loading()
             default:
                 return state
             }

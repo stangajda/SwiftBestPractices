@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 class FDRMovieDetailViewModel: ObservableObject{
-    @Published private(set) var state: State = State.start
+    @Published private(set) var state: State = State.start()
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
     let service = FDRMovieDetailService()

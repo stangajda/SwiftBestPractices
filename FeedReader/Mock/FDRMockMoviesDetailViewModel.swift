@@ -8,7 +8,7 @@
 import Foundation
 
 class FDRMockMovieDetailViewModel: FDRMovieDetailViewModel{
-    var internalState: State = .start
+    var internalState: State = .start()
     enum MockState {
         case loading
         case loaded
@@ -32,7 +32,7 @@ class FDRMockMovieDetailViewModel: FDRMovieDetailViewModel{
         let error = NSError(domain: "AnyDomain", code: 404, userInfo: nil)
         switch state {
         case .loading:
-            internalState = .loading
+            internalState = .loading()
         case .loaded:
             internalState = .loaded(mockItems)
         case .failedLoaded:

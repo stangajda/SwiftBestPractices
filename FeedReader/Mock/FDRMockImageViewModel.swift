@@ -16,7 +16,7 @@ class FDRMockImageViewModel: FDRImageViewModel{
     }
     override var state: State{
         guard let image = image else {
-            return .start
+            return .start()
         }
         return .loaded(ImageItem(image))
     }
