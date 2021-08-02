@@ -20,9 +20,6 @@ class FDRServiceSpec: QuickSpec {
             var cancellable: AnyCancellable?
             Resolver.registerMockServices()
             let mockManager: FDRService = FDRService()
-            let mockMovieListManager: FDRMovieListService = FDRMovieListService()
-//            let mockMovieDetailManager: FDRMovieDetailService = FDRMovieDetailService()
-            let mockImageManager: FDRImageService = FDRImageService()
             var responseData = Data.stubData
             
             var result: Result<Data, Swift.Error>!
@@ -46,66 +43,6 @@ class FDRServiceSpec: QuickSpec {
                     }
                 }
                 
-            }
-            
-            var dataFromFile: Data!
-            context("given successful json data") {
-                beforeEach {
-                    dataFromFile = Data.load("FDRMockResponseResult.json")
-                }
-                
-                it("it should get successful response match mapped object"){
-                    let moviesFromData: FDRMovies = try JSONDecoder().decode(FDRMovies.self,
-                                                                    from: dataFromFile)
-                    FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
-                            waitUntil{ done in
-                                cancellable = mockMovieListManager.fetchMovies(mockRequestUrl)
-                                    .sinkToResult({ result in
-                                        result.isExpectSuccessToEqual(moviesFromData)
-                                        done()
-                                    })
-                            }
-                }
-            }
-            
-            var uiImage: UIImage!
-            context("given succesful image") {
-                beforeEach {
-                    uiImage = UIImage(named: "StubImage")
-                }
-                
-                it("it should get succesful response on Type UIImage") {
-                    guard let imageData = uiImage?.pngData() else {
-                        throw FDRAPIError.imageConversion(mockRequestUrl)
-                    }
-            
-                    FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
-                    waitUntil{ done in
-                        cancellable = mockImageManager.fetchImage(mockRequestUrl)
-                            .sinkToResult({ result in
-                                result.isExpectSuccessType(UIImage())
-                                done()
-                            })
-                    }
-                }
-            }
-            
-            var stubData:Data!
-            context("given failure not image stubdata"){
-                beforeEach {
-                    stubData = Data.stubData
-                }
-                
-                it("it should get failure response match error"){
-                    FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(stubData))
-                    waitUntil { done in
-                        cancellable = mockImageManager.fetchImage(mockRequestUrl)
-                            .sinkToResult({ result in
-                                result.isExpectFailedToEqual(FDRAPIError.imageConversion(mockRequestUrl).errorDescription)
-                                done()
-                            })
-                    }
-                }
             }
             
             let errorCodes: Array<Int> = [300,404,500]
