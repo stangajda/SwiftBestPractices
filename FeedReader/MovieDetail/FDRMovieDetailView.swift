@@ -94,7 +94,7 @@ private extension FDRMovieDetailView {
 }
 
 #if DEBUG
-struct MovieDetailView_Previews: PreviewProvider {
+struct FDRMovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {

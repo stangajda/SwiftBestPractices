@@ -23,8 +23,10 @@ struct FDRIconValueView: View {
     }
 }
 
+#if DEBUG
 struct FDRIconValueView_Previews: PreviewProvider {
     static var previews: some View {
         FDRIconValueView(iconName: "banknote", textValue: "17,000,000")
     }
 }
+#endif

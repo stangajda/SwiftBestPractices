@@ -34,3 +34,11 @@ struct FDRStarsRatingView: View {
         .foregroundColor(.gray)
     }
 }
+
+#if DEBUG
+struct DRStarsRatingView_Previews: PreviewProvider {
+    static var previews: some View {
+        FDRStarsRatingView(rating: 2.7, maxRating: 5)
+    }
+}
+#endif
