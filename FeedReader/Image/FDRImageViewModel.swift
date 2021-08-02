@@ -15,7 +15,7 @@ class FDRImageViewModel: ObservableObject{
     private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?
     var imageUrl: String
-    let service = FDRService()
+    let service = FDRImageService()
     private var cancellableStorage = Set<AnyCancellable>()
     typealias T = FDRImageViewModel.ImageItem
     

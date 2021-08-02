@@ -20,6 +20,9 @@ class FDRServiceSpec: QuickSpec {
             var cancellable: AnyCancellable?
             Resolver.registerMockServices()
             let mockManager: FDRService = FDRService()
+            let mockMovieListManager: FDRMovieListService = FDRMovieListService()
+//            let mockMovieDetailManager: FDRMovieDetailService = FDRMovieDetailService()
+            let mockImageManager: FDRImageService = FDRImageService()
             var responseData = Data.stubData
             
             var result: Result<Data, Swift.Error>!
@@ -56,7 +59,7 @@ class FDRServiceSpec: QuickSpec {
                                                                     from: dataFromFile)
                     FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
                             waitUntil{ done in
-                                cancellable = mockManager.fetchMovies(mockRequestUrl)
+                                cancellable = mockMovieListManager.fetchMovies(mockRequestUrl)
                                     .sinkToResult({ result in
                                         result.isExpectSuccessToEqual(moviesFromData)
                                         done()
@@ -78,7 +81,7 @@ class FDRServiceSpec: QuickSpec {
             
                     FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
                     waitUntil{ done in
-                        cancellable = mockManager.fetchImage(mockRequestUrl)
+                        cancellable = mockImageManager.fetchImage(mockRequestUrl)
                             .sinkToResult({ result in
                                 result.isExpectSuccessType(UIImage())
                                 done()
@@ -96,7 +99,7 @@ class FDRServiceSpec: QuickSpec {
                 it("it should get failure response match error"){
                     FDRMockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(stubData))
                     waitUntil { done in
-                        cancellable = mockManager.fetchImage(mockRequestUrl)
+                        cancellable = mockImageManager.fetchImage(mockRequestUrl)
                             .sinkToResult({ result in
                                 result.isExpectFailedToEqual(FDRAPIError.imageConversion(mockRequestUrl).errorDescription)
                                 done()

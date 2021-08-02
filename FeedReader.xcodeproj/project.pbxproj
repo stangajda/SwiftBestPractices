@@ -43,6 +43,12 @@
 		CC456E55268FD9E600FF2113 /* FDRExtensionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* FDRExtensionsService.swift */; };
 		CC45F75126B32A3F0050B77C /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = CC45F75026B32A3F0050B77C /* Quick */; };
 		CC45F75326B32C3B0050B77C /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = CC45F75226B32C3B0050B77C /* Nimble */; };
+		CC4E706826B83BAA00B3288D /* FDRImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706726B83BAA00B3288D /* FDRImageService.swift */; };
+		CC4E706A26B83BC800B3288D /* FDRMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706926B83BC800B3288D /* FDRMovieListService.swift */; };
+		CC4E706C26B83BFE00B3288D /* FDRMovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706B26B83BFE00B3288D /* FDRMovieDetailService.swift */; };
+		CC4E706D26B840DC00B3288D /* FDRMovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706B26B83BFE00B3288D /* FDRMovieDetailService.swift */; };
+		CC4E706E26B840EA00B3288D /* FDRImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706726B83BAA00B3288D /* FDRImageService.swift */; };
+		CC4E706F26B840EF00B3288D /* FDRMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E706926B83BC800B3288D /* FDRMovieListService.swift */; };
 		CC56950726812DE70055C07C /* FDRMockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* FDRMockResponseResult.json */; };
 		CC569508268135E70055C07C /* FDRMockResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* FDRMockResponseResult.json */; };
 		CC56950B2682069A0055C07C /* FDRHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* FDRHelperTests.swift */; };
@@ -111,6 +117,9 @@
 		CC3EC7B726A6040A005D71A9 /* FDRLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRLoadable.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* FDRAPIRequestInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRAPIRequestInterface.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* FDRExtensionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FDRExtensionsService.swift; path = FeedReader/Extensions/FDRExtensionsService.swift; sourceTree = SOURCE_ROOT; };
+		CC4E706726B83BAA00B3288D /* FDRImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRImageService.swift; sourceTree = "<group>"; };
+		CC4E706926B83BC800B3288D /* FDRMovieListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRMovieListService.swift; sourceTree = "<group>"; };
+		CC4E706B26B83BFE00B3288D /* FDRMovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRMovieDetailService.swift; sourceTree = "<group>"; };
 		CC5695012680ED070055C07C /* FDRMockResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FDRMockResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* FDRHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRHelperTests.swift; sourceTree = "<group>"; };
 		CCBF629726B0806100BB0592 /* FDRStarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRStarsRatingView.swift; sourceTree = "<group>"; };
@@ -184,6 +193,9 @@
 		CC351E28269DC1E80037DB34 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				CC4E706926B83BC800B3288D /* FDRMovieListService.swift */,
+				CC4E706B26B83BFE00B3288D /* FDRMovieDetailService.swift */,
+				CC4E706726B83BAA00B3288D /* FDRImageService.swift */,
 				CCF3A8E3267BE02B00CB5765 /* FDRService.swift */,
 			);
 			path = Service;
@@ -448,12 +460,15 @@
 				CCF3A8E4267BE02B00CB5765 /* FDRService.swift in Sources */,
 				CC35563126AAFCF1002D0B07 /* FDRApp+Injection.swift in Sources */,
 				CC35563226AB018B002D0B07 /* FDRMockURLProtocol.swift in Sources */,
+				CC4E706826B83BAA00B3288D /* FDRImageService.swift in Sources */,
 				CCC199F526B1A77C00134803 /* FDROverlayTextView.swift in Sources */,
 				CC351E1B269BA2070037DB34 /* FDRMovieRowView.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* FDRExtensionsService.swift in Sources */,
 				CC351E1126979BBF0037DB34 /* FDRConfig.swift in Sources */,
 				CCBF629C26B0C23A00BB0592 /* FDRIconValueView.swift in Sources */,
+				CC4E706C26B83BFE00B3288D /* FDRMovieDetailService.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* FDRHelper.swift in Sources */,
+				CC4E706A26B83BC800B3288D /* FDRMovieListService.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* FDRContentView.swift in Sources */,
 				CC351E37269F1ABE0037DB34 /* FDRMovieDetailViewModel.swift in Sources */,
 				CC456E53268FB7F600FF2113 /* FDRAPIRequestInterface.swift in Sources */,
@@ -479,15 +494,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCF3A8EA267BFCFF00CB5765 /* FDRService.swift in Sources */,
+				CC4E706F26B840EF00B3288D /* FDRMovieListService.swift in Sources */,
 				CCF3A8ED267C1B5000CB5765 /* FDRMockURLProtocol.swift in Sources */,
 				CC351E31269DC4C20037DB34 /* FDRMovies.swift in Sources */,
 				CC351E32269DC4D00037DB34 /* FDRMovieDetail.swift in Sources */,
 				CCF3A8CB267A8ED300CB5765 /* FDRServiceSpec.swift in Sources */,
+				CC4E706E26B840EA00B3288D /* FDRImageService.swift in Sources */,
 				CC456E52268FB79900FF2113 /* FDRAPIRequestInterface.swift in Sources */,
 				CC351E2C269DC2D80037DB34 /* FDRExtensionsService.swift in Sources */,
 				CC351E33269DC4D60037DB34 /* FDRHelper.swift in Sources */,
 				CC35563426AB03AB002D0B07 /* FDRResolver+Tests.swift in Sources */,
 				CC351E13269A580F0037DB34 /* FDRConfig.swift in Sources */,
+				CC4E706D26B840DC00B3288D /* FDRMovieDetailService.swift in Sources */,
 				CC56950B2682069A0055C07C /* FDRHelperTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

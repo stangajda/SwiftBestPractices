@@ -6,20 +6,12 @@
 //
 
 import Combine
-import UIKit
 import Resolver
+import UIKit
 
 struct FDRService{
     @Injected var session: URLSession
     var cancellable: AnyCancellable?
-    
-    func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
-        fetchData(request)
-            .tryMap { data in
-                try data.toImage(request)
-            }
-            .eraseToAnyPublisher()
-    }
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)
@@ -35,12 +27,5 @@ struct FDRService{
             .mapUnderlyingError()
             .eraseToAnyPublisher()
     }
-    
-    func fetchMovies(_ request: URLRequest) -> AnyPublisher<FDRMovies, Error>{
-        return self.fetchData(request)
-    }
-    
-    func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<FDRMovieDetail, Error>{
-        return self.fetchData(request)
-    }
+
 }

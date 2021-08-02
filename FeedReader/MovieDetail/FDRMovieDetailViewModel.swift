@@ -11,7 +11,7 @@ class FDRMovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State = State.start
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
-    let service = FDRService()
+    let service = FDRMovieDetailService()
     private var cancellableStorage = Set<AnyCancellable>()
     
     typealias T = FDRMovieDetailViewModel.MovieDetailItem
