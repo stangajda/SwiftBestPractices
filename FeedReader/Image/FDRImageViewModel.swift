@@ -10,7 +10,7 @@ import SwiftUI
 import Resolver
 
 class FDRImageViewModel: ObservableObject{
-    @Published private(set) var state = State.loading()
+    @Published private(set) var state: FDRLoadableEnums<T>.State
     var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?
@@ -20,6 +20,7 @@ class FDRImageViewModel: ObservableObject{
     private var cancellable: AnyCancellable?
     
     init(imageURL: String, cache: FDRImageCache? = nil){
+        state = State.loading(imageURL)
         self.cache = cache
         self.imageUrl = imageURL
         load()

@@ -10,10 +10,10 @@ import Foundation
 extension FDRLoadable {
     func reduce(_ state: State, _ action: Action) -> State {
         switch state {
-        case .start:
+        case .start(let id):
             switch action {
             case .onAppear:
-                return .loading()
+                return .loading(id)
             default:
                 return state
             }

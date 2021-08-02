@@ -9,8 +9,8 @@ import Foundation
 
 struct FDRLoadableEnums<T>{
     enum State {
-        case start(T? = nil)
-        case loading(T? = nil)
+        case start(String? = nil)
+        case loading(String? = nil)
         case loaded(T)
         case failedLoaded(Error)
     }

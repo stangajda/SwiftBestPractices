@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 class FDRMovieDetailViewModel: ObservableObject{
-    @Published private(set) var state: State = State.start()
+    @Published private(set) var state: State
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
     let service = FDRMovieDetailService()
@@ -17,9 +17,10 @@ class FDRMovieDetailViewModel: ObservableObject{
     typealias T = FDRMovieDetailViewModel.MovieDetailItem
     
     init(movieList: FDRMoviesListViewModel.MovieItem){
+        state = State.start(String(movieList.id))
         self.movieList = movieList
         cancellable = self.publishersSystem(state)
-                        .assignNoRetain(to: \.state, on: self)
+            .assignNoRetain(to: \.state, on: self)
         
     }
     
@@ -34,7 +35,7 @@ class FDRMovieDetailViewModel: ObservableObject{
 
 extension FDRMovieDetailViewModel: FDRLoadable {
     var fetch: AnyPublisher<T, Error> {
-        let request = FDRAPIRequest["movie/" + String(self.movieList.id)]
+        let request = FDRAPIRequest["movie/" + String(movieList.id)]
         return self.service.fetchMovieDetail(request)
             .map { item in
                 MovieDetailItem(item)
