@@ -52,9 +52,9 @@ private extension FDRImageView {
 }
 
 #if DEBUG
-//struct ImageView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ImageView()
-//    }
-//}
+struct FDRImageView_Previews: PreviewProvider {
+    static var previews: some View {
+        FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail))
+    }
+}
 #endif
