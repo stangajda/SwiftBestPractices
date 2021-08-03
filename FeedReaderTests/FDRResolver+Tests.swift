@@ -14,5 +14,6 @@ extension Resolver {
         root = Resolver.mock
         defaultScope = .application
         Resolver.mock.register { URLSession.mockURLSession }
+        Resolver.mock.register { FDRService() as FDRServiceInterface}
     }
 }
