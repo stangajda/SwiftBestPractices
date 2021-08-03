@@ -13,6 +13,9 @@ extension Resolver: ResolverRegistering {
     defaultScope = .graph
     register { URLSession.shared }
     register { FDRMoviesListViewModel() as FDRMoviesListViewModel}
+    register { FDRMovieListService() as FDRMovieListServiceInterface}
+    register { FDRMovieDetailService() as FDRMovieDetailServiceInterface}
+    register { FDRImageService() as FDRImageServiceInterface}
     register(name:.itemList){ _, args in
         FDRImageViewModel(imageURL: args("imageURL"), cache: args("cache"))
     }

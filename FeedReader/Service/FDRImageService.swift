@@ -9,11 +9,11 @@ import Foundation
 import Combine
 import UIKit
 
-protocol FDRImageServiceInteface {
+protocol FDRImageServiceInterface {
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error>
 }
 
-struct FDRImageService: FDRImageServiceInteface{
+struct FDRImageService: FDRImageServiceInterface{
     let service: FDRServiceInterface = FDRService()
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         service.fetchData(request)

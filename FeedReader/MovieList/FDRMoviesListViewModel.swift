@@ -11,10 +11,11 @@ import Resolver
 
 class FDRMoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start()
+    @Injected private var service: FDRMovieListServiceInterface
+    
     var input = PassthroughSubject<Action, Never>()
     typealias T = Array<FDRMoviesListViewModel.MovieItem>
     typealias U = Any
-    private let service: FDRMovieListServiceInterface = FDRMovieListService()
     private var cancellable: AnyCancellable?
     
     init() {

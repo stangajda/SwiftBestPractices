@@ -6,12 +6,15 @@
 //
 import Foundation
 import Combine
+import Resolver
 
 class FDRMovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State
+    @Injected var service: FDRMovieDetailServiceInterface
+    
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
-    let service: FDRMovieDetailServiceInterface = FDRMovieDetailService()
+    
     private var cancellable: AnyCancellable?
     
     typealias T = FDRMovieDetailViewModel.MovieDetailItem
