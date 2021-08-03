@@ -8,7 +8,7 @@
 import Foundation
 
 extension FDRLoadable {
-    static func reduce(_ state: State, _ action: Action) -> State {
+    func reduce(_ state: State, _ action: Action) -> State {
         switch state {
         case .start(let id):
             switch action {

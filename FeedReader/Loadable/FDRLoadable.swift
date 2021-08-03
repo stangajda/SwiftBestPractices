@@ -21,7 +21,7 @@ extension FDRLoadable {
     func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
             initial: state,
-            reduce: Self.reduce,
+            reduce: self.reduce,
             scheduler: RunLoop.main,
             feedbacks: [
                 self.onStateChanged(),
