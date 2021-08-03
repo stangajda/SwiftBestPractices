@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct FDRMockAPIRequest: FDRAPIRequestInterface {
+struct FDRMockAPIRequest: FDRAPIRequestProtocol {
     static var baseURLString: String { "https://any.test.com/" }
     static var prefix: String { "stubPrefix" }
     static var type: String { "stubTypeI" }

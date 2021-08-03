@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol FDRAPIRequestInterface {
+protocol FDRAPIRequestProtocol {
     static var baseURLString: String { get }
     static var prefix: String { get }
     static var apiKey: String { get }
@@ -37,7 +37,7 @@ extension FDRAPIError: LocalizedError {
 
 //https://api.themoviedb.org/3/trending/movie/week?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
 
-extension FDRAPIRequestInterface {
+extension FDRAPIRequestProtocol {
     static subscript(_ path: String) -> URLRequest{
         guard var url = URL(string: Self.baseURLString) else {
             fatalError("invalid URL")
