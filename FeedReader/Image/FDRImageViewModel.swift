@@ -13,12 +13,14 @@ class FDRImageViewModel: ObservableObject{
     @Published private(set) var state: FDRLoadableEnums<T,U>.State
     @Injected var service: FDRImageServiceInterface
     
+    typealias T = FDRImageViewModel.ImageItem
+    typealias U = String
+    
     var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?
     var imageUrl: String
-    typealias T = FDRImageViewModel.ImageItem
-    typealias U = String
+    
     private var cancellable: AnyCancellable?
     
     init(imageURL: String, cache: FDRImageCache? = nil){

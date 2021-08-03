@@ -13,9 +13,11 @@ class FDRMoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start()
     @Injected private var service: FDRMovieListServiceInterface
     
-    var input = PassthroughSubject<Action, Never>()
     typealias T = Array<FDRMoviesListViewModel.MovieItem>
     typealias U = Any
+    
+    var input = PassthroughSubject<Action, Never>()
+    
     private var cancellable: AnyCancellable?
     
     init() {

@@ -12,13 +12,13 @@ class FDRMovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State
     @Injected var service: FDRMovieDetailServiceInterface
     
+    typealias T = FDRMovieDetailViewModel.MovieDetailItem
+    typealias U = Int
+    
     var input = PassthroughSubject<Action, Never>()
     var movieList: FDRMoviesListViewModel.MovieItem
     
     private var cancellable: AnyCancellable?
-    
-    typealias T = FDRMovieDetailViewModel.MovieDetailItem
-    typealias U = Int
     
     init(movieList: FDRMoviesListViewModel.MovieItem){
         state = State.start(movieList.id)
