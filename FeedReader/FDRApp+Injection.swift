@@ -16,6 +16,7 @@ extension Resolver: ResolverRegistering {
     register { FDRMovieListService() as FDRMovieListServiceInterface}
     register { FDRMovieDetailService() as FDRMovieDetailServiceInterface}
     register { FDRImageService() as FDRImageServiceInterface}
+    register { FDRService() as FDRServiceInterface}
     register(name:.itemList){ _, args in
         FDRImageViewModel(imageURL: args("imageURL"), cache: args("cache"))
     }
