@@ -49,7 +49,7 @@ extension FDRAPIRequestInterface {
         guard let url = urlComponents?.url else {
             fatalError("invalid URL")
         }
-        return URLRequest(url: url)
+        return URLRequest(url: url).get()
     }
 }
 
