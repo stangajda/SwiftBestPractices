@@ -9,8 +9,12 @@ import Foundation
 import Combine
 import UIKit
 
-struct FDRImageService {
-    let service = FDRService()
+protocol FDRImageServiceInteface {
+    func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error>
+}
+
+struct FDRImageService: FDRImageServiceInteface{
+    let service: FDRServiceInterface = FDRService()
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         service.fetchData(request)
             .tryMap { data in

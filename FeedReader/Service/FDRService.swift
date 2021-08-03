@@ -9,7 +9,12 @@ import Combine
 import Resolver
 import UIKit
 
-struct FDRService{
+protocol FDRServiceInterface {
+    func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error>
+    func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error>
+}
+
+struct FDRService: FDRServiceInterface{
     @Injected var session: URLSession
     var cancellable: AnyCancellable?
     

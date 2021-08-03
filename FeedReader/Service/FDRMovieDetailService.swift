@@ -8,8 +8,12 @@
 import Foundation
 import Combine
 
-struct FDRMovieDetailService{
-    let service = FDRService()
+protocol FDRMovieDetailServiceInterface {
+    func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<FDRMovieDetail, Error>
+}
+
+struct FDRMovieDetailService: FDRMovieDetailServiceInterface{
+    let service: FDRServiceInterface = FDRService()
     func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<FDRMovieDetail, Error>{
         return self.service.fetchData(request)
     }
