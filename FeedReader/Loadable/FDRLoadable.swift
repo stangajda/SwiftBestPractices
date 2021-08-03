@@ -10,13 +10,14 @@ import Combine
 
 protocol FDRLoadable {
     associatedtype T
+    associatedtype U
     var input: PassthroughSubject<Action, Never> { get }
     var fetch: AnyPublisher<T, Error> { get }
 }
 
 extension FDRLoadable {
-    typealias State = FDRLoadableEnums<T>.State
-    typealias Action = FDRLoadableEnums<T>.Action
+    typealias State = FDRLoadableEnums<T,U>.State
+    typealias Action = FDRLoadableEnums<T,U>.Action
     
     func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(

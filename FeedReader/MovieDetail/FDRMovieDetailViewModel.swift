@@ -15,9 +15,10 @@ class FDRMovieDetailViewModel: ObservableObject{
     private var cancellable: AnyCancellable?
     
     typealias T = FDRMovieDetailViewModel.MovieDetailItem
+    typealias U = Int
     
     init(movieList: FDRMoviesListViewModel.MovieItem){
-        state = State.start(String(movieList.id))
+        state = State.start(movieList.id)
         self.movieList = movieList
         cancellable = self.publishersSystem(state)
             .assignNoRetain(to: \.state, on: self)

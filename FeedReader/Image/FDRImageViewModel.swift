@@ -10,13 +10,14 @@ import SwiftUI
 import Resolver
 
 class FDRImageViewModel: ObservableObject{
-    @Published private(set) var state: FDRLoadableEnums<T>.State
+    @Published private(set) var state: FDRLoadableEnums<T,U>.State
     var input = PassthroughSubject<Action, Never>()
     private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?
     var imageUrl: String
     let service: FDRImageServiceInteface = FDRImageService()
     typealias T = FDRImageViewModel.ImageItem
+    typealias U = String
     private var cancellable: AnyCancellable?
     
     init(imageURL: String, cache: FDRImageCache? = nil){
