@@ -15,7 +15,7 @@ struct FDRStarsVotedView: View {
     var body: some View {
         HStack(){
             FDRStarsRatingView(rating: rating, maxRating: maxRating)
-                .frame(maxWidth: 100, maxHeight: 20.0, alignment: .leading)
+                .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
             Text("(\(voteCount))")
         }
     }

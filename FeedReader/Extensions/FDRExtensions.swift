@@ -6,3 +6,9 @@
 //
 
 import Foundation
+
+extension Double{
+    func halfDivide() -> Double{
+        return Double(self/2)
+    }
+}

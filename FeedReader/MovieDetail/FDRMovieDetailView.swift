@@ -72,7 +72,7 @@ private extension FDRMovieDetailView {
                     .padding()
                 FDRImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
-                FDRStarsVotedView(rating: 3.5, voteCount: 412)
+                FDRStarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
                     .padding(.bottom)
                 FDRIconValueView(iconName: "calendar", textValue: "30 July 21")

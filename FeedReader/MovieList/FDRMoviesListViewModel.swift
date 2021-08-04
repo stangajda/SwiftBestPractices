@@ -55,11 +55,14 @@ extension FDRMoviesListViewModel {
         let id: Int
         let title: String
         let poster_path: String
-        
+        let vote_average: Double
+        let vote_count: Int
         init(_ movie: FDRMovie) {
             id = movie.id
             title = movie.title
             poster_path = movie.poster_path
+            vote_average = movie.vote_average.halfDivide()
+            vote_count = movie.vote_count
         }
     }
 }

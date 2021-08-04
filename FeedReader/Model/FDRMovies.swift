@@ -13,8 +13,9 @@ struct FDRMovies: Hashable, Codable{
 struct FDRMovie: Hashable, Codable, Identifiable {
     var id: Int
     var title: String
-    var vote_average: Double
     var poster_path: String
+    var vote_average: Double
+    var vote_count: Int
 }
 
 

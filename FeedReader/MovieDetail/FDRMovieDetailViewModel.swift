@@ -58,12 +58,15 @@ extension FDRMovieDetailViewModel{
         let title: String
         let overview: String
         let backdrop_path: String
-        
+        let vote_average: Double
+        let vote_count: Int
         init(_ movie: FDRMovieDetail) {
             id = movie.id
             title = movie.title
             overview = movie.overview
             backdrop_path = movie.backdrop_path
+            vote_average = movie.vote_average.halfDivide()
+            vote_count = movie.vote_count
         }
     }
 }

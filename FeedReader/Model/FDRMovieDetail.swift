@@ -10,4 +10,6 @@ struct FDRMovieDetail: Codable{
     var title: String
     var overview: String
     var backdrop_path: String
+    var vote_average: Double
+    var vote_count: Int
 }
