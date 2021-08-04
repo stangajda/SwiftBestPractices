@@ -31,6 +31,7 @@ class FDRImageViewModel: ObservableObject{
     
     func load(){
         guard let url = url else {
+            state = .failedLoaded(FDRAPIError.invalidURL)
             return
         }
         
