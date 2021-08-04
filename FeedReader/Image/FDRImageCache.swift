@@ -17,7 +17,13 @@ struct FDRTemporaryImageCache: FDRImageCache {
     
     subscript(_ key: URL) -> UIImage? {
         get { cache.object(forKey: key as NSURL) }
-        set { newValue == nil ? cache.removeObject(forKey: key as NSURL) : cache.setObject(newValue!, forKey: key as NSURL) }
+        set {
+            guard let newValue = newValue else {
+                cache.removeObject(forKey: key as NSURL)
+                return
+            }
+            cache.setObject(newValue, forKey: key as NSURL)
+        }
     }
 }
 
