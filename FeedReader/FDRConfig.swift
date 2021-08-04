@@ -18,3 +18,4 @@ struct FDRAPIRequest: FDRAPIRequestProtocol {
     static var prefix: String { "3" }
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
+

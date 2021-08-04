@@ -72,3 +72,10 @@ private extension Error {
         return nsError.userInfo[NSUnderlyingErrorKey] as? Error
     }
 }
+
+typealias APICode = Int
+typealias APICodes = Range<APICode>
+
+extension APICodes {
+    static let success = 200 ..< 300
+}
