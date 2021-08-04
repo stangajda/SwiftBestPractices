@@ -7,14 +7,14 @@
 
 import Foundation
 
-protocol FDRAPIRequestProtocol {
+protocol FDRAPIUrlProtocol {
     static var baseURL: URL? { get }
     static var imageURL: URL? { get }
     static var prefix: String { get }
     static var apiKey: String { get }
 }
 
-extension FDRAPIRequestProtocol {
+extension FDRAPIUrlProtocol {
     static func getRequest(_ path: String) -> URL?{
         guard var url = Self.baseURL else {
             return nil

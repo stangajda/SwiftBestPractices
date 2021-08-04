@@ -25,7 +25,7 @@ class FDRImageViewModel: ObservableObject{
     init(imagePath: String, cache: FDRImageCache? = nil){
         state = State.loading(imagePath)
         self.cache = cache
-        url = FDRAPIRequest.getImageURL(imagePath)
+        url = FDRAPIUrl.getImageURL(imagePath)
         load()
     }
     
