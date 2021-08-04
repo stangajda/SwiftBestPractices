@@ -37,8 +37,12 @@ class FDRMoviesListViewModel: ObservableObject{
 
 extension FDRMoviesListViewModel: FDRLoadableProtocol{
     var fetch: AnyPublisher<T, Error>{
-        let request = FDRAPIRequest.getRequest("trending/movie/day")
-        return self.service.fetchMovies(request)
+        let url = FDRAPIRequest.getRequest("trending/movie/day")
+        guard let url = url else {
+            return Fail(error: FDRAPIError.invalidURL)
+                .eraseToAnyPublisher()
+        }
+        return self.service.fetchMovies(URLRequest(url: url).get())
             .map { item in
                 item.results.map(MovieItem.init)
             }

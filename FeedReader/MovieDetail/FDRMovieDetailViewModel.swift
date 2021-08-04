@@ -39,8 +39,12 @@ class FDRMovieDetailViewModel: ObservableObject{
 
 extension FDRMovieDetailViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error> {
-        let request = FDRAPIRequest.getRequest("movie/" + String(movieList.id))
-        return self.service.fetchMovieDetail(request)
+        let url = FDRAPIRequest.getRequest("movie/" + String(movieList.id))
+        guard let url = url else {
+            return Fail(error: FDRAPIError.invalidURL)
+                .eraseToAnyPublisher()
+        }
+        return self.service.fetchMovieDetail(URLRequest(url: url).get())
             .map { item in
                 MovieDetailItem(item)
             }

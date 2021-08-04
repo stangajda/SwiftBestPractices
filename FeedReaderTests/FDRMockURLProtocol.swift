@@ -8,8 +8,8 @@
 import Foundation
 
 struct FDRMockAPIRequest: FDRAPIRequestProtocol {
-    static var baseURLString: String { "https://any.test.com/" }
-    static var imageURLString: String { "https://image.test.com/" }
+    static var baseURL: URL? { URL(string:"https://any.test.com/") }
+    static var imageURL: URL? { URL(string: "https://image.test.com/") }
     static var prefix: String { "stubPrefix" }
     static var type: String { "stubTypeI" }
     static var timeWindow: String { "stubTimeWindow" }
