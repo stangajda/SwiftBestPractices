@@ -37,7 +37,7 @@
 		CC3EC7AF26A189AA005D71A9 /* FDRErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* FDRErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* FDRFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* FDRFeedback.swift */; };
 		CC3EC7B526A238D9005D71A9 /* FDRSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B426A238D9005D71A9 /* FDRSystem.swift */; };
-		CC3EC7B826A6040B005D71A9 /* FDRLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B726A6040A005D71A9 /* FDRLoadable.swift */; };
+		CC3EC7B826A6040B005D71A9 /* FDRLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B726A6040A005D71A9 /* FDRLoadableProtocol.swift */; };
 		CC456E52268FB79900FF2113 /* FDRAPIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* FDRAPIRequestProtocol.swift */; };
 		CC456E53268FB7F600FF2113 /* FDRAPIRequestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* FDRAPIRequestProtocol.swift */; };
 		CC456E55268FD9E600FF2113 /* FDRExtensionsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E54268FD9E600FF2113 /* FDRExtensionsService.swift */; };
@@ -116,7 +116,7 @@
 		CC3EC7AE26A189AA005D71A9 /* FDRErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* FDRFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRFeedback.swift; sourceTree = "<group>"; };
 		CC3EC7B426A238D9005D71A9 /* FDRSystem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRSystem.swift; sourceTree = "<group>"; };
-		CC3EC7B726A6040A005D71A9 /* FDRLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRLoadable.swift; sourceTree = "<group>"; };
+		CC3EC7B726A6040A005D71A9 /* FDRLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRLoadableProtocol.swift; sourceTree = "<group>"; };
 		CC456E51268FB79900FF2113 /* FDRAPIRequestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRAPIRequestProtocol.swift; sourceTree = "<group>"; };
 		CC456E54268FD9E600FF2113 /* FDRExtensionsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FDRExtensionsService.swift; path = FeedReader/Extensions/FDRExtensionsService.swift; sourceTree = SOURCE_ROOT; };
 		CC4E706726B83BAA00B3288D /* FDRImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRImageService.swift; sourceTree = "<group>"; };
@@ -274,7 +274,7 @@
 		CC3EC7B626A603C6005D71A9 /* Loadable */ = {
 			isa = PBXGroup;
 			children = (
-				CC3EC7B726A6040A005D71A9 /* FDRLoadable.swift */,
+				CC3EC7B726A6040A005D71A9 /* FDRLoadableProtocol.swift */,
 				CCCA021F26A953B90056D018 /* FDRLoadableEnums.swift */,
 				CCCA022126A9740A0056D018 /* FDRLoadableReduce.swift */,
 			);
@@ -483,7 +483,7 @@
 				CC351E15269A5C020037DB34 /* FDRMoviesListView.swift in Sources */,
 				CC351E1D269BA7B80037DB34 /* FDRMockMovie.swift in Sources */,
 				CCCA022026A953B90056D018 /* FDRLoadableEnums.swift in Sources */,
-				CC3EC7B826A6040B005D71A9 /* FDRLoadable.swift in Sources */,
+				CC3EC7B826A6040B005D71A9 /* FDRLoadableProtocol.swift in Sources */,
 				CC3EC7AF26A189AA005D71A9 /* FDRErrorView.swift in Sources */,
 				CCBF629A26B0BF8F00BB0592 /* FDRStarsVotedView.swift in Sources */,
 				CC351E23269CAF990037DB34 /* FDRMovieDetail.swift in Sources */,

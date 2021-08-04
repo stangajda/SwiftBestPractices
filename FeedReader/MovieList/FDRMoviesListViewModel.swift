@@ -35,7 +35,7 @@ class FDRMoviesListViewModel: ObservableObject{
     
 }
 
-extension FDRMoviesListViewModel: FDRLoadable{
+extension FDRMoviesListViewModel: FDRLoadableProtocol{
     var fetch: AnyPublisher<T, Error>{
         let request = FDRAPIRequest["trending/movie/day"]
         return self.service.fetchMovies(request)

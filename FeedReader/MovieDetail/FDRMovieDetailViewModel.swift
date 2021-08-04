@@ -37,7 +37,7 @@ class FDRMovieDetailViewModel: ObservableObject{
     }
 }
 
-extension FDRMovieDetailViewModel: FDRLoadable {
+extension FDRMovieDetailViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error> {
         let request = FDRAPIRequest["movie/" + String(movieList.id)]
         return self.service.fetchMovieDetail(request)

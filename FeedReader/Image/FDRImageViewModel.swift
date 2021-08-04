@@ -51,7 +51,7 @@ class FDRImageViewModel: ObservableObject{
     
 }
 
-extension FDRImageViewModel: FDRLoadable {
+extension FDRImageViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error>{
         let url = URL(string: baseURL + self.imageUrl)!
         let request = URLRequest(url: url)

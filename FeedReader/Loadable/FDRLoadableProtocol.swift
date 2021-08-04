@@ -8,14 +8,14 @@
 import Foundation
 import Combine
 
-protocol FDRLoadable {
+protocol FDRLoadableProtocol {
     associatedtype T
     associatedtype U
     var input: PassthroughSubject<Action, Never> { get }
     var fetch: AnyPublisher<T, Error> { get }
 }
 
-extension FDRLoadable {
+extension FDRLoadableProtocol {
     typealias State = FDRLoadableEnums<T,U>.State
     typealias Action = FDRLoadableEnums<T,U>.Action
     
