@@ -22,10 +22,10 @@ class FDRImageViewModel: ObservableObject{
     
     private var cancellable: AnyCancellable?
     
-    init(imageURL: String, cache: FDRImageCache? = nil){
-        state = State.loading(imageURL)
+    init(imagePath: String, cache: FDRImageCache? = nil){
+        state = State.loading(imagePath)
         self.cache = cache
-        url = FDRAPIRequest.imageUrl(imageURL)
+        url = FDRAPIRequest.imageUrl(imagePath)
         load()
     }
     
