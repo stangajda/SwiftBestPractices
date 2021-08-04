@@ -27,9 +27,8 @@ extension Resolver: ResolverRegistering {
 }
 
 extension Resolver {
-    static var preview: Resolver!
+    static var preview: Resolver = Resolver(parent: .main)
     static func setupPreviewMode() {
-        Resolver.preview = Resolver(parent: .main)
         Resolver.root = .preview
         register(name:.itemList){ FDRMockImageViewModel(.itemList) as FDRImageViewModel}
         register(name:.itemDetail){ FDRMockImageViewModel(.itemDetail) as FDRImageViewModel}
