@@ -53,9 +53,8 @@ class FDRImageViewModel: ObservableObject{
 
 extension FDRImageViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error>{
-        let url = URL(string: baseURL + self.imageUrl)!
-        let request = URLRequest(url: url)
-        return self.service.fetchImage(request)
+        let url = FDRAPIBaseUrl[self.imageUrl]
+        return self.service.fetchImage(URLRequest(url: url))
             .map { [unowned self] item in
                 cache?[url] = item
                 return ImageItem(item)

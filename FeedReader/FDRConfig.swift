@@ -19,3 +19,7 @@ struct FDRAPIRequest: FDRAPIRequestProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
+struct FDRAPIBaseUrl: FDRAPIBaseUrlProtocol {
+    static var baseURLString: String { "https://image.tmdb.org/t/p/original" }
+}
+
