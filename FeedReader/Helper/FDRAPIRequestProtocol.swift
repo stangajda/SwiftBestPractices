@@ -14,12 +14,6 @@ protocol FDRAPIRequestProtocol {
     static var apiKey: String { get }
 }
 
-protocol FDRAPIBaseUrlProtocol {
-    static var baseURLString: String { get }
-}
-
-//https://api.themoviedb.org/3/trending/movie/week?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
-
 extension FDRAPIRequestProtocol {
     static func getRequest(_ path: String) -> URLRequest{
         guard var url = URL(string: Self.baseURLString) else {
