@@ -21,7 +21,7 @@ struct FDRMovieRowView: View {
                     .font(.title2)
                     .minimumScaleFactor(0.5)
                 FDRStarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
-                    .frame(maxWidth: 150, maxHeight: 20, alignment: .leading)
+                    .frame(maxWidth: 140, maxHeight: 15, alignment: .leading)
                     .font(.caption)
             }
         }
