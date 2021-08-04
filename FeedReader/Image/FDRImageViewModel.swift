@@ -17,21 +17,19 @@ class FDRImageViewModel: ObservableObject{
     typealias U = String
     
     var input = PassthroughSubject<Action, Never>()
-    private let baseURL = "https://image.tmdb.org/t/p/original"
     private var cache: FDRImageCache?
-    var imageUrl: String
+    var url: URL
     
     private var cancellable: AnyCancellable?
     
     init(imageURL: String, cache: FDRImageCache? = nil){
         state = State.loading(imageURL)
         self.cache = cache
-        self.imageUrl = imageURL
+        url = FDRAPIRequest.imageUrl(imageURL)
         load()
     }
     
     func load(){
-        let url = URL(string: baseURL + self.imageUrl)!
         if let image = cache?[url] {
             state = .loaded(ImageItem(image))
             return
@@ -53,7 +51,6 @@ class FDRImageViewModel: ObservableObject{
 
 extension FDRImageViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error>{
-        let url = FDRAPIRequest.imageUrl(self.imageUrl)
         return self.service.fetchImage(URLRequest(url: url))
             .map { [unowned self] item in
                 cache?[url] = item
