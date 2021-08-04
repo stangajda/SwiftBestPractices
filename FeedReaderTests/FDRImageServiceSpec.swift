@@ -20,7 +20,7 @@ class FDRImageServiceSpec: QuickSpec{
             var cancellable: AnyCancellable?
             Resolver.registerMockServices()
             let mockImageManager: FDRImageService = FDRImageService()
-            let mockRequestUrl: URLRequest = FDRMockAPIRequest["stubPath"]
+            let mockRequestUrl: URLRequest = FDRMockAPIRequest.getRequest("stubPath")
             
             var uiImage: UIImage!
             context("given succesful image") {

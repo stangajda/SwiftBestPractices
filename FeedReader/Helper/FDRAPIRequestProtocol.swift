@@ -9,6 +9,7 @@ import Foundation
 
 protocol FDRAPIRequestProtocol {
     static var baseURLString: String { get }
+    static var imageURLString: String { get }
     static var prefix: String { get }
     static var apiKey: String { get }
 }
@@ -17,20 +18,10 @@ protocol FDRAPIBaseUrlProtocol {
     static var baseURLString: String { get }
 }
 
-extension FDRAPIBaseUrlProtocol{
-    static subscript(_ path: String) -> URL{
-        guard var url = URL(string: Self.baseURLString) else {
-            fatalError("invalid URL")
-        }
-        url.appendPathComponent(path)
-        return url
-    }
-}
-
 //https://api.themoviedb.org/3/trending/movie/week?api_key=efb6cac7ab6a05e4522f6b4d1ad0fa43
 
 extension FDRAPIRequestProtocol {
-    static subscript(_ path: String) -> URLRequest{
+    static func getRequest(_ path: String) -> URLRequest{
         guard var url = URL(string: Self.baseURLString) else {
             fatalError("invalid URL")
         }
@@ -42,6 +33,14 @@ extension FDRAPIRequestProtocol {
             fatalError("invalid URL")
         }
         return URLRequest(url: url).get()
+    }
+    
+    static func imageUrl(_ path: String) -> URL{
+        guard var url = URL(string: Self.imageURLString) else {
+            fatalError("invalid URL")
+        }
+        url.appendPathComponent(path)
+        return url
     }
 }
 
