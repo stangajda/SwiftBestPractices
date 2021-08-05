@@ -25,7 +25,7 @@ class FDRMovieListServiceSpec: QuickSpec{
             var dataFromFile: Data!
             context("given successful json data") {
                 beforeEach {
-                    dataFromFile = Data.load("FDRMockResponseResult.json")
+                    dataFromFile = Data.load("FDRMockMovieListResponseResult.json")
                 }
                 
                 it("it should get successful response match mapped object"){

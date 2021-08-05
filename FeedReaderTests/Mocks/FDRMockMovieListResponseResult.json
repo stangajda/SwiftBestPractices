@@ -3,14 +3,16 @@
     {
       "id": 1,
       "title": "0-title",
+      "poster_path": "0-poster_path",
       "vote_average": 6.1,
-      "poster_path": "0-poster_path"
+      "vote_count": 1724
     },
     {
         "id": 2,
         "title": "1-title",
+        "poster_path": "1-poster_path",
         "vote_average": 6.5,
-        "poster_path": "1-poster_path"
+        "vote_count": 711
     }
   ],
   "page": 1
