@@ -7,12 +7,6 @@
 
 import Foundation
 
-extension Double{
-    func halfDivide() -> Double{
-        return Double(self/2)
-    }
-}
-
 extension Array where Element == FDRMoviesSubItem{
     func getNameOnly() -> Array<String>{
         self.map { item -> String in
@@ -26,6 +20,12 @@ extension Array where Element == FDRMoviesSubLanguages{
         return self.map { item in
             item.name
         }.joined(separator: ", ")
+    }
+}
+
+extension Double{
+    func halfDivide() -> Double{
+        return Double(self/2)
     }
 }
 
