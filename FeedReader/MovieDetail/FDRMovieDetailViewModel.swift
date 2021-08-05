@@ -60,6 +60,10 @@ extension FDRMovieDetailViewModel{
         let backdrop_path: String
         let vote_average: Double
         let vote_count: Int
+        var budget: String
+        var release_date: String
+        var genres: Array<String>
+        var spoken_languages: String
         init(_ movie: FDRMovieDetail) {
             id = movie.id
             title = movie.title
@@ -67,6 +71,10 @@ extension FDRMovieDetailViewModel{
             backdrop_path = movie.backdrop_path
             vote_average = movie.vote_average.halfDivide()
             vote_count = movie.vote_count
+            budget = movie.budget.formatNumber()
+            release_date = movie.release_date.formatDate()
+            genres = movie.genres.getNameOnly()
+            spoken_languages = movie.spoken_languages.groupValues()
         }
     }
 }
