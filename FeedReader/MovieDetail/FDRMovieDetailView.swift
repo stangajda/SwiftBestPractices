@@ -81,7 +81,7 @@ private extension FDRMovieDetailView {
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom)
-                FDRIconValueView(iconName: "banknote", textValue: movieDetail.budget)
+                FDRIconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
                     .padding(.bottom)
                 FDRIconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
                     .padding(.bottom)
