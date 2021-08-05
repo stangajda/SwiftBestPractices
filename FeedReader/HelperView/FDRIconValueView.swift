@@ -20,6 +20,7 @@ struct FDRIconValueView: View {
             Text(textValue)
                 .font(.callout)
         }
+        .padding(.bottom)
     }
 }
 

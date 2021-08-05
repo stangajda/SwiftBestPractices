@@ -76,19 +76,15 @@ private extension FDRMovieDetailView {
                     .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
                     .padding(.bottom)
                 FDRIconValueView(iconName: "calendar", textValue: movieDetail.release_date)
-                    .padding(.bottom)
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom)
                 if movieDetail.budget != "0" {
                     FDRIconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
-                        .padding(.bottom)
                 }
                 FDRIconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
-                    .padding(.bottom)
                 FDROverlayTextView(stringArray: movieDetail.genres)
-                    .padding(.bottom)
             }
             .withMovieDetailsStyle()
         }

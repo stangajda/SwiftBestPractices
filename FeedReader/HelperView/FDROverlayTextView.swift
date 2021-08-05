@@ -22,6 +22,7 @@ struct FDROverlayTextView: View {
                                 .stroke(lineWidth: 2.0)
                         )
                         .foregroundColor(.orange)
+                        .padding(.bottom)
             }
         }
     }
