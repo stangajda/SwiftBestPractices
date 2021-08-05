@@ -62,7 +62,7 @@ extension FDRImageViewModel: FDRLoadableProtocol {
         }
         return self.service.fetchImage(URLRequest(url: url))
             .map { [unowned self] item in
-                cache?[url] = item
+                self.cache?[url] = item
                 return ImageItem(item)
             }
             .eraseToAnyPublisher()
