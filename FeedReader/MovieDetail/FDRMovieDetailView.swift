@@ -81,8 +81,10 @@ private extension FDRMovieDetailView {
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
                     .padding(.bottom)
-                FDRIconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
-                    .padding(.bottom)
+                if movieDetail.budget != "0" {
+                    FDRIconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
+                        .padding(.bottom)
+                }
                 FDRIconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
                     .padding(.bottom)
                 FDROverlayTextView(stringArray: movieDetail.genres)
