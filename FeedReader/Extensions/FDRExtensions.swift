@@ -32,7 +32,7 @@ extension Double{
 extension String {
     func formatDate() -> String{
         let date = Date()
-        let formate = date.getFormattedDate(format: "MMM d, yyyy")
+        let formate = date.getFormattedDate(format: "d MMM yy")
         return formate
     }
 }
