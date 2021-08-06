@@ -15,7 +15,7 @@ protocol FDRAPIUrlProtocol {
 }
 
 extension FDRAPIUrlProtocol {
-    static func getRequest(_ path: String) -> URL?{
+    static func getUrl(_ path: String) -> URL?{
         guard var url = Self.baseURL else {
             return nil
         }
