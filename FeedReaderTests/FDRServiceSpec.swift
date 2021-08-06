@@ -23,7 +23,7 @@ class FDRServiceSpec: QuickSpec {
             var responseData = Data.stubData
             
             var result: Result<Data, Swift.Error>!
-            let mockRequestUrl: URLRequest = URLRequest(url:FDRMockAPIRequest.getRequest("stubPath")!).get()
+            let mockRequestUrl: URLRequest = URLRequest(url:FDRMockAPIRequest.getUrl("stubPath")!).get()
             
             context("given successful data in service") {
                 
