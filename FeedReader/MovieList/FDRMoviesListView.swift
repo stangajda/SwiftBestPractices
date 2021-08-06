@@ -55,7 +55,7 @@ private extension FDRMoviesListView {
     
     func listMovies(_ movies: Array<FDRMoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
-            NavigationLink(destination: FDRMovieDetailView( FDRMovieDetailViewModel(movieList: movie)),
+            NavigationLink(destination: LazyView(FDRMovieDetailView( FDRMovieDetailViewModel(movieList: movie))),
                            label: {FDRMovieRowView(movie: movie)}
             )
         }
