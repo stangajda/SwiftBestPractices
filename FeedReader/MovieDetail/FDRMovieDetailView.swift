@@ -96,6 +96,7 @@ struct FDRMovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {
+            FDRMovieDetailView(FDRMockMovieDetailViewModel(.loaded)).preferredColorScheme(.dark)
             FDRMovieDetailView(FDRMockMovieDetailViewModel(.loaded))
             FDRMovieDetailView(FDRMockMovieDetailViewModel(.loading))
             FDRMovieDetailView(FDRMockMovieDetailViewModel(.failedLoaded))

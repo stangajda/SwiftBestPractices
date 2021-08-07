@@ -29,8 +29,12 @@ struct FDRErrorView: View {
 #if DEBUG
 struct FDRErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        FDRErrorView(error: NSError(domain: "", code: 0, userInfo: [
-                                        NSLocalizedDescriptionKey: "Something went wrong"])).frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        Group {
+            FDRErrorView(error: NSError(domain: "", code: 0, userInfo: [
+                                            NSLocalizedDescriptionKey: "Something went wrong"])).frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/).preferredColorScheme(.dark)
+            FDRErrorView(error: NSError(domain: "", code: 0, userInfo: [
+                                            NSLocalizedDescriptionKey: "Something went wrong"])).frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+        }
     }
 }
 #endif

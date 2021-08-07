@@ -24,7 +24,10 @@ struct FDRStarsVotedView: View {
 #if DEBUG
 struct FDRStarsVotedView_Previews: PreviewProvider {
     static var previews: some View {
-        FDRStarsVotedView(rating: 3.7,voteCount: 1920)
+        Group {
+            FDRStarsVotedView(rating: 3.7,voteCount: 1920).preferredColorScheme(.dark)
+            FDRStarsVotedView(rating: 3.7,voteCount: 1920)
+        }
     }
 }
 #endif

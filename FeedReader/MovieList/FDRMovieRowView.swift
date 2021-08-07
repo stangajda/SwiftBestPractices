@@ -34,6 +34,7 @@ struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group{
+            FDRMovieRowView(movie: FDRMoviesListViewModel.MovieItem.mock).preferredColorScheme(.dark)
             FDRMovieRowView(movie: FDRMoviesListViewModel.MovieItem.mock)
         }
         .previewLayout(.sizeThatFits)

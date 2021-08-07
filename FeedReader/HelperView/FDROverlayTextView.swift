@@ -31,7 +31,10 @@ struct FDROverlayTextView: View {
 #if DEBUG
 struct FDROverlayTextView_Previews: PreviewProvider {
     static var previews: some View {
-        FDROverlayTextView(stringArray: ["thriller","horror","comedy"])
+        Group {
+            FDROverlayTextView(stringArray: ["thriller","horror","comedy"]).preferredColorScheme(.dark)
+            FDROverlayTextView(stringArray: ["thriller","horror","comedy"])
+        }
     }
 }
 #endif

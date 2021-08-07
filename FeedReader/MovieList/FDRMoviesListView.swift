@@ -76,6 +76,7 @@ struct FDRMoviesList_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {
+            FDRMoviesListView(viewModel: FDRMockMoviesListViewModel(.loaded)).preferredColorScheme(.dark)
             FDRMoviesListView(viewModel: FDRMockMoviesListViewModel(.loaded))
             FDRMoviesListView(viewModel: FDRMockMoviesListViewModel(.loading))
             FDRMoviesListView(viewModel: FDRMockMoviesListViewModel(.failedLoaded))

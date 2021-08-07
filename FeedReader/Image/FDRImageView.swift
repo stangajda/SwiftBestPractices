@@ -57,7 +57,11 @@ private extension FDRImageView {
 #if DEBUG
 struct FDRImageView_Previews: PreviewProvider {
     static var previews: some View {
-        FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail))
+        Group {
+            FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail)).preferredColorScheme(.dark)
+            FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail))
+        }
+            
     }
 }
 #endif
