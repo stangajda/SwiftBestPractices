@@ -23,21 +23,21 @@ extension FDRLoadableProtocol {
                 return .failedLoaded(error)
             case .onLoaded(let result):
                 return .loaded(result)
-            case .reset:
+            case .onReset:
                 return .start()
             default:
                 return state
             }
         case .loaded:
             switch action {
-            case .reset:
+            case .onReset:
                 return .start()
             default:
                 return state
             }
         case .failedLoaded:
             switch action {
-            case .reset:
+            case .onReset:
                 return .start()
             default:
                 return state

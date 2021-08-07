@@ -21,7 +21,7 @@ struct FDRMoviesListView: View {
             if newPhase == .active {
                 viewModel.send(action: .onAppear)
             } else if newPhase == .background {
-                viewModel.send(action: .reset)
+                viewModel.send(action: .onReset)
             }
         }
     }

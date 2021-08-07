@@ -18,6 +18,6 @@ struct FDRLoadableEnums<T,U>{
         case onAppear
         case onLoaded(T)
         case onFailedLoaded(Error)
-        case reset
+        case onReset
     }
 }
