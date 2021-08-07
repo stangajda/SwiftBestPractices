@@ -48,10 +48,6 @@ class FDRImageViewModel: ObservableObject{
                         .assignNoRetain(to: \.state, on: self)
     }
     
-    func getUrl(){
-        
-    }
-    
     deinit {
         cancel()
     }
