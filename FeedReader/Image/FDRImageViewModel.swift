@@ -18,19 +18,23 @@ class FDRImageViewModel: ObservableObject{
     
     var input = PassthroughSubject<Action, Never>()
     private var cache: FDRImageCache?
-    var url: URL?
+    private var imagePath: String
     
     private var cancellable: AnyCancellable?
     
     init(imagePath: String, cache: FDRImageCache? = nil){
         state = State.loading(imagePath)
         self.cache = cache
-        url = FDRAPIUrl.getImageURL(imagePath)
+        self.imagePath = imagePath
         load()
     }
     
+    func getURL() -> URL?{
+        return FDRAPIUrl.getImageURL(imagePath)
+    }
+    
     func load(){
-        guard let url = url else {
+        guard let url = getURL() else {
             state = .failedLoaded(FDRAPIError.invalidURL)
             return
         }
@@ -42,6 +46,10 @@ class FDRImageViewModel: ObservableObject{
         
         cancellable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
+    }
+    
+    func getUrl(){
+        
     }
     
     deinit {
@@ -56,7 +64,7 @@ class FDRImageViewModel: ObservableObject{
 
 extension FDRImageViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error>{
-        guard let url = url else {
+        guard let url = getURL() else {
             return Fail(error: FDRAPIError.invalidURL)
                 .eraseToAnyPublisher()
         }
