@@ -10,11 +10,19 @@ import Resolver
 
 struct FDRMoviesListView: View {
     @ObservedObject var viewModel: FDRMoviesListViewModel
+    @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
         NavigationView {
             content
                 .navigationBarTitle("Trending Daily")
+        }
+        .onChange(of: scenePhase) { newPhase in
+            if newPhase == .active {
+                viewModel.send(action: .onAppear)
+            } else if newPhase == .background {
+                viewModel.send(action: .reset)
+            }
         }
     }
     
