@@ -9,7 +9,6 @@ import SwiftUI
 extension View {
     func withRowListStyles() -> some View {
         frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
-            .foregroundColor(.black)
             .font(.title)
             .padding()
     }
