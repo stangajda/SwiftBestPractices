@@ -12,6 +12,9 @@ struct FDRImageView: View {
     
     var body: some View {
         content
+            .onAppear {
+                viewModel.send(action: .onAppear)
+            }
             .onDisappear{
                 viewModel.cancel()
             }
