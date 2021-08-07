@@ -26,14 +26,14 @@ class FDRImageViewModel: ObservableObject{
         state = State.loading(imagePath)
         self.cache = cache
         self.imagePath = imagePath
-        load()
+        setUp()
     }
     
     func getURL() -> URL?{
         return FDRAPIUrl.getImageURL(imagePath)
     }
     
-    func load(){
+    func setUp(){
         guard let url = getURL() else {
             state = .failedLoaded(FDRAPIError.invalidURL)
             return
@@ -44,6 +44,10 @@ class FDRImageViewModel: ObservableObject{
             return
         }
         
+        load()
+    }
+    
+    func load(){
         cancellable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
