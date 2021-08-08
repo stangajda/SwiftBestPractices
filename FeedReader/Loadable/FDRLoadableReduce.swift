@@ -17,14 +17,14 @@ extension FDRLoadableProtocol {
             default:
                 return state
             }
-        case .loading:
+        case .loading(let id):
             switch action {
             case .onFailedLoaded(let error):
                 return .failedLoaded(error)
             case .onLoaded(let result):
                 return .loaded(result)
             case .onReset:
-                return .start()
+                return .start(id)
             default:
                 return state
             }
