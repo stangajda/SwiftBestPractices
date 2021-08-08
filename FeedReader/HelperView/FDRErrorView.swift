@@ -23,6 +23,7 @@ struct FDRErrorView: View {
                 .lineLimit(2)
                 .padding(.bottom)
         }
+        .padding()
     }
 }
 
