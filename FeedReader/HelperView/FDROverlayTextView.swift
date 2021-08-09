@@ -10,7 +10,6 @@ import SwiftUI
 struct FDROverlayTextView: View {
     @State var stringArray: Array<String>
     var body: some View {
-        
         HStack {
             ForEach(stringArray, id: \.self) { string in
                 Text(string)
