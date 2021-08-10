@@ -14,3 +14,16 @@ struct FDRAPIUrl: FDRAPIUrlProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
+struct Config{
+    static func configuredURLSession() -> URLSession {
+        let configuration = URLSessionConfiguration.default
+        configuration.waitsForConnectivity = true
+        configuration.timeoutIntervalForRequest = 60
+        configuration.timeoutIntervalForResource = 120
+        configuration.httpMaximumConnectionsPerHost = 7
+        configuration.urlCache = .shared
+        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        return URLSession(configuration: configuration)
+    }
+}
+
