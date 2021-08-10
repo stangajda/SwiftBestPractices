@@ -14,7 +14,7 @@ struct FDRAPIUrl: FDRAPIUrlProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
-struct Config{
+extension URLSession{
     static func configuredURLSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
