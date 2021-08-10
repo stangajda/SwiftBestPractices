@@ -19,7 +19,7 @@ struct Config{
         let configuration = URLSessionConfiguration.default
         configuration.waitsForConnectivity = true
         configuration.timeoutIntervalForRequest = 60
-        configuration.timeoutIntervalForResource = 120
+        configuration.timeoutIntervalForResource = 180
         configuration.httpMaximumConnectionsPerHost = 7
         configuration.urlCache = .shared
         configuration.requestCachePolicy = .returnCacheDataElseLoad
