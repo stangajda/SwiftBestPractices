@@ -32,7 +32,7 @@
 		CC35563626AB23C2002D0B07 /* FDRMockMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563526AB23C2002D0B07 /* FDRMockMoviesListViewModel.swift */; };
 		CC35563826AB5C25002D0B07 /* FDRMockImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563726AB5C25002D0B07 /* FDRMockImageViewModel.swift */; };
 		CC35563A26AC5189002D0B07 /* FDRMockMoviesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563926AC5189002D0B07 /* FDRMockMoviesDetailViewModel.swift */; };
-		CC35563C26AE2F4A002D0B07 /* FDRImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563B26AE2F4A002D0B07 /* FDRImageCache.swift */; };
+		CC35563C26AE2F4A002D0B07 /* FDRImageCacheInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563B26AE2F4A002D0B07 /* FDRImageCacheInterface.swift */; };
 		CC35563E26AF50FE002D0B07 /* FDRStyles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563D26AF50FE002D0B07 /* FDRStyles.swift */; };
 		CC3EC7AF26A189AA005D71A9 /* FDRErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7AE26A189AA005D71A9 /* FDRErrorView.swift */; };
 		CC3EC7B326A238CA005D71A9 /* FDRFeedback.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3EC7B226A238CA005D71A9 /* FDRFeedback.swift */; };
@@ -116,7 +116,7 @@
 		CC35563526AB23C2002D0B07 /* FDRMockMoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRMockMoviesListViewModel.swift; sourceTree = "<group>"; };
 		CC35563726AB5C25002D0B07 /* FDRMockImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRMockImageViewModel.swift; sourceTree = "<group>"; };
 		CC35563926AC5189002D0B07 /* FDRMockMoviesDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRMockMoviesDetailViewModel.swift; sourceTree = "<group>"; };
-		CC35563B26AE2F4A002D0B07 /* FDRImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRImageCache.swift; sourceTree = "<group>"; };
+		CC35563B26AE2F4A002D0B07 /* FDRImageCacheInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRImageCacheInterface.swift; sourceTree = "<group>"; };
 		CC35563D26AF50FE002D0B07 /* FDRStyles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRStyles.swift; sourceTree = "<group>"; };
 		CC3EC7AE26A189AA005D71A9 /* FDRErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRErrorView.swift; sourceTree = "<group>"; };
 		CC3EC7B226A238CA005D71A9 /* FDRFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRFeedback.swift; sourceTree = "<group>"; };
@@ -198,7 +198,7 @@
 			children = (
 				CC351E1E269BC7B50037DB34 /* FDRImageView.swift */,
 				CC351E38269F1ADD0037DB34 /* FDRImageViewModel.swift */,
-				CC35563B26AE2F4A002D0B07 /* FDRImageCache.swift */,
+				CC35563B26AE2F4A002D0B07 /* FDRImageCacheInterface.swift */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -475,7 +475,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC35563C26AE2F4A002D0B07 /* FDRImageCache.swift in Sources */,
+				CC35563C26AE2F4A002D0B07 /* FDRImageCacheInterface.swift in Sources */,
 				CC351E1F269BC7B50037DB34 /* FDRImageView.swift in Sources */,
 				CC35563A26AC5189002D0B07 /* FDRMockMoviesDetailViewModel.swift in Sources */,
 				CC3EC7B526A238D9005D71A9 /* FDRSystem.swift in Sources */,

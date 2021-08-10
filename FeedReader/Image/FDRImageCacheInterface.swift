@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 
-protocol FDRImageCache {
+protocol FDRImageCacheInterface {
     subscript(_ url: URL) -> UIImage? { get set }
 }
 
-struct FDRTemporaryImageCache: FDRImageCache {
+struct FDRTemporaryImageCache: FDRImageCacheInterface {
     private let cache = NSCache<NSURL, UIImage>()
     
     subscript(_ key: URL) -> UIImage? {
@@ -30,11 +30,11 @@ struct FDRTemporaryImageCache: FDRImageCache {
 }
 
 struct FDRImageCacheKey: EnvironmentKey {
-    static let defaultValue: FDRImageCache = FDRTemporaryImageCache()
+    static let defaultValue: FDRImageCacheInterface = FDRTemporaryImageCache()
 }
 
 extension EnvironmentValues {
-    var imageCache: FDRImageCache {
+    var imageCache: FDRImageCacheInterface {
         get {
             self[FDRImageCacheKey.self]
         }

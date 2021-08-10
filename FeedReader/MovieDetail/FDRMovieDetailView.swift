@@ -10,7 +10,7 @@ import Resolver
 
 struct FDRMovieDetailView: View {
     @ObservedObject var viewModel: FDRMovieDetailViewModel
-    @Environment(\.imageCache) var cache: FDRImageCache
+    @Environment(\.imageCache) var cache: FDRImageCacheInterface
     
     init(_ viewModel: FDRMovieDetailViewModel){
         self.viewModel = viewModel

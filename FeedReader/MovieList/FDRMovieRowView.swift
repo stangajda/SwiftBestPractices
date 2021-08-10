@@ -10,7 +10,7 @@ import Resolver
 
 struct FDRMovieRowView: View {
     @State var movie: FDRMoviesListViewModel.MovieItem
-    @Environment(\.imageCache) var cache: FDRImageCache
+    @Environment(\.imageCache) var cache: FDRImageCacheInterface
     
     var body: some View {
         HStack{

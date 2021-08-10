@@ -11,7 +11,7 @@ import Resolver
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
     defaultScope = .graph
-    register { URLSession.configuredURLSession() }
+    register { URLSession.configuredURLSession()}
     register { FDRMoviesListViewModel() as FDRMoviesListViewModel}
     register { FDRMovieListService() as FDRMovieListServiceInterface}
     register { FDRMovieDetailService() as FDRMovieDetailServiceInterface}
