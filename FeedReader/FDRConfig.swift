@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FDRAPIUrl: FDRAPIUrlProtocol {
+struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var baseURL: URL? { URL(string: "https://api.themoviedb.org/") }
     static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/original") }
     static var prefix: String { "3" }

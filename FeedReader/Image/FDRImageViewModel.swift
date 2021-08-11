@@ -30,7 +30,7 @@ class FDRImageViewModel: ObservableObject{
     }
     
     func getURL() -> URL?{
-        return FDRAPIUrl.getImageURL(imagePath)
+        return FDRAPIUrlBuilder.getImageURL(imagePath)
     }
     
     func setUp(){

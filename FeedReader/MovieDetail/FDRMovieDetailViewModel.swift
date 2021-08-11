@@ -39,7 +39,7 @@ class FDRMovieDetailViewModel: ObservableObject{
 
 extension FDRMovieDetailViewModel: FDRLoadableProtocol {
     var fetch: AnyPublisher<T, Error> {
-        let url = FDRAPIUrl.getUrl("movie/" + String(movieList.id))
+        let url = FDRAPIUrlBuilder.getUrl("movie/" + String(movieList.id))
         guard let url = url else {
             return Fail(error: FDRAPIError.invalidURL)
                 .eraseToAnyPublisher()
