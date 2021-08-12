@@ -7,6 +7,19 @@
 
 import SwiftUI
 
+enum Path{
+    case trending
+    case movieDetail(_ id: Int)
+    func toString() -> String {
+        switch self {
+        case .trending:
+            return "trending/movie/day"
+        case .movieDetail(id: let id):
+            return "movie/\(String(id))"
+        }
+    }
+}
+
 struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var baseURL: URL? { URL(string: "https://api.themoviedb.org/") }
     static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/original") }
