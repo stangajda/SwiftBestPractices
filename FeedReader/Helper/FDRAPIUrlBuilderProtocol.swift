@@ -14,7 +14,7 @@ protocol FDRAPIUrlBuilderProtocol {
 }
 
 extension FDRAPIUrlBuilderProtocol {
-    static subscript(_ path: FDRPathProtocol) -> URL?{
+    static subscript(_ path: FDRPathInterface) -> URL?{
         guard var url = Self.baseURL else {
             return nil
         }

@@ -14,7 +14,7 @@ struct FDRMovieRowView: View {
     
     var body: some View {
         HStack{
-            FDRImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": FDRW200Path() as FDRImagePathProtocol,"cache": cache as Any]))
+            FDRImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": FDRW200Path() as FDRImagePathInterface,"cache": cache as Any]))
                 .withRowListImageSize()
             VStack(alignment:.leading){
                 Text(movie.title)

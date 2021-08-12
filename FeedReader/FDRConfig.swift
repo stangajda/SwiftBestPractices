@@ -13,17 +13,17 @@ struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
-protocol FDRPathProtocol {
+protocol FDRPathInterface {
     func stringPath() -> String
 }
 
-struct FDRTrendingPath: FDRPathProtocol{
+struct FDRTrendingPath: FDRPathInterface{
     func stringPath() -> String {
         "trending/movie/day"
     }
 }
 
-struct FDRMoviePath: FDRPathProtocol{
+struct FDRMoviePath: FDRPathInterface{
     var id: Int
     
     init(_ id: Int){
@@ -39,17 +39,17 @@ struct FDRAPIUrlImageBuilder: FDRAPIUrlImageBuilderProtocol{
     static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/") }
 }
 
-protocol FDRImagePathProtocol {
+protocol FDRImagePathInterface {
     func stringPath() -> String
 }
 
-struct FDROriginalPath: FDRImagePathProtocol{
+struct FDROriginalPath: FDRImagePathInterface{
     func stringPath() -> String{
         "original"
     }
 }
 
-struct FDRW200Path: FDRImagePathProtocol {
+struct FDRW200Path: FDRImagePathInterface {
     func stringPath() -> String {
         "w200"
     }
