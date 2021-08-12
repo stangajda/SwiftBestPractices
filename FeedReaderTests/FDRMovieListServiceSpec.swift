@@ -21,7 +21,7 @@ class FDRMovieListServiceSpec: QuickSpec{
             var cancellable: AnyCancellable?
             Resolver.registerMockServices()
             let mockMovieListManager: FDRMovieListService = FDRMovieListService()
-            let mockRequestUrl: URLRequest = URLRequest(url:FDRMockAPIRequest[.trending]!).get()
+            let mockRequestUrl: URLRequest = URLRequest(url:FDRMockAPIRequest[FDRTrendingPath()]!).get()
             var dataFromFile: Data!
             context("given successful json data") {
                 beforeEach {

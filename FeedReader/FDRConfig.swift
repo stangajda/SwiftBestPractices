@@ -13,16 +13,25 @@ struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
-enum FDRPath{
-    case trending
-    case movie(_ id: Int)
-    func toString() -> String {
-        switch self {
-        case .trending:
-            return "trending/movie/day"
-        case .movie(id: let id):
-            return "movie/\(String(id))"
-        }
+protocol FDRPathProtocol {
+    func stringPath() -> String
+}
+
+struct FDRTrendingPath: FDRPathProtocol{
+    func stringPath() -> String {
+        "trending/movie/day"
+    }
+}
+
+struct FDRMoviePath: FDRPathProtocol{
+    var id: Int
+    
+    init(_ id: Int){
+        self.id = id
+    }
+    
+    func stringPath() -> String {
+        "movie/\(String(id))"
     }
 }
 
@@ -30,16 +39,19 @@ struct FDRAPIUrlImageBuilder: FDRAPIUrlImageBuilderProtocol{
     static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/") }
 }
 
-enum FDRImagePath{
-    case original
-    case w200
-    func toString() -> String{
-        switch self {
-        case .original:
-           return "original"
-        case .w200:
-            return "w200"
-        }
+protocol FDRImagePathProtocol {
+    func stringPath() -> String
+}
+
+struct FDROriginalPath: FDRImagePathProtocol{
+    func stringPath() -> String{
+        "original"
+    }
+}
+
+struct FDRW200Path: FDRImagePathProtocol {
+    func stringPath() -> String {
+        "w200"
     }
 }
 

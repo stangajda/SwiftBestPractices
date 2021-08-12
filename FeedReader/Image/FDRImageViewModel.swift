@@ -20,11 +20,11 @@ class FDRImageViewModel: ObservableObject{
     var input = PassthroughSubject<Action, Never>()
     private var cache: FDRImageCacheInterface?
     private var imagePath: String
-    private var imageSizePath: FDRImagePath
+    private var imageSizePath: FDRImagePathProtocol
     
     private var cancellable: AnyCancellable?
     
-    init(imagePath: String, imageSizePath: FDRImagePath = .original, cache: FDRImageCacheInterface? = nil){
+    init(imagePath: String, imageSizePath: FDRImagePathProtocol = FDROriginalPath(), cache: FDRImageCacheInterface? = nil){
         state = State.loading(imagePath)
         self.imageSizePath = imageSizePath
         self.cache = cache

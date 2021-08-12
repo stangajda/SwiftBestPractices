@@ -12,11 +12,11 @@ protocol FDRAPIUrlImageBuilderProtocol {
 }
 
 extension FDRAPIUrlImageBuilderProtocol{
-    static subscript(_ imageSizePath: FDRImagePath, _ imagePath: String) -> URL?{
+    static subscript(_ imageSizePath: FDRImagePathProtocol, _ imagePath: String) -> URL?{
         guard var url = Self.imageURL else {
             return nil
         }
-        url.appendPathComponent(imageSizePath.toString())
+        url.appendPathComponent(imageSizePath.stringPath())
         url.appendPathComponent(imagePath)
         return url
     }

@@ -14,12 +14,12 @@ protocol FDRAPIUrlBuilderProtocol {
 }
 
 extension FDRAPIUrlBuilderProtocol {
-    static subscript(_ path: FDRPath) -> URL?{
+    static subscript(_ path: FDRPathProtocol) -> URL?{
         guard var url = Self.baseURL else {
             return nil
         }
         url.appendPathComponent(Self.prefix)
-        url.appendPathComponent(path.toString())
+        url.appendPathComponent(path.stringPath())
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)?
             .addQueryItem(Self.apiKey, forName: "api_key")
         return urlComponents?.url
