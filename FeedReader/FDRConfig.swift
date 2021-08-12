@@ -27,7 +27,7 @@ extension URLSession{
         configuration.timeoutIntervalForResource = 180
         configuration.httpMaximumConnectionsPerHost = 7
         configuration.urlCache = .shared
-        configuration.requestCachePolicy = .returnCacheDataElseLoad
+        configuration.requestCachePolicy = .useProtocolCachePolicy
         return URLSession(configuration: configuration)
     }
 }
