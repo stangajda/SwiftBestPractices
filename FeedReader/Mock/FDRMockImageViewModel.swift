@@ -22,7 +22,7 @@ class FDRMockImageViewModel: FDRImageViewModel{
     }
     
     init(_ state: MockState){
-        super.init(imagePath: "mockUrl")
+        super.init(imagePath: "mockUrl", imageSizePath: FDROriginalPath())
         switchState(state)
     }
     

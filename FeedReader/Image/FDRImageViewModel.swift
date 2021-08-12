@@ -24,7 +24,7 @@ class FDRImageViewModel: ObservableObject{
     
     private var cancellable: AnyCancellable?
     
-    init(imagePath: String, imageSizePath: FDRImagePathProtocol = FDROriginalPath(), cache: FDRImageCacheInterface? = nil){
+    init(imagePath: String, imageSizePath: FDRImagePathProtocol, cache: FDRImageCacheInterface? = nil){
         state = State.loading(imagePath)
         self.imageSizePath = imageSizePath
         self.cache = cache

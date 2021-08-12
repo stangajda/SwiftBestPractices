@@ -25,7 +25,7 @@ extension View {
     }
     
     func withMovieDetailsImageViewStyle() -> some View{
-        frame(maxWidth: .infinity, minHeight: 200, alignment: .center)
+        frame(maxWidth: .infinity, minHeight: 220, alignment: .center)
             .padding(.bottom, 20.0)
     }
     
