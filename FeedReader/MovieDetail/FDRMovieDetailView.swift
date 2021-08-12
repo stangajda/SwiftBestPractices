@@ -75,7 +75,9 @@ private extension FDRMovieDetailView {
                 FDRStarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
                     .padding(.bottom)
-                FDRIconValueView(iconName: "calendar", textValue: movieDetail.release_date)
+                if movieDetail.release_date != "uknown"{
+                    FDRIconValueView(iconName: "calendar", textValue: movieDetail.release_date)
+                }
                 Text(movieDetail.overview)
                     .multilineTextAlignment(.leading)
                     .fixedSize(horizontal: false, vertical: true)
