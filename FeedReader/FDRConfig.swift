@@ -16,12 +16,12 @@ struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
 
 enum FDRPath{
     case trending
-    case movieDetail(_ id: Int)
+    case movie(_ id: Int)
     func toString() -> String {
         switch self {
         case .trending:
             return "trending/movie/day"
-        case .movieDetail(id: let id):
+        case .movie(id: let id):
             return "movie/\(String(id))"
         }
     }
