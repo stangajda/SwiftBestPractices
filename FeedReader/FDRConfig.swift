@@ -7,52 +7,16 @@
 
 import SwiftUI
 
-struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string: "https://api.themoviedb.org/") }
-    static var prefix: String { "3" }
-    static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
-}
-
-protocol FDRPathInterface {
-    func stringPath() -> String
-}
-
-struct FDRTrendingPath: FDRPathInterface{
-    func stringPath() -> String {
-        "trending/movie/day"
-    }
-}
-
-struct FDRMoviePath: FDRPathInterface{
-    var id: Int
+struct FDRConfig{
+    static let BASE_URL = "https://api.themoviedb.org/"
+    static let PREFIX = "3"
+    static let API_KEY = "babcada8d42a5fd4857231c42240debd"
+    static let TRENDING_PATH = "trending/movie/day"
+    static let MOVIE_PATH = "movie/"
     
-    init(_ id: Int){
-        self.id = id
-    }
-    
-    func stringPath() -> String {
-        "movie/\(String(id))"
-    }
-}
-
-struct FDRAPIUrlImageBuilder: FDRAPIUrlImageBuilderProtocol{
-    static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/") }
-}
-
-protocol FDRImagePathInterface {
-    func stringPath() -> String
-}
-
-struct FDROriginalPath: FDRImagePathInterface{
-    func stringPath() -> String{
-        "original"
-    }
-}
-
-struct FDRW200Path: FDRImagePathInterface {
-    func stringPath() -> String {
-        "w200"
-    }
+    static let IMAGE_URL = "https://image.tmdb.org/t/p/"
+    static let ORIGINAL_PATH = "original"
+    static let W200_PATH = "w200"
 }
 
 extension URLSession{
