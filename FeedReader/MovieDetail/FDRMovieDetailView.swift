@@ -70,7 +70,7 @@ private extension FDRMovieDetailView {
                     .minimumScaleFactor(0.5)
                     .lineLimit(1)
                     .padding()
-                FDRImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"cache": cache as Any]))
+                FDRImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": .original as FDRImagePath,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
                 FDRStarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)

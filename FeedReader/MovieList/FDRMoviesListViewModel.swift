@@ -37,7 +37,7 @@ class FDRMoviesListViewModel: ObservableObject{
 
 extension FDRMoviesListViewModel: FDRLoadableProtocol{
     var fetch: AnyPublisher<T, Error>{
-        let url = FDRAPIUrlBuilder.getUrl(.trending)
+        let url = FDRAPIUrlBuilder[.trending]
         
         guard let url = url else {
             return Fail(error: FDRAPIError.invalidURL)

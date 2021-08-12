@@ -9,7 +9,6 @@ import SwiftUI
 
 struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var baseURL: URL? { URL(string: "https://api.themoviedb.org/") }
-    static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/original") }
     static var prefix: String { "3" }
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
@@ -23,6 +22,23 @@ enum FDRPath{
             return "trending/movie/day"
         case .movie(id: let id):
             return "movie/\(String(id))"
+        }
+    }
+}
+
+struct FDRAPIUrlImageBuilder: FDRAPIUrlImageBuilderProtocol{
+    static var imageURL: URL? { URL(string: "https://image.tmdb.org/t/p/") }
+}
+
+enum FDRImagePath{
+    case original
+    case w200
+    func toString() -> String{
+        switch self {
+        case .original:
+           return "original"
+        case .w200:
+            return "w200"
         }
     }
 }

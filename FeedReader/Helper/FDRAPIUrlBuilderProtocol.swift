@@ -9,13 +9,16 @@ import Foundation
 
 protocol FDRAPIUrlBuilderProtocol {
     static var baseURL: URL? { get }
-    static var imageURL: URL? { get }
     static var prefix: String { get }
     static var apiKey: String { get }
 }
 
+protocol FDRAPIUrlImageBuilderProtocol {
+    static var imageURL: URL? { get }
+}
+
 extension FDRAPIUrlBuilderProtocol {
-    static func getUrl(_ path: FDRPath) -> URL?{
+    static subscript(_ path: FDRPath) -> URL?{
         guard var url = Self.baseURL else {
             return nil
         }
@@ -25,12 +28,15 @@ extension FDRAPIUrlBuilderProtocol {
             .addQueryItem(Self.apiKey, forName: "api_key")
         return urlComponents?.url
     }
-    
-    static func getImageURL(_ path: String) -> URL?{
+}
+
+extension FDRAPIUrlImageBuilderProtocol{
+    static subscript(_ imageSizePath: FDRImagePath, _ imagePath: String) -> URL?{
         guard var url = Self.imageURL else {
             return nil
         }
-        url.appendPathComponent(path)
+        url.appendPathComponent(imageSizePath.toString())
+        url.appendPathComponent(imagePath)
         return url
     }
 }

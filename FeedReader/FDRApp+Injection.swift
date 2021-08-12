@@ -18,10 +18,10 @@ extension Resolver: ResolverRegistering {
     register { FDRImageService() as FDRImageServiceInterface}
     register { FDRService() as FDRServiceInterface}
     register(name:.itemList){ _, args in
-        FDRImageViewModel(imagePath: args("imageURL"), cache: args("cache"))
+        FDRImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
     }
     register(name:.itemDetail){ _, args in
-        FDRImageViewModel(imagePath: args("imageURL"), cache: args("cache"))
+        FDRImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
     }
   }
 }

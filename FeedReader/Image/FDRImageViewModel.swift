@@ -19,18 +19,20 @@ class FDRImageViewModel: ObservableObject{
     var input = PassthroughSubject<Action, Never>()
     private var cache: FDRImageCacheInterface?
     private var imagePath: String
+    private var imageSizePath: FDRImagePath
     
     private var cancellable: AnyCancellable?
     
-    init(imagePath: String, cache: FDRImageCacheInterface? = nil){
+    init(imagePath: String, imageSizePath: FDRImagePath = .original, cache: FDRImageCacheInterface? = nil){
         state = State.loading(imagePath)
+        self.imageSizePath = imageSizePath
         self.cache = cache
         self.imagePath = imagePath
         setUp()
     }
     
     func getURL() -> URL?{
-        return FDRAPIUrlBuilder.getImageURL(imagePath)
+        return FDRAPIUrlImageBuilder[imageSizePath,imagePath]
     }
     
     func setUp(){
