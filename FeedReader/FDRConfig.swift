@@ -14,7 +14,7 @@ struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
     static var apiKey: String { "babcada8d42a5fd4857231c42240debd" }
 }
 
-enum Path{
+enum FDRPath{
     case trending
     case movieDetail(_ id: Int)
     func toString() -> String {
