@@ -59,6 +59,7 @@
 		CC56950726812DE70055C07C /* FDRMockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* FDRMockMovieListResponseResult.json */; };
 		CC569508268135E70055C07C /* FDRMockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* FDRMockMovieListResponseResult.json */; };
 		CC56950B2682069A0055C07C /* FDRHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* FDRHelperTests.swift */; };
+		CC6114E226C53E1900ECFB63 /* FDRAPIUrlImageBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E126C53E1900ECFB63 /* FDRAPIUrlImageBuilderProtocol.swift */; };
 		CCBF629826B0806100BB0592 /* FDRStarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629726B0806100BB0592 /* FDRStarsRatingView.swift */; };
 		CCBF629A26B0BF8F00BB0592 /* FDRStarsVotedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629926B0BF8F00BB0592 /* FDRStarsVotedView.swift */; };
 		CCBF629C26B0C23A00BB0592 /* FDRIconValueView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629B26B0C23A00BB0592 /* FDRIconValueView.swift */; };
@@ -135,6 +136,7 @@
 		CC4E708126BD37E900B3288D /* FDRLaunchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRLaunchesView.swift; sourceTree = "<group>"; };
 		CC5695012680ED070055C07C /* FDRMockMovieListResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = FDRMockMovieListResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* FDRHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRHelperTests.swift; sourceTree = "<group>"; };
+		CC6114E126C53E1900ECFB63 /* FDRAPIUrlImageBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRAPIUrlImageBuilderProtocol.swift; sourceTree = "<group>"; };
 		CCBF629726B0806100BB0592 /* FDRStarsRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRStarsRatingView.swift; sourceTree = "<group>"; };
 		CCBF629926B0BF8F00BB0592 /* FDRStarsVotedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRStarsVotedView.swift; sourceTree = "<group>"; };
 		CCBF629B26B0C23A00BB0592 /* FDRIconValueView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FDRIconValueView.swift; sourceTree = "<group>"; };
@@ -218,6 +220,7 @@
 			isa = PBXGroup;
 			children = (
 				CC456E51268FB79900FF2113 /* FDRAPIUrlBuilderProtocol.swift */,
+				CC6114E126C53E1900ECFB63 /* FDRAPIUrlImageBuilderProtocol.swift */,
 				CC351E2A269DC2940037DB34 /* FDRHelper.swift */,
 				CC4E707426BACCEC00B3288D /* FDRAPIError.swift */,
 			);
@@ -506,6 +509,7 @@
 				CC351E15269A5C020037DB34 /* FDRMoviesListView.swift in Sources */,
 				CC351E1D269BA7B80037DB34 /* FDRMockMovie.swift in Sources */,
 				CCCA022026A953B90056D018 /* FDRLoadableEnums.swift in Sources */,
+				CC6114E226C53E1900ECFB63 /* FDRAPIUrlImageBuilderProtocol.swift in Sources */,
 				CC3EC7B826A6040B005D71A9 /* FDRLoadableProtocol.swift in Sources */,
 				CC3EC7AF26A189AA005D71A9 /* FDRErrorView.swift in Sources */,
 				CCBF629A26B0BF8F00BB0592 /* FDRStarsVotedView.swift in Sources */,

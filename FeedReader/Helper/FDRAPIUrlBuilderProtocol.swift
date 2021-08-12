@@ -13,10 +13,6 @@ protocol FDRAPIUrlBuilderProtocol {
     static var apiKey: String { get }
 }
 
-protocol FDRAPIUrlImageBuilderProtocol {
-    static var imageURL: URL? { get }
-}
-
 extension FDRAPIUrlBuilderProtocol {
     static subscript(_ path: FDRPath) -> URL?{
         guard var url = Self.baseURL else {
@@ -27,17 +23,6 @@ extension FDRAPIUrlBuilderProtocol {
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)?
             .addQueryItem(Self.apiKey, forName: "api_key")
         return urlComponents?.url
-    }
-}
-
-extension FDRAPIUrlImageBuilderProtocol{
-    static subscript(_ imageSizePath: FDRImagePath, _ imagePath: String) -> URL?{
-        guard var url = Self.imageURL else {
-            return nil
-        }
-        url.appendPathComponent(imageSizePath.toString())
-        url.appendPathComponent(imagePath)
-        return url
     }
 }
 
