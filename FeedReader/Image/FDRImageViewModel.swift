@@ -10,9 +10,10 @@ import SwiftUI
 import Resolver
 
 class FDRImageViewModel: ObservableObject{
-    @Published private(set) var state: FDRLoadableEnums<T,U>.State
+    @Published private(set) var state: State
     @Injected var service: FDRImageServiceInterface
     
+    typealias State = FDRLoadableEnums<T,U>.State
     typealias T = FDRImageViewModel.ImageItem
     typealias U = String
     
