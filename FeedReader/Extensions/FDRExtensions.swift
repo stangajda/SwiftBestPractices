@@ -31,17 +31,14 @@ extension Double{
 
 extension String {
     func formatDate() -> String{
-        let date = Date()
-        let formate = date.getFormattedDate(format: "d MMM yy")
-        return formate
-    }
-}
-
-extension Date {
-   func getFormattedDate(format: String) -> String {
-        let dateformat = DateFormatter()
-        dateformat.dateFormat = format
-        return dateformat.string(from: self)
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let date = dateFormatter.date(from: self)
+        dateFormatter.dateFormat = "d MMM yy"
+        guard let date = date else {
+            return "uknown"
+        }
+        return dateFormatter.string(from: date)
     }
 }
 
