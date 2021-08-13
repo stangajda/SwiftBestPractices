@@ -16,7 +16,7 @@ struct FDRTemporaryImageCache: FDRImageCacheInterface {
     private let cache = NSCache<NSURL, UIImage>()
     
     init(){
-        cache.totalCostLimit = FDRConfig.CACHE_TOTAL_COST_LIMIT
+        cache.totalCostLimit = CACHE_TOTAL_COST_LIMIT
     }
     
     subscript(_ key: URL) -> UIImage? {

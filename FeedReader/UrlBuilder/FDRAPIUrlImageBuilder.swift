@@ -8,7 +8,7 @@
 import Foundation
 
 struct FDRAPIUrlImageBuilder: FDRAPIUrlImageBuilderProtocol{
-    static var imageURL: URL? { URL(string: FDRConfig.IMAGE_URL) }
+    static var imageURL: URL? { URL(string: IMAGE_URL) }
 }
 
 protocol FDRImagePathInterface {

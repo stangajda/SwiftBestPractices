@@ -8,9 +8,9 @@
 import Foundation
 
 struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string: FDRConfig.BASE_URL) }
-    static var prefix: String { FDRConfig.PREFIX }
-    static var apiKey: String { FDRConfig.API_KEY }
+    static var baseURL: URL? { URL(string: BASE_URL) }
+    static var prefix: String { PREFIX }
+    static var apiKey: String { API_KEY }
 }
 
 protocol FDRPathInterface {
@@ -19,7 +19,7 @@ protocol FDRPathInterface {
 
 struct FDRTrendingPath: FDRPathInterface{
     func stringPath() -> String {
-        FDRConfig.TRENDING_PATH
+        TRENDING_PATH
     }
 }
 
