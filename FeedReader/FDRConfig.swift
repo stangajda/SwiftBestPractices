@@ -17,6 +17,8 @@ struct FDRConfig{
     static let IMAGE_URL = "https://image.tmdb.org/t/p/"
     static let ORIGINAL_PATH = "original"
     static let W200_PATH = "w200"
+    
+    static let CACHE_TOTAL_COST_LIMIT = 50_000_000
 }
 
 extension URLSession{
