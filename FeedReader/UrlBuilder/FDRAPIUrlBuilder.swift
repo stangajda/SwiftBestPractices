@@ -31,6 +31,6 @@ struct FDRMoviePath: FDRPathInterface{
     }
     
     func stringPath() -> String {
-        "movie/\(String(id))"
+        API_MOVIE_PATH + "/\(String(id))"
     }
 }

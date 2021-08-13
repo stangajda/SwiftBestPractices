@@ -11,7 +11,7 @@ let API_BASE_URL = "https://api.themoviedb.org/"
 let API_PREFIX = "3"
 let API_KEY = "babcada8d42a5fd4857231c42240debd"
 let API_TRENDING_PATH = "trending/movie/day"
-let API_MOVIE_PATH = "movie/"
+let API_MOVIE_PATH = "movie"
     
 let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
 let API_IMAGE_ORIGINAL_PATH = "original"

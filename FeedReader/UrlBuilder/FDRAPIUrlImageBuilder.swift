@@ -17,12 +17,12 @@ protocol FDRImagePathInterface {
 
 struct FDROriginalPath: FDRImagePathInterface{
     func stringPath() -> String{
-        "original"
+        API_IMAGE_ORIGINAL_PATH
     }
 }
 
 struct FDRW200Path: FDRImagePathInterface {
     func stringPath() -> String {
-        "w200"
+        API_IMAGE_W200_PATH
     }
 }
