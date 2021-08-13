@@ -8,8 +8,8 @@
 import Foundation
 
 struct FDRAPIUrlBuilder: FDRAPIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string: BASE_URL) }
-    static var prefix: String { PREFIX }
+    static var baseURL: URL? { URL(string: API_BASE_URL) }
+    static var prefix: String { API_PREFIX }
     static var apiKey: String { API_KEY }
 }
 
@@ -19,7 +19,7 @@ protocol FDRPathInterface {
 
 struct FDRTrendingPath: FDRPathInterface{
     func stringPath() -> String {
-        TRENDING_PATH
+        API_TRENDING_PATH
     }
 }
 

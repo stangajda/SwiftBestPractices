@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-let BASE_URL = "https://api.themoviedb.org/"
-let PREFIX = "3"
+let API_BASE_URL = "https://api.themoviedb.org/"
+let API_PREFIX = "3"
 let API_KEY = "babcada8d42a5fd4857231c42240debd"
-let TRENDING_PATH = "trending/movie/day"
-let MOVIE_PATH = "movie/"
+let API_TRENDING_PATH = "trending/movie/day"
+let API_MOVIE_PATH = "movie/"
     
-let IMAGE_URL = "https://image.tmdb.org/t/p/"
-let ORIGINAL_PATH = "original"
-let W200_PATH = "w200"
+let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
+let API_IMAGE_ORIGINAL_PATH = "original"
+let API_IMAGE_W200_PATH = "w200"
     
 let CACHE_TOTAL_COST_LIMIT = 50_000_000
 
