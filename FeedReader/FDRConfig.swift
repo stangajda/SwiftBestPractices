@@ -22,7 +22,7 @@ let CACHE_TOTAL_COST_LIMIT = 50_000_000
 extension URLSession{
     static func configuredURLSession() -> URLSession {
         let configuration = URLSessionConfiguration.default
-        let urlCache = URLCache(memoryCapacity: 50_000_000, diskCapacity: 100_000_000)
+        let urlCache = URLCache(memoryCapacity: 20_000_000, diskCapacity: 50_000_000)
         configuration.waitsForConnectivity = true
         configuration.timeoutIntervalForRequest = 60
         configuration.timeoutIntervalForResource = 180
