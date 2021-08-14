@@ -74,6 +74,8 @@
 		CCF3A8E4267BE02B00CB5765 /* FDRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* FDRService.swift */; };
 		CCF3A8EA267BFCFF00CB5765 /* FDRService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* FDRService.swift */; };
 		CCF3A8ED267C1B5000CB5765 /* FDRMockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* FDRMockURLProtocol.swift */; };
+		CCF8CA3126C74C4800068726 /* FDRAPIUrlBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* FDRAPIUrlBuilderProtocol.swift */; };
+		CCF8CA3226C74C5700068726 /* FDRAPIUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E526C5BD1A00ECFB63 /* FDRAPIUrlBuilder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -555,8 +557,10 @@
 				CC35563426AB03AB002D0B07 /* FDRResolver+Tests.swift in Sources */,
 				CC351E13269A580F0037DB34 /* FDRConfig.swift in Sources */,
 				CC4E706D26B840DC00B3288D /* FDRMovieDetailService.swift in Sources */,
+				CCF8CA3226C74C5700068726 /* FDRAPIUrlBuilder.swift in Sources */,
 				CC56950B2682069A0055C07C /* FDRHelperTests.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* FDRAPIError.swift in Sources */,
+				CCF8CA3126C74C4800068726 /* FDRAPIUrlBuilderProtocol.swift in Sources */,
 				CC4E707F26BBEE0500B3288D /* FDRMockMovieDetailResponseResult.json in Sources */,
 				CC4E707326B8478A00B3288D /* FDRImageServiceSpec.swift in Sources */,
 			);
