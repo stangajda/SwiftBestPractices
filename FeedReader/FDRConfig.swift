@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// MARK:- API
 let API_BASE_URL = "https://api.themoviedb.org/"
 let API_PREFIX = "3"
 let API_KEY = "babcada8d42a5fd4857231c42240debd"
@@ -16,9 +17,11 @@ let API_MOVIE_PATH = "movie"
 let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
 let API_IMAGE_ORIGINAL_PATH = "original"
 let API_IMAGE_W200_PATH = "w200"
-    
+
+// MARK:- Cache
 let CACHE_TOTAL_COST_LIMIT = 50_000_000
 
+// MARK:- URLSession
 extension URLSession{
     static func configuredURLSession() -> URLSession {
         let configuration = URLSessionConfiguration.default

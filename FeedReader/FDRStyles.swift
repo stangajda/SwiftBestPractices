@@ -7,6 +7,8 @@
 import SwiftUI
 
 extension View {
+    
+// MARK:- Row list
     func withRowListStyles() -> some View {
         frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
             .font(.title)
@@ -27,6 +29,7 @@ extension View {
         .font(.caption)
     }
     
+// MARK:- Movie Details
     func withMovieDetailsStyle() -> some View{
         frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding()
@@ -61,6 +64,7 @@ extension View {
     
 }
 
+// MARK: Image
 extension Image{
     func withImageStyles() -> some View{
         resizable()
