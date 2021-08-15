@@ -18,11 +18,9 @@ struct FDRMovieRowView: View {
                 .withRowListImageSize()
             VStack(alignment:.leading){
                 Text(movie.title)
-                    .font(.title2)
-                    .minimumScaleFactor(0.5)
+                    .withRowTitleSize()
                 FDRStarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
-                    .frame(maxWidth: 140, maxHeight: 15, alignment: .leading)
-                    .font(.caption)
+                    .withRowStarsVotedSize()
             }
         }
         .withRowListStyles()

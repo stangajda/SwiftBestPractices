@@ -65,28 +65,29 @@ private extension FDRMovieDetailView {
         ScrollView {
             VStack(alignment: .leading){
                 Text(viewModel.movieList.title)
-                    .frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
-                    .font(.title)
-                    .minimumScaleFactor(0.5)
-                    .lineLimit(1)
-                    .padding()
+                    .withMovieDetailsTitleStyle()
+                
                 FDRImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": FDROriginalPath() as FDRImagePathInterface,"cache": cache as Any]))
                     .withMovieDetailsImageViewStyle()
+                
                 FDRStarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
-                    .frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
-                    .padding(.bottom)
+                    .withMovieDetailsStarsVotedStyle()
+                
                 if movieDetail.release_date != "uknown"{
                     FDRIconValueView(iconName: "calendar", textValue: movieDetail.release_date)
                 }
+                
                 Text(movieDetail.overview)
-                    .multilineTextAlignment(.leading)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(.bottom)
+                    .withMovieDetailsOverviewStyle()
+                
                 if movieDetail.budget != "0" {
                     FDRIconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
                 }
+                
                 FDRIconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
+                
                 FDROverlayTextView(stringArray: movieDetail.genres)
+                
             }
             .withMovieDetailsStyle()
         }

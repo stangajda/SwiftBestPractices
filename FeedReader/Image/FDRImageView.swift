@@ -61,7 +61,6 @@ struct FDRImageView_Previews: PreviewProvider {
             FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail)).preferredColorScheme(.dark)
             FDRImageView(viewModel: FDRMockImageViewModel(.itemDetail))
         }
-            
     }
 }
 #endif
