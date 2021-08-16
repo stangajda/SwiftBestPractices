@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+let MOVIELIST_TITLE = "Trending Daily"
+
 // MARK:- API
 let API_BASE_URL = "https://api.themoviedb.org/"
 let API_PREFIX = "3"

@@ -15,7 +15,7 @@ struct MoviesListView: View {
     var body: some View {
         NavigationView {
             content
-                .navigationBarTitle("Trending Daily")
+                .navigationBarTitle(MOVIELIST_TITLE)
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
