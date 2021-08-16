@@ -65,10 +65,10 @@ private extension MovieDetailView {
         ScrollView {
             VStack(alignment: .leading){
                 Text(viewModel.movieList.title)
-                    .withMovieDetailsTitleStyle()
+                    .withTitleStyle()
                 
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathInterface,"cache": cache as Any]))
-                    .withMovieDetailsImageViewStyle()
+                    .withLargeImageStyle()
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .withMovieDetailsStarsVotedStyle()
@@ -89,7 +89,7 @@ private extension MovieDetailView {
                 OverlayTextView(stringArray: movieDetail.genres)
                 
             }
-            .withMovieDetailsStyle()
+            .withMovieDetailStyle()
         }
     }
 }

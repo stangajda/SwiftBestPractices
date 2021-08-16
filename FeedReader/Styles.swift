@@ -8,20 +8,32 @@ import SwiftUI
 
 extension View {
     
-// MARK:- Row list
-    func withRowListStyles() -> some View {
-        frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
+    func withTitleStyle() -> some View{
+            frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
             .font(.title)
+            .minimumScaleFactor(0.5)
+            .lineLimit(1)
             .padding()
     }
     
-    func withRowListImageSize() -> some View{
+    func withSmallImageSize() -> some View{
         frame(maxWidth: 64.0, maxHeight: 88.0)
     }
     
-    func withRowTitleSize() -> some View{
+    func withLargeImageStyle() -> some View{
+        frame(maxWidth: .infinity, minHeight: 220, alignment: .center)
+            .padding(.bottom, 20.0)
+    }
+    
+// MARK:- Row list
+    func withRowTitleStyle() -> some View{
         font(.title2)
         .minimumScaleFactor(0.5)
+    }
+    
+    func withRowStyle() -> some View {
+        frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
+            .padding()
     }
     
     func withRowStarsVotedSize() -> some View{
@@ -30,25 +42,11 @@ extension View {
     }
     
 // MARK:- Movie Details
-    func withMovieDetailsStyle() -> some View{
+    func withMovieDetailStyle() -> some View{
         frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             .padding()
             .font(.body)
             .multilineTextAlignment(.center)
-    }
-    
-    func withMovieDetailsTitleStyle() -> some View{
-        frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
-            .font(.title)
-            .minimumScaleFactor(0.5)
-            .lineLimit(1)
-            .padding()
-    }
-    
-    func withMovieDetailsImageViewStyle() -> some View{
-        frame(maxWidth: .infinity, minHeight: 220, alignment: .center)
-            .padding(.bottom, 20.0)
     }
     
     func withMovieDetailsOverviewStyle() -> some View{
@@ -62,12 +60,4 @@ extension View {
         .padding(.bottom)
     }
     
-}
-
-// MARK: Image
-extension Image{
-    func withImageStyles() -> some View{
-        resizable()
-            .aspectRatio(contentMode: .fit)
-    }
 }
