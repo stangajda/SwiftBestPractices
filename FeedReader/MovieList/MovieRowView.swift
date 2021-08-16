@@ -10,16 +10,16 @@ import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
-    @Environment(\.imageCache) var cache: FDRImageCacheInterface
+    @Environment(\.imageCache) var cache: ImageCacheInterface
     
     var body: some View {
         HStack{
-            FDRImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": FDRW200Path() as FDRImagePathInterface,"cache": cache as Any]))
+            ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": W200Path() as ImagePathInterface,"cache": cache as Any]))
                 .withRowListImageSize()
             VStack(alignment:.leading){
                 Text(movie.title)
                     .withRowTitleSize()
-                FDRStarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
+                StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
                     .withRowStarsVotedSize()
             }
         }
