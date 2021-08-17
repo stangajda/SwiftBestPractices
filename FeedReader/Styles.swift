@@ -34,7 +34,7 @@ extension View {
     
     func withStarsVotedSizeStyle() -> some View{
         self.withStarsVotedSizeStyle(180, 25)
-            .padding()
+            .padding(.bottom)
     }
     
 // MARK:- Row list
