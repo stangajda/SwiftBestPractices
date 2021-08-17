@@ -68,17 +68,17 @@ private extension MovieDetailView {
                     .withTitleStyle()
                 
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathInterface,"cache": cache as Any]))
-                    .withLargeImageStyle()
+                    .withImageStyle()
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
-                    .withMovieDetailsStarsVotedStyle()
+                    .withStarsVotedSizeStyle()
                 
                 if movieDetail.release_date != "uknown"{
                     IconValueView(iconName: "calendar", textValue: movieDetail.release_date)
                 }
                 
                 Text(movieDetail.overview)
-                    .withMovieDetailsOverviewStyle()
+                    .withOverviewStyle()
                 
                 if movieDetail.budget != "0" {
                     IconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
@@ -89,7 +89,8 @@ private extension MovieDetailView {
                 OverlayTextView(stringArray: movieDetail.genres)
                 
             }
-            .withMovieDetailStyle()
+            .padding()
+
         }
     }
 }

@@ -15,48 +15,41 @@ extension View {
             .padding()
     }
     
-    func withSmallImageSize() -> some View{
-        frame(maxWidth: 64.0, maxHeight: 88.0)
-    }
-    
-    func withLargeImageStyle() -> some View{
+    func withImageStyle() -> some View{
         frame(maxWidth: .infinity, minHeight: 220, alignment: .center)
             .padding(.bottom, 20.0)
     }
     
+    func withOverviewStyle() -> some View{
+        multilineTextAlignment(.leading)
+        .font(.body)
+        .fixedSize(horizontal: false, vertical: true)
+        .padding(.bottom)
+    }
+    
+    func withStarsVotedSizeStyle(_ maxWidth: CGFloat, _ maxHeight: CGFloat) -> some View{
+        frame(maxWidth: maxWidth, maxHeight: maxHeight, alignment: .leading)
+        .font(.caption)
+    }
+    
+    func withStarsVotedSizeStyle() -> some View{
+        self.withStarsVotedSizeStyle(180, 25)
+            .padding()
+    }
+    
 // MARK:- Row list
+   
     func withRowTitleStyle() -> some View{
         font(.title2)
         .minimumScaleFactor(0.5)
     }
     
-    func withRowStyle() -> some View {
-        frame(maxWidth: .infinity, minHeight: 88.0, alignment: .leading)
-            .padding()
+    func withRowImageSize() -> some View{
+        frame(maxWidth: 64.0, maxHeight: 88.0)
     }
     
-    func withRowStarsVotedSize() -> some View{
-        frame(maxWidth: 140, maxHeight: 15, alignment: .leading)
-        .font(.caption)
-    }
-    
-// MARK:- Movie Details
-    func withMovieDetailStyle() -> some View{
-        frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            .padding()
-            .font(.body)
-            .multilineTextAlignment(.center)
-    }
-    
-    func withMovieDetailsOverviewStyle() -> some View{
-        multilineTextAlignment(.leading)
-        .fixedSize(horizontal: false, vertical: true)
-        .padding(.bottom)
-    }
-    
-    func withMovieDetailsStarsVotedStyle() -> some View{
-        frame(maxWidth: 180, maxHeight: 25.0, alignment: .leading)
-        .padding(.bottom)
+    func withRowStarsVotedSizeStyle() -> some View{
+        self.withStarsVotedSizeStyle(140, 15)
     }
     
 }

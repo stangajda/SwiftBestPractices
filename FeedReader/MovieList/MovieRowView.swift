@@ -15,15 +15,15 @@ struct MovieRowView: View {
     var body: some View {
         HStack{
             ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": W200Path() as ImagePathInterface,"cache": cache as Any]))
-                .withSmallImageSize()
+                .withRowImageSize()
             VStack(alignment:.leading){
                 Text(movie.title)
                     .withRowTitleStyle()
                 StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
-                    .withRowStarsVotedSize()
+                    .withRowStarsVotedSizeStyle()
             }
         }
-        .withRowStyle()
+        .padding()
     }
 }
 
