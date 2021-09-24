@@ -32,11 +32,11 @@ class ImageViewModel: ObservableObject{
         setUp()
     }
     
-    func getURL() -> URL?{
+    private func getURL() -> URL?{
         return APIUrlImageBuilder[imageSizePath,imagePath]
     }
     
-    func setUp(){
+    private func setUp(){
         guard let url = getURL() else {
             state = .failedLoaded(APIError.invalidURL)
             return
@@ -50,7 +50,7 @@ class ImageViewModel: ObservableObject{
         load()
     }
     
-    func load(){
+    private func load(){
         cancellable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
