@@ -29,47 +29,97 @@ extension Data{
 // MARK: - Result
 
 extension Result where Success: Equatable {
-    func isExpectSuccessToEqual(_ value: Success, file: StaticString = #file, line: UInt = #line) {
+    func isExpectSuccessToEqual(_ value: Success, file: String = #file, line: UInt = #line) {
         switch self {
         case let .success(resultValue):
-            expect(file: file, line: line, resultValue) == value
+            expect(
+                file: file,
+                line: line,
+                resultValue
+            ) == value
         case let .failure(error):
-            fail("Unexpected error: \(error)", file: file, line: line)
+            fail(
+                "Unexpected error: \(error)",
+                file: file,
+                line: line
+            )
         }
     }
 }
 
-extension Result {
-    func isExpectSuccessType<T>(_ type: T,file: StaticString = #file, line: UInt = #line) {
+extension Result where Success == Void {
+    func isExpectSuccess(file: String = #file, line: UInt = #line) {
         switch self {
-        case let .failure(error):
+        case .failure(let error):
             fail("Unexpected error: \(error)", file: file, line: line)
-        case let .success(resultValue):
-            expect(resultValue).to(beAnInstanceOf(T.self))
+        case .success:
             break
         }
     }
-    
-    func isExpectFailedToEqual(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
+}
+
+extension Result where Failure == Error {
+    func isExpectFailedToEqual(_ message: String? = nil, file: String = #file, line: UInt = #line) {
         switch self {
-        case let .success(value):
+        case .success(let value):
             fail("Unexpected error: \(value)", file: file, line: line)
-        case let .failure(error):
+        case .failure(let error):
             if let message = message {
                 expect(file: file, line: line, error.localizedDescription) == message
             }
         }
     }
     
-    func isExpectFailedToContain(_ message: String? = nil, file: StaticString = #file, line: UInt = #line) {
+    func isExpectFailedToContain(_ message: String? = nil, file: String = #file, line: UInt = #line) {
         switch self {
-        case let .success(value):
+        case .success(let value):
             fail("Unexpected error: \(value)", file: file, line: line)
-        case let .failure(error):
+        case .failure(let error):
             if let message = message {
                 let isContain = error.localizedDescription.contains(message)
                 expect(file: file, line: line, isContain).to(beTrue())
             }
+        }
+    }
+    
+    func isExpectFailed(_ message: String? = nil, file: String = #file, line: UInt = #line) {
+        switch self {
+        case .success(let value):
+            fail("Unexpected error: \(value)", file: file, line: line)
+        case .failure(let error):
+            if let message = message {
+                let isContain = error.localizedDescription.contains(message)
+                expect(file: file, line: line, isContain).to(beTrue())
+            }
+        }
+    }
+    
+    func isExpectFailureToMatchError(
+        _ errorMatcher: @escaping (Error) -> Bool,
+        file: String = #file,
+        line: UInt = #line
+    ) {
+        switch self {
+        case let .success(resultValue):
+            fail(
+                "Expected failure to match error but got success with value \(resultValue)",
+                file: file,
+                line: line
+            )
+        case let .failure(error):
+            expect(file: file, line: line, errorMatcher(error)).to(beTrue())
+        }
+    }
+}
+
+extension Result {
+    func isExpectSuccessType<T>(_ type: T,file: String = #file, line: UInt = #line) {
+        switch self {
+        case .failure(let error):
+            fail("Unexpected error: \(error)", file: file, line: line)
+        case .success(let resultValue):
+            expect(resultValue).to(beAnInstanceOf(T.self))
+            break
         }
     }
 }
