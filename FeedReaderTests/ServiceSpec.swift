@@ -79,10 +79,14 @@ class ServiceSpec: QuickSpec {
                 beforeEach {
                     stubErrorCode = 0
                     stubResult = .success(false)
+                    do {
+                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: stubResult, apiCode: stubErrorCode)
+                    } catch {
+                        fatalError("Error: \(error.localizedDescription)")
+                    }
                 }
                 
                 it("it should failure response match error code"){
-                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: stubResult, apiCode: stubErrorCode)
                     waitUntil { done in
                         cancellable = mockManager.fetchData(mockRequestUrl)
                             .sinkToResult({ result in
