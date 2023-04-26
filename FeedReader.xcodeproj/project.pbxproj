@@ -76,6 +76,7 @@
 		CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
 		CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIUrlBuilderProtocol.swift */; };
 		CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E526C5BD1A00ECFB63 /* APIUrlBuilder.swift */; };
+		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -482,6 +483,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */,
 				CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

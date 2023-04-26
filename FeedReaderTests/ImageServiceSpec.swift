@@ -25,7 +25,7 @@ class ImageServiceSpec: QuickSpec{
             var uiImage: UIImage!
             context("given succesful image") {
                 beforeEach {
-                    uiImage = UIImage(named: "StubImage")
+                    uiImage = UIImage(named: "stubImage")
                 }
                 
                 it("it should get succesful response on Type UIImage") {

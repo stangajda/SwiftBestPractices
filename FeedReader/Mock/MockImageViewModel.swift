@@ -29,9 +29,9 @@ class MockImageViewModel: ImageViewModel{
     func switchState(_ state: MockState){
         switch state {
         case .itemList:
-            image = UIImage(named: "StubImageMovieMedium")
+            image = UIImage(named: "stubImageMovieMedium")
         case .itemDetail:
-            image = UIImage(named: "StubImageMovieDetailsBig")
+            image = UIImage(named: "stubImageMovieDetailsBig")
         }
     }
 }
