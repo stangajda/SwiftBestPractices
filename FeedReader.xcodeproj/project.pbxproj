@@ -76,6 +76,8 @@
 		CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC456E51268FB79900FF2113 /* APIUrlBuilderProtocol.swift */; };
 		CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E526C5BD1A00ECFB63 /* APIUrlBuilder.swift */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
+		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
+		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -158,6 +160,7 @@
 		CCF3A8CC267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8E3267BE02B00CB5765 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
+		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -302,6 +305,7 @@
 		CC4E708026BBF00700B3288D /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */,
 				CC5695012680ED070055C07C /* MockMovieListResponseResult.json */,
 				CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */,
 			);
@@ -476,6 +480,7 @@
 			files = (
 				CC569508268135E70055C07C /* MockMovieListResponseResult.json in Resources */,
 				CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */,
+				F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -485,6 +490,7 @@
 			files = (
 				F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */,
 				CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */,
+				F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -706,7 +712,7 @@
 				DEVELOPMENT_TEAM = L52S2L262Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FeedReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -728,7 +734,7 @@
 				DEVELOPMENT_TEAM = L52S2L262Q;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = FeedReader/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -748,7 +754,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L52S2L262Q;
 				INFOPLIST_FILE = FeedReaderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -770,7 +776,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = L52S2L262Q;
 				INFOPLIST_FILE = FeedReaderTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

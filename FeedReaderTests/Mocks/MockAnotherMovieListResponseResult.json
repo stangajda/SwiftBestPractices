@@ -1,0 +1,19 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "title": "0-title-another",
+      "poster_path": "0-poster_path-another",
+      "vote_average": 6.0,
+      "vote_count": 1844
+    },
+    {
+        "id": 2,
+        "title": "1-title-another",
+        "poster_path": "1-poster_path-another",
+        "vote_average": 7.5,
+        "vote_count": 711
+    }
+  ],
+  "page": 1
+}

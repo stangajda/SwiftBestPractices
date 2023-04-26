@@ -45,6 +45,23 @@ extension Result where Success: Equatable {
             )
         }
     }
+
+    func isExpectSuccessNotToEqual(_ value: Success, file: String = #file, line: UInt = #line) {
+        switch self {
+        case let .success(resultValue):
+            expect(
+                file: file,
+                line: line,
+                resultValue
+            ) != value
+        case let .failure(error):
+            fail(
+                "Unexpected error: \(error)",
+                file: file,
+                line: line
+            )
+        }
+    }
 }
 
 extension Result where Success == Void {

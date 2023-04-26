@@ -25,22 +25,26 @@ class ImageServiceSpec: QuickSpec{
             var uiImage: UIImage!
             context("given succesful image") {
                 beforeEach {
-                    uiImage = UIImage(named: "stubImage")
+                    do {
+                        uiImage = UIImage(named: "stubImage")
+                        guard let imageData = uiImage?.pngData() else {
+                            throw APIError.imageConversion(mockRequestUrl)
+                        }
+                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
+                    } catch {
+                        fatalError("Error: \(error.localizedDescription)")
+                    }
                 }
                 
                 it("it should get succesful response on Type UIImage") {
-                    guard let imageData = uiImage?.pngData() else {
-                        throw APIError.imageConversion(mockRequestUrl)
-                    }
-            
-                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(imageData))
-                    waitUntil{ done in
-                        cancellable = mockImageManager.fetchImage(mockRequestUrl)
-                            .sinkToResult({ result in
-                                result.isExpectSuccessType(UIImage())
-                                done()
-                            })
-                    }
+                   
+                     waitUntil{ done in
+                         cancellable = mockImageManager.fetchImage(mockRequestUrl)
+                             .sinkToResult({ result in
+                                 result.isExpectSuccessType(UIImage())
+                                 done()
+                             })
+                     }
                 }
             }
             
@@ -50,7 +54,7 @@ class ImageServiceSpec: QuickSpec{
                     stubData = Data.stubData
                 }
                 
-                it("it should get failure response match error"){
+                it("it should get failure response match error") {
                     MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(stubData))
                     waitUntil { done in
                         cancellable = mockImageManager.fetchImage(mockRequestUrl)

@@ -30,10 +30,14 @@ class ServiceSpec: QuickSpec {
                 beforeEach {
                     responseData = Data.stubData
                     result = .success(responseData)
+                    do {
+                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
+                    } catch {
+                        fatalError("Error: \(error.localizedDescription)")
+                    }
                 }
                 
                 it("it should get successful response match to data"){
-                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result)
                     waitUntil{ done in
                         cancellable = mockManager.fetchData(mockRequestUrl)
                             .sinkToResult({ result in
@@ -48,10 +52,16 @@ class ServiceSpec: QuickSpec {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("given failure error code \(errorCode)"){
+                    let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
+                    beforeEach {
+                        do {
+                            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
+                        } catch {
+                            fatalError("Error: \(error.localizedDescription)")
+                        }
+                    }
                     
                     it("it should get failure response match given error code \(errorCode)"){
-                        let result: Result<Data, Error> = .failure(NSError.stubCode(code: errorCode))
-                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: errorCode)
                         waitUntil { done in
                             cancellable = mockManager.fetchData(mockRequestUrl)
                                 .sinkToResult({ result in

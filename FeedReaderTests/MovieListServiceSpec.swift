@@ -18,28 +18,57 @@ class MovieListServiceSpec: QuickSpec{
     
     override func spec() {
         describe("check movie list service"){
-            var cancellable: AnyCancellable?
             Resolver.registerMockServices()
+
             let mockMovieListManager: MovieListService = MovieListService()
             let mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[TrendingPath()]!).get()
+
+            var cancellable: AnyCancellable?
             var dataFromFile: Data!
+            var anotherDataFromFile: Data!
+            var moviesFromData: Movies!
+            var anotherMoviesFromData: Movies!
+
             context("given successful json data") {
                 beforeEach {
+                    // Arrange
+                    // Given
                     dataFromFile = Data.load("MockMovieListResponseResult.json")
+                    anotherDataFromFile = Data.load("MockAnotherMovieListResponseResult.json")
+                    do {
+                        moviesFromData = try JSONDecoder().decode(Movies.self, from: dataFromFile)
+                        anotherMoviesFromData = try JSONDecoder().decode(Movies.self, from: anotherDataFromFile)
+                        MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
+                    } catch {
+                        fatalError("Error: \(error.localizedDescription)")
+                    }
+
                 }
                 
                 it("it should get successful response match mapped object"){
-                    let moviesFromData: Movies = try JSONDecoder().decode(Movies.self,
-                                                                    from: dataFromFile)
-                    MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: .success(moviesFromData))
-                            waitUntil{ done in
-                                cancellable = mockMovieListManager.fetchMovies(mockRequestUrl)
-                                    .sinkToResult({ result in
-                                        result.isExpectSuccessToEqual(moviesFromData)
-                                        done()
-                                    })
-                            }
+                    
+                    waitUntil{ done in
+                        cancellable = mockMovieListManager.fetchMovies(mockRequestUrl)
+                            .sinkToResult({ result in
+                                result.isExpectSuccessToEqual(moviesFromData)
+                                done()
+                            })
+                    }
+                    
                 }
+
+                it("it should get successful response not match mapped object"){
+                   
+                    waitUntil{ done in
+                        cancellable = mockMovieListManager.fetchMovies(mockRequestUrl)
+                            .sinkToResult({ result in
+                                result.isExpectSuccessNotToEqual(anotherMoviesFromData)
+                                done()
+                            })
+                    }
+                    
+                }
+                
             }
             
             afterEach {
