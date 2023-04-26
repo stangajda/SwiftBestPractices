@@ -53,7 +53,6 @@
 		CC4E707526BACCEC00B3288D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707426BACCEC00B3288D /* APIError.swift */; };
 		CC4E707626BACD1E00B3288D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707426BACCEC00B3288D /* APIError.swift */; };
 		CC4E707A26BB3D7200B3288D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707926BB3D7100B3288D /* Extensions.swift */; };
-		CC4E707F26BBEE0500B3288D /* MockMovieDetailResponseResult.json in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */; };
 		CC4E708226BD37EB00B3288D /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E708126BD37E900B3288D /* LaunchesView.swift */; };
 		CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
 		CC569508268135E70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
@@ -563,7 +562,6 @@
 				CC56950B2682069A0055C07C /* HelperTests.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
 				CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */,
-				CC4E707F26BBEE0500B3288D /* MockMovieDetailResponseResult.json in Sources */,
 				CC4E707326B8478A00B3288D /* ImageServiceSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -823,7 +821,7 @@
 			repositoryURL = "https://github.com/hmlongco/Resolver";
 			requirement = {
 				kind = exactVersion;
-				version = 1.4.3;
+				version = 1.5.0;
 			};
 		};
 		CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */ = {

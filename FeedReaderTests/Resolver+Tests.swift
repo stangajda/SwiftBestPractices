@@ -9,7 +9,7 @@ import Foundation
 import Resolver
 
 extension Resolver {
-    static var mock = Resolver(parent: .main)
+    static var mock = Resolver(child: .main)
     static func registerMockServices() {
         root = Resolver.mock
         defaultScope = .application
