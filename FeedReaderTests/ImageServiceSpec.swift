@@ -34,10 +34,9 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
             }
             
-            var stubData:Data!
             context("given failure not image stubdata"){
                 beforeEach { [self] in
-                    stubData = Data.stubData
+                    let stubData = Data.stubData
                     mockResponse(result: .success(stubData))
                 }
                 
