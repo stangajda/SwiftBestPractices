@@ -13,42 +13,7 @@ import Resolver
 import Nimble
 import Quick
 
-protocol MockableBaseService {
-    typealias Mock = MockURLProtocol.MockedResponse
-    var cancellable: AnyCancellable? { get }
-    var mockRequestUrl: URLRequest { get }
-}
-
-
-protocol MockableMovieListService: MockableBaseService {
-    var mockManager: MovieListServiceInterface { get }
-}
-
-extension MockableMovieListService {
-
-    func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
-
-    func checkResponse(closure: @escaping (Result<Movies, Swift.Error>) -> Void) async -> AnyCancellable? {
-        var cancellable: AnyCancellable?
-        await waitUntil{ [self] done in
-            cancellable = mockManager.fetchMovies(mockRequestUrl)
-                .sinkToResult({ result in
-                    closure(result)
-                    done()
-                })
-        }
-        return cancellable
-     }
-
-}
-
-class MovieListServiceSpec: QuickSpec, MockableMovieListService {
+class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
     @LazyInjected var mockManager: MovieListServiceInterface
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
