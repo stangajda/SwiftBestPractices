@@ -24,6 +24,16 @@ extension Data{
         }
         
     }
+
+    static func jsonDataToObject<T:Decodable>(_ filename: String) -> T where T: Encodable {
+        let data = Data.load(filename)
+        let decoder = JSONDecoder()
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
+        }
+    }
 }
 
 // MARK: - Result

@@ -36,7 +36,7 @@ extension MockableServiceInterface {
         }
     }
 
-     func checkResponse(closure: @escaping (Result<Data, Swift.Error>) -> Void) async -> AnyCancellable? {
+    func checkResponse(closure: @escaping (Result<Data, Swift.Error>) -> Void) async -> AnyCancellable? {
         var cancellable: AnyCancellable?
         await waitUntil{ [self] done in
             cancellable = mockManager.fetchData(mockRequestUrl)
@@ -46,7 +46,7 @@ extension MockableServiceInterface {
                 })
         }
         return cancellable
-     }
+    }
 
 }
 
