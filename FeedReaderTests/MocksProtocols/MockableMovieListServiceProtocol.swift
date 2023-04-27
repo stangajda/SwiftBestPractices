@@ -10,7 +10,7 @@ import Combine
 import Nimble
 
 protocol MockableMovieListServiceProtocol: MockableBaseServiceProtocol {
-    var mockManager: MovieListServiceInterface { get }
+    var mockManager: MovieListServiceProtocol{ get }
 }
 
 extension MockableMovieListServiceProtocol {

@@ -10,7 +10,7 @@ import Resolver
 
 class MovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State
-    @Injected var service: MovieDetailServiceInterface
+    @Injected var service: MovieDetailServiceProtocol
     
     typealias T = MovieDetailViewModel.MovieDetailItem
     typealias U = Int

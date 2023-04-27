@@ -13,10 +13,10 @@ extension Resolver: ResolverRegistering {
     defaultScope = .graph
     register { URLSession.configuredURLSession()}
     register { MoviesListViewModel() as MoviesListViewModel}
-    register { MovieListService() as MovieListServiceInterface}
-    register { MovieDetailService() as MovieDetailServiceInterface}
-    register { ImageService() as ImageServiceInterface}
-    register { Service() as ServiceInterface}
+    register { MovieListService() as MovieListServiceProtocol}
+    register { MovieDetailService() as MovieDetailServiceProtocol}
+    register { ImageService() as ImageServiceProtocol}
+    register { Service() as ServiceProtocol}
     register(name:.itemList){ _, args in
         ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
     }

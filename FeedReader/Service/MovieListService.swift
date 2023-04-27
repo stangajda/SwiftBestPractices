@@ -9,12 +9,12 @@ import Foundation
 import Combine
 import Resolver
 
-protocol MovieListServiceInterface {
+protocol MovieListServiceProtocol {
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>
 }
 
-struct MovieListService: MovieListServiceInterface{
-    @Injected var service: ServiceInterface
+struct MovieListService: MovieListServiceProtocol{
+    @Injected var service: ServiceProtocol
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>{
         return self.service.fetchData(request)
     }

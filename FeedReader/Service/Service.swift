@@ -9,12 +9,12 @@ import Combine
 import Resolver
 import UIKit
 
-protocol ServiceInterface {
+protocol ServiceProtocol {
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error>
     func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error>
 }
 
-struct Service: ServiceInterface{
+struct Service: ServiceProtocol{
     @Injected var session: URLSession
     var cancellable: AnyCancellable?
     

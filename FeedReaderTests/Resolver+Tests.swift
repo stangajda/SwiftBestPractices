@@ -14,7 +14,7 @@ extension Resolver {
         root = Resolver.mock
         defaultScope = .application
         Resolver.mock.register { URLSession.mockURLSession }
-        Resolver.mock.register { Service() as ServiceInterface}
-        Resolver.mock.register { MovieListService() as MovieListServiceInterface}
+        Resolver.mock.register { Service() as ServiceProtocol}
+        Resolver.mock.register { MovieListService() as MovieListServiceProtocol}
     }
 }

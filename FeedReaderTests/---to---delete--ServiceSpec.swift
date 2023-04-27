@@ -14,7 +14,7 @@ import Quick
 
 protocol MockableServiceInterface {
     typealias Mock = MockURLProtocol.MockedResponse
-    var mockManager: ServiceInterface { get }
+    var mockManager: ServiceProtocol { get }
     var cancellable: AnyCancellable? { get set }
     var mockRequestUrl: URLRequest { get }
 }
@@ -51,7 +51,7 @@ extension MockableServiceInterface {
 }
 
 class ServiceSpec: QuickSpec, MockableServiceInterface {
-    @LazyInjected var mockManager: ServiceInterface
+    @LazyInjected var mockManager: ServiceProtocol
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
     var result: Result<Data, Swift.Error>!

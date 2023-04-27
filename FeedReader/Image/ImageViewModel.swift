@@ -11,7 +11,7 @@ import Resolver
 
 class ImageViewModel: ObservableObject{
     @Published private(set) var state: State
-    @Injected var service: ImageServiceInterface
+    @Injected var service: ImageServiceProtocol
     
     typealias State = LoadableEnums<T,U>.State
     typealias T = ImageViewModel.ImageItem

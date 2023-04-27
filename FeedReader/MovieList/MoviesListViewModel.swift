@@ -11,7 +11,7 @@ import Resolver
 
 class MoviesListViewModel: ObservableObject{
     @Published private(set) var state = State.start()
-    @Injected private var service: MovieListServiceInterface
+    @Injected private var service: MovieListServiceProtocol
     
     typealias T = Array<MoviesListViewModel.MovieItem>
     typealias U = Any

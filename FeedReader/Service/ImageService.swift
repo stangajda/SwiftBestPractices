@@ -10,12 +10,12 @@ import Combine
 import UIKit
 import Resolver
 
-protocol ImageServiceInterface {
+protocol ImageServiceProtocol {
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error>
 }
 
-struct ImageService: ImageServiceInterface{
-    @Injected var service: ServiceInterface
+struct ImageService: ImageServiceProtocol{
+    @Injected var service: ServiceProtocol
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         service.fetchData(request)
             .tryMap { data in
