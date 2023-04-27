@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import FeedReader
 
 struct MockAPIRequest: APIUrlBuilderProtocol {
     static var baseURL: URL? { URL(string:"https://any.test.com/") }
