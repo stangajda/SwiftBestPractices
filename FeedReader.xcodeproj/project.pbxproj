@@ -77,6 +77,7 @@
 		CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E526C5BD1A00ECFB63 /* APIUrlBuilder.swift */; };
 		F63F995029FAC93300FD0094 /* MockableMovieListServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F994F29FAC93300FD0094 /* MockableMovieListServiceProtocol.swift */; };
 		F63F995229FAC95500FD0094 /* MockableBaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */; };
+		F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -164,6 +165,7 @@
 		CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		F63F994F29FAC93300FD0094 /* MockableMovieListServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableMovieListServiceProtocol.swift; sourceTree = "<group>"; };
 		F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableBaseServiceProtocol.swift; sourceTree = "<group>"; };
+		F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableImageServiceProtocol.swift; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -393,6 +395,7 @@
 				CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */,
 				F63F994F29FAC93300FD0094 /* MockableMovieListServiceProtocol.swift */,
 				F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */,
+				F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */,
 			);
 			path = MocksProtocols;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				CC351E13269A580F0037DB34 /* Config.swift in Sources */,
 				CC4E706D26B840DC00B3288D /* MovieDetailService.swift in Sources */,
 				F63F995029FAC93300FD0094 /* MockableMovieListServiceProtocol.swift in Sources */,
+				F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */,
 				CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */,
 				CC56950B2682069A0055C07C /* HelperTests.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,

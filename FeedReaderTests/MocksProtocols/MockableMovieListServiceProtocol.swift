@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import FeedReader
 import Combine
 import Nimble
 
