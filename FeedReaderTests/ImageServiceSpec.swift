@@ -23,7 +23,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             Resolver.registerMockServices()
             context("given succesful image") {
                 beforeEach { [self] in
-                    let imageData = convertImageToData()
+                    let imageData = convertImageToData("stubImage")
                     mockResponse(result: .success(imageData))
                 }
                 
