@@ -13,17 +13,17 @@ struct APIUrlBuilder: APIUrlBuilderProtocol {
     static var apiKey: String { API_KEY }
 }
 
-protocol PathInterface {
+protocol PathProtocol {
     func stringPath() -> String
 }
 
-struct TrendingPath: PathInterface{
+struct TrendingPath: PathProtocol{
     func stringPath() -> String {
         API_TRENDING_PATH
     }
 }
 
-struct MoviePath: PathInterface{
+struct MoviePath: PathProtocol{
     var id: Int
     
     init(_ id: Int){

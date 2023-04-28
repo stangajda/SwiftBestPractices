@@ -10,11 +10,11 @@ import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
-    @Environment(\.imageCache) var cache: ImageCacheInterface
+    @Environment(\.imageCache) var cache: ImageCacheProtocol
     
     var body: some View {
         HStack{
-            ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": W200Path() as ImagePathInterface,"cache": cache as Any]))
+            ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": W200Path() as ImagePathProtocol,"cache": cache as Any]))
                 .withRowImageSize()
             VStack(alignment:.leading){
                 Text(movie.title)

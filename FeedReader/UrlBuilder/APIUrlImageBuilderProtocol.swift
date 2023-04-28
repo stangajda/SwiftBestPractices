@@ -12,7 +12,7 @@ protocol APIUrlImageBuilderProtocol {
 }
 
 extension APIUrlImageBuilderProtocol{
-    static subscript(_ imageSizePath: ImagePathInterface, _ imagePath: String) -> URL?{
+    static subscript(_ imageSizePath: ImagePathProtocol, _ imagePath: String) -> URL?{
         guard var url = Self.imageURL else {
             return nil
         }

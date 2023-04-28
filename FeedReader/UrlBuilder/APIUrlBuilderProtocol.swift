@@ -14,7 +14,7 @@ protocol APIUrlBuilderProtocol {
 }
 
 extension APIUrlBuilderProtocol {
-    static subscript(_ path: PathInterface) -> URL?{
+    static subscript(_ path: PathProtocol) -> URL?{
         guard var url = Self.baseURL else {
             return nil
         }

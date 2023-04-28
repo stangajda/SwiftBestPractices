@@ -11,17 +11,17 @@ struct APIUrlImageBuilder: APIUrlImageBuilderProtocol{
     static var imageURL: URL? { URL(string: API_IMAGE_URL) }
 }
 
-protocol ImagePathInterface {
+protocol ImagePathProtocol {
     func stringPath() -> String
 }
 
-struct OriginalPath: ImagePathInterface{
+struct OriginalPath: ImagePathProtocol{
     func stringPath() -> String{
         API_IMAGE_ORIGINAL_PATH
     }
 }
 
-struct W200Path: ImagePathInterface {
+struct W200Path: ImagePathProtocol {
     func stringPath() -> String {
         API_IMAGE_W200_PATH
     }

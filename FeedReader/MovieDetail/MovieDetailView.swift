@@ -10,7 +10,7 @@ import Resolver
 
 struct MovieDetailView: View {
     @ObservedObject var viewModel: MovieDetailViewModel
-    @Environment(\.imageCache) var cache: ImageCacheInterface
+    @Environment(\.imageCache) var cache: ImageCacheProtocol
     
     init(_ viewModel: MovieDetailViewModel){
         self.viewModel = viewModel
@@ -66,7 +66,7 @@ private extension MovieDetailView {
                 Text(movieDetail.title)
                     .withTitleStyle()
                 
-                ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathInterface,"cache": cache as Any]))
+                ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathProtocol,"cache": cache as Any]))
                     .withImageStyle()
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)

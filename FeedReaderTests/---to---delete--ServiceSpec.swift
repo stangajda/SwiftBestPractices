@@ -12,14 +12,14 @@ import Resolver
 import Nimble
 import Quick
 
-protocol MockableServiceInterface {
+protocol MockableServiceProtocol {
     typealias Mock = MockURLProtocol.MockedResponse
     var mockManager: ServiceProtocol { get }
     var cancellable: AnyCancellable? { get set }
     var mockRequestUrl: URLRequest { get }
 }
 
-extension MockableServiceInterface {
+extension MockableServiceProtocol {
     func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
         do {
             MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
@@ -50,7 +50,7 @@ extension MockableServiceInterface {
 
 }
 
-class ServiceSpec: QuickSpec, MockableServiceInterface {
+class ServiceSpec: QuickSpec, MockableServiceProtocol {
     @LazyInjected var mockManager: ServiceProtocol
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()

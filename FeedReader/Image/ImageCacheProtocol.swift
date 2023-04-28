@@ -8,11 +8,11 @@
 import UIKit
 import SwiftUI
 
-protocol ImageCacheInterface {
+protocol ImageCacheProtocol {
     subscript(_ url: URL) -> UIImage? { get set }
 }
 
-struct TemporaryImageCache: ImageCacheInterface {
+struct TemporaryImageCache: ImageCacheProtocol {
     private let cache = NSCache<NSURL, UIImage>()
     
     init(){
@@ -34,11 +34,11 @@ struct TemporaryImageCache: ImageCacheInterface {
 }
 
 struct ImageCacheKey: EnvironmentKey {
-    static let defaultValue: ImageCacheInterface = TemporaryImageCache()
+    static let defaultValue: ImageCacheProtocol = TemporaryImageCache()
 }
 
 extension EnvironmentValues {
-    var imageCache: ImageCacheInterface {
+    var imageCache: ImageCacheProtocol {
         get {
             self[ImageCacheKey.self]
         }

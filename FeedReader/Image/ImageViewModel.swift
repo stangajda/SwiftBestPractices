@@ -18,13 +18,13 @@ class ImageViewModel: ObservableObject{
     typealias U = String
     
     var input = PassthroughSubject<Action, Never>()
-    private var cache: ImageCacheInterface?
+    private var cache: ImageCacheProtocol?
     private var imagePath: String
-    private var imageSizePath: ImagePathInterface
+    private var imageSizePath: ImagePathProtocol
     
     private var cancellable: AnyCancellable?
     
-    init(imagePath: String, imageSizePath: ImagePathInterface, cache: ImageCacheInterface? = nil){
+    init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         state = State.loading(imagePath)
         self.imageSizePath = imageSizePath
         self.cache = cache
