@@ -13,7 +13,7 @@ struct StarsRatingView: View {
 
     var body: some View {
         let stars = HStack(spacing: 2) {
-            ForEach(0..<maxRating) { _ in
+            ForEach(0..<maxRating, id: \.self) { _ in
                 Image(systemName: "star.fill")
                     .resizable()
                     .aspectRatio(contentMode: .fit)
