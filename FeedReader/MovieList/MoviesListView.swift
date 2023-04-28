@@ -13,9 +13,10 @@ struct MoviesListView: View {
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
-        NavigationView {
+        NavigationStack(){
             content
-                .navigationBarTitle(MOVIELIST_TITLE)
+                .navigationTitle(MOVIELIST_TITLE)
+                .navigationBarTitleDisplayMode(.inline)
         }
         .onChange(of: scenePhase) { newPhase in
             if newPhase == .active {
@@ -55,6 +56,9 @@ private extension MoviesListView {
     
     func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         listMovies(movies)
+            .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
+                LazyView(MovieDetailView(MovieDetailViewModel(movieList: movie)))
+            }
     }
     
     func failedView(_ error: Error) -> some View {
@@ -63,9 +67,9 @@ private extension MoviesListView {
     
     func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         List(movies){ movie in
-            NavigationLink(destination: LazyView(MovieDetailView( MovieDetailViewModel(movieList: movie))),
-                           label: {MovieRowView(movie: movie)}
-            )
+            NavigationLink(value: movie) {
+                MovieRowView(movie: movie)
+            }
         }
     }
 }

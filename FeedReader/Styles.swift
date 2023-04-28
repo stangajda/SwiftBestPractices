@@ -9,7 +9,8 @@ import SwiftUI
 extension View {
     func withTitleStyle() -> some View{
             frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
-            .font(.title)
+            .font(.largeTitle)
+            .bold()
             .minimumScaleFactor(0.5)
             .lineLimit(1)
             .padding()

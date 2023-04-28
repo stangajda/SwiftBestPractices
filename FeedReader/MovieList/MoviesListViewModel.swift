@@ -53,7 +53,7 @@ extension MoviesListViewModel: LoadableProtocol{
 }
 
 extension MoviesListViewModel {
-    struct MovieItem: Identifiable {
+    struct MovieItem: Identifiable, Hashable {
         let id: Int
         let title: String
         let poster_path: String

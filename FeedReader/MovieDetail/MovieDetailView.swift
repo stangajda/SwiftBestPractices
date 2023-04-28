@@ -20,7 +20,6 @@ struct MovieDetailView: View {
         VStack{
             content
         }
-        .navigationBarTitleDisplayMode(.inline)
         .onDisappear{
             viewModel.cancel()
         }
@@ -64,7 +63,7 @@ private extension MovieDetailView {
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         ScrollView {
             VStack(alignment: .leading){
-                Text(viewModel.movieList.title)
+                Text(movieDetail.title)
                     .withTitleStyle()
                 
                 ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathInterface,"cache": cache as Any]))
