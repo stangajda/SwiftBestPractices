@@ -14,8 +14,24 @@ struct MovieRowView: View {
     
     var body: some View {
         HStack{
-            ImageView(viewModel: Resolver.resolve(name:.itemList,args:["imageURL": movie.poster_path,"imageSizePath": W200Path() as ImagePathProtocol,"cache": cache as Any]))
-                .withRowImageSize()
+            // let cache = cache as Any
+            // let imageSizePath = OriginalPath() as ImagePathProtocol
+            // let imageURL = movieDetail.backdrop_path
+            // let args = ["imageURL": imageURL,
+            //                 "imageSizePath": imageSizePath,
+            //                 "cache": cache as Any]
+            // ImageView(viewModel: Resolver.resolve(name:.itemDetail, args:args))
+            //         .withImageStyle()
+
+            let cache = cache as Any
+            let imageSizePath = W200Path() as ImagePathProtocol
+            let imageURL = movie.poster_path
+            let args = ["imageURL": imageURL,
+                        "imageSizePath": imageSizePath,
+                        "cache": cache as Any]
+            ImageView(viewModel: Resolver.resolve(name:.itemList, args:args))
+                    .withRowImageSize()
+
             VStack(alignment:.leading){
                 Text(movie.title)
                     .withRowTitleStyle()

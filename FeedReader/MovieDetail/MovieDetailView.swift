@@ -66,7 +66,13 @@ private extension MovieDetailView {
                 Text(movieDetail.title)
                     .withTitleStyle()
                 
-                ImageView(viewModel: Resolver.resolve(name:.itemDetail,args:["imageURL": movieDetail.backdrop_path,"imageSizePath": OriginalPath() as ImagePathProtocol,"cache": cache as Any]))
+                let cache = cache as Any
+                let imageSizePath = OriginalPath() as ImagePathProtocol
+                let imageURL = movieDetail.backdrop_path
+                let args = ["imageURL": imageURL,
+                            "imageSizePath": imageSizePath,
+                            "cache": cache as Any]
+                ImageView(viewModel: Resolver.resolve(name:.itemDetail, args:args))
                     .withImageStyle()
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
