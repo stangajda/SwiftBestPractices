@@ -18,23 +18,19 @@ struct MovieDetailView: View {
     
     var body: some View {
         VStack{
-            content
+            switch viewModel.state {
+            case .start:
+                initialView
+            case .loading:
+                loadingView
+            case .loaded(let movDetail):
+                loadedView(movDetail)
+            case .failedLoaded(let error):
+                failedView(error)
+            }
         }
         .onDisappear{
             viewModel.cancel()
-        }
-    }
-    
-    private var content: AnyView{
-        switch viewModel.state {
-        case .start:
-            return AnyView(initialView)
-        case .loading:
-            return AnyView(loadingView)
-        case .loaded(let movDetail):
-            return AnyView(loadedView(movDetail))
-        case .failedLoaded(let error):
-            return AnyView(failedView(error))
         }
     }
     

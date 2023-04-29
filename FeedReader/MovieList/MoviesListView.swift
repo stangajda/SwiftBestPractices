@@ -13,31 +13,27 @@ struct MoviesListView: View {
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {
-        NavigationStack(){
-            content
-                .navigationTitle(MOVIELIST_TITLE)
-                .navigationBarTitleDisplayMode(.inline)
-        }
-        .onChange(of: scenePhase) { newPhase in
-            if newPhase == .active {
-                viewModel.send(action: .onAppear)
-            } else if newPhase == .background {
-                viewModel.send(action: .onReset)
+            NavigationStack(){
+                switch viewModel.state {
+                case .start:
+                    startView
+                case .loading:
+                    loadingView
+                case .loaded(let movies):
+                    loadedView(movies)
+                        .navigationTitle(MOVIELIST_TITLE)
+                        .navigationBarTitleDisplayMode(.inline)
+                case .failedLoaded(let error):
+                    failedView(error)
+                }
             }
-        }
-    }
-    
-    private var content: AnyView{
-        switch viewModel.state {
-        case .start:
-            return AnyView(startView)
-        case .loading:
-            return AnyView(loadingView)
-        case .loaded(let movies):
-            return AnyView(loadedView(movies))
-        case .failedLoaded(let error):
-            return AnyView(failedView(error))
-        }
+            .onChange(of: scenePhase) { newPhase in
+                if newPhase == .active {
+                    viewModel.send(action: .onAppear)
+                } else if newPhase == .background {
+                    viewModel.send(action: .onReset)
+                }
+            }
     }
     
 }
