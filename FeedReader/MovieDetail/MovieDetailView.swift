@@ -101,7 +101,6 @@ struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {
-            MovieDetailView(MockMovieDetailViewModel(.loaded)).preferredColorScheme(.dark)
             MovieDetailView(MockMovieDetailViewModel(.loaded))
             MovieDetailView(MockMovieDetailViewModel(.loading))
             MovieDetailView(MockMovieDetailViewModel(.failedLoaded))

@@ -59,7 +59,6 @@ private extension ImageView {
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ImageView(viewModel: MockImageViewModel(.itemDetail)).preferredColorScheme(.dark)
             ImageView(viewModel: MockImageViewModel(.itemDetail))
         }
     }

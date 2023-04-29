@@ -14,15 +14,6 @@ struct MovieRowView: View {
     
     var body: some View {
         HStack{
-            // let cache = cache as Any
-            // let imageSizePath = OriginalPath() as ImagePathProtocol
-            // let imageURL = movieDetail.backdrop_path
-            // let args = ["imageURL": imageURL,
-            //                 "imageSizePath": imageSizePath,
-            //                 "cache": cache as Any]
-            // ImageView(viewModel: Resolver.resolve(name:.itemDetail, args:args))
-            //         .withImageStyle()
-
             let cache = cache as Any
             let imageSizePath = W200Path() as ImagePathProtocol
             let imageURL = movie.poster_path

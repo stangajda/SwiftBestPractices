@@ -76,7 +76,6 @@ struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {
-            MoviesListView(viewModel: MockMoviesListViewModel(.loaded)).preferredColorScheme(.dark)
             MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
             MoviesListView(viewModel: MockMoviesListViewModel(.loading))
             MoviesListView(viewModel: MockMoviesListViewModel(.failedLoaded))
