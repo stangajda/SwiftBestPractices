@@ -8,6 +8,14 @@ import Foundation
 import Combine
 import Resolver
 
+
+protocol  MovieDetailViewModelProtocol {
+    var state: MovieDetailViewModel.State { get }
+    var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
+    var movieList: MoviesListViewModel.MovieItem { get }
+}
+
+
 class MovieDetailViewModel: ObservableObject{
     @Published private(set) var state: State
     @Injected var service: MovieDetailServiceProtocol

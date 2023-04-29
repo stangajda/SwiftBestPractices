@@ -9,7 +9,13 @@ import Foundation
 import Combine
 import Resolver
 
-class MoviesListViewModel: ObservableObject{
+protocol MoviesListViewModelProtocol: LoadableProtocol {
+    var state: MoviesListViewModel.State { get }
+    var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
+}
+
+
+class MoviesListViewModel: ObservableObject, MoviesListViewModelProtocol{
     @Published private(set) var state = State.start()
     @Injected private var service: MovieListServiceProtocol
     

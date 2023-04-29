@@ -9,7 +9,13 @@ import UIKit
 import SwiftUI
 import Resolver
 
-class ImageViewModel: ObservableObject{
+protocol ImageViewModelProtocol: LoadableProtocol{
+    var state: LoadableEnums<T,U>.State { get }
+    var input: PassthroughSubject<Action, Never> { get }
+    func cancel()
+}
+
+class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     @Published private(set) var state: State
     @Injected var service: ImageServiceProtocol
     
