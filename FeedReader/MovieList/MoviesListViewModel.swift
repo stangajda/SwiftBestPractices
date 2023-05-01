@@ -12,6 +12,7 @@ import Resolver
 protocol MoviesListViewModelProtocol: ObservableObject, LoadableProtocol {
     var state: MoviesListViewModel.State { get }
     var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> { get }
 }
 
 
@@ -42,7 +43,7 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
 }
 
 extension MoviesListViewModel: LoadableProtocol{
-    var fetch: AnyPublisher<T, Error>{
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
         let url = APIUrlBuilder[TrendingPath()]
         
         guard let url = url else {
@@ -74,3 +75,27 @@ extension MoviesListViewModel {
         }
     }
 }
+
+class AnyMoviesListViewModel: MoviesListViewModelProtocol {
+    @Published var state: MoviesListViewModel.State
+    private let _input: () -> PassthroughSubject<MoviesListViewModel.Action, Never>
+    private let _fetch: () -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>
+
+    private var cancellable: AnyCancellable?
+    init<MoviesListViewModel: MoviesListViewModelProtocol>(_ viewModel: MoviesListViewModel) {
+        state = viewModel.state
+        _input = { viewModel.input }
+        _fetch = { viewModel.fetch }
+        cancellable = self.publishersSystem(state)
+                        .assignNoRetain(to: \.state, on: self)
+    }
+
+    var input: PassthroughSubject<MoviesListViewModel.Action, Never> {
+        return _input()
+    }
+
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
+        return _fetch()
+    }
+}
+

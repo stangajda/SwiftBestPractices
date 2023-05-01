@@ -39,7 +39,9 @@ extension LoadableProtocol {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
             return self.fetch
-                .map(Action.onLoaded)
+                .map(
+                    Action.onLoaded
+                )
                 .catch { error in
                     Just(Action.onFailedLoaded(error))
                 }
@@ -49,5 +51,6 @@ extension LoadableProtocol {
     
     private func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in input }
+       
     }
 }
