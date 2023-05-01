@@ -9,7 +9,7 @@ import SwiftUI
 import Resolver
 
 struct ContentView: View {
-    @Injected var viewModel: MoviesListViewModel
+    @Injected var viewModel: MoviesListViewModelWrapper
     var body: some View {
         MoviesListView(viewModel: viewModel)
     }

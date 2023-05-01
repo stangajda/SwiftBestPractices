@@ -76,7 +76,7 @@ extension MoviesListViewModel {
     }
 }
 
-class AnyMoviesListViewModel: MoviesListViewModelProtocol {
+class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
     @Published var state: MoviesListViewModel.State
     private let _input: () -> PassthroughSubject<MoviesListViewModel.Action, Never>
     private let _fetch: () -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>

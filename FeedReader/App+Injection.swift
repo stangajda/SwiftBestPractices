@@ -12,7 +12,7 @@ extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
     defaultScope = .graph
     register { URLSession.configuredURLSession()}
-    register { MoviesListViewModel() as MoviesListViewModel}
+    register { MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper}
     register { MovieListService() as MovieListServiceProtocol}
     register { MovieDetailService() as MovieDetailServiceProtocol}
     register { ImageService() as ImageServiceProtocol}
