@@ -30,6 +30,7 @@ extension Resolver {
     static var preview: Resolver = Resolver(child: .main)
     static func setupPreviewMode() {
         Resolver.root = .preview
+        register { MoviesListViewModelWrapper(MockMoviesListViewModel()) as MoviesListViewModelWrapper}
         register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
         register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
     }

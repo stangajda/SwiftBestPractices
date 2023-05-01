@@ -16,7 +16,7 @@ protocol MoviesListViewModelProtocol: ObservableObject, LoadableProtocol {
 }
 
 
-class MoviesListViewModel: MoviesListViewModelProtocol {
+final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published private(set) var state = State.start()
     @Injected private var service: MovieListServiceProtocol
     
@@ -36,7 +36,7 @@ class MoviesListViewModel: MoviesListViewModelProtocol {
         cancel()
     }
     
-    func cancel(){
+    private func cancel(){
         cancellable?.cancel()
     }
     
