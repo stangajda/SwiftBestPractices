@@ -8,8 +8,8 @@
 import SwiftUI
 import Resolver
 
-struct MoviesListView<Model>: View where Model: MoviesListViewModelProtocol {
-    @ObservedObject var viewModel: Model
+struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProtocol {
+    @ObservedObject var viewModel: ViewModel
     @Environment(\.scenePhase) var scenePhase
     
     var body: some View {

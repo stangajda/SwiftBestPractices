@@ -29,8 +29,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     private var cancelable: AnyCancellable?
     
     init() {
-        cancelable = self.publishersSystem(state)
-                        .assignNoRetain(to: \.state, on: self)
+        cancelable = self.assignToState(state, self, to: \.state)
     }
     
     deinit {
@@ -79,19 +78,20 @@ extension MoviesListViewModel {
 }
 
 class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
-    @Published var state: MoviesListViewModel.State
-    var input: PassthroughSubject<MoviesListViewModel.Action, Never>
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>
+    typealias ViewModel = MoviesListViewModel
+    
+    @Published var state: ViewModel.State
+    var input: PassthroughSubject<ViewModel.Action, Never>
+    var fetch: AnyPublisher<Array<ViewModel.MovieItem>, Error>
     var reset: () -> Void
 
     private var cancellable: AnyCancellable?
-    init<MoviesListViewModel: MoviesListViewModelProtocol>(_ viewModel: MoviesListViewModel) {
+    init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input
         fetch = viewModel.fetch
         reset = viewModel.reset
-        cancellable = self.publishersSystem(state)
-                        .assignNoRetain(to: \.state, on: self)
+        cancellable = self.assignToState(state, self, to: \.state)
     }
 }
 
