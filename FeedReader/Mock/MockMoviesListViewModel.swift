@@ -6,37 +6,37 @@
 //
 
 import Foundation
+import Combine
 
-class MockMoviesListViewModel: MoviesListViewModel{
-    var internalState: State = .start()
-    enum MockState {
-        case loading
-        case loaded
-        case failedLoaded
+class MockMoviesListViewModel: MoviesListViewModelProtocol {
+    @Published var state: MoviesListViewModel.State = .loading()
+    var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
+    var reset: () -> Void = {}
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
+        let movies = Array(repeating: MoviesListViewModel.MovieItem.mock, count: 20)
+        return Just(movies)
+        .setFailureType(to: Error.self)
+        .eraseToAnyPublisher()
+        
     }
-    
-    override var state: State{
-        return internalState
+}
+
+class MockMoviesListViewModelLoading: MoviesListViewModelProtocol {
+    @Published var state: MoviesListViewModel.State = .loading()
+    var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
+    var reset: () -> Void = {}
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
+        return Empty(completeImmediately: false)
+            .eraseToAnyPublisher()
     }
-    
-    init(_ state: MockState){
-        super.init()
-        switchState(state)
-    }
-    
-    var mockItemsArray: Array<MovieItem>{
-        Array(repeating: MovieItem.mock, count: 20)
-    }
-    
-    func switchState(_ state:MockState){
-        let error = NSError(domain: "AnyDomain", code: 404, userInfo: nil)
-        switch state {
-        case .loading:
-            internalState = .loading()
-        case .loaded:
-            internalState = .loaded(mockItemsArray)
-        case .failedLoaded:
-            internalState = .failedLoaded(error)
-        }
+}
+
+class MockMoviesListViewModelError: MoviesListViewModelProtocol {
+    @Published var state: MoviesListViewModel.State = .loading()
+    var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
+    var reset: () -> Void = {}
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
+        return Fail(error: APIError.apiCode(404))
+            .eraseToAnyPublisher()
     }
 }
