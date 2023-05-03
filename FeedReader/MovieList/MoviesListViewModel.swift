@@ -80,30 +80,18 @@ extension MoviesListViewModel {
 
 class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
     @Published var state: MoviesListViewModel.State
-    private let _input: () -> PassthroughSubject<MoviesListViewModel.Action, Never>
-    private let _fetch: () -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>
-    private let _reset: () -> Void 
+    var input: PassthroughSubject<MoviesListViewModel.Action, Never>
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>
+    var reset: () -> Void
 
     private var cancellable: AnyCancellable?
     init<MoviesListViewModel: MoviesListViewModelProtocol>(_ viewModel: MoviesListViewModel) {
         state = viewModel.state
-        _input = { viewModel.input }
-        _fetch = { viewModel.fetch }
-        _reset = { viewModel.reset() }
+        input = viewModel.input
+        fetch = viewModel.fetch
+        reset = viewModel.reset
         cancellable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
-    }
-
-    var input: PassthroughSubject<MoviesListViewModel.Action, Never> {
-        return _input()
-    }
-
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
-        return _fetch()
-    }
-
-    var reset: () -> Void {
-        return _reset
     }
 }
 
