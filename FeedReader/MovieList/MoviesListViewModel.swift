@@ -9,8 +9,8 @@ import Foundation
 import Combine
 import Resolver
 
-protocol MoviesListViewModelProtocol: ObservableObject, LoadableProtocol {
-    var state: MoviesListViewModel.State { get }
+protocol MoviesListViewModelProtocol: ObservableLoadableProtocol {
+    var state: MoviesListViewModel.State { get set }
     var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> { get }
     var reset: () -> Void { get }
@@ -18,7 +18,7 @@ protocol MoviesListViewModelProtocol: ObservableObject, LoadableProtocol {
 
 
 final class MoviesListViewModel: MoviesListViewModelProtocol {
-    @Published private(set) var state = State.start()
+    @Published var state = State.start()
     @Injected private var service: MovieListServiceProtocol
     
     typealias T = Array<MoviesListViewModel.MovieItem>
@@ -29,7 +29,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     private var cancelable: AnyCancellable?
     
     init() {
-        cancelable = self.assignToState(state, self, to: \.state)
+        cancelable = self.assignNoRetain(self, to: \.state)
     }
     
     deinit {
@@ -91,7 +91,7 @@ class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
         input = viewModel.input
         fetch = viewModel.fetch
         reset = viewModel.reset
-        cancellable = self.assignToState(state, self, to: \.state)
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
 }
 

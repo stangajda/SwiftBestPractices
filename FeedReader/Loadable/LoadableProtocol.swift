@@ -8,19 +8,6 @@
 import Foundation
 import Combine
 
-//protocol StateProtocol: ObservableObject, LoadableProtocol {
-//    associatedtype T
-//    var state: T { get set }
-//}
-//
-//extension StateProtocol {
-//    func assignNoRetain<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, T>, on root: Root) -> AnyCancellable {
-//        self.publishersSystem(state)
-//                        .assignNoRetain(to: keyPath, on: self)
-//    }
-//}
-
-
 protocol LoadableProtocol {
     associatedtype T
     associatedtype U
@@ -46,11 +33,6 @@ extension LoadableProtocol {
     
     func send(action: Action) {
         input.send(action)
-    }
-
-    func assignToState<Root: AnyObject>(_ state: State, _ self: Root, to keyPath: ReferenceWritableKeyPath<Root, State>) -> AnyCancellable {
-            publishersSystem(state)
-                .assignNoRetain(to: keyPath, on: self)
     }
     
     private func onStateChanged() -> Feedback<State, Action> {
