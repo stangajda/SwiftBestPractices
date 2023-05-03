@@ -30,7 +30,7 @@ struct MovieDetailView: View {
             }
         }
         .onDisappear{
-            viewModel.reset()
+            viewModel.send(action: .onReset)
         }
     }
     

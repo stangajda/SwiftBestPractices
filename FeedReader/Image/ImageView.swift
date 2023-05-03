@@ -16,7 +16,7 @@ struct ImageView: View {
                 viewModel.send(action: .onAppear)
             }
             .onDisappear{
-                viewModel.cancel()
+                viewModel.send(action: .onReset)
             }
     }
     

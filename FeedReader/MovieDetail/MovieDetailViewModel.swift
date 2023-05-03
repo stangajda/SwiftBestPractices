@@ -13,7 +13,6 @@ protocol  MovieDetailViewModelProtocol {
     var state: MovieDetailViewModel.State { get }
     var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
     var movieList: MoviesListViewModel.MovieItem { get }
-    var reset: () -> Void { get }
 }
 
 
@@ -27,15 +26,18 @@ class MovieDetailViewModel: ObservableObject{
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
 
-    
-    
-    private var cancelable: AnyCancellable?
+    private var cancellables = Set<AnyCancellable>()
     
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
-        cancelable = self.publishersSystem(state)
+        self.publishersSystem(state)
             .assignNoRetain(to: \.state, on: self)
+                .store(in: &cancellables)
+        
+        onResetAction(input: input)
+            .store(in: &cancellables)
+        
     }
     
     deinit {
@@ -43,8 +45,21 @@ class MovieDetailViewModel: ObservableObject{
     }
     
     lazy var reset: () -> Void = { [self] in
-        input.send(.onReset)
-        cancelable?.cancel()
+        cancellables.forEach { cancellable in
+            cancellable.cancel() 
+        } 
+    }
+    
+    func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
+        input
+            .sink(receiveValue: { [self] action in
+                switch action {
+                case .onReset:
+                    reset()
+                default:
+                    break
+                }
+            })
     }
     
 }

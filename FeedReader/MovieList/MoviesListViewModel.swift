@@ -13,7 +13,6 @@ protocol MoviesListViewModelProtocol: ObservableLoadableProtocol {
     var state: MoviesListViewModel.State { get set }
     var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> { get }
-    var reset: () -> Void { get }
 }
 
 
@@ -83,14 +82,12 @@ class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
     var fetch: AnyPublisher<Array<ViewModel.MovieItem>, Error>
-    var reset: () -> Void
 
     private var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input
         fetch = viewModel.fetch
-        reset = viewModel.reset
         cancellable = self.assignNoRetain(self, to: \.state)
     }
 }

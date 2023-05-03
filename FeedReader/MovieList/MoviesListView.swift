@@ -31,11 +31,11 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
                 if newPhase == .active {
                     viewModel.send(action: .onAppear)
                 } else if newPhase == .background {
-                    viewModel.reset()
+                    viewModel.send(action: .onReset)
                 }
             }
             .onDisappear{
-                viewModel.reset()
+                viewModel.send(action: .onReset)
             }
     }
     
