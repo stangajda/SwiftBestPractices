@@ -16,7 +16,6 @@ protocol ServiceProtocol {
 
 struct Service: ServiceProtocol{
     @Injected var session: URLSession
-    var cancellable: AnyCancellable?
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)

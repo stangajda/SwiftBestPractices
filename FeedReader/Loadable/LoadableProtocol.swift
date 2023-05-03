@@ -35,6 +35,7 @@ extension LoadableProtocol {
         input.send(action)
     }
     
+    
     private func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
@@ -50,7 +51,9 @@ extension LoadableProtocol {
     }
     
     private func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
-        Feedback { _ in input }
+        Feedback { _ in
+            input
+        }
        
     }
 }

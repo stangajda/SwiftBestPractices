@@ -30,7 +30,7 @@ struct MovieDetailView: View {
             }
         }
         .onDisappear{
-            viewModel.cancel()
+            viewModel.reset()
         }
     }
     
@@ -101,9 +101,9 @@ struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group {
-            MovieDetailView(MockMovieDetailViewModel(.loaded))
-            MovieDetailView(MockMovieDetailViewModel(.loading))
-            MovieDetailView(MockMovieDetailViewModel(.failedLoaded))
+//            MovieDetailView(MockMovieDetailViewModel(.loaded))
+//            MovieDetailView(MockMovieDetailViewModel(.loading))
+//            MovieDetailView(MockMovieDetailViewModel(.failedLoaded))
         }
     }
 }

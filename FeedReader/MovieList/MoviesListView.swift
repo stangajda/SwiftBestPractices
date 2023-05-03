@@ -31,8 +31,11 @@ struct MoviesListView<Model>: View where Model: MoviesListViewModelProtocol {
                 if newPhase == .active {
                     viewModel.send(action: .onAppear)
                 } else if newPhase == .background {
-                    viewModel.send(action: .onReset)
+                    viewModel.reset()
                 }
+            }
+            .onDisappear{
+                viewModel.reset()
             }
     }
     
@@ -74,11 +77,10 @@ private extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
+        @Injected var viewModel: MoviesListViewModelWrapper
         Resolver.setupPreviewMode()
         return Group {
-            MoviesListView(viewModel: MockMoviesListViewModel(.loaded))
-            MoviesListView(viewModel: MockMoviesListViewModel(.loading))
-            MoviesListView(viewModel: MockMoviesListViewModel(.failedLoaded))
+            MoviesListView(viewModel: viewModel)
         }
     }
 }

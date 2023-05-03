@@ -13,6 +13,7 @@ protocol MoviesListViewModelProtocol: ObservableObject, LoadableProtocol {
     var state: MoviesListViewModel.State { get }
     var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> { get }
+    var reset: () -> Void { get }
 }
 
 
@@ -25,19 +26,20 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     
     var input = PassthroughSubject<Action, Never>()
     
-    private var cancellable: AnyCancellable?
+    private var cancelable: AnyCancellable?
     
     init() {
-        cancellable = self.publishersSystem(state)
+        cancelable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
     
     deinit {
-        cancel()
+        reset()
     }
     
-    private func cancel(){
-        cancellable?.cancel()
+    lazy var reset: () -> Void = { [self] in
+        input.send(.onReset)
+        cancelable?.cancel()
     }
     
 }
@@ -80,12 +82,14 @@ class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
     @Published var state: MoviesListViewModel.State
     private let _input: () -> PassthroughSubject<MoviesListViewModel.Action, Never>
     private let _fetch: () -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>
+    private let _reset: () -> Void 
 
     private var cancellable: AnyCancellable?
     init<MoviesListViewModel: MoviesListViewModelProtocol>(_ viewModel: MoviesListViewModel) {
         state = viewModel.state
         _input = { viewModel.input }
         _fetch = { viewModel.fetch }
+        _reset = { viewModel.reset() }
         cancellable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
@@ -96,6 +100,10 @@ class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
 
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
         return _fetch()
+    }
+
+    var reset: () -> Void {
+        return _reset
     }
 }
 
