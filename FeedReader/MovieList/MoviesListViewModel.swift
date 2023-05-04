@@ -44,9 +44,8 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 
 extension MoviesListViewModel: LoadableProtocol{
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
-        let url = APIUrlBuilder[TrendingPath()]
         
-        guard let url = url else {
+        guard let url = APIUrlBuilder[TrendingPath()] else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
         }

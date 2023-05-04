@@ -12,7 +12,6 @@ import Resolver
 protocol ImageViewModelProtocol: LoadableProtocol{
     var state: LoadableEnums<T,U>.State { get }
     var input: PassthroughSubject<Action, Never> { get }
-    func cancel()
 }
 
 class ImageViewModel: ObservableObject, ImageViewModelProtocol{
@@ -28,7 +27,9 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     private var imagePath: String
     private var imageSizePath: ImagePathProtocol
     
-    private var cancellable: AnyCancellable?
+    private var cancelable: AnyCancellable?
+    
+    private var cancelable2: AnyCancellable?
     
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         state = State.loading(imagePath)
@@ -36,6 +37,13 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
         self.cache = cache
         self.imagePath = imagePath
         setUp()
+        
+        cancelable2 = input
+                        .sink() {
+                            print ("Action image now: \($0)")
+                        }
+        
+        
     }
     
     private func getURL() -> URL?{
@@ -57,7 +65,7 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     }
     
     private func load(){
-        cancellable = self.publishersSystem(state)
+        cancelable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
     
@@ -66,7 +74,7 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     }
     
     func cancel() {
-        cancellable?.cancel()
+        cancelable?.cancel()
     }
     
 }

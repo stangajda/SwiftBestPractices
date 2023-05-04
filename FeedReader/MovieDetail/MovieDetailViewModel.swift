@@ -66,8 +66,7 @@ class MovieDetailViewModel: ObservableObject{
 
 extension MovieDetailViewModel: LoadableProtocol {
     var fetch: AnyPublisher<T, Error> {
-        let url = APIUrlBuilder[MoviePath(movieList.id)]
-        guard let url = url else {
+        guard let url = APIUrlBuilder[MoviePath(movieList.id)] else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
         }
