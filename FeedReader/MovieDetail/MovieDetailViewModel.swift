@@ -9,15 +9,15 @@ import Combine
 import Resolver
 
 
-protocol MovieDetailViewModelProtocol {
+protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
     var state: MovieDetailViewModel.State { get }
     var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
 
-class MovieDetailViewModel: ObservableObject{
-    @Published private(set) var state: State
+class MovieDetailViewModel: MovieDetailViewModelProtocol{
+    @Published var state: State
     @Injected var service: MovieDetailServiceProtocol
     
     typealias T = MovieDetailViewModel.MovieDetailItem
@@ -31,9 +31,9 @@ class MovieDetailViewModel: ObservableObject{
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
-        self.publishersSystem(state)
-            .assignNoRetain(to: \.state, on: self)
-                .store(in: &cancellables)
+        
+        self.assignNoRetain(self, to: \.state)
+            .store(in: &cancellables)
         
         onResetAction(input: input)
             .store(in: &cancellables)
