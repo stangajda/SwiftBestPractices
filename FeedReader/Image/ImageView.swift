@@ -7,16 +7,14 @@
 
 import SwiftUI
 
-struct AsyncImageCached<PlaceholderLoading: View, PlaceholderError: View>: View {
+struct AsyncImageCached<ImageLoadingView: View, ImageErrorView: View>: View {
     @ObservedObject private var viewModel: ImageViewModel
-    private let placeholderLoading: PlaceholderLoading
-
-    //define place holder error closure with Error parameter
-    private let placeholderError: (Error) -> PlaceholderError
+    private let placeholderLoading: ImageLoadingView
+    private let placeholderError: (Error) -> ImageErrorView
 
 
     
-    init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> PlaceholderLoading, @ViewBuilder placeholderError: @escaping (Error) -> PlaceholderError) {
+    init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
         self.placeholderLoading = placeholderLoading ()
         self.placeholderError = placeholderError
        
