@@ -7,16 +7,26 @@
 
 import SwiftUI
 
-struct ImageView: View {
-    @ObservedObject var viewModel: ImageViewModel
+struct AsyncImageCached<PlaceholderLoading: View, PlaceholderError: View>: View {
+    @ObservedObject private var viewModel: ImageViewModel
+    private let placeholderLoading: PlaceholderLoading
+
+    //define place holder error closure with Error parameter
+    private let placeholderError: (Error) -> PlaceholderError
+
+
+    
+    init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> PlaceholderLoading, @ViewBuilder placeholderError: @escaping (Error) -> PlaceholderError) {
+        self.placeholderLoading = placeholderLoading ()
+        self.placeholderError = placeholderError
+       
+        _viewModel = ObservedObject (wrappedValue: ImageViewModel (imagePath: imageURL, imageSizePath: imageSizePath, cache: Environment (\.imageCache).wrappedValue))
+    }
     
     var body: some View {
         content
             .onAppear {
                 viewModel.send(action: .onAppear)
-            }
-            .onDisappear{
-                viewModel.send(action: .onReset)
             }
     }
     
@@ -34,13 +44,13 @@ struct ImageView: View {
     }
 }
 
-private extension ImageView {
+private extension AsyncImageCached {
     var initialView: some View {
         Color.clear
     }
     
     var loadingView: some View {
-        ActivityIndicator(isAnimating: .constant(true), style: .large)
+        placeholderLoading
     }
     
     func loadedView(_ image: Image) -> some View {
@@ -50,7 +60,7 @@ private extension ImageView {
     }
     
     func failedView(_ error: Error) -> some View {
-        ErrorView(error: error)
+        placeholderError(error)
     }
     
 }
@@ -59,7 +69,7 @@ private extension ImageView {
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ImageView(viewModel: MockImageViewModel(.itemDetail))
+//            ImageView(viewModel: MockImageViewModel(.itemDetail))
         }
     }
 }

@@ -10,19 +10,19 @@ import Resolver
 
 struct MovieRowView: View {
     @State var movie: MoviesListViewModel.MovieItem
-    @Environment(\.imageCache) var cache: ImageCacheProtocol
     
     var body: some View {
         HStack{
-            let cache = cache as Any
             let imageSizePath = W200Path() as ImagePathProtocol
             let imageURL = movie.poster_path
-            let args = ["imageURL": imageURL,
-                        "imageSizePath": imageSizePath,
-                        "cache": cache as Any]
-            ImageView(viewModel: Resolver.resolve(name:.itemList, args:args))
-                    .withRowImageSize()
-
+            
+            AsyncImageCached(imageURL: imageURL, imageSizePath: imageSizePath) {
+                ActivityIndicator(isAnimating: .constant(true), style: .medium)
+            } placeholderError: { error in
+                ErrorView(error: error)
+            }
+            .withRowImageSize()
+            
             VStack(alignment:.leading){
                 Text(movie.title)
                     .withRowTitleStyle()

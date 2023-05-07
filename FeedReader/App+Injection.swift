@@ -17,12 +17,12 @@ extension Resolver: ResolverRegistering {
     register { MovieDetailService() as MovieDetailServiceProtocol}
     register { ImageService() as ImageServiceProtocol}
     register { Service() as ServiceProtocol}
-    register(name:.itemList){ _, args in
-        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
-    }
-    register(name:.itemDetail){ _, args in
-        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
-    }
+//    register(name:.itemList){ _, args in
+//        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
+//    }
+//    register(name:.itemDetail){ _, args in
+//        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
+//    }
   }
 }
 
@@ -31,8 +31,8 @@ extension Resolver {
     static func setupPreviewMode() {
         Resolver.root = .preview
         register { MoviesListViewModelWrapper(MockMoviesListViewModel()) as MoviesListViewModelWrapper}
-        register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
-        register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
+//        register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
+//        register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
     }
 }
 

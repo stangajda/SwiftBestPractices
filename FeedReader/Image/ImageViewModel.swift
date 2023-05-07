@@ -36,18 +36,11 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
         self.imageSizePath = imageSizePath
         self.cache = cache
         self.imagePath = imagePath
-        setUp()
-        
-        cancelable2 = input
-                        .sink() {
-                            print ("Action image now: \($0)")
-                        }
-        
-        
+        self.setUp()
     }
     
     private func getURL() -> URL?{
-        return APIUrlImageBuilder[imageSizePath,imagePath]
+        return APIUrlImageBuilder[OriginalPath(), imagePath]
     }
     
     private func setUp(){
@@ -70,10 +63,11 @@ class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     }
     
     deinit {
-        cancel()
+        reset()
     }
     
-    func cancel() {
+    lazy var reset: () -> Void = { [self] in
+        input.send(.onReset)
         cancelable?.cancel()
     }
     
