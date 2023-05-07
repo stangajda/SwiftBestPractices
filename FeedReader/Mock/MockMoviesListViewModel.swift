@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-class MockMoviesListViewModel: MoviesListViewModelProtocol {
+class MockMoviesListViewModelLoaded: MoviesListViewModelProtocol {
     @Published var state: MoviesListViewModel.State = .loading()
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
     var reset: () -> Void = {}
@@ -31,7 +31,7 @@ class MockMoviesListViewModelLoading: MoviesListViewModelProtocol {
     }
 }
 
-class MockMoviesListViewModelError: MoviesListViewModelProtocol {
+class MockMoviesListViewModelFailed: MoviesListViewModelProtocol {
     @Published var state: MoviesListViewModel.State = .loading()
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
     var reset: () -> Void = {}

@@ -40,3 +40,14 @@ import Foundation
 //        }
 //    }
 //}
+
+//class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
+//    var movieList: MoviesListViewModel.MovieItem
+//    var state: MovieDetailViewModel.State = .loaded(MovieDetailItem(MovieDetail.mock))
+//    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
+//
+//    init(movieList: MoviesListViewModel.MovieItem){
+//        self.movieList = movieList
+//    }
+//}
+

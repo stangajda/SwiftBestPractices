@@ -77,11 +77,17 @@ private extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        @Injected var viewModel: MoviesListViewModelWrapper
         Resolver.setupPreviewMode()
+        @Injected(name: .moviesListLoaded) var viewModelLoaded: MoviesListViewModelWrapper
+        @Injected(name: .moviesListLoading) var viewModelLoading: MoviesListViewModelWrapper
+        @Injected(name: .moviesListFailed) var viewModelFailed: MoviesListViewModelWrapper
+        
         return Group {
-            MoviesListView(viewModel: viewModel)
+            MoviesListView(viewModel: viewModelLoaded)
+            MoviesListView(viewModel: viewModelLoading)
+            MoviesListView(viewModel: viewModelFailed)
         }
+        
     }
 }
 #endif

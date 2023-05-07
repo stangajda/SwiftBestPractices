@@ -9,7 +9,7 @@ import Combine
 import Resolver
 
 
-protocol  MovieDetailViewModelProtocol {
+protocol MovieDetailViewModelProtocol {
     var state: MovieDetailViewModel.State { get }
     var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
     var movieList: MoviesListViewModel.MovieItem { get }
