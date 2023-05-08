@@ -11,12 +11,15 @@ import Resolver
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
     defaultScope = .graph
+      
     register { 
       URLSession.configuredURLSession() 
     }
+      
     register { 
       MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
     }
+      
     register { (_, args) in
         MovieDetailViewModelWrapper(MovieDetailViewModel(movieList:args("movieList"))) as MovieDetailViewModelWrapper
     }
@@ -24,12 +27,15 @@ extension Resolver: ResolverRegistering {
     register { 
       MovieListService() as MovieListServiceProtocol
     }
+      
     register { 
       MovieDetailService() as MovieDetailServiceProtocol
     }
+      
     register { 
       ImageService() as ImageServiceProtocol
     }
+      
     register { 
       Service() as ServiceProtocol
     }
@@ -46,12 +52,15 @@ extension Resolver {
     static var preview: Resolver = Resolver(child: .main)
     static func setupPreviewMode() {
         Resolver.root = .preview
+        
         register(name:.movieListStateLoaded){ 
           MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper
         }
+        
         register(name:.movieListStateLoading){ 
           MoviesListViewModelWrapper(MockMoviesListViewModelLoading()) as MoviesListViewModelWrapper
         }
+        
         register(name:.movieListStateFailed){ 
           MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper
         }

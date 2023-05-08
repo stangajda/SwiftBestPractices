@@ -56,7 +56,7 @@ extension MoviesListView {
     func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         listMovies(movies)
             .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
-                LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: ["movieList": movie])))
+                makeMovieDetailView(for: movie)
             }
     }
     
@@ -70,6 +70,10 @@ extension MoviesListView {
                 MovieRowView(movie: movie)
             }
         }
+    }
+    
+    func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
+        LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: ["movieList": movie])))
     }
 }
 
