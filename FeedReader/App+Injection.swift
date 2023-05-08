@@ -11,40 +11,43 @@ import Resolver
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
     defaultScope = .graph
-      
-    register { 
-      URLSession.configuredURLSession() 
+    registerURLSession()
+    registerViewModels()
+    registerServices()
+  }
+    
+  static func registerURLSession() {
+    register {
+      URLSession.configuredURLSession()
     }
-      
-    register { 
+  }
+    
+  static func registerViewModels() {
+    register {
       MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
     }
       
     register { (_, args) in
-        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList:args(VIEW_MOVIE_LIST))) as MovieDetailViewModelWrapper
+      MovieDetailViewModelWrapper(MovieDetailViewModel(movieList: args(VIEW_MOVIE_LIST))) as MovieDetailViewModelWrapper
     }
-
-    register { 
+  }
+    
+  static func registerServices() {
+    register {
       MovieListService() as MovieListServiceProtocol
     }
       
-    register { 
+    register {
       MovieDetailService() as MovieDetailServiceProtocol
     }
       
-    register { 
+    register {
       ImageService() as ImageServiceProtocol
     }
       
-    register { 
+    register {
       Service() as ServiceProtocol
     }
-//    register(name:.itemList){ _, args in
-//        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
-//    }
-//    register(name:.itemDetail){ _, args in
-//        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
-//    }
   }
 }
 
@@ -53,6 +56,11 @@ extension Resolver {
     static func setupPreviewMode() {
         Resolver.root = .preview
         
+        registerMoviesListViewModel()
+        registerMovieDetailViewModel()
+    }
+    
+    private static func registerMoviesListViewModel() {
         register(name:.movieListStateLoaded){ 
           MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper
         }
@@ -64,7 +72,9 @@ extension Resolver {
         register(name:.movieListStateFailed){ 
           MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper
         }
-        
+    }
+    
+    private static func registerMovieDetailViewModel() {
         register(name:.movieDetailStateLoaded){
           MovieDetailViewModelWrapper(MockMovieDetailViewModelLoaded(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
@@ -76,9 +86,6 @@ extension Resolver {
         register(name:.movieDetailStateFailed){
           MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
-        //register { MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper}
-//        register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
-//        register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
     }
 }
 
