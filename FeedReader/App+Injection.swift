@@ -21,7 +21,7 @@ extension Resolver: ResolverRegistering {
     }
       
     register { (_, args) in
-        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList:args("movieList"))) as MovieDetailViewModelWrapper
+        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList:args(VIEW_MOVIE_LIST))) as MovieDetailViewModelWrapper
     }
 
     register { 

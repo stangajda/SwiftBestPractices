@@ -20,6 +20,16 @@ let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
 let API_IMAGE_ORIGINAL_PATH = "original"
 let API_IMAGE_W200_PATH = "w200"
 
+let VIEW_MOVIE_LIST = "movieList"
+let VIEW_MOVIE_LIST_LOADED = "Movies list loaded"
+let VIEW_MOVIE_LIST_LOADING = "Movies list loading"
+let VIEW_MOVIE_LIST_FAILED = "Movies list failed"
+
+let VIEW_MOVIE_DETAIL_LOADED = "Movie detail loaded"
+let VIEW_MOVIE_DETAIL_LOADING = "Movie detail loading"
+let VIEW_MOVIE_DETAIL_FAILED = "Movie detail failed"
+
+
 // MARK:- Cache
 let CACHE_TOTAL_COST_LIMIT = 50_000_000
 

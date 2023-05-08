@@ -73,7 +73,7 @@ extension MoviesListView {
     }
     
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: ["movieList": movie])))
+        LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: [VIEW_MOVIE_LIST: movie])))
     }
 }
 
@@ -88,11 +88,11 @@ struct MoviesList_Previews: PreviewProvider {
         
         return Group {
             MoviesListView(viewModel: viewModelLoaded)
-                .previewDisplayName("Movies list loaded")
+                .previewDisplayName(VIEW_MOVIE_LIST_LOADED)
             MoviesListView(viewModel: viewModelLoading)
-                .previewDisplayName("Movies list loading")
+                .previewDisplayName(VIEW_MOVIE_LIST_LOADING)
             MoviesListView(viewModel: viewModelFailed)
-                .previewDisplayName("Movies list failed")
+                .previewDisplayName(VIEW_MOVIE_LIST_FAILED)
         }
         
     }
