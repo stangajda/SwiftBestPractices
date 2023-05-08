@@ -9,12 +9,13 @@ import SwiftUI
 
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
+    private let cancelOnDisapear: Bool = false
     private let placeholderLoading: ImageLoadingView
     private let placeholderError: (Error) -> ImageErrorView
 
 
     
-    init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
+    init (imageURL: String, imageSizePath: ImagePathProtocol, cancelOnDisapear: Bool = false, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
         self.placeholderLoading = placeholderLoading ()
         self.placeholderError = placeholderError
 
@@ -31,7 +32,11 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
             .onAppear {
                 viewModel.send(action: .onAppear)
             }
+            .onDisappear{
+                cancelOnDisapear ? viewModel.send(action: .onReset) : ()
+            }
     }
+    
     
     private var content: AnyView {
         switch viewModel.state {
