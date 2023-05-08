@@ -9,13 +9,15 @@ import UIKit
 import SwiftUI
 import Resolver
 
-protocol ImageViewModelProtocol: LoadableProtocol{
-    var state: LoadableEnums<T,U>.State { get }
+protocol ImageViewModelProtocol: ObservableLoadableProtocol{
+    var state: ImageViewModel.State { get set }
     var input: PassthroughSubject<Action, Never> { get }
+    var fetch: AnyPublisher<ImageViewModel.ImageItem, Error> { get }
 }
 
-final class ImageViewModel: ObservableObject, ImageViewModelProtocol{
-    @Published private(set) var state: State
+final class ImageViewModel: ImageViewModelProtocol{
+    
+    @Published var state: State
     @Injected var service: ImageServiceProtocol
     
     typealias State = LoadableEnums<T,U>.State
@@ -28,8 +30,6 @@ final class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     private var imageSizePath: ImagePathProtocol
     
     private var cancelable: AnyCancellable?
-    
-    private var cancelable2: AnyCancellable?
     
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         state = State.loading(imagePath)
@@ -71,10 +71,7 @@ final class ImageViewModel: ObservableObject, ImageViewModelProtocol{
         cancelable?.cancel()
     }
     
-}
-
-extension ImageViewModel: LoadableProtocol {
-    var fetch: AnyPublisher<T, Error>{
+    var fetch: AnyPublisher<ImageItem, Error>{
         guard let url = getURL() else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
@@ -86,12 +83,13 @@ extension ImageViewModel: LoadableProtocol {
             }
             .eraseToAnyPublisher()
     }
+    
 }
 
 extension ImageViewModel{
     struct ImageItem{
         let image: Image
-        init(_ uiImage: UIImage) {
+        init(_ uiImage: UIImage){
             image = Image(uiImage: uiImage)
         }
     }

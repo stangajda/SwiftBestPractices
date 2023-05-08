@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct AsyncImageCached<ImageLoadingView: View, ImageErrorView: View>: View {
-    @ObservedObject private var viewModel: ImageViewModel
+struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
+    @ObservedObject private var viewModel: ViewModel
     private let placeholderLoading: ImageLoadingView
     private let placeholderError: (Error) -> ImageErrorView
 
@@ -17,8 +17,12 @@ struct AsyncImageCached<ImageLoadingView: View, ImageErrorView: View>: View {
     init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
         self.placeholderLoading = placeholderLoading ()
         self.placeholderError = placeholderError
-       
-        _viewModel = ObservedObject (wrappedValue: ImageViewModel (imagePath: imageURL, imageSizePath: imageSizePath, cache: Environment (\.imageCache).wrappedValue))
+
+        guard let wrappedValue = ImageViewModel (imagePath: imageURL, imageSizePath: imageSizePath, cache: Environment (\.imageCache).wrappedValue) as? ViewModel else {
+            fatalError ("ImageViewModel not found")
+        }
+        
+        _viewModel = ObservedObject (wrappedValue: wrappedValue)
     }
     
     var body: some View {

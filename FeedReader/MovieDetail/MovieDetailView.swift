@@ -64,7 +64,7 @@ private extension MovieDetailView {
                 let imageSizePath = OriginalPath() as ImagePathProtocol
                 let imageURL = movieDetail.backdrop_path
                 
-                AsyncImageCached(imageURL: imageURL, imageSizePath: imageSizePath) {
+                AsyncImageCached<ImageViewModel, ActivityIndicator, ErrorView>(imageURL: imageURL, imageSizePath: imageSizePath) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                 } placeholderError: { error in
                     ErrorView(error: error)
