@@ -39,7 +39,6 @@ struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group{
-            MovieRowView(movie: MoviesListViewModel.MovieItem.mock).preferredColorScheme(.dark)
             MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
         }
         .previewLayout(.sizeThatFits)
