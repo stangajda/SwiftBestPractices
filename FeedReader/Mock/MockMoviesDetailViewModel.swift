@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import Combine
+
 
 //class MockMovieDetailViewModel: MovieDetailViewModel{
 //    var internalState: State = .start()
@@ -41,13 +43,43 @@ import Foundation
 //    }
 //}
 
-//class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
-//    var movieList: MoviesListViewModel.MovieItem
-//    var state: MovieDetailViewModel.State = .loaded(MovieDetailItem(MovieDetail.mock))
-//    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-//
-//    init(movieList: MoviesListViewModel.MovieItem){
-//        self.movieList = movieList
-//    }
-//}
+class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
+    var movieList: MoviesListViewModel.MovieItem
+    var state: MovieDetailViewModel.State = .loaded(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
+    
+    init(movieList: MoviesListViewModel.MovieItem){
+        self.movieList = movieList
+        self.fetch = Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+class MockMovieDetailViewModelLoading: MovieDetailViewModelProtocol {
+    var movieList: MoviesListViewModel.MovieItem
+    var state: MovieDetailViewModel.State = .loading()
+    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
+    
+    init(movieList: MoviesListViewModel.MovieItem){
+        self.movieList = movieList
+        self.fetch = Empty(completeImmediately: false)
+            .eraseToAnyPublisher()
+    }
+}
+
+class MockMovieDetailViewModelFailed: MovieDetailViewModelProtocol {
+    var movieList: MoviesListViewModel.MovieItem
+    var state: MovieDetailViewModel.State = .loading()
+    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
+    
+    init(movieList: MoviesListViewModel.MovieItem){
+        self.movieList = movieList
+        self.fetch = Fail(error: APIError.apiCode(404))
+            .eraseToAnyPublisher()
+    }
+}
 

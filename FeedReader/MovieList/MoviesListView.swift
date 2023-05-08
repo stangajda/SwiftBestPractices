@@ -41,7 +41,7 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
     
 }
 
-private extension MoviesListView {
+extension MoviesListView {
     var startView: some View {
         Color.clear
             .onAppear {
@@ -56,7 +56,7 @@ private extension MoviesListView {
     func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         listMovies(movies)
             .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
-                LazyView(MovieDetailView(MovieDetailViewModel(movieList: movie)))
+                LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: ["movieList": movie])))
             }
     }
     
@@ -78,14 +78,17 @@ private extension MoviesListView {
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
-        @Injected(name: .moviesListLoaded) var viewModelLoaded: MoviesListViewModelWrapper
-        @Injected(name: .moviesListLoading) var viewModelLoading: MoviesListViewModelWrapper
-        @Injected(name: .moviesListFailed) var viewModelFailed: MoviesListViewModelWrapper
+        @Injected(name: .movieListStateLoaded) var viewModelLoaded: MoviesListViewModelWrapper
+        @Injected(name: .movieListStateLoading) var viewModelLoading: MoviesListViewModelWrapper
+        @Injected(name: .movieListStateFailed) var viewModelFailed: MoviesListViewModelWrapper
         
         return Group {
             MoviesListView(viewModel: viewModelLoaded)
+                .previewDisplayName("Movies list loaded")
             MoviesListView(viewModel: viewModelLoading)
+                .previewDisplayName("Movies list loading")
             MoviesListView(viewModel: viewModelFailed)
+                .previewDisplayName("Movies list failed")
         }
         
     }

@@ -14,7 +14,7 @@ protocol ImageViewModelProtocol: LoadableProtocol{
     var input: PassthroughSubject<Action, Never> { get }
 }
 
-class ImageViewModel: ObservableObject, ImageViewModelProtocol{
+final class ImageViewModel: ObservableObject, ImageViewModelProtocol{
     @Published private(set) var state: State
     @Injected var service: ImageServiceProtocol
     

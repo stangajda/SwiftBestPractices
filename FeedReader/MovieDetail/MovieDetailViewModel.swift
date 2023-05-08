@@ -13,10 +13,12 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
     var state: MovieDetailViewModel.State { get }
     var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
     var movieList: MoviesListViewModel.MovieItem { get }
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> { get }
 }
 
 
-class MovieDetailViewModel: MovieDetailViewModelProtocol{
+final class MovieDetailViewModel: MovieDetailViewModelProtocol{
+    
     @Published var state: State
     @Injected var service: MovieDetailServiceProtocol
     
@@ -65,7 +67,7 @@ class MovieDetailViewModel: MovieDetailViewModelProtocol{
 }
 
 extension MovieDetailViewModel: LoadableProtocol {
-    var fetch: AnyPublisher<T, Error> {
+    var fetch: AnyPublisher<MovieDetailItem, Error> {
         guard let url = APIUrlBuilder[MoviePath(movieList.id)] else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
@@ -104,3 +106,22 @@ extension MovieDetailViewModel{
         }
     }
 }
+
+class MovieDetailViewModelWrapper: MovieDetailViewModelProtocol {
+    typealias ViewModel = MovieDetailViewModel
+
+    @Published var state: ViewModel.State
+    var input: PassthroughSubject<ViewModel.Action, Never>
+    var fetch: AnyPublisher<ViewModel.MovieDetailItem, Error>
+    var movieList: MoviesListViewModel.MovieItem
+
+    private var cancellable: AnyCancellable?
+    init<ViewModel: MovieDetailViewModelProtocol>(_ viewModel: ViewModel) {
+        state = viewModel.state
+        input = viewModel.input
+        fetch = viewModel.fetch
+        movieList = viewModel.movieList
+        cancellable = self.assignNoRetain(self, to: \.state)
+    }
+}
+

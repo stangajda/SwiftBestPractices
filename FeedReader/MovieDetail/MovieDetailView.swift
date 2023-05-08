@@ -8,10 +8,10 @@
 import SwiftUI
 import Resolver
 
-struct MovieDetailView: View {
-    @ObservedObject var viewModel: MovieDetailViewModel
+struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelProtocol {
+    @ObservedObject var viewModel: ViewModel
     
-    init(_ viewModel: MovieDetailViewModel){
+    init(_ viewModel: ViewModel){
         self.viewModel = viewModel
     }
     
@@ -100,10 +100,17 @@ private extension MovieDetailView {
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
+        @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: MovieDetailViewModelWrapper
+        @Injected(name: .movieDetailStateLoading) var viewModelLoading: MovieDetailViewModelWrapper
+        @Injected(name: .movieDetailStateFailed) var viewModelFailedLoaded: MovieDetailViewModelWrapper
+
         return Group {
-//            MovieDetailView(MockMovieDetailViewModel(.loaded))
-//            MovieDetailView(MockMovieDetailViewModel(.loading))
-//            MovieDetailView(MockMovieDetailViewModel(.failedLoaded))
+             MovieDetailView(viewModelLoaded)
+                .previewDisplayName("MovieDetailView loaded")
+             MovieDetailView(viewModelLoading)
+                .previewDisplayName("MovieDetailView loading")
+             MovieDetailView(viewModelFailedLoaded)
+                .previewDisplayName("MovieDetailView failed")
         }
     }
 }

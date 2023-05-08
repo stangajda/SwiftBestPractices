@@ -11,12 +11,28 @@ import Resolver
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
     defaultScope = .graph
-    register { URLSession.configuredURLSession() }
-    register { MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper}
-    register { MovieListService() as MovieListServiceProtocol}
-    register { MovieDetailService() as MovieDetailServiceProtocol}
-    register { ImageService() as ImageServiceProtocol}
-    register { Service() as ServiceProtocol}
+    register { 
+      URLSession.configuredURLSession() 
+    }
+    register { 
+      MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
+    }
+    register { (_, args) in
+        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList:args("movieList"))) as MovieDetailViewModelWrapper
+    }
+
+    register { 
+      MovieListService() as MovieListServiceProtocol
+    }
+    register { 
+      MovieDetailService() as MovieDetailServiceProtocol
+    }
+    register { 
+      ImageService() as ImageServiceProtocol
+    }
+    register { 
+      Service() as ServiceProtocol
+    }
 //    register(name:.itemList){ _, args in
 //        ImageViewModel(imagePath: args("imageURL"), imageSizePath: args("imageSizePath"), cache: args("cache"))
 //    }
@@ -30,9 +46,27 @@ extension Resolver {
     static var preview: Resolver = Resolver(child: .main)
     static func setupPreviewMode() {
         Resolver.root = .preview
-        register(name:.moviesListLoaded){ MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper}
-        register(name:.moviesListLoading){ MoviesListViewModelWrapper(MockMoviesListViewModelLoading()) as MoviesListViewModelWrapper}
-        register(name:.moviesListFailed){ MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper}
+        register(name:.movieListStateLoaded){ 
+          MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper
+        }
+        register(name:.movieListStateLoading){ 
+          MoviesListViewModelWrapper(MockMoviesListViewModelLoading()) as MoviesListViewModelWrapper
+        }
+        register(name:.movieListStateFailed){ 
+          MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper
+        }
+        
+        register(name:.movieDetailStateLoaded){
+          MovieDetailViewModelWrapper(MockMovieDetailViewModelLoaded(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+        }
+
+        register(name:.movieDetailStateLoading){
+          MovieDetailViewModelWrapper(MockMovieDetailViewModelLoading(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+        }
+
+        register(name:.movieDetailStateFailed){
+          MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+        }
         //register { MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper}
 //        register(name:.itemList){ MockImageViewModel(.itemList) as ImageViewModel}
 //        register(name:.itemDetail){ MockImageViewModel(.itemDetail) as ImageViewModel}
@@ -40,13 +74,14 @@ extension Resolver {
 }
 
 extension Resolver.Name {
-    static let moviesListLoaded = Self("MoviesListLoaded")
-    static let moviesListLoading = Self("MoviesListLoading")
-    static let moviesListFailed = Self("MoviesListFailed")
-
-    static let movieDetailLoaded = Self("MovieDetailLoaded")
-    static let movieDetailLoading = Self("MovieDetailLoading")
-    static let movieDetailFailed = Self("MovieDetailFailed")
+    
+    static let movieListStateLoaded = Self("MovieListStateLoaded")
+    static let movieListStateLoading = Self("MovieListStateLoading")
+    static let movieListStateFailed = Self("MovieListStateFailed")
+    
+    static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
+    static let movieDetailStateLoading = Self("MovieDetailStateLoading")
+    static let movieDetailStateFailed = Self("MovieDetailStateFailed")
 
     static let itemList = Self("ItemList")
     static let itemDetail = Self("ItemDetail")
