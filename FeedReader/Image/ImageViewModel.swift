@@ -11,7 +11,7 @@ import Resolver
 
 protocol ImageViewModelProtocol: ObservableLoadableProtocol{
     var state: ImageViewModel.State { get set }
-    var input: PassthroughSubject<Action, Never> { get }
+    var input: PassthroughSubject<ImageViewModel.Action, Never> { get }
     var fetch: AnyPublisher<ImageViewModel.ImageItem, Error> { get }
 }
 
@@ -66,7 +66,7 @@ final class ImageViewModel: ImageViewModelProtocol{
         reset()
     }
     
-    lazy var reset: () -> Void = { [self] in
+    lazy var reset: () -> Void = { [unowned self] in
         input.send(.onReset)
         cancelable?.cancel()
     }
@@ -77,7 +77,7 @@ final class ImageViewModel: ImageViewModelProtocol{
                 .eraseToAnyPublisher()
         }
         return self.service.fetchImage(URLRequest(url: url))
-            .map { [unowned self] item in
+            .map { [self] item in
                 self.cache?[url] = item
                 return ImageItem(item)
             }
@@ -94,3 +94,25 @@ extension ImageViewModel{
         }
     }
 }
+
+class ImageViewModelWrapper: ImageViewModelProtocol{
+    typealias State = LoadableEnums<T,U>.State
+    typealias T = ImageViewModel.ImageItem
+    typealias U = String
+    
+    typealias ViewModel = ImageViewModel
+    
+    @Published var state: ImageViewModel.State
+    var input: PassthroughSubject<ImageViewModel.Action, Never>
+    var fetch: AnyPublisher<ImageViewModel.ImageItem, Error>
+    
+    private var cancellable: AnyCancellable?
+    init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
+        state = viewModel.state
+        input = viewModel.input
+        fetch = viewModel.fetch
+        cancellable = self.assignNoRetain(self, to: \.state)
+    }
+    
+}
+

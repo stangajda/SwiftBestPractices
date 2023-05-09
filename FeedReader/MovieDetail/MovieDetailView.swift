@@ -36,6 +36,7 @@ struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelPro
 }
 
 private extension MovieDetailView {
+    typealias AsyncImage = AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>
     var initialView: some View {
         Color.clear
             .onAppear {
@@ -64,7 +65,7 @@ private extension MovieDetailView {
                 let imageSizePath = OriginalPath() as ImagePathProtocol
                 let imageURL = movieDetail.backdrop_path
                 
-                AsyncImageCached<ImageViewModel, ActivityIndicator, ErrorView>(imageURL: imageURL, imageSizePath: imageSizePath, cancelOnDisapear: true ) {
+                AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath, cancelOnDisapear: true ) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                 } placeholderError: { error in
                     ErrorView(error: error)

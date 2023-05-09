@@ -9,6 +9,7 @@ import SwiftUI
 import Resolver
 
 struct MovieRowView: View {
+    typealias AsyncImage = AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>
     @State var movie: MoviesListViewModel.MovieItem
     
     var body: some View {
@@ -16,7 +17,7 @@ struct MovieRowView: View {
             let imageSizePath = W200Path() as ImagePathProtocol
             let imageURL = movie.poster_path
             
-            AsyncImageCached<ImageViewModel, ActivityIndicator, ErrorView>(imageURL: imageURL, imageSizePath: imageSizePath) {
+            AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath) {
                 ActivityIndicator(isAnimating: .constant(true), style: .medium)
             } placeholderError: { error in
                 ErrorView(error: error)
