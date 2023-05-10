@@ -33,7 +33,7 @@ extension Resolver: ResolverRegistering {
     
     register { (_, args) in
           // Create an instance of ImageViewModel with the given arguments
-        MovieDetailViewModelWrapper(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as MovieDetailViewModelWrapper
+        ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))
     }
 
     //ImageViewModelWrapper(Resolver.resolve(args: ["imagePath": imageURL, "imageSizePath": imageSizePath, "cache": cache])) as? ViewModel else {
