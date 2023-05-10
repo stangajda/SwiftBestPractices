@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import Combine
 
 //class MockImageViewModel: ImageViewModel{
 //    var image: UIImage?
@@ -35,3 +36,32 @@ import UIKit
 //        }
 //    }
 //}
+
+class MockMovieDetailViewModelLoaded2: MovieDetailViewModelProtocol {
+    var movieList: MoviesListViewModel.MovieItem
+    var state: MovieDetailViewModel.State = .loaded(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
+    
+    init(movieList: MoviesListViewModel.MovieItem){
+        self.movieList = movieList
+        self.fetch = Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}
+
+class MockImageViewModelLoaded: ImageViewModelProtocol {
+    typealias T = ImageViewModel.ImageItem
+    typealias U = String
+    
+    var state: ImageViewModel.State = .loaded(ImageViewModel.ImageItem(UIImage(named: "stubImageMovieDetailsBig")!))
+    var input = PassthroughSubject<ImageViewModel.Action, Never>()
+    var fetch: AnyPublisher<ImageViewModel.ImageItem, Error>
+    
+    init(){
+        self.fetch = Just(ImageViewModel.ImageItem(UIImage(named: "stubImageMovieDetailsBig")!))
+            .setFailureType(to: Error.self)
+            .eraseToAnyPublisher()
+    }
+}

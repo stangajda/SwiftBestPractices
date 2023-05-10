@@ -20,7 +20,13 @@ let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
 let API_IMAGE_ORIGINAL_PATH = "original"
 let API_IMAGE_W200_PATH = "w200"
 
-let VIEW_MOVIE_LIST = "movieList"
+let DI_MOVIE_LIST = "movieList"
+let DI_IMAGE_PATH = "imagePath"
+let DI_IMAGE_SIZE_PATH = "imageSizePath"
+let DI_IMAGE_CACHE = "imageCache"
+
+
+
 let VIEW_MOVIE_LIST_LOADED = "Movies list loaded"
 let VIEW_MOVIE_LIST_LOADING = "Movies list loading"
 let VIEW_MOVIE_LIST_FAILED = "Movies list failed"

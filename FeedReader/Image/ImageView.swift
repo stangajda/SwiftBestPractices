@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Resolver
 
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
@@ -20,11 +21,25 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
         self.placeholderError = placeholderError
 
         let cache = Environment (\.imageCache).wrappedValue
-        guard let wrappedValue = ImageViewModelWrapper(ImageViewModel (imagePath: imageURL, imageSizePath: imageSizePath, cache: cache)) as? ViewModel else {
-            fatalError ("ImageViewModel not found")
-        }
+        let args: [String: Any] = [DI_IMAGE_PATH: imageURL, DI_IMAGE_SIZE_PATH: imageSizePath, DI_IMAGE_CACHE: cache]
+        let imageViewModel = Resolver.resolveImageViewModel(args: args)
+        
+         guard let wrappedValue = ImageViewModelWrapper(imageViewModel) as? ViewModel else {
+             fatalError ("ImageViewModel not found")
+         }
         
         _viewModel = ObservedObject (wrappedValue: wrappedValue)
+    }
+    
+    init(viewModel: ImageViewModelWrapper, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
+            self.placeholderLoading = placeholderLoading ()
+            self.placeholderError = placeholderError
+        
+            let imageViewModel = viewModel
+            guard let wrappedValue = ImageViewModelWrapper(imageViewModel) as? ViewModel else {
+                fatalError ("ImageViewModel not found")
+            }
+            _viewModel = ObservedObject (wrappedValue: wrappedValue)
     }
     
     var body: some View {
@@ -36,7 +51,6 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
                 cancelOnDisapear ? viewModel.send(action: .onReset) : ()
             }
     }
-    
     
     private var content: AnyView {
         switch viewModel.state {
@@ -76,8 +90,15 @@ private extension AsyncImageCached {
 #if DEBUG
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-//            ImageView(viewModel: MockImageViewModel(.itemDetail))
+        Resolver.setupPreviewMode()
+        @Injected var imageViewModel: ImageViewModelWrapper
+        
+        return Group {
+            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(viewModel: imageViewModel) {
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            } placeholderError: { error in
+                ErrorView(error: error)
+            }
         }
     }
 }

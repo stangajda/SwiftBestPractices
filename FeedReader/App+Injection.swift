@@ -24,12 +24,24 @@ extension Resolver: ResolverRegistering {
     
   static func registerViewModels() {
     register {
-      MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
+        MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
     }
       
     register { (_, args) in
-      MovieDetailViewModelWrapper(MovieDetailViewModel(movieList: args(VIEW_MOVIE_LIST))) as MovieDetailViewModelWrapper
+        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList: args(DI_MOVIE_LIST))) as MovieDetailViewModelWrapper
     }
+    
+    register { (_, args) in
+          // Create an instance of ImageViewModel with the given arguments
+        MovieDetailViewModelWrapper(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as MovieDetailViewModelWrapper
+    }
+
+    //ImageViewModelWrapper(Resolver.resolve(args: ["imagePath": imageURL, "imageSizePath": imageSizePath, "cache": cache])) as? ViewModel else {
+            
+//    register { (_, args) in
+//      ImageViewModelWrapper(ImageViewModel(url: args(imagePath: args("imagePath"), imageSizePath: args("imageSizePath"), cache: args("cache")))) as ImageViewModelWrapper
+//    }
+
   }
     
   static func registerServices() {
@@ -58,6 +70,7 @@ extension Resolver {
         
         registerMoviesListViewModel()
         registerMovieDetailViewModel()
+        registerImageViewModel()
     }
     
     private static func registerMoviesListViewModel() {
@@ -86,6 +99,20 @@ extension Resolver {
         register(name:.movieDetailStateFailed){
           MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
+    }
+
+    private static func registerImageViewModel() {
+        register {
+          ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
+//            ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))
+        }
+//        register(name:.itemList){
+//          ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
+//        }
+        
+        // register(name:.itemDetail){ 
+        //   ImageViewModelWrapper(ImageViewModel(imagePath: "", imageSizePath: ImagePathProtocolMock(), cache: ImageCacheProtocolMock())) as ImageViewModelWrapper
+        // }
     }
 }
 

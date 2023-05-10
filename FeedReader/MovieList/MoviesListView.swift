@@ -42,6 +42,7 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
 }
 
 extension MoviesListView {
+    typealias MovieDetailViewWrapper = MovieDetailView<MovieDetailViewModelWrapper>
     var startView: some View {
         Color.clear
             .onAppear {
@@ -73,7 +74,7 @@ extension MoviesListView {
     }
     
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailView<MovieDetailViewModelWrapper>(Resolver.resolve(args: [VIEW_MOVIE_LIST: movie])))
+        LazyView(MovieDetailViewWrapper(Resolver.resolve(args: [DI_MOVIE_LIST: movie])))
     }
 }
 

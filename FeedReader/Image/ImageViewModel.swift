@@ -116,3 +116,9 @@ class ImageViewModelWrapper: ImageViewModelProtocol{
     
 }
 
+extension Resolver {
+    static func resolveImageViewModel(args: [String: Any]) -> ImageViewModel {
+        return resolve(ImageViewModel.self, args: args)
+    }
+}
+
