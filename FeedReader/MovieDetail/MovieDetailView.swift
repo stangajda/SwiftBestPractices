@@ -100,7 +100,7 @@ private extension MovieDetailView {
 #if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.setupPreviewMode()
+        Resolver.setupPreviewModeMovieDetail()
         @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: MovieDetailViewModelWrapper
         @Injected(name: .movieDetailStateLoading) var viewModelLoading: MovieDetailViewModelWrapper
         @Injected(name: .movieDetailStateFailed) var viewModelFailedLoaded: MovieDetailViewModelWrapper

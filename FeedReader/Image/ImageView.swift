@@ -88,13 +88,12 @@ private extension AsyncImageCached {
 }
 
 #if DEBUG
-struct ImageView_Previews: PreviewProvider {
+struct ImageView_Previews: PreviewProvider, Resolving {
     static var previews: some View {
-        Resolver.setupPreviewMode()
-        @Injected var imageViewModel: ImageViewModelWrapper
+        Resolver.setupPreviewModeMovieDetail()
         
         return Group {
-            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(viewModel: imageViewModel) {
+            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)

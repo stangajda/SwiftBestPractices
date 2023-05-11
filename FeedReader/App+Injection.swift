@@ -32,15 +32,8 @@ extension Resolver: ResolverRegistering {
     }
     
     register { (_, args) in
-          // Create an instance of ImageViewModel with the given arguments
-        ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))
+        ImageViewModelWrapper(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as ImageViewModelWrapper
     }
-
-    //ImageViewModelWrapper(Resolver.resolve(args: ["imagePath": imageURL, "imageSizePath": imageSizePath, "cache": cache])) as? ViewModel else {
-            
-//    register { (_, args) in
-//      ImageViewModelWrapper(ImageViewModel(url: args(imagePath: args("imagePath"), imageSizePath: args("imageSizePath"), cache: args("cache")))) as ImageViewModelWrapper
-//    }
 
   }
     
@@ -72,17 +65,24 @@ extension Resolver {
         registerMovieDetailViewModel()
         registerImageViewModel()
     }
+
+    static var previewMovieDetail: Resolver = Resolver(child: .main)
+    static func setupPreviewModeMovieDetail() {
+        Resolver.root = .previewMovieDetail
+        registerMovieDetailViewModel()
+        registerImageViewModelItemDetail()
+    }
     
     private static func registerMoviesListViewModel() {
-        register(name:.movieListStateLoaded){ 
+        register(name:.movieListStateLoaded){
           MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper
         }
         
-        register(name:.movieListStateLoading){ 
+        register(name:.movieListStateLoading){
           MoviesListViewModelWrapper(MockMoviesListViewModelLoading()) as MoviesListViewModelWrapper
         }
         
-        register(name:.movieListStateFailed){ 
+        register(name:.movieListStateFailed){
           MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper
         }
     }
@@ -103,16 +103,14 @@ extension Resolver {
 
     private static func registerImageViewModel() {
         register {
-          ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
-//            ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))
+            ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
         }
-//        register(name:.itemList){
-//          ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
-//        }
-        
-        // register(name:.itemDetail){ 
-        //   ImageViewModelWrapper(ImageViewModel(imagePath: "", imageSizePath: ImagePathProtocolMock(), cache: ImageCacheProtocolMock())) as ImageViewModelWrapper
-        // }
+    }
+
+    private static func registerImageViewModelItemDetail() {
+        register {
+            ImageViewModelWrapper(MockImageViewModelLoaded(.itemDetail)) as ImageViewModelWrapper
+        }
     }
 }
 
@@ -125,6 +123,8 @@ extension Resolver.Name {
     static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
     static let movieDetailStateLoading = Self("MovieDetailStateLoading")
     static let movieDetailStateFailed = Self("MovieDetailStateFailed")
+    
+    static let imageStateLoaded = Self("ImageStateLoaded")
 
     static let itemList = Self("ItemList")
     static let itemDetail = Self("ItemDetail")

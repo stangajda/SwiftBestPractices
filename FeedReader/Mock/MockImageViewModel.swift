@@ -9,58 +9,35 @@ import Foundation
 import UIKit
 import Combine
 
-//class MockImageViewModel: ImageViewModel{
-//    var image: UIImage?
-//    enum MockState {
-//        case itemList
-//        case itemDetail
-//    }
-//    override var state: State{
-//        guard let image = image else {
-//            return .start()
-//        }
-//        return .loaded(ImageItem(image))
-//    }
-//    
-//    init(_ state: MockState){
-//        super.init(imagePath: "mockUrl", imageSizePath: OriginalPath())
-//        switchState(state)
-//    }
-//    
-//    func switchState(_ state: MockState){
-//        switch state {
-//        case .itemList:
-//            image = UIImage(named: "stubImageMovieMedium")
-//        case .itemDetail:
-//            image = UIImage(named: "stubImageMovieDetailsBig")
-//        }
-//    }
-//}
-
-class MockMovieDetailViewModelLoaded2: MovieDetailViewModelProtocol {
-    var movieList: MoviesListViewModel.MovieItem
-    var state: MovieDetailViewModel.State = .loaded(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
-    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
-    
-    init(movieList: MoviesListViewModel.MovieItem){
-        self.movieList = movieList
-        self.fetch = Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
-    }
-}
-
 class MockImageViewModelLoaded: ImageViewModelProtocol {
     typealias T = ImageViewModel.ImageItem
     typealias U = String
     
-    var state: ImageViewModel.State = .loaded(ImageViewModel.ImageItem(UIImage(named: "stubImageMovieDetailsBig")!))
+    @Published var state: ImageViewModel.State = .loading()
     var input = PassthroughSubject<ImageViewModel.Action, Never>()
     var fetch: AnyPublisher<ImageViewModel.ImageItem, Error>
+
+    enum MockState {
+        case itemList
+        case itemDetail
+    }
     
-    init(){
-        self.fetch = Just(ImageViewModel.ImageItem(UIImage(named: "stubImageMovieDetailsBig")!))
+    init(_ mockState: MockState = .itemList){
+        var image: UIImage?
+        switch mockState { 
+            case .itemList:
+                image = UIImage(named: "stubImageMovieMedium")
+            case .itemDetail:
+                image = UIImage(named: "stubImageMovieDetailsBig")
+        }
+
+        guard let image = image else {
+            self.fetch = Fail(error: APIError.invalidURL)
+                .eraseToAnyPublisher()
+            return
+        }
+
+        self.fetch = Just(ImageViewModel.ImageItem(image))
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
