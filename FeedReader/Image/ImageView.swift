@@ -20,9 +20,9 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
         self.placeholderLoading = placeholderLoading ()
         self.placeholderError = placeholderError
 
-        let cache = Environment (\.imageCache).wrappedValue
+        let cache: ImageCacheProtocol = Environment (\.imageCache).wrappedValue
         let args: [String: Any] = [DI_IMAGE_PATH: imageURL, DI_IMAGE_SIZE_PATH: imageSizePath, DI_IMAGE_CACHE: cache]
-        let imageViewModel = Resolver.resolveImageViewModel(args: args)
+        let imageViewModel: ImageViewModelWrapper = Resolver.resolveImageViewModel(args: args)
         
          guard let wrappedValue = ImageViewModelWrapper(imageViewModel) as? ViewModel else {
              fatalError ("ImageViewModel not found")
