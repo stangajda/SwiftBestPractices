@@ -12,7 +12,7 @@ import Resolver
 protocol MoviesListViewModelProtocol: ObservableLoadableProtocol {
     var state: MoviesListViewModel.State { get set }
     var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> { get }
+    var fetch: AnyPublisher<Array<MovieItem>, Error> { get }
 }
 
 
@@ -20,7 +20,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published var state = State.start()
     @Injected private var service: MovieListServiceProtocol
     
-    typealias T = Array<MoviesListViewModel.MovieItem>
+    typealias T = Array<MovieItem>
     typealias U = Any
     
     var input = PassthroughSubject<Action, Never>()
@@ -43,7 +43,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 }
 
 extension MoviesListViewModel: LoadableProtocol{
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
+    var fetch: AnyPublisher<Array<MovieItem>, Error>{
         
         guard let url = APIUrlBuilder[TrendingPath()] else {
             return Fail(error: APIError.invalidURL)
@@ -58,7 +58,7 @@ extension MoviesListViewModel: LoadableProtocol{
     }
 }
 
-extension MoviesListViewModel {
+//extension MoviesListViewModel {
     struct MovieItem: Identifiable, Hashable {
         let id: Int
         let title: String
@@ -73,14 +73,14 @@ extension MoviesListViewModel {
             vote_count = movie.vote_count
         }
     }
-}
+//}
 
 class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
     typealias ViewModel = MoviesListViewModel
     
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<Array<ViewModel.MovieItem>, Error>
+    var fetch: AnyPublisher<Array<MovieItem>, Error>
 
     private var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {

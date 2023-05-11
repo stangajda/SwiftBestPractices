@@ -54,9 +54,9 @@ extension MoviesListView {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
-    func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
+    func loadedView(_ movies: Array<MovieItem>) -> some View {
         listMovies(movies)
-            .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
+            .navigationDestination(for: MovieItem.self) { movie in
                 makeMovieDetailView(for: movie)
             }
     }
@@ -65,7 +65,7 @@ extension MoviesListView {
         ErrorView(error: error)
     }
     
-    func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
+    func listMovies(_ movies: Array<MovieItem>) -> some View {
         List(movies){ movie in
             NavigationLink(value: movie) {
                 MovieRowView(movie: movie)
@@ -73,7 +73,7 @@ extension MoviesListView {
         }
     }
     
-    func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
+    func makeMovieDetailView(for movie: MovieItem) -> some View {
         LazyView(MovieDetailViewWrapper(Resolver.resolve(args: [DI_MOVIE_LIST: movie])))
     }
 }
