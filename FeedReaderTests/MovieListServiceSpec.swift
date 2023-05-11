@@ -26,8 +26,14 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
 
             var moviesFromData: Movies!
             var anotherMoviesFromData: Movies!
+            
+            afterEach { [self] in
+                MockURLProtocol.mock = nil
+                cancellable?.cancel()
+                cancellable = nil
+            }
 
-            context("given successful json data") {
+            context("when successful json data") {
                 beforeEach { [self] in
                     moviesFromData = Data.jsonDataToObject("MockMovieListResponseResult.json")
                     anotherMoviesFromData = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
@@ -48,11 +54,6 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 
             }
             
-            afterEach { [self] in
-                MockURLProtocol.mock = nil
-                cancellable?.cancel()
-                cancellable = nil
-            }
         }
     }
 }

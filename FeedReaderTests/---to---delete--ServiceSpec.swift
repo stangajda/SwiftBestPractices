@@ -60,7 +60,13 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
         describe("check service responses") {
             Resolver.registerMockServices()
             
-            context("given successful data in service") {
+            afterEach { [self] in
+                MockURLProtocol.mock = nil
+                cancellable?.cancel()
+                cancellable = nil
+            }
+            
+            context("when successful data in service") {
                 
                 beforeEach { [self] in
                     result = .success(Data.stubData)
@@ -78,7 +84,7 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
             
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
-                context("given failure error code \(errorCode)"){
+                context("when failure error code \(errorCode)"){
                     result = .failure(NSError.stubCode(code: errorCode))
                     beforeEach { [self] in
                         self.mockResponse(result: result, apiCode: errorCode)
@@ -92,7 +98,7 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
             }
             
-            context("given successful response with error code 0"){
+            context("when successful response with error code 0"){
                 beforeEach {
                     let stubErrorCode = 0
                     let result: Result<Bool, Swift.Error>! = .success(false)
@@ -104,12 +110,6 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                         result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
                     })
                 }
-            }
-            
-            afterEach { [self] in
-                MockURLProtocol.mock = nil
-                cancellable?.cancel()
-                cancellable = nil
             }
             
         }

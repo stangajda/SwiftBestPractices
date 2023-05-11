@@ -21,7 +21,14 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     override func spec() {
         describe("check image service"){
             Resolver.registerMockServices()
-            context("given succesful image") {
+            
+            afterEach { [self] in
+                MockURLProtocol.mock = nil
+                cancellable?.cancel()
+                cancellable = nil
+            }
+            
+            context("when succesful image") {
                 beforeEach { [self] in
                     let imageData = convertImageToData("stubImage")
                     mockResponse(result: .success(imageData))
@@ -34,7 +41,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
             }
             
-            context("given failure not image stubdata"){
+            context("when failure not image stubdata"){
                 beforeEach { [self] in
                     let stubData = Data.stubData
                     mockResponse(result: .success(stubData))
@@ -47,11 +54,6 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
             }
             
-            afterEach { [self] in
-                MockURLProtocol.mock = nil
-                cancellable?.cancel()
-                cancellable = nil
-            }
         }
     }
 }
