@@ -88,11 +88,18 @@ private extension AsyncImageCached {
 }
 
 #if DEBUG
+
 struct ImageView_Previews: PreviewProvider, Resolving {
     static var previews: some View {
-        Resolver.setupPreviewModeMovieDetail()
-        
         return Group {
+            let _ = Resolver.setupPreviewMode()
+            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            } placeholderError: { error in
+                ErrorView(error: error)
+            }
+            
+            let _ = Resolver.setupPreviewModeMovieDetail()
             AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
@@ -101,4 +108,5 @@ struct ImageView_Previews: PreviewProvider, Resolving {
         }
     }
 }
+
 #endif
