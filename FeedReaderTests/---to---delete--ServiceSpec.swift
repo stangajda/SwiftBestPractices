@@ -74,9 +74,9 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
                 
                 it("it should get successful response match to data"){ [self] in
-                   cancellable = await checkResponse( closure: { result in
+                   cancellable = await checkResponse { result in
                        result.isExpectSuccessToEqual(Data.stubData)
-                   })
+                   }
                                
                 }
                 
@@ -91,9 +91,9 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                     }
 
                     it("it should get failure response match given error code \(errorCode)"){ [self] in
-                        cancellable = await checkResponse( closure: { result in
+                        cancellable = await checkResponse { result in
                             result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
-                        })
+                        }
                     }
                 }
             }
@@ -106,9 +106,9 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
 
                 it("it should failure response match error code"){ [self] in
-                    cancellable = await checkResponse( closure: { result in
+                    cancellable = await checkResponse { result in
                         result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
-                    })
+                    }
                 }
             }
             

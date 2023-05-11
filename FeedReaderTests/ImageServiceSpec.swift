@@ -35,9 +35,9 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get succesful response on Type UIImage") { [self] in
-                    cancellable = await self.checkResponse( closure: { result in
+                    cancellable = await self.checkResponse { result in
                         result.isExpectSuccessType(UIImage())
-                    })
+                    }
                 }
             }
             
@@ -48,9 +48,9 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get failure response match error") { [self] in
-                    cancellable = await self.checkResponse( closure: { [self] result in
+                    cancellable = await self.checkResponse{ [unowned self] result in
                         result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
-                    })
+                    }
                 }
             }
             

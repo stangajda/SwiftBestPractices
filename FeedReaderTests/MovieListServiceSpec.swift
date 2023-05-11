@@ -41,15 +41,15 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 }
                 
                 it("it should get successful response match mapped object"){ [self] in
-                    cancellable = await self.checkResponse( closure: { result in
+                    cancellable = await self.checkResponse{ result in
                         result.isExpectSuccessToEqual(moviesFromData)
-                    })
+                    }
                 }
 
                 it("it should get successful response not match mapped object"){ [self] in
-                    cancellable = await self.checkResponse( closure: { result in
+                    cancellable = await self.checkResponse{ result in
                        result.isExpectSuccessNotToEqual(anotherMoviesFromData)
-                    }) 
+                    }
                 }
                 
             }
