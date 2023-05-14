@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol ObservableLoadableProtocol: ObservableObject, LoadableProtocol {
-    var state: LoadableEnums<Self.T, Self.U>.State { get set }
+    var state: State { get }
 }
 
 extension ObservableLoadableProtocol {

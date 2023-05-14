@@ -9,10 +9,8 @@ import Foundation
 import Combine
 import Resolver
 
-protocol MoviesListViewModelProtocol: ObservableLoadableProtocol {
-    var state: MoviesListViewModel.State { get set }
-    var input: PassthroughSubject<MoviesListViewModel.Action, Never> { get }
-    var fetch: AnyPublisher<Array<MovieItem>, Error> { get }
+protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MovieItem>, U == Any {
+   
 }
 
 
@@ -90,4 +88,5 @@ class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
         cancellable = self.assignNoRetain(self, to: \.state)
     }
 }
+
 
