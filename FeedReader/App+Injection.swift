@@ -24,7 +24,7 @@ extension Resolver: ResolverRegistering {
     
   static func registerViewModels() {
     register {
-        MoviesListViewModelWrapper(MoviesListViewModel()) as MoviesListViewModelWrapper
+        AnyMoviesListViewModelProtocol(MoviesListViewModel()) as AnyMoviesListViewModelProtocol
     }
       
     register { (_, args) in
@@ -75,15 +75,15 @@ extension Resolver {
     
     private static func registerMoviesListViewModel() {
         register(name:.movieListStateLoaded){
-          MoviesListViewModelWrapper(MockMoviesListViewModelLoaded()) as MoviesListViewModelWrapper
+          AnyMoviesListViewModelProtocol(MockMoviesListViewModelLoaded()) as AnyMoviesListViewModelProtocol
         }
         
         register(name:.movieListStateLoading){
-          MoviesListViewModelWrapper(MockMoviesListViewModelLoading()) as MoviesListViewModelWrapper
+          AnyMoviesListViewModelProtocol(MockMoviesListViewModelLoading()) as AnyMoviesListViewModelProtocol
         }
         
         register(name:.movieListStateFailed){
-          MoviesListViewModelWrapper(MockMoviesListViewModelFailed()) as MoviesListViewModelWrapper
+          AnyMoviesListViewModelProtocol(MockMoviesListViewModelFailed()) as AnyMoviesListViewModelProtocol
         }
     }
     

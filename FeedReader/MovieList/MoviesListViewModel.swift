@@ -73,12 +73,13 @@ extension MoviesListViewModel: LoadableProtocol{
     }
 //}
 
-class MoviesListViewModelWrapper: MoviesListViewModelProtocol {
+class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
     typealias ViewModel = MoviesListViewModel
+    typealias T = Array<MovieItem>
     
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<Array<MovieItem>, Error>
+    var fetch: AnyPublisher<T, Error>
 
     private var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
