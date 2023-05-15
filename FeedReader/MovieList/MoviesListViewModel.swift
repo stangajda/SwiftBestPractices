@@ -9,7 +9,7 @@ import Foundation
 import Combine
 import Resolver
 
-protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MovieItem>, U == Any {
+protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Any {
    
 }
 
@@ -18,7 +18,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published var state = State.start()
     @Injected private var service: MovieListServiceProtocol
     
-    typealias T = Array<MovieItem>
+    typealias T = Array<MoviesListViewModel.MovieItem>
     typealias U = Any
     
     var input = PassthroughSubject<Action, Never>()
@@ -41,7 +41,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 }
 
 extension MoviesListViewModel: LoadableProtocol{
-    var fetch: AnyPublisher<Array<MovieItem>, Error>{
+    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error>{
         
         guard let url = APIUrlBuilder[TrendingPath()] else {
             return Fail(error: APIError.invalidURL)
@@ -50,13 +50,13 @@ extension MoviesListViewModel: LoadableProtocol{
         
         return self.service.fetchMovies(URLRequest(url: url).get())
             .map { item in
-                item.results.map(MovieItem.init)
+                item.results.map(MoviesListViewModel.MovieItem.init)
             }
             .eraseToAnyPublisher()
     }
 }
 
-//extension MoviesListViewModel {
+extension MoviesListViewModel {
     struct MovieItem: Identifiable, Hashable {
         let id: Int
         let title: String
@@ -71,11 +71,11 @@ extension MoviesListViewModel: LoadableProtocol{
             vote_count = movie.vote_count
         }
     }
-//}
+}
 
 class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
     typealias ViewModel = MoviesListViewModel
-    typealias T = Array<MovieItem>
+    typealias T = Array<MoviesListViewModel.MovieItem>
     
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>

@@ -12,7 +12,7 @@ import Resolver
 protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
     var state: MovieDetailViewModel.State { get }
     var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
-    var movieList: MovieItem { get }
+    var movieList: MoviesListViewModel.MovieItem { get }
     var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> { get }
 }
 
@@ -26,11 +26,11 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     typealias U = Int
     
     var input = PassthroughSubject<Action, Never>()
-    var movieList: MovieItem
+    var movieList: MoviesListViewModel.MovieItem
 
     private var cancellables = Set<AnyCancellable>()
     
-    init(movieList: MovieItem){
+    init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
         
@@ -113,7 +113,7 @@ class MovieDetailViewModelWrapper: MovieDetailViewModelProtocol {
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
     var fetch: AnyPublisher<ViewModel.MovieDetailItem, Error>
-    var movieList: MovieItem
+    var movieList: MoviesListViewModel.MovieItem
 
     private var cancellable: AnyCancellable?
     init<ViewModel: MovieDetailViewModelProtocol>(_ viewModel: ViewModel) {

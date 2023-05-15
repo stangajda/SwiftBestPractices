@@ -10,7 +10,7 @@ import Resolver
 
 struct MovieRowView: View {
     typealias AsyncImage = AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>
-    @State var movie: MovieItem
+    @State var movie: MoviesListViewModel.MovieItem
     
     var body: some View {
         HStack{
@@ -40,7 +40,7 @@ struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
         Resolver.setupPreviewMode()
         return Group{
-            MovieRowView(movie: MovieItem.mock)
+            MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
         }
         .previewLayout(.sizeThatFits)
     }

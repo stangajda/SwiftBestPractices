@@ -9,12 +9,12 @@ import Foundation
 import Combine
 
 class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
-    var movieList: MovieItem
+    var movieList: MoviesListViewModel.MovieItem
     var state: MovieDetailViewModel.State = .loaded(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
     var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
     
-    init(movieList: MovieItem){
+    init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         self.fetch = Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
             .setFailureType(to: Error.self)
@@ -23,12 +23,12 @@ class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
 }
 
 class MockMovieDetailViewModelLoading: MovieDetailViewModelProtocol {
-    var movieList: MovieItem
+    var movieList: MoviesListViewModel.MovieItem
     var state: MovieDetailViewModel.State = .loading()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
     var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
     
-    init(movieList: MovieItem){
+    init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         self.fetch = Empty(completeImmediately: false)
             .eraseToAnyPublisher()
@@ -36,12 +36,12 @@ class MockMovieDetailViewModelLoading: MovieDetailViewModelProtocol {
 }
 
 class MockMovieDetailViewModelFailed: MovieDetailViewModelProtocol {
-    var movieList: MovieItem
+    var movieList: MoviesListViewModel.MovieItem
     var state: MovieDetailViewModel.State = .loading()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
     var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
     
-    init(movieList: MovieItem){
+    init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         self.fetch = Fail(error: APIError.apiCode(404))
             .eraseToAnyPublisher()

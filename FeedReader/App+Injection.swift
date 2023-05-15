@@ -89,15 +89,15 @@ extension Resolver {
     
     private static func registerMovieDetailViewModel() {
         register(name:.movieDetailStateLoaded){
-          MovieDetailViewModelWrapper(MockMovieDetailViewModelLoaded(movieList: MovieItem.mock)) as MovieDetailViewModelWrapper
+            MovieDetailViewModelWrapper(MockMovieDetailViewModelLoaded(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
 
         register(name:.movieDetailStateLoading){
-          MovieDetailViewModelWrapper(MockMovieDetailViewModelLoading(movieList: MovieItem.mock)) as MovieDetailViewModelWrapper
+            MovieDetailViewModelWrapper(MockMovieDetailViewModelLoading(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
 
         register(name:.movieDetailStateFailed){
-          MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MovieItem.mock)) as MovieDetailViewModelWrapper
+            MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
         }
     }
 
