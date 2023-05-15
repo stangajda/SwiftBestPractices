@@ -11,7 +11,7 @@ protocol MockStateProtocol {
     var mockState: MockState.State { get }
 }
 
-struct MockState: Equatable{
+struct MockState {
     enum State {
         case loading
         case loaded
