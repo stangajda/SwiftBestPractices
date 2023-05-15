@@ -28,7 +28,7 @@ extension Resolver: ResolverRegistering {
     }
       
     register { (_, args) in
-        MovieDetailViewModelWrapper(MovieDetailViewModel(movieList: args(DI_MOVIE_LIST))) as MovieDetailViewModelWrapper
+        AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: args(DI_MOVIE_LIST))) as AnyMovieDetailViewModelProtocol
     }
     
     register { (_, args) in
@@ -89,15 +89,15 @@ extension Resolver {
     
     private static func registerMovieDetailViewModel() {
         register(name:.movieDetailStateLoaded){
-            MovieDetailViewModelWrapper(MockMovieDetailViewModelLoaded(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+            AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock)) as AnyMovieDetailViewModelProtocol
         }
 
         register(name:.movieDetailStateLoading){
-            MovieDetailViewModelWrapper(MockMovieDetailViewModelLoading(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+            AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.loading, MoviesListViewModel.MovieItem.mock)) as AnyMovieDetailViewModelProtocol
         }
 
         register(name:.movieDetailStateFailed){
-            MovieDetailViewModelWrapper(MockMovieDetailViewModelFailed(movieList: MoviesListViewModel.MovieItem.mock)) as MovieDetailViewModelWrapper
+            AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.failedLoaded, MoviesListViewModel.MovieItem.mock)) as AnyMovieDetailViewModelProtocol
         }
     }
 

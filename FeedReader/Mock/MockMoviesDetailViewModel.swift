@@ -8,43 +8,34 @@
 import Foundation
 import Combine
 
-class MockMovieDetailViewModelLoaded: MovieDetailViewModelProtocol {
+class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     var movieList: MoviesListViewModel.MovieItem
-    var state: MovieDetailViewModel.State = .loaded(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+    @Published var state: MovieDetailViewModel.State = .start()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
+    var mockState: MockState
+    enum MockState {
+        case loading
+        case loaded
+        case failedLoaded
+    }
     
-    init(movieList: MoviesListViewModel.MovieItem){
+    init(_ mockState: MockState, _ movieList: MoviesListViewModel.MovieItem){
+        self.mockState = mockState
         self.movieList = movieList
-        self.fetch = Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
-            .setFailureType(to: Error.self)
-            .eraseToAnyPublisher()
+    }
+
+    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> {
+        switch mockState {
+        case .loading:
+            return Empty(completeImmediately: false)
+                .eraseToAnyPublisher()
+        case .loaded:
+            return Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        case .failedLoaded:
+            return Fail(error: APIError.apiCode(404))
+                .eraseToAnyPublisher()
+        }
     }
 }
-
-class MockMovieDetailViewModelLoading: MovieDetailViewModelProtocol {
-    var movieList: MoviesListViewModel.MovieItem
-    var state: MovieDetailViewModel.State = .loading()
-    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
-    
-    init(movieList: MoviesListViewModel.MovieItem){
-        self.movieList = movieList
-        self.fetch = Empty(completeImmediately: false)
-            .eraseToAnyPublisher()
-    }
-}
-
-class MockMovieDetailViewModelFailed: MovieDetailViewModelProtocol {
-    var movieList: MoviesListViewModel.MovieItem
-    var state: MovieDetailViewModel.State = .loading()
-    var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error>
-    
-    init(movieList: MoviesListViewModel.MovieItem){
-        self.movieList = movieList
-        self.fetch = Fail(error: APIError.apiCode(404))
-            .eraseToAnyPublisher()
-    }
-}
-

@@ -107,7 +107,7 @@ extension MovieDetailViewModel{
     }
 }
 
-class MovieDetailViewModelWrapper: MovieDetailViewModelProtocol {
+class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
     typealias ViewModel = MovieDetailViewModel
 
     @Published var state: ViewModel.State
