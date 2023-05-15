@@ -8,17 +8,13 @@
 import Foundation
 import Combine
 
-class MockMoviesListViewModel: MoviesListViewModelProtocol {
+class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
+    
     @Published var state: MoviesListViewModel.State = .start()
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
-    var mockState: MockState
-    enum MockState {
-        case loading
-        case loaded
-        case failedLoaded
-    }
+    var mockState: MockState.State
     
-    init(_ mockState: MockState){
+    init(_ mockState: MockState.State){
         self.mockState = mockState
     }
 

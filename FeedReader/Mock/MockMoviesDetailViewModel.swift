@@ -12,14 +12,9 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     var movieList: MoviesListViewModel.MovieItem
     @Published var state: MovieDetailViewModel.State = .start()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
-    var mockState: MockState
-    enum MockState {
-        case loading
-        case loaded
-        case failedLoaded
-    }
+    var mockState: MockState.State
     
-    init(_ mockState: MockState, _ movieList: MoviesListViewModel.MovieItem){
+    init(_ mockState: MockState.State, _ movieList: MoviesListViewModel.MovieItem){
         self.mockState = mockState
         self.movieList = movieList
     }
