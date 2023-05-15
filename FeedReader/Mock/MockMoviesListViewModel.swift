@@ -8,35 +8,32 @@
 import Foundation
 import Combine
 
-class MockMoviesListViewModelLoaded: MoviesListViewModelProtocol {
-    @Published var state: MoviesListViewModel.State = .loading()
+class MockMoviesListViewModel: MoviesListViewModelProtocol {
+    @Published var state: MoviesListViewModel.State = .start()
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
-    var reset: () -> Void = {}
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
-        let movies = Array(repeating: MoviesListViewModel.MovieItem.mock, count: 20)
-        return Just(movies)
-        .setFailureType(to: Error.self)
-        .eraseToAnyPublisher()
-        
+    var mockState: MockState
+    enum MockState {
+        case loading
+        case loaded
+        case failedLoaded
     }
-}
-
-class MockMoviesListViewModelLoading: MoviesListViewModelProtocol {
-    @Published var state: MoviesListViewModel.State = .loading()
-    var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
-    var reset: () -> Void = {}
-    var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
-        return Empty(completeImmediately: false)
-            .eraseToAnyPublisher()
+    
+    init(_ mockState: MockState){
+        self.mockState = mockState
     }
-}
 
-class MockMoviesListViewModelFailed: MoviesListViewModelProtocol {
-    @Published var state: MoviesListViewModel.State = .loading()
-    var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
-    var reset: () -> Void = {}
     var fetch: AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
-        return Fail(error: APIError.apiCode(404))
-            .eraseToAnyPublisher()
+        switch mockState {
+        case .loading:
+            return Empty(completeImmediately: false)
+                .eraseToAnyPublisher()
+        case .loaded:
+            return Just(Array(repeating: MoviesListViewModel.MovieItem.mock, count: 20))
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        case .failedLoaded:
+            return Fail(error: APIError.apiCode(404))
+                .eraseToAnyPublisher()
+        }
     }
 }

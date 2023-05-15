@@ -75,15 +75,15 @@ extension Resolver {
     
     private static func registerMoviesListViewModel() {
         register(name:.movieListStateLoaded){
-          AnyMoviesListViewModelProtocol(MockMoviesListViewModelLoaded()) as AnyMoviesListViewModelProtocol
+            AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loaded)) as AnyMoviesListViewModelProtocol
         }
         
         register(name:.movieListStateLoading){
-          AnyMoviesListViewModelProtocol(MockMoviesListViewModelLoading()) as AnyMoviesListViewModelProtocol
+          AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loading)) as AnyMoviesListViewModelProtocol
         }
         
         register(name:.movieListStateFailed){
-          AnyMoviesListViewModelProtocol(MockMoviesListViewModelFailed()) as AnyMoviesListViewModelProtocol
+          AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.failedLoaded)) as AnyMoviesListViewModelProtocol
         }
     }
     
