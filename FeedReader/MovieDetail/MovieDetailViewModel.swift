@@ -46,15 +46,15 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
         reset()
     }
     
-    lazy var reset: () -> Void = { [self] in
-        cancellables.forEach { cancellable in
+    lazy var reset: () -> Void = { [weak self] in
+        self?.cancellables.forEach { cancellable in
             cancellable.cancel() 
         } 
     }
     
     func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
         input
-            .sink(receiveValue: { [self] action in
+            .sink(receiveValue: { [unowned self] action in
                 switch action {
                 case .onReset:
                     reset()

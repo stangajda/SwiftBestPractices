@@ -33,9 +33,9 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
         reset()
     }
     
-    lazy var reset: () -> Void = { [self] in
-        input.send(.onReset)
-        cancelable?.cancel()
+    lazy var reset: () -> Void = { [weak self] in
+        self?.input.send(.onReset)
+        self?.cancelable?.cancel()
     }
     
 }

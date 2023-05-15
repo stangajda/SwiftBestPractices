@@ -66,9 +66,9 @@ final class ImageViewModel: ImageViewModelProtocol{
         reset()
     }
     
-    lazy var reset: () -> Void = { [unowned self] in
-        input.send(.onReset)
-        cancelable?.cancel()
+    lazy var reset: () -> Void = { [weak self] in
+        self?.input.send(.onReset)
+        self?.cancelable?.cancel()
     }
     
     var fetch: AnyPublisher<ImageItem, Error>{
@@ -77,7 +77,7 @@ final class ImageViewModel: ImageViewModelProtocol{
                 .eraseToAnyPublisher()
         }
         return self.service.fetchImage(URLRequest(url: url))
-            .map { [self] item in
+            .map { [unowned self] item in
                 self.cache?[url] = item
                 return ImageItem(item)
             }
