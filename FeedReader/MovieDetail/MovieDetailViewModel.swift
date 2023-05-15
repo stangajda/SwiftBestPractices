@@ -8,13 +8,16 @@ import Foundation
 import Combine
 import Resolver
 
-
-protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
-    var state: MovieDetailViewModel.State { get }
-    var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
+protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == MovieDetailViewModel.MovieDetailItem, U == Int {
     var movieList: MoviesListViewModel.MovieItem { get }
-    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> { get }
 }
+
+//protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
+//    var state: MovieDetailViewModel.State { get }
+//    var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
+//    var movieList: MoviesListViewModel.MovieItem { get }
+//    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> { get }
+//}
 
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
@@ -22,7 +25,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     @Published var state: State
     @Injected var service: MovieDetailServiceProtocol
     
-    typealias T = MovieDetailViewModel.MovieDetailItem
+    typealias T = MovieDetailItem
     typealias U = Int
     
     var input = PassthroughSubject<Action, Never>()
@@ -109,10 +112,11 @@ extension MovieDetailViewModel{
 
 class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
     typealias ViewModel = MovieDetailViewModel
+    typealias T = ViewModel.MovieDetailItem
 
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<ViewModel.MovieDetailItem, Error>
+    var fetch: AnyPublisher<T, Error>
     var movieList: MoviesListViewModel.MovieItem
 
     private var cancellable: AnyCancellable?
@@ -124,4 +128,3 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
         cancellable = self.assignNoRetain(self, to: \.state)
     }
 }
-
