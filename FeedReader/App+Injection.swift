@@ -10,15 +10,15 @@ import Resolver
 
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
-    defaultScope = .graph
-    registerURLSession()
-    registerViewModels()
-    registerServices()
+      defaultScope = .graph
+      registerURLSession()
+      registerViewModels()
+      registerServices()
   }
     
   static func registerURLSession() {
     register {
-      URLSession.configuredURLSession()
+        URLSession.configuredURLSession()
     }
   }
     
@@ -39,19 +39,19 @@ extension Resolver: ResolverRegistering {
     
   static func registerServices() {
     register {
-      MovieListService() as MovieListServiceProtocol
+        MovieListService() as MovieListServiceProtocol
     }
       
     register {
-      MovieDetailService() as MovieDetailServiceProtocol
+        MovieDetailService() as MovieDetailServiceProtocol
     }
       
     register {
-      ImageService() as ImageServiceProtocol
+        ImageService() as ImageServiceProtocol
     }
       
     register {
-      Service() as ServiceProtocol
+        Service() as ServiceProtocol
     }
   }
 }
@@ -69,6 +69,7 @@ extension Resolver {
     static var previewMovieDetail: Resolver = Resolver(child: .main)
     static func setupPreviewModeMovieDetail() {
         Resolver.root = .previewMovieDetail
+        
         registerMovieDetailViewModel()
         registerImageViewModelItemDetail()
     }
@@ -79,11 +80,11 @@ extension Resolver {
         }
         
         register(name:.movieListStateLoading){
-          AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loading)) as AnyMoviesListViewModelProtocol
+            AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loading)) as AnyMoviesListViewModelProtocol
         }
         
         register(name:.movieListStateFailed){
-          AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.failedLoaded)) as AnyMoviesListViewModelProtocol
+            AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.failedLoaded)) as AnyMoviesListViewModelProtocol
         }
     }
     

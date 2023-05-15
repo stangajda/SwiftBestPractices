@@ -12,14 +12,6 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
-//protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol {
-//    var state: MovieDetailViewModel.State { get }
-//    var input: PassthroughSubject<MovieDetailViewModel.Action, Never> { get }
-//    var movieList: MoviesListViewModel.MovieItem { get }
-//    var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> { get }
-//}
-
-
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     
     @Published var state: State
