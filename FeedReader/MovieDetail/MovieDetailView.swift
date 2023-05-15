@@ -36,7 +36,7 @@ struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelPro
 }
 
 private extension MovieDetailView {
-    typealias AsyncImage = AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>
+    typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
     var initialView: some View {
         Color.clear
             .onAppear {

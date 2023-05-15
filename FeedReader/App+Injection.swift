@@ -32,7 +32,7 @@ extension Resolver: ResolverRegistering {
     }
     
     register { (_, args) in
-        ImageViewModelWrapper(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as ImageViewModelWrapper
+        AnyImageViewModelProtocol(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as AnyImageViewModelProtocol
     }
 
   }
@@ -103,13 +103,13 @@ extension Resolver {
 
     private static func registerImageViewModel() {
         register {
-            ImageViewModelWrapper(MockImageViewModelLoaded()) as ImageViewModelWrapper
+            AnyImageViewModelProtocol(MockImageViewModelLoaded()) as AnyImageViewModelProtocol
         }
     }
 
     private static func registerImageViewModelItemDetail() {
         register {
-            ImageViewModelWrapper(MockImageViewModelLoaded(.itemDetail)) as ImageViewModelWrapper
+            AnyImageViewModelProtocol(MockImageViewModelLoaded(.itemDetail)) as AnyImageViewModelProtocol
         }
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 import Resolver
 
 struct MovieRowView: View {
-    typealias AsyncImage = AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>
+    typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
     @State var movie: MoviesListViewModel.MovieItem
     
     var body: some View {

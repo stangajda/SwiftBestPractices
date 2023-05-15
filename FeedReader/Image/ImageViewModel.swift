@@ -9,10 +9,8 @@ import UIKit
 import SwiftUI
 import Resolver
 
-protocol ImageViewModelProtocol: ObservableLoadableProtocol{
-    var state: ImageViewModel.State { get set }
-    var input: PassthroughSubject<ImageViewModel.Action, Never> { get }
-    var fetch: AnyPublisher<ImageViewModel.ImageItem, Error> { get }
+protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageViewModel.ImageItem, U == String {
+   
 }
 
 final class ImageViewModel: ImageViewModelProtocol{
@@ -95,16 +93,16 @@ extension ImageViewModel{
     }
 }
 
-class ImageViewModelWrapper: ImageViewModelProtocol{
-    typealias State = LoadableEnums<T,U>.State
-    typealias T = ImageViewModel.ImageItem
-    typealias U = String
-    
+class AnyImageViewModelProtocol: ImageViewModelProtocol{
     typealias ViewModel = ImageViewModel
     
-    @Published var state: ImageViewModel.State
-    var input: PassthroughSubject<ImageViewModel.Action, Never>
-    var fetch: AnyPublisher<ImageViewModel.ImageItem, Error>
+    typealias State = LoadableEnums<T,U>.State
+    typealias T = ViewModel.ImageItem
+    typealias U = String
+    
+    @Published var state: ViewModel.State
+    var input: PassthroughSubject<ViewModel.Action, Never>
+    var fetch: AnyPublisher<ViewModel.ImageItem, Error>
     
     private var cancellable: AnyCancellable?
     init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
@@ -117,8 +115,8 @@ class ImageViewModelWrapper: ImageViewModelProtocol{
 }
 
 extension Resolver {
-    static func resolveImageViewModel(args: [String: Any]) -> ImageViewModelWrapper {
-        return resolve(ImageViewModelWrapper.self, args: args)
+    static func resolveImageViewModel(args: [String: Any]) -> AnyImageViewModelProtocol {
+        return resolve(AnyImageViewModelProtocol.self, args: args)
     }
 }
 

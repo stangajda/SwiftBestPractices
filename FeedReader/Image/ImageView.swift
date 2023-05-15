@@ -22,21 +22,21 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
 
         let cache: ImageCacheProtocol = Environment (\.imageCache).wrappedValue
         let args: [String: Any] = [DI_IMAGE_PATH: imageURL, DI_IMAGE_SIZE_PATH: imageSizePath, DI_IMAGE_CACHE: cache]
-        let imageViewModel: ImageViewModelWrapper = Resolver.resolveImageViewModel(args: args)
+        let imageViewModel: AnyImageViewModelProtocol = Resolver.resolveImageViewModel(args: args)
         
-         guard let wrappedValue = ImageViewModelWrapper(imageViewModel) as? ViewModel else {
+         guard let wrappedValue = AnyImageViewModelProtocol(imageViewModel) as? ViewModel else {
              fatalError ("ImageViewModel not found")
          }
         
         _viewModel = ObservedObject (wrappedValue: wrappedValue)
     }
     
-    init(viewModel: ImageViewModelWrapper, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
+    init(viewModel: AnyImageViewModelProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
             self.placeholderLoading = placeholderLoading ()
             self.placeholderError = placeholderError
         
             let imageViewModel = viewModel
-            guard let wrappedValue = ImageViewModelWrapper(imageViewModel) as? ViewModel else {
+            guard let wrappedValue = AnyImageViewModelProtocol(imageViewModel) as? ViewModel else {
                 fatalError ("ImageViewModel not found")
             }
             _viewModel = ObservedObject (wrappedValue: wrappedValue)
@@ -93,14 +93,14 @@ struct ImageView_Previews: PreviewProvider, Resolving {
     static var previews: some View {
         return Group {
             let _ = Resolver.setupPreviewMode()
-            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+            AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)
             }
             
             let _ = Resolver.setupPreviewModeMovieDetail()
-            AsyncImageCached<ImageViewModelWrapper, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+            AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)
