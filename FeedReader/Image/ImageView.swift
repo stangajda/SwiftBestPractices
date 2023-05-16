@@ -11,24 +11,19 @@ import Resolver
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
     private let cancelOnDisapear: Bool = false
-    private let placeholderLoading: ImageLoadingView
-    private let placeholderError: (Error) -> ImageErrorView
+    private var placeholderLoading: ImageLoadingView
+    private var placeholderError: (Error) -> ImageErrorView
 
 
     
     init (imageURL: String, imageSizePath: ImagePathProtocol, cancelOnDisapear: Bool = false, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
-        self.placeholderLoading = placeholderLoading ()
-        self.placeholderError = placeholderError
 
         let cache: ImageCacheProtocol = Environment (\.imageCache).wrappedValue
         let args: [String: Any] = [DI_IMAGE_PATH: imageURL, DI_IMAGE_SIZE_PATH: imageSizePath, DI_IMAGE_CACHE: cache]
         let imageViewModel: AnyImageViewModelProtocol = Resolver.resolveImageViewModel(args: args)
         
-         guard let wrappedValue = AnyImageViewModelProtocol(imageViewModel) as? ViewModel else {
-             fatalError ("ImageViewModel not found")
-         }
+        self.init(viewModel: imageViewModel, placeholderLoading: placeholderLoading, placeholderError: placeholderError)
         
-        _viewModel = ObservedObject (wrappedValue: wrappedValue)
     }
     
     init(viewModel: AnyImageViewModelProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
