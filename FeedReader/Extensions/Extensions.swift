@@ -36,7 +36,7 @@ extension String {
         let date = dateFormatter.date(from: self)
         dateFormatter.dateFormat = "d MMM yy"
         guard let date = date else {
-            return "uknown"
+            return "unknown"
         }
         return dateFormatter.string(from: date)
     }

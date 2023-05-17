@@ -58,14 +58,14 @@ private extension MovieDetailView {
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         ScrollView {
-            VStack(alignment: .leading){
+            VStack(alignment: .leading) {
                 Text(movieDetail.title)
                     .withTitleStyle()
                 
                 let imageSizePath = OriginalPath() as ImagePathProtocol
                 let imageURL = movieDetail.backdrop_path
                 
-                AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath, cancelOnDisapear: true ) {
+                AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath, cancelOnDisapear: true) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                 } placeholderError: { error in
                     ErrorView(error: error)
@@ -75,7 +75,7 @@ private extension MovieDetailView {
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .withStarsVotedSizeStyle()
                 
-                if movieDetail.release_date != "uknown"{
+                if movieDetail.release_date != "unknown" {
                     IconValueView(iconName: "calendar", textValue: movieDetail.release_date)
                 }
                 
@@ -89,10 +89,8 @@ private extension MovieDetailView {
                 IconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
                 
                 OverlayTextView(stringArray: movieDetail.genres)
-                
             }
             .padding()
-
         }
     }
 }
