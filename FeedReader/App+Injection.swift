@@ -11,15 +11,9 @@ import Resolver
 extension Resolver: ResolverRegistering {
   public static func registerAllServices() {
       defaultScope = .graph
-      registerURLSession()
       registerViewModels()
       registerServices()
-  }
-    
-  static func registerURLSession() {
-    register {
-        URLSession.configuredURLSession()
-    }
+      registerURLSession()
   }
     
   static func registerViewModels() {
@@ -52,6 +46,12 @@ extension Resolver: ResolverRegistering {
       
     register {
         Service() as ServiceProtocol
+    }
+  }
+    
+  static func registerURLSession() {
+    register {
+        URLSession.configuredURLSession()
     }
   }
 }

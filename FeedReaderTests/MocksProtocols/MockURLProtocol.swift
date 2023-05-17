@@ -17,7 +17,7 @@ struct MockAPIRequest: APIUrlBuilderProtocol {
 }
 
 extension URLSession {
-    static var mockURLSession: URLSession {
+    static func mockURLSession() -> URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         configuration.timeoutIntervalForRequest = 1
@@ -87,16 +87,6 @@ extension MockURLProtocol.MockedResponse {
         customResponse = nil
     }
     
-}
-
-extension URLSession {
-    static var mockedResponseConfig: URLSession {
-        let sessionConfiguration = URLSessionConfiguration.ephemeral
-        sessionConfiguration.protocolClasses = [MockURLProtocol.self]
-        sessionConfiguration.timeoutIntervalForRequest = 1
-        sessionConfiguration.timeoutIntervalForResource = 1
-        return URLSession(configuration: sessionConfiguration)
-    }
 }
 
 extension MockURLProtocol {

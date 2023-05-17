@@ -13,9 +13,9 @@ extension Resolver {
     static func registerMockServices() {
         root = Resolver.mock
         defaultScope = .application
-        Resolver.mock.register { URLSession.mockURLSession }
         Resolver.mock.register { Service() as ServiceProtocol}
         Resolver.mock.register { MovieListService() as MovieListServiceProtocol}
         Resolver.mock.register { ImageService() as ImageServiceProtocol}
+        Resolver.mock.register { URLSession.mockURLSession() }
     }
 }
