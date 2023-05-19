@@ -24,16 +24,15 @@ extension MockableImageServiceProtocol {
         }
     }
     
-    func checkResponse(closure: @escaping (Result<UIImage, Swift.Error>) -> Void) async -> AnyCancellable? {
+    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<UIImage, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        await waitUntil{ [self] done in
-            cancellable = mockManager.fetchImage(mockRequestUrl)
-                .sinkToResult({ result in
-                    closure(result)
-                    done()
-                })
-        }
+        cancellable = mockManager.fetchImage(mockRequestUrl)
+            .sinkToResult({ result in
+                closure(result)
+                done()
+            })
         return cancellable
+     
     }
   
     func convertImageToData(_ named:String) -> Data {

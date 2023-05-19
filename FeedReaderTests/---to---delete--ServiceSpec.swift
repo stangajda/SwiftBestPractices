@@ -35,17 +35,16 @@ extension MockableServiceProtocol {
             fatalError("Error: \(error.localizedDescription)")
         }
     }
-
-    func checkResponse(closure: @escaping (Result<Data, Swift.Error>) -> Void) async -> AnyCancellable? {
+    
+    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        await waitUntil{ [self] done in
-            cancellable = mockManager.fetchData(mockRequestUrl)
-                .sinkToResult({ result in
-                    closure(result)
-                    done()
-                })
-        }
+        cancellable = mockManager.fetchData(mockRequestUrl)
+            .sinkToResult({ result in
+                closure(result)
+                done()
+            })
         return cancellable
+     
     }
 
 }
@@ -74,10 +73,11 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
                 
                 it("it should get successful response match to data"){ [self] in
-                   cancellable = await checkResponse { result in
-                       result.isExpectSuccessToEqual(Data.stubData)
+                   await waitUntil{ [self] done in
+                        cancellable = self.checkResponse(done: done){ result in
+                            result.isExpectSuccessToEqual(Data.stubData)
+                        }
                    }
-                               
                 }
                 
             }
@@ -91,8 +91,10 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                     }
 
                     it("it should get failure response match given error code \(errorCode)"){ [self] in
-                        cancellable = await checkResponse { result in
-                            result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
+                        await waitUntil{ [self] done in
+                            cancellable = self.checkResponse(done: done){ result in
+                                    result.isExpectFailedToContain(APIError.apiCode(errorCode).errorDescription)
+                            }
                         }
                     }
                 }
@@ -106,8 +108,10 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
 
                 it("it should failure response match error code"){ [self] in
-                    cancellable = await checkResponse { result in
-                        result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
+                    await waitUntil{ [self] done in
+                        cancellable = self.checkResponse(done: done){ result in
+                                result.isExpectFailedToEqual(APIError.apiCode(0).errorDescription)
+                        }
                     }
                 }
             }

@@ -18,11 +18,13 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     lazy var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[TrendingPath()]!).get()
     lazy var cancellable: AnyCancellable? = nil
     
+    typealias Mock = MockURLProtocol.MockedResponse
+    
     override func spec() {
         describe("check image service"){
             Resolver.registerMockServices()
             
-            afterEach { [self] in
+            afterEach { [unowned self] in
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()
                 cancellable = nil
@@ -34,22 +36,28 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                     mockResponse(result: .success(imageData))
                 }
                 
-                it("it should get succesful response on Type UIImage") { [self] in
-                    cancellable = await self.checkResponse { result in
-                        result.isExpectSuccessType(UIImage())
+                it("it should get succesful response on Type UIImage") { [unowned self] in
+
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.checkResponse(done: done){ result in
+                                result.isExpectSuccessType(UIImage())
+                        }
                     }
+
                 }
             }
             
             context("when failure not image stubdata"){
-                beforeEach { [self] in
+                beforeEach { [unowned self] in
                     let stubData = Data.stubData
                     mockResponse(result: .success(stubData))
                 }
-                
-                it("it should get failure response match error") { [self] in
-                    cancellable = await self.checkResponse{ [unowned self] result in
-                        result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+
+                it("it should get failure response match error") { [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.checkResponse(done: done){ [unowned self] result in
+                                result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+                        }
                     }
                 }
             }

@@ -27,7 +27,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
             var moviesFromData: Movies!
             var anotherMoviesFromData: Movies!
             
-            afterEach { [self] in
+            afterEach { [unowned self] in
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()
                 cancellable = nil
@@ -40,15 +40,19 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                     mockResponse(result: .success(moviesFromData) as Result<Movies, Swift.Error>)
                 }
                 
-                it("it should get successful response match mapped object"){ [self] in
-                    cancellable = await self.checkResponse{ result in
-                        result.isExpectSuccessToEqual(moviesFromData)
+                it("it should get successful response match mapped object"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.checkResponse(done: done){ result in
+                                result.isExpectSuccessToEqual(moviesFromData)
+                        }
                     }
                 }
 
-                it("it should get successful response not match mapped object"){ [self] in
-                    cancellable = await self.checkResponse{ result in
-                       result.isExpectSuccessNotToEqual(anotherMoviesFromData)
+                it("it should get successful response not match mapped object"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.checkResponse(done: done){ result in
+                                result.isExpectSuccessNotToEqual(anotherMoviesFromData)
+                        }
                     }
                 }
                 

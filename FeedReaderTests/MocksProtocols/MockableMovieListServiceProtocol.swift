@@ -23,16 +23,15 @@ extension MockableMovieListServiceProtocol {
         }
     }
 
-    func checkResponse(closure: @escaping (Result<Movies, Swift.Error>) -> Void) async -> AnyCancellable? {
+    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        await waitUntil{ [self] done in
-            cancellable = mockManager.fetchMovies(mockRequestUrl)
-                .sinkToResult({ result in
-                    closure(result)
-                    done()
-                })
-        }
+        cancellable = mockManager.fetchMovies(mockRequestUrl)
+            .sinkToResult({ result in
+                closure(result)
+                done()
+            })
         return cancellable
-     }
+     
+    }
 
 }
