@@ -9,13 +9,24 @@ import Combine
 import Resolver
 import UIKit
 
+protocol URLSessionProtocol {
+    func dataTaskPublisher(for request: URLRequest) -> URLSession.DataTaskPublisher
+
+}
+
+extension URLSession: URLSessionProtocol {
+    
+}
+
+
+
 protocol ServiceProtocol {
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error>
     func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error>
 }
 
 struct Service: ServiceProtocol{
-    @Injected var session: URLSession
+    @Injected var session: URLSessionProtocol
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)

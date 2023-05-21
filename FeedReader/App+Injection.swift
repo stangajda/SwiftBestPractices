@@ -16,6 +16,12 @@ extension Resolver: ResolverRegistering {
       registerURLSession()
   }
     
+  static func registerURLSession() {
+    register {
+        URLSession.configuredURLSession() as URLSessionProtocol
+    }
+  }
+    
   static func registerViewModels() {
     register {
         AnyMoviesListViewModelProtocol(MoviesListViewModel()) as AnyMoviesListViewModelProtocol
@@ -49,11 +55,11 @@ extension Resolver: ResolverRegistering {
     }
   }
     
-  static func registerURLSession() {
-    register {
-        URLSession.configuredURLSession()
-    }
-  }
+//  static func registerURLSession() {
+//    register {
+//        URLSession.configuredURLSession()
+//    }
+//  }
 }
 
 extension Resolver {

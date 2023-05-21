@@ -79,6 +79,7 @@
 		F63F995229FAC95500FD0094 /* MockableBaseServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */; };
 		F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
+		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -179,6 +180,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC12EA6226B1E8DE00BD2BCB /* Resolver in Frameworks */,
+				F669997D2A1A6604006AF593 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -425,6 +427,7 @@
 			name = FeedReader;
 			packageProductDependencies = (
 				CC12EA6126B1E8DE00BD2BCB /* Resolver */,
+				F669997C2A1A6604006AF593 /* Swinject */,
 			);
 			productName = FeedReader;
 			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
@@ -485,6 +488,7 @@
 				CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */,
 				CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */,
 				CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */,
+				F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -875,6 +879,14 @@
 				version = 6.1.0;
 			};
 		};
+		F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Swinject/Swinject.git";
+			requirement = {
+				kind = exactVersion;
+				version = 2.8.3;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -892,6 +904,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
+		};
+		F669997C2A1A6604006AF593 /* Swinject */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */;
+			productName = Swinject;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
