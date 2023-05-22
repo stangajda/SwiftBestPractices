@@ -20,11 +20,15 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     
     typealias Mock = MockURLProtocol.MockedResponse
     
+    required init() {
+        super.init()
+        self.setUpSpec()
+    }
+    
+    
     override func spec() {
         describe("check image service"){
-            //Resolver.registerMockServices()
-            DependencyManager.shared.registerMockURLSession()
-            
+
             afterEach { [unowned self] in
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()

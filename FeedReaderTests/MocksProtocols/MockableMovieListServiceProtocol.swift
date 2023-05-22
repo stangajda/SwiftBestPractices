@@ -15,14 +15,6 @@ protocol MockableMovieListServiceProtocol: MockableBaseServiceProtocol {
 
 extension MockableMovieListServiceProtocol {
 
-    func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
-
     func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = mockManager.fetchMovies(mockRequestUrl)
@@ -31,7 +23,7 @@ extension MockableMovieListServiceProtocol {
                 done()
             })
         return cancellable
-     
+
     }
 
 }

@@ -16,14 +16,6 @@ protocol MockableImageServiceProtocol: MockableBaseServiceProtocol {
 
 extension MockableImageServiceProtocol {
     
-    func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
-    
     func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<UIImage, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = mockManager.fetchImage(mockRequestUrl)

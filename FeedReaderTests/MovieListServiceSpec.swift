@@ -20,10 +20,13 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
     
     typealias Mock = MockURLProtocol.MockedResponse
     
+    required init() {
+        super.init()
+        self.setUpSpec()
+    }
+    
     override func spec() {
         describe("check movie list service"){
-            //Resolver.registerMockServices()
-            DependencyManager.shared.registerMockURLSession()
 
             var moviesFromData: Movies!
             var anotherMoviesFromData: Movies!
