@@ -11,16 +11,15 @@ import Swinject
 class DependencyManager {
     static let shared = DependencyManager()
     let container = Container()
-    var assembler: Assembler
     
     private init() {
-        assembler = Assembler([NetworkAssembly(), ViewModelAssembly()], container: container)
+        let _ = Assembler([NetworkAssembly(), ViewModelAssembly()], container: container)
     }
     
     func registerMockURLSession() {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.mockURLSession()
-        }
+        }.inObjectScope(.container)
     }
 }
 
