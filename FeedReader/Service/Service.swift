@@ -18,8 +18,6 @@ extension URLSession: URLSessionProtocol {
     
 }
 
-
-
 protocol ServiceProtocol {
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error>
     func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error>
