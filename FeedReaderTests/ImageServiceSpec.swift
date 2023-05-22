@@ -14,7 +14,7 @@ import Nimble
 import Quick
 
 class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
-    @LazyInjected var mockManager: ImageServiceProtocol
+    lazy var mockManager: ImageServiceProtocol = ImageService()
     lazy var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[TrendingPath()]!).get()
     lazy var cancellable: AnyCancellable? = nil
     
@@ -22,7 +22,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     
     override func spec() {
         describe("check image service"){
-            Resolver.registerMockServices()
+            //Resolver.registerMockServices()
+            DependencyManager.shared.registerMockURLSession()
             
             afterEach { [unowned self] in
                 MockURLProtocol.mock = nil

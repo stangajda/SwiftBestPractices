@@ -15,7 +15,7 @@ protocol ImageServiceProtocol {
 }
 
 struct ImageService: ImageServiceProtocol{
-    @Injected var service: ServiceProtocol
+    var service: ServiceProtocol = Service()
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
         service.fetchData(request)
             .tryMap { data in

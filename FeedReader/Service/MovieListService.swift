@@ -14,7 +14,7 @@ protocol MovieListServiceProtocol {
 }
 
 struct MovieListService: MovieListServiceProtocol{
-    @Injected var service: ServiceProtocol
+    var service: ServiceProtocol = Service()
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>{
         return self.service.fetchData(request)
     }
