@@ -14,13 +14,11 @@ class Injection {
     var assembler: Assembler!
     
     private init() {
-        let _ = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
+        assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
     }
     
     func registerMockURLSession() {
-        container.register(URLSessionProtocol.self) { _ in
-            URLSession.mockURLSession()
-        }.inObjectScope(.container)
+        assembler.apply(assembly: MockNetworkAssembly())
     }
 }
 
@@ -29,6 +27,14 @@ class NetworkAssembly: Assembly {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.configuredURLSession()
+        }.inObjectScope(.container)
+    }
+}
+
+class MockNetworkAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(URLSessionProtocol.self) { _ in
+            URLSession.mockURLSession()
         }
     }
 }
