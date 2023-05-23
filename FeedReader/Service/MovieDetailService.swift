@@ -14,7 +14,7 @@ protocol MovieDetailServiceProtocol {
 }
 
 struct MovieDetailService: MovieDetailServiceProtocol{
-    @Injected var service: ServiceProtocol
+    @InjectedSwinject var service: ServiceProtocol
     func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<MovieDetail, Error>{
         return self.service.fetchData(request)
     }

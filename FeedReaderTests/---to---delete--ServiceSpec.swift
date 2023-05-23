@@ -50,7 +50,7 @@ extension MockableServiceProtocol {
 }
 
 class ServiceSpec: QuickSpec, MockableServiceProtocol {
-    lazy var mockManager: ServiceProtocol = Service()
+    @LazyInjectedSwinject var mockManager: ServiceProtocol
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
     var result: Result<Data, Swift.Error>!

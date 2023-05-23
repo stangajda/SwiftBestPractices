@@ -15,7 +15,7 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     
     @Published var state: State
-    @Injected var service: MovieDetailServiceProtocol
+    @InjectedSwinject var service: MovieDetailServiceProtocol
     
     typealias T = MovieDetailItem
     typealias U = Int

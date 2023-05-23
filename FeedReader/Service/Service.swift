@@ -24,7 +24,7 @@ protocol ServiceProtocol {
 }
 
 struct Service: ServiceProtocol{
-    var session: URLSessionProtocol = DependencyManager.shared.container.resolve(URLSessionProtocol.self)!
+    @InjectedSwinject var session: URLSessionProtocol
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)

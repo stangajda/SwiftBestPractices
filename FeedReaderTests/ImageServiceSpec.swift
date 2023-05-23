@@ -14,7 +14,8 @@ import Nimble
 import Quick
 
 class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
-    lazy var mockManager: ImageServiceProtocol = ImageService()
+    @LazyInjectedSwinject var mockManager: ImageServiceProtocol
+    
     lazy var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[TrendingPath()]!).get()
     lazy var cancellable: AnyCancellable? = nil
     

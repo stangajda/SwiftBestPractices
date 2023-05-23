@@ -14,7 +14,9 @@ import Nimble
 import Quick
 
 class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
-    lazy var mockManager: MovieListServiceProtocol = MovieListService()
+    @LazyInjectedSwinject var mockManager: MovieListServiceProtocol
+    
+    
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
     
