@@ -15,17 +15,10 @@ import Quick
 
 class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
     @LazyInjectedSwinject var mockManager: MovieListServiceProtocol
-    
-    
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
     
     typealias Mock = MockURLProtocol.MockedResponse
-    
-    required init() {
-        super.init()
-        self.setUpSpec()
-    }
     
     override func spec() {
         describe("check movie list service"){

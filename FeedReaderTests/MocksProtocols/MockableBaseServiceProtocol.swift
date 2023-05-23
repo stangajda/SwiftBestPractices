@@ -16,10 +16,6 @@ protocol MockableBaseServiceProtocol {
 }
 
 extension MockableBaseServiceProtocol {
-    func setUpSpec() {
-        Injection.shared.registerMockURLSession()
-        Nimble.PollingDefaults.timeout = .seconds(5)
-    }
     
     func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
         do {

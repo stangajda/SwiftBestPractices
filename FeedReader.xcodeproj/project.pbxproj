@@ -82,6 +82,7 @@
 		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
 		F66999962A1B23B0006AF593 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* Swinject.swift */; };
 		F66999972A1B37C8006AF593 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* Swinject.swift */; };
+		F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -172,6 +173,7 @@
 		F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableBaseServiceProtocol.swift; sourceTree = "<group>"; };
 		F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableImageServiceProtocol.swift; sourceTree = "<group>"; };
 		F66999952A1B23AF006AF593 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
+		F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Tests.swift"; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
@@ -391,6 +393,7 @@
 			children = (
 				F63F994E29FAC8E000FD0094 /* MocksProtocols */,
 				CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */,
+				F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */,
 				CC4E707026B8453000B3288D /* MovieListServiceSpec.swift */,
 				CC4E707226B8478A00B3288D /* ImageServiceSpec.swift */,
 				CCF3A8CA267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift */,
@@ -604,6 +607,7 @@
 				F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */,
 				CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */,
 				CC56950B2682069A0055C07C /* HelperTests.swift in Sources */,
+				F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
 				CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */,
 				F66999972A1B37C8006AF593 /* Swinject.swift in Sources */,

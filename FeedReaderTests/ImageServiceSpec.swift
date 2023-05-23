@@ -20,13 +20,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     lazy var cancellable: AnyCancellable? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse
-    
-    required init() {
-        super.init()
-        self.setUpSpec()
-    }
-    
-    
+ 
     override func spec() {
         describe("check image service"){
 

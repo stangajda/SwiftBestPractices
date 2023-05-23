@@ -55,11 +55,6 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
     var result: Result<Data, Swift.Error>!
     
-    required init() {
-        super.init()
-        self.setUpSpec()
-    }
-    
     override func spec() {
         describe("check service responses") {
             
