@@ -23,17 +23,17 @@ extension Resolver: ResolverRegistering {
   }
     
   static func registerViewModels() {
-    register {
-        AnyMoviesListViewModelProtocol(MoviesListViewModel()) as AnyMoviesListViewModelProtocol
-    }
+//    register {
+//        AnyMoviesListViewModelProtocol(MoviesListViewModel()) as AnyMoviesListViewModelProtocol
+//    }
       
-    register { (_, args) in
-        AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: args(DI_MOVIE_LIST))) as AnyMovieDetailViewModelProtocol
-    }
-    
-    register { (_, args) in
-        AnyImageViewModelProtocol(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as AnyImageViewModelProtocol
-    }
+//    register { (_, args) in
+//        AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: args(DI_MOVIE_LIST))) as AnyMovieDetailViewModelProtocol
+//    }
+//    
+//      register { (_, args) in
+//          AnyImageViewModelProtocol(ImageViewModel(imagePath: args(DI_IMAGE_PATH), imageSizePath: args(DI_IMAGE_SIZE_PATH), cache: args(DI_IMAGE_CACHE))) as AnyImageViewModelProtocol
+//      }
 
   }
     

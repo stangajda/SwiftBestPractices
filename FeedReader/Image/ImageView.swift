@@ -18,9 +18,8 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     
     init (imageURL: String, imageSizePath: ImagePathProtocol, cancelOnDisapear: Bool = false, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
 
-        let cache: ImageCacheProtocol = Environment (\.imageCache).wrappedValue
-        let args: [String: Any] = [DI_IMAGE_PATH: imageURL, DI_IMAGE_SIZE_PATH: imageSizePath, DI_IMAGE_CACHE: cache]
-        let imageViewModel: AnyImageViewModelProtocol = Resolver.resolveImageViewModel(args: args)
+        let cache: ImageCacheProtocol? = Environment (\.imageCache).wrappedValue
+        let imageViewModel: AnyImageViewModelProtocol = Injection.shared.container.resolve(AnyImageViewModelProtocol.self, arguments: imageURL, imageSizePath, cache)!
         
         self.init(viewModel: imageViewModel, placeholderLoading: placeholderLoading, placeholderError: placeholderError)
         

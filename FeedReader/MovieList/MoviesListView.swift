@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import Resolver
+//import Resolver
 
 struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
@@ -74,28 +74,29 @@ extension MoviesListView {
     }
     
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailViewWrapper(Resolver.resolve(args: [DI_MOVIE_LIST: movie])))
+        LazyView(MovieDetailViewWrapper(Injection.shared.container.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)!))
+
     }
 }
 
 
 #if DEBUG
-struct MoviesList_Previews: PreviewProvider {
-    static var previews: some View {
-        Resolver.setupPreviewMode()
-        @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
-        @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
-        @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
-        
-        return Group {
-            MoviesListView(viewModel: viewModelLoaded)
-                .previewDisplayName(VIEW_MOVIE_LIST_LOADED)
-            MoviesListView(viewModel: viewModelLoading)
-                .previewDisplayName(VIEW_MOVIE_LIST_LOADING)
-            MoviesListView(viewModel: viewModelFailed)
-                .previewDisplayName(VIEW_MOVIE_LIST_FAILED)
-        }
-        
-    }
-}
+//struct MoviesList_Previews: PreviewProvider {
+////    static var previews: some View {
+//////        Resolver.setupPreviewMode()
+//////        @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
+//////        @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
+//////        @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
+//////
+//////        return Group {
+//////            MoviesListView(viewModel: viewModelLoaded)
+//////                .previewDisplayName(VIEW_MOVIE_LIST_LOADED)
+//////            MoviesListView(viewModel: viewModelLoading)
+//////                .previewDisplayName(VIEW_MOVIE_LIST_LOADING)
+//////            MoviesListView(viewModel: viewModelFailed)
+//////                .previewDisplayName(VIEW_MOVIE_LIST_FAILED)
+//////        }
+////
+////    }
+//}
 #endif

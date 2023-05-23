@@ -11,6 +11,7 @@ import Swinject
 class Injection {
     static let shared = Injection()
     let container = Container()
+    var assembler: Assembler!
     
     private init() {
         let _ = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
@@ -51,21 +52,26 @@ class ServiceAssembly: Assembly {
 
 class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
-//        container.register(AnyMoviesListViewModelProtocol.self) { _ in
-//            AnyMoviesListViewModelProtocol(MoviesListViewModel())
-//        }
+        container.register(AnyMoviesListViewModelProtocol.self) { _ in
+            AnyMoviesListViewModelProtocol(MoviesListViewModel())
+        }
         
-//        container.register(AnyMovieDetailViewModelProtocol.self) { resolver in
-//            let movieList = resolver.resolve(MoviesListViewModel.MovieItem.self)!
-//            return AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: movieList))
-//        }
-//
+        container.register(AnyMovieDetailViewModelProtocol.self) { resolver , movie in
+            return AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: movie))
+        }
+
+
 //        container.register(AnyImageViewModelProtocol.self) { resolver in
 //            let imagePath = resolver.resolve(String.self, name: "imagePath")!
 //            let imageSizePath = resolver.resolve(ImagePathProtocol.self, name: "imageSizePath")!
 //            let cache = resolver.resolve(ImageCacheProtocol.self)!
 //            return AnyImageViewModelProtocol(ImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
 //        }
+        
+        container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
+            return AnyImageViewModelProtocol(ImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
+        }
+        
     }
 }
 
