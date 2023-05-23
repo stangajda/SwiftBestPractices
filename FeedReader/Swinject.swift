@@ -155,7 +155,7 @@ class ViewModelAssembly: Assembly {
 }
 
 
-private final class ResolverRecursiveLock {
+private final class SwinjectRecursiveLock {
     init() {
         pthread_mutexattr_init(&recursiveMutexAttr)
         pthread_mutexattr_settype(&recursiveMutexAttr, PTHREAD_MUTEX_RECURSIVE)
@@ -174,5 +174,5 @@ private final class ResolverRecursiveLock {
 }
 
 extension Injection {
-    fileprivate static let lock = ResolverRecursiveLock()
+    fileprivate static let lock = SwinjectRecursiveLock()
 }
