@@ -86,14 +86,14 @@ private extension AsyncImageCached {
 struct ImageView_Previews: PreviewProvider, Resolving {
     static var previews: some View {
         return Group {
-            let _ = Resolver.setupPreviewMode()
+            let _ = Injection.shared.setupPreviewMode()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)
             }
             
-            let _ = Resolver.setupPreviewModeMovieDetail()
+            let _ = Injection.shared.setupPreviewModeDetail()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in

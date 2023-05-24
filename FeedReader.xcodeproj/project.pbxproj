@@ -96,6 +96,11 @@
 		F67876542A1D0F4E00A4FD54 /* ImageCacheProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563B26AE2F4A002D0B07 /* ImageCacheProtocol.swift */; };
 		F67876552A1D0F5D00A4FD54 /* APIUrlImageBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E726C5BD5800ECFB63 /* APIUrlImageBuilder.swift */; };
 		F67876562A1D0F6800A4FD54 /* APIUrlImageBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E126C53E1900ECFB63 /* APIUrlImageBuilderProtocol.swift */; };
+		F67876572A1D5F0100A4FD54 /* MockMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */; };
+		F67876582A1D5F2000A4FD54 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
+		F67876592A1D5F4200A4FD54 /* MockMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1C269BA7B80037DB34 /* MockMovie.swift */; };
+		F678765A2A1DD66B00A4FD54 /* MockMoviesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */; };
+		F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -605,6 +610,7 @@
 				F67876562A1D0F6800A4FD54 /* APIUrlImageBuilderProtocol.swift in Sources */,
 				F678764F2A1D0F1B00A4FD54 /* LoadableEnums.swift in Sources */,
 				CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */,
+				F67876582A1D5F2000A4FD54 /* MockStateProtocol.swift in Sources */,
 				CC4E706F26B840EF00B3288D /* MovieListService.swift in Sources */,
 				CC4E707126B8453000B3288D /* MovieListServiceSpec.swift in Sources */,
 				CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */,
@@ -615,6 +621,7 @@
 				CC4E706E26B840EA00B3288D /* ImageService.swift in Sources */,
 				CC351E2C269DC2D80037DB34 /* ExtensionsService.swift in Sources */,
 				F678764D2A1D0F1500A4FD54 /* ObservableLoadableProtocol.swift in Sources */,
+				F678765A2A1DD66B00A4FD54 /* MockMoviesDetailViewModel.swift in Sources */,
 				F67876522A1D0F3000A4FD54 /* System.swift in Sources */,
 				F67876552A1D0F5D00A4FD54 /* APIUrlImageBuilder.swift in Sources */,
 				CC351E33269DC4D60037DB34 /* Helper.swift in Sources */,
@@ -622,15 +629,18 @@
 				F678764C2A1D0F0100A4FD54 /* ImageViewModel.swift in Sources */,
 				CC351E13269A580F0037DB34 /* Config.swift in Sources */,
 				F678764E2A1D0F1800A4FD54 /* LoadableProtocol.swift in Sources */,
+				F67876592A1D5F4200A4FD54 /* MockMovie.swift in Sources */,
 				CC4E706D26B840DC00B3288D /* MovieDetailService.swift in Sources */,
 				F63F995029FAC93300FD0094 /* MockableMovieListServiceProtocol.swift in Sources */,
 				F678764A2A1D0EFA00A4FD54 /* MoviesListViewModel.swift in Sources */,
 				F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */,
 				CCF8CA3226C74C5700068726 /* APIUrlBuilder.swift in Sources */,
+				F67876572A1D5F0100A4FD54 /* MockMoviesListViewModel.swift in Sources */,
 				CC56950B2682069A0055C07C /* HelperTests.swift in Sources */,
 				F67876512A1D0F2D00A4FD54 /* Feedback.swift in Sources */,
 				F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */,
 				F67876542A1D0F4E00A4FD54 /* ImageCacheProtocol.swift in Sources */,
+				F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
 				F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */,
 				CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */,
