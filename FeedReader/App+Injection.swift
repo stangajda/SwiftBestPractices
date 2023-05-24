@@ -9,7 +9,7 @@ import Foundation
 import Swinject
 
 extension Injection {
-    func initialSetup(){
+    public func initialRegistration() {
         assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
     }
     

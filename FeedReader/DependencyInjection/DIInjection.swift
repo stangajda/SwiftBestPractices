@@ -8,12 +8,16 @@
 import Foundation
 import Swinject
 
-public final class Injection {
+public protocol InjectionRegistering {
+    func initialRegistration()
+}
+
+public final class Injection: InjectionRegistering  {
     static let shared = Injection()
     let container = Container()
     lazy var assembler = Assembler()
     
     private init() {
-        initialSetup()
+        initialRegistration()
     }
 }
