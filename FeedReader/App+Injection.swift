@@ -43,14 +43,6 @@ class NetworkAssembly: Assembly {
     }
 }
 
-class MockNetworkAssembly: Assembly {
-    func assemble(container: Container) {
-        container.register(URLSessionProtocol.self) { _ in
-            URLSession.mockURLSession()
-        }.inObjectScope(.container)
-    }
-}
-
 class ServiceAssembly: Assembly {
     func assemble(container: Container) {
         container.register(ServiceProtocol.self) { resolver in
@@ -87,16 +79,13 @@ class ViewModelAssembly: Assembly {
     }
 }
 
-protocol AssemblyProtocol: Assembly {
-    
-}
-
-extension AssemblyProtocol {
-    func register<Service>(_ serviceType: Service.Type, container: Container, name: Injection.Name, _ factory: @escaping (Resolver) -> Service ){
-        container.register(serviceType, name: name.rawValue, factory: factory)
+class MockNetworkAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(URLSessionProtocol.self) { _ in
+            URLSession.mockURLSession()
+        }.inObjectScope(.container)
     }
 }
-
 
 class MockMoviesListViewModeLAssembly: AssemblyProtocol {
     func assemble(container: Container) {
@@ -147,122 +136,4 @@ class MockImageViewModelItemDetailAssembly: Assembly {
     }
 }
 
-@propertyWrapper public struct Injected<Service> {
-    private var service: Service
-    
-    public init() {
-        self.service = Injection.shared.container.resolve(Service.self)!
-    }
-    public init(name: Injection.Name? = nil) {
-        self.service = Injection.shared.container.resolve(Service.self, name: name?.rawValue) ?? Injection.shared.container.resolve(Service.self, name: name?.rawValue)!
-    }
-    public var wrappedValue: Service {
-        get { return service }
-        mutating set { service = newValue }
-    }
-    public var projectedValue: Injected<Service> {
-        get { return self }
-        mutating set { self = newValue }
-    }
-}
 
-@propertyWrapper public struct LazyInjected<Service> {
-    private var lock = Injection.lock
-    private var initialize: Bool = true
-    private var service: Service!
-    public init() {}
-    public var isEmpty: Bool {
-        lock.lock()
-        defer { lock.unlock() }
-        return service == nil
-    }
-    public var wrappedValue: Service {
-        mutating get {
-            lock.lock()
-            defer { lock.unlock() }
-            if initialize {
-                self.initialize = false
-                self.service = Injection.shared.container.resolve(Service.self)
-            }
-            return service
-        }
-        mutating set {
-            lock.lock()
-            defer { lock.unlock() }
-            initialize = false
-            service = newValue
-        }
-    }
-    public var projectedValue: LazyInjected<Service> {
-        get { return self }
-        mutating set { self = newValue }
-    }
-    public mutating func release() {
-        lock.lock()
-        defer { lock.unlock() }
-        self.service = nil
-    }
-}
-
-
-private final class SwinjectRecursiveLock {
-    init() {
-        pthread_mutexattr_init(&recursiveMutexAttr)
-        pthread_mutexattr_settype(&recursiveMutexAttr, PTHREAD_MUTEX_RECURSIVE)
-        pthread_mutex_init(&recursiveMutex, &recursiveMutexAttr)
-    }
-    @inline(__always)
-    final func lock() {
-        pthread_mutex_lock(&recursiveMutex)
-    }
-    @inline(__always)
-    final func unlock() {
-        pthread_mutex_unlock(&recursiveMutex)
-    }
-    private var recursiveMutex = pthread_mutex_t()
-    private var recursiveMutexAttr = pthread_mutexattr_t()
-}
-
-extension Injection.Name {
-    
-    static let movieListStateLoaded = Self("MovieListStateLoaded")
-    static let movieListStateLoading = Self("MovieListStateLoading")
-    static let movieListStateFailed = Self("MovieListStateFailed")
-    
-    static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
-    static let movieDetailStateLoading = Self("MovieDetailStateLoading")
-    static let movieDetailStateFailed = Self("MovieDetailStateFailed")
-    
-    static let imageStateLoaded = Self("ImageStateLoaded")
-
-    static let itemList = Self("ItemList")
-    static let itemDetail = Self("ItemDetail")
-}
-
-extension Injection {
-    fileprivate static let lock = SwinjectRecursiveLock()
-}
-
-extension Injection {
-
-    public struct Name: ExpressibleByStringLiteral, Hashable, Equatable {
-        public let rawValue: String
-        public init(_ rawValue: String) {
-            self.rawValue = rawValue
-        }
-        public init(stringLiteral: String) {
-            self.rawValue = stringLiteral
-        }
-        public static func name(fromString string: String?) -> Name? {
-            if let string = string { return Name(string) }
-            return nil
-        }
-        static public func == (lhs: Name, rhs: Name) -> Bool {
-            return lhs.rawValue == rhs.rawValue
-        }
-        public func hash(into hasher: inout Hasher) {
-            hasher.combine(rawValue)
-        }
-    }
-
-}

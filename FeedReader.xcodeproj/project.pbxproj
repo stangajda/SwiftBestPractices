@@ -99,6 +99,12 @@
 		F67876592A1D5F4200A4FD54 /* MockMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1C269BA7B80037DB34 /* MockMovie.swift */; };
 		F678765A2A1DD66B00A4FD54 /* MockMoviesDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */; };
 		F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */; };
+		F678765E2A1E058700A4FD54 /* DIWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678765D2A1E058700A4FD54 /* DIWrappers.swift */; };
+		F678765F2A1E058C00A4FD54 /* DIWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678765D2A1E058700A4FD54 /* DIWrappers.swift */; };
+		F67876612A1E06A600A4FD54 /* DIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876602A1E06A600A4FD54 /* DIExtensions.swift */; };
+		F67876622A1E06A600A4FD54 /* DIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876602A1E06A600A4FD54 /* DIExtensions.swift */; };
+		F67876642A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
+		F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -189,6 +195,9 @@
 		F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableImageServiceProtocol.swift; sourceTree = "<group>"; };
 		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Tests.swift"; sourceTree = "<group>"; };
+		F678765D2A1E058700A4FD54 /* DIWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIWrappers.swift; sourceTree = "<group>"; };
+		F67876602A1E06A600A4FD54 /* DIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIExtensions.swift; sourceTree = "<group>"; };
+		F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIAssemblyProtocol.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
@@ -390,6 +399,7 @@
 				CC3EC7B626A603C6005D71A9 /* Loadable */,
 				CC351E28269DC1E80037DB34 /* Service */,
 				CC351E2E269DC32D0037DB34 /* Model */,
+				F678765C2A1E052800A4FD54 /* DependencyInjection */,
 				CC351E2F269DC3E80037DB34 /* Extensions */,
 				CC351E29269DC25A0037DB34 /* Helper */,
 				CC3EC7B026A189E3005D71A9 /* HelperView */,
@@ -426,6 +436,16 @@
 				F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */,
 			);
 			path = MocksProtocols;
+			sourceTree = "<group>";
+		};
+		F678765C2A1E052800A4FD54 /* DependencyInjection */ = {
+			isa = PBXGroup;
+			children = (
+				F678765D2A1E058700A4FD54 /* DIWrappers.swift */,
+				F67876602A1E06A600A4FD54 /* DIExtensions.swift */,
+				F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */,
+			);
+			path = DependencyInjection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -553,6 +573,7 @@
 				CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */,
 				CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */,
 				CC35563E26AF50FE002D0B07 /* Styles.swift in Sources */,
+				F67876642A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */,
 				CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */,
 				CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
@@ -572,11 +593,13 @@
 				CC6114E826C5BD5800ECFB63 /* APIUrlImageBuilder.swift in Sources */,
 				CC4E706C26B83BFE00B3288D /* MovieDetailService.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* Helper.swift in Sources */,
+				F67876612A1E06A600A4FD54 /* DIExtensions.swift in Sources */,
 				CC4E706A26B83BC800B3288D /* MovieListService.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
 				CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */,
 				CC456E53268FB7F600FF2113 /* APIUrlBuilderProtocol.swift in Sources */,
 				CC351E17269B77590037DB34 /* ActivityIndicatorView.swift in Sources */,
+				F678765E2A1E058700A4FD54 /* DIWrappers.swift in Sources */,
 				CC2C87792680A9FD00570234 /* Movies.swift in Sources */,
 				CC351E15269A5C020037DB34 /* MoviesListView.swift in Sources */,
 				CC351E1D269BA7B80037DB34 /* MockMovie.swift in Sources */,
@@ -613,7 +636,9 @@
 				CC4E706E26B840EA00B3288D /* ImageService.swift in Sources */,
 				CC351E2C269DC2D80037DB34 /* ExtensionsService.swift in Sources */,
 				F678764D2A1D0F1500A4FD54 /* ObservableLoadableProtocol.swift in Sources */,
+				F678765F2A1E058C00A4FD54 /* DIWrappers.swift in Sources */,
 				F678765A2A1DD66B00A4FD54 /* MockMoviesDetailViewModel.swift in Sources */,
+				F67876622A1E06A600A4FD54 /* DIExtensions.swift in Sources */,
 				F67876522A1D0F3000A4FD54 /* System.swift in Sources */,
 				F67876552A1D0F5D00A4FD54 /* APIUrlImageBuilder.swift in Sources */,
 				CC351E33269DC4D60037DB34 /* Helper.swift in Sources */,
@@ -632,6 +657,7 @@
 				F67876512A1D0F2D00A4FD54 /* Feedback.swift in Sources */,
 				F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */,
 				F67876542A1D0F4E00A4FD54 /* ImageCacheProtocol.swift in Sources */,
+				F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */,
 				F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
 				F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */,
