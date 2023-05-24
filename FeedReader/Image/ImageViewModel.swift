@@ -15,7 +15,7 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
 final class ImageViewModel: ImageViewModelProtocol{
     
     @Published var state: State
-    @InjectedSwinject var service: ImageServiceProtocol
+    @Injected var service: ImageServiceProtocol
     
     typealias State = LoadableEnums<T,U>.State
     typealias T = ImageViewModel.ImageItem

@@ -147,7 +147,7 @@ class MockImageViewModelItemDetailAssembly: Assembly {
     }
 }
 
-@propertyWrapper public struct InjectedSwinject<Service> {
+@propertyWrapper public struct Injected<Service> {
     private var service: Service
     
     public init() {
@@ -160,34 +160,13 @@ class MockImageViewModelItemDetailAssembly: Assembly {
         get { return service }
         mutating set { service = newValue }
     }
-    public var projectedValue: InjectedSwinject<Service> {
+    public var projectedValue: Injected<Service> {
         get { return self }
         mutating set { self = newValue }
     }
 }
 
-@propertyWrapper struct InjectedSwinject2<Dependency> {
-  let wrappedValue: Dependency
- 
-  init() {
-    self.wrappedValue =
-            Injection.shared.container.resolve(Dependency.self)!
-  }
-}
-
-@propertyWrapper struct LazyInjectedSwinject2<Dependency> {
-  lazy var wrappedValue: Dependency = {
-    Injection.shared.container.resolve(Dependency.self)!
-  }()
- 
-  init() {
-    
-    self.wrappedValue =
-            Injection.shared.container.resolve(Dependency.self)!
-  }
-}
-
-@propertyWrapper public struct LazyInjectedSwinject<Service> {
+@propertyWrapper public struct LazyInjected<Service> {
     private var lock = Injection.lock
     private var initialize: Bool = true
     private var service: Service!
@@ -214,7 +193,7 @@ class MockImageViewModelItemDetailAssembly: Assembly {
             service = newValue
         }
     }
-    public var projectedValue: LazyInjectedSwinject<Service> {
+    public var projectedValue: LazyInjected<Service> {
         get { return self }
         mutating set { self = newValue }
     }

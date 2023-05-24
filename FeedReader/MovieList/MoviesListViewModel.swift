@@ -15,7 +15,7 @@ protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Arra
 
 final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published var state = State.start()
-    @InjectedSwinject private var service: MovieListServiceProtocol
+    @Injected private var service: MovieListServiceProtocol
     
     typealias T = Array<MovieItem>
     typealias U = Any

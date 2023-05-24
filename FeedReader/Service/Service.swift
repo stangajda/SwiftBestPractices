@@ -23,7 +23,7 @@ protocol ServiceProtocol {
 }
 
 struct Service: ServiceProtocol{
-    @InjectedSwinject var session: URLSessionProtocol
+    @Injected var session: URLSessionProtocol
     
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)

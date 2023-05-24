@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
-    @InjectedSwinject var viewModel: AnyMoviesListViewModelProtocol
+    @Injected var viewModel: AnyMoviesListViewModelProtocol
     var body: some View {
         MoviesListView(viewModel: viewModel)
     }
