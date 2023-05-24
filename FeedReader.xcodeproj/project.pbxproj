@@ -67,7 +67,7 @@
 		CCF3A8B9267A8ED100CB5765 /* FeedReaderApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */; };
 		CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8BA267A8ED100CB5765 /* ContentView.swift */; };
 		CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
-		CCF3A8CB267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8CA267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift */; };
+		CCF3A8CB267A8ED300CB5765 /* ServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */; };
 		CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* Service.swift */; };
 		CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* Service.swift */; };
 		CCF3A8ED267C1B5000CB5765 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
@@ -190,7 +190,7 @@
 		CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCF3A8C1267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCF3A8CA267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "---to---delete--ServiceSpec.swift"; sourceTree = "<group>"; };
+		CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		CCF3A8CC267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8E3267BE02B00CB5765 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
@@ -425,7 +425,7 @@
 				F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */,
 				CC4E707026B8453000B3288D /* MovieListServiceSpec.swift */,
 				CC4E707226B8478A00B3288D /* ImageServiceSpec.swift */,
-				CCF3A8CA267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift */,
+				CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */,
 				CC569509268205B00055C07C /* HelperTests.swift */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
 				F678766C2A1E400400A4FD54 /* DependencyInjection */,
@@ -651,7 +651,7 @@
 				F63F995229FAC95500FD0094 /* MockableBaseServiceProtocol.swift in Sources */,
 				CC351E31269DC4C20037DB34 /* Movies.swift in Sources */,
 				CC351E32269DC4D00037DB34 /* MovieDetail.swift in Sources */,
-				CCF3A8CB267A8ED300CB5765 /* ---to---delete--ServiceSpec.swift in Sources */,
+				CCF3A8CB267A8ED300CB5765 /* ServiceSpec.swift in Sources */,
 				CC4E706E26B840EA00B3288D /* ImageService.swift in Sources */,
 				CC351E2C269DC2D80037DB34 /* ExtensionsService.swift in Sources */,
 				F678766F2A1E404500A4FD54 /* TestInjection.swift in Sources */,
