@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Resolver
 
 protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Any {
    

@@ -6,7 +6,6 @@
 //
 import Foundation
 import Combine
-import Resolver
 
 protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == MovieDetailViewModel.MovieDetailItem, U == Int {
     var movieList: MoviesListViewModel.MovieItem { get }

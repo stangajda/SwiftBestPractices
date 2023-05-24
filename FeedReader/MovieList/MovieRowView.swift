@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Resolver
 
 struct MovieRowView: View {
     typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
@@ -38,7 +37,6 @@ struct MovieRowView: View {
 #if DEBUG
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        Resolver.setupPreviewMode()
         return Group{
             MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
         }

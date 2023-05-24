@@ -7,7 +7,6 @@
 import Combine
 import UIKit
 import SwiftUI
-import Resolver
 
 protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageViewModel.ImageItem, U == String {
    
@@ -112,11 +111,5 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
         cancellable = self.assignNoRetain(self, to: \.state)
     }
     
-}
-
-extension Resolver {
-    static func resolveImageViewModel(args: [String: Any]) -> AnyImageViewModelProtocol {
-        return resolve(AnyImageViewModelProtocol.self, args: args)
-    }
 }
 

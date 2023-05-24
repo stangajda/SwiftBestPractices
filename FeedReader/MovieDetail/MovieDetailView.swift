@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Resolver
 
 struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelProtocol {
     @ObservedObject var viewModel: ViewModel

@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 import UIKit
-import Resolver
 
 protocol ImageServiceProtocol {
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error>

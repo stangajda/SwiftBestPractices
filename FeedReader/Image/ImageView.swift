@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Resolver
 
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
@@ -83,7 +82,7 @@ private extension AsyncImageCached {
 
 #if DEBUG
 
-struct ImageView_Previews: PreviewProvider, Resolving {
+struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         return Group {
             let _ = Injection.shared.setupPreviewMode()

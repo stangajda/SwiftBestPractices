@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Resolver
 
 struct ContentView: View {
     @InjectedSwinject var viewModel: AnyMoviesListViewModelProtocol

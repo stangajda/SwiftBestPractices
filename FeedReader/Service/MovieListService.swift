@@ -7,7 +7,6 @@
 
 import Foundation
 import Combine
-import Resolver
 
 protocol MovieListServiceProtocol {
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>

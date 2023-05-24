@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CC12EA6226B1E8DE00BD2BCB /* Resolver in Frameworks */ = {isa = PBXBuildFile; productRef = CC12EA6126B1E8DE00BD2BCB /* Resolver */; };
 		CC2C87792680A9FD00570234 /* Movies.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC2C87782680A9FD00570234 /* Movies.swift */; };
 		CC351E1126979BBF0037DB34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
 		CC351E13269A580F0037DB34 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
@@ -26,7 +25,6 @@
 		CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */; };
 		CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */; };
 		CC351E39269F1ADD0037DB34 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */; };
-		CC35563126AAFCF1002D0B07 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563026AAFCF1002D0B07 /* App+Injection.swift */; };
 		CC35563226AB018B002D0B07 /* MockURLProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */; };
 		CC35563426AB03AB002D0B07 /* Resolver+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */; };
 		CC35563626AB23C2002D0B07 /* MockMoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */; };
@@ -80,8 +78,8 @@
 		F63F995629FADC7D00FD0094 /* MockableImageServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
-		F66999962A1B23B0006AF593 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* Swinject.swift */; };
-		F66999972A1B37C8006AF593 /* Swinject.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* Swinject.swift */; };
+		F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
+		F66999972A1B37C8006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
 		F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */; };
 		F678764A2A1D0EFA00A4FD54 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */; };
 		F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */; };
@@ -144,7 +142,6 @@
 		CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListViewModel.swift; sourceTree = "<group>"; };
 		CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModel.swift; sourceTree = "<group>"; };
 		CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewModel.swift; sourceTree = "<group>"; };
-		CC35563026AAFCF1002D0B07 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		CC35563326AB03AB002D0B07 /* Resolver+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Resolver+Tests.swift"; sourceTree = "<group>"; };
 		CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMoviesListViewModel.swift; sourceTree = "<group>"; };
 		CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageViewModel.swift; sourceTree = "<group>"; };
@@ -190,7 +187,7 @@
 		F63F994F29FAC93300FD0094 /* MockableMovieListServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableMovieListServiceProtocol.swift; sourceTree = "<group>"; };
 		F63F995129FAC95500FD0094 /* MockableBaseServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableBaseServiceProtocol.swift; sourceTree = "<group>"; };
 		F63F995529FADC7D00FD0094 /* MockableImageServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableImageServiceProtocol.swift; sourceTree = "<group>"; };
-		F66999952A1B23AF006AF593 /* Swinject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swinject.swift; sourceTree = "<group>"; };
+		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Tests.swift"; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
@@ -202,7 +199,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC12EA6226B1E8DE00BD2BCB /* Resolver in Frameworks */,
 				F669997D2A1A6604006AF593 /* Swinject in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -383,8 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */,
-				CC35563026AAFCF1002D0B07 /* App+Injection.swift */,
-				F66999952A1B23AF006AF593 /* Swinject.swift */,
+				F66999952A1B23AF006AF593 /* App+Injection.swift */,
 				CC351E1026979BBF0037DB34 /* Config.swift */,
 				CC35563D26AF50FE002D0B07 /* Styles.swift */,
 				CCF3A8BA267A8ED100CB5765 /* ContentView.swift */,
@@ -451,7 +446,6 @@
 			);
 			name = FeedReader;
 			packageProductDependencies = (
-				CC12EA6126B1E8DE00BD2BCB /* Resolver */,
 				F669997C2A1A6604006AF593 /* Swinject */,
 			);
 			productName = FeedReader;
@@ -510,7 +504,6 @@
 			);
 			mainGroup = CCF3A8AC267A8ED100CB5765;
 			packageReferences = (
-				CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */,
 				CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */,
 				CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */,
 				F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */,
@@ -565,7 +558,6 @@
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
 				F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */,
 				CC4E707526BACCEC00B3288D /* APIError.swift in Sources */,
-				CC35563126AAFCF1002D0B07 /* App+Injection.swift in Sources */,
 				CC6114E626C5BD1A00ECFB63 /* APIUrlBuilder.swift in Sources */,
 				CC35563226AB018B002D0B07 /* MockURLProtocol.swift in Sources */,
 				CC4E706826B83BAA00B3288D /* ImageService.swift in Sources */,
@@ -575,7 +567,7 @@
 				CC351E1B269BA2070037DB34 /* MovieRowView.swift in Sources */,
 				CC456E55268FD9E600FF2113 /* ExtensionsService.swift in Sources */,
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
-				F66999962A1B23B0006AF593 /* Swinject.swift in Sources */,
+				F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */,
 				CCBF629C26B0C23A00BB0592 /* IconValueView.swift in Sources */,
 				CC6114E826C5BD5800ECFB63 /* APIUrlImageBuilder.swift in Sources */,
 				CC4E706C26B83BFE00B3288D /* MovieDetailService.swift in Sources */,
@@ -645,7 +637,7 @@
 				F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */,
 				CCF8CA3126C74C4800068726 /* APIUrlBuilderProtocol.swift in Sources */,
 				F67876502A1D0F1D00A4FD54 /* LoadableReduce.swift in Sources */,
-				F66999972A1B37C8006AF593 /* Swinject.swift in Sources */,
+				F66999972A1B37C8006AF593 /* App+Injection.swift in Sources */,
 				F67876532A1D0F4000A4FD54 /* Extensions.swift in Sources */,
 				CC4E707326B8478A00B3288D /* ImageServiceSpec.swift in Sources */,
 			);
@@ -901,14 +893,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/hmlongco/Resolver";
-			requirement = {
-				kind = exactVersion;
-				version = 1.5.0;
-			};
-		};
 		CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Quick/Nimble";
@@ -936,11 +920,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CC12EA6126B1E8DE00BD2BCB /* Resolver */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CC12EA6026B1E8DE00BD2BCB /* XCRemoteSwiftPackageReference "Resolver" */;
-			productName = Resolver;
-		};
 		CC45F75026B32A3F0050B77C /* Quick */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */;
