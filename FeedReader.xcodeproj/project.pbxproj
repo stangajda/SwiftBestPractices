@@ -428,9 +428,9 @@
 				CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */,
 				CC569509268205B00055C07C /* HelperTests.swift */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
-				F678766C2A1E400400A4FD54 /* DependencyInjection */,
 				CC4E708026BBF00700B3288D /* Mocks */,
 				F63F994E29FAC8E000FD0094 /* MocksProtocols */,
+				F678766C2A1E400400A4FD54 /* DependencyInjection */,
 			);
 			path = FeedReaderTests;
 			sourceTree = "<group>";

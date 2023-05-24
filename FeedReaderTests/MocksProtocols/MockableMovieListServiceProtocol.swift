@@ -15,7 +15,7 @@ protocol MockableMovieListServiceProtocol: MockableBaseServiceProtocol {
 
 extension MockableMovieListServiceProtocol {
 
-    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
+    func fetchMovies(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = mockManager.fetchMovies(mockRequestUrl)
             .sinkToResult({ result in

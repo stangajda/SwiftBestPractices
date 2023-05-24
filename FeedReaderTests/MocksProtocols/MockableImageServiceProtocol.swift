@@ -16,7 +16,7 @@ protocol MockableImageServiceProtocol: MockableBaseServiceProtocol {
 
 extension MockableImageServiceProtocol {
     
-    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<UIImage, Swift.Error>) -> Void) -> AnyCancellable? {
+    func fetchImage(done: @escaping() -> Void, closure: @escaping (Result<UIImage, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = mockManager.fetchImage(mockRequestUrl)
             .sinkToResult({ result in

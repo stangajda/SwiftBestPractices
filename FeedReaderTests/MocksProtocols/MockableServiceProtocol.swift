@@ -32,7 +32,7 @@ extension MockableServiceProtocol {
         }
     }
     
-    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
+    func fetchData(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = mockManager.fetchData(mockRequestUrl)
             .sinkToResult({ result in

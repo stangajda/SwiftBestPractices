@@ -40,7 +40,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 
                 it("it should get successful response match mapped object"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
-                        cancellable = self.checkResponse(done: done){ result in
+                        cancellable = self.fetchMovies(done: done){ result in
                                 result.isExpectSuccessToEqual(moviesFromData)
                         }
                     }
@@ -48,7 +48,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
 
                 it("it should get successful response not match mapped object"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
-                        cancellable = self.checkResponse(done: done){ result in
+                        cancellable = self.fetchMovies(done: done){ result in
                                 result.isExpectSuccessNotToEqual(anotherMoviesFromData)
                         }
                     }
