@@ -425,9 +425,9 @@
 				F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */,
 				CC569509268205B00055C07C /* HelperTests.swift */,
 				F67876702A1E445800A4FD54 /* ServiceSpecs */,
+				F678766C2A1E400400A4FD54 /* DependencyInjection */,
 				CC4E708026BBF00700B3288D /* Mocks */,
 				F63F994E29FAC8E000FD0094 /* MocksProtocols */,
-				F678766C2A1E400400A4FD54 /* DependencyInjection */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
 			);
 			path = FeedReaderTests;
