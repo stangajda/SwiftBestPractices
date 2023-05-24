@@ -5,6 +5,8 @@
 //  Created by Stan Gajda on 12/07/2021.
 //
 
+import Foundation
+
 extension Movie{
     static let mock = Movie(id: 497698, title: "mock title", poster_path: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg", vote_average: 8.2, vote_count: 1511)
 }

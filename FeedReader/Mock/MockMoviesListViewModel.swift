@@ -24,7 +24,9 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
             return Empty(completeImmediately: false)
                 .eraseToAnyPublisher()
         case .loaded:
-            return Just(Array(repeating: MoviesListViewModel.MovieItem.mock, count: 20))
+            let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
+            let mappedMovies = moviesFromData.results.map(MoviesListViewModel.MovieItem.init)
+            return Just(mappedMovies)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failedLoaded:
