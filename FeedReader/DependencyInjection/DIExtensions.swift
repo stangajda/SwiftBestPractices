@@ -30,19 +30,3 @@ extension Injection {
     }
 
 }
-
-extension Injection.Name {
-    
-    static let movieListStateLoaded = Self("MovieListStateLoaded")
-    static let movieListStateLoading = Self("MovieListStateLoading")
-    static let movieListStateFailed = Self("MovieListStateFailed")
-    
-    static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
-    static let movieDetailStateLoading = Self("MovieDetailStateLoading")
-    static let movieDetailStateFailed = Self("MovieDetailStateFailed")
-    
-    static let imageStateLoaded = Self("ImageStateLoaded")
-
-    static let itemList = Self("ItemList")
-    static let itemDetail = Self("ItemDetail")
-}

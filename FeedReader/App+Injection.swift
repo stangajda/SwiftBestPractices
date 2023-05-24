@@ -8,17 +8,9 @@
 import Foundation
 import Swinject
 
-public final class Injection {
-    static let shared = Injection()
-    let container = Container()
-    var assembler: Assembler!
-    
-    private init() {
+extension Injection {
+    func initialSetup(){
         assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
-    }
-    
-    func setupTestURLSession() {
-        assembler.apply(assembly: MockNetworkAssembly())
     }
     
     func setupPreviewMode() {
@@ -31,11 +23,9 @@ public final class Injection {
         assembler.apply(assembly: MockMovieDetailViewModelAssembly())
         assembler.apply(assembly: MockImageViewModelItemDetailAssembly())
     }
-    
 }
 
-
-class NetworkAssembly: Assembly {
+fileprivate class NetworkAssembly: Assembly {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.configuredURLSession()
@@ -43,7 +33,7 @@ class NetworkAssembly: Assembly {
     }
 }
 
-class ServiceAssembly: Assembly {
+fileprivate class ServiceAssembly: Assembly {
     func assemble(container: Container) {
         container.register(ServiceProtocol.self) { resolver in
             Service()
@@ -63,7 +53,7 @@ class ServiceAssembly: Assembly {
     }
 }
 
-class ViewModelAssembly: Assembly {
+fileprivate class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
         container.register(AnyMoviesListViewModelProtocol.self) { _ in
             AnyMoviesListViewModelProtocol(MoviesListViewModel())
@@ -79,15 +69,7 @@ class ViewModelAssembly: Assembly {
     }
 }
 
-class MockNetworkAssembly: Assembly {
-    func assemble(container: Container) {
-        container.register(URLSessionProtocol.self) { _ in
-            URLSession.mockURLSession()
-        }.inObjectScope(.container)
-    }
-}
-
-class MockMoviesListViewModeLAssembly: AssemblyProtocol {
+fileprivate class MockMoviesListViewModeLAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loaded))
@@ -103,7 +85,7 @@ class MockMoviesListViewModeLAssembly: AssemblyProtocol {
     }
 }
 
-class MockMovieDetailViewModelAssembly: AssemblyProtocol {
+fileprivate class MockMovieDetailViewModelAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
             AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock))
@@ -119,7 +101,7 @@ class MockMovieDetailViewModelAssembly: AssemblyProtocol {
     }
 }
 
-class MockImageViewModelAssembly: Assembly {
+fileprivate class MockImageViewModelAssembly: Assembly {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             AnyImageViewModelProtocol(MockImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
@@ -128,12 +110,28 @@ class MockImageViewModelAssembly: Assembly {
     
 }
 
-class MockImageViewModelItemDetailAssembly: Assembly {
+fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             AnyImageViewModelProtocol(MockImageViewModelDetail(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
         }
     }
+}
+
+extension Injection.Name {
+    
+    static let movieListStateLoaded = Self("MovieListStateLoaded")
+    static let movieListStateLoading = Self("MovieListStateLoading")
+    static let movieListStateFailed = Self("MovieListStateFailed")
+    
+    static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
+    static let movieDetailStateLoading = Self("MovieDetailStateLoading")
+    static let movieDetailStateFailed = Self("MovieDetailStateFailed")
+    
+    static let imageStateLoaded = Self("ImageStateLoaded")
+
+    static let itemList = Self("ItemList")
+    static let itemDetail = Self("ItemDetail")
 }
 
 

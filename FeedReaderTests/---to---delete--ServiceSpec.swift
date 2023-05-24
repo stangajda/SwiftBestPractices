@@ -11,43 +11,6 @@ import Combine
 import Nimble
 import Quick
 
-protocol MockableServiceProtocol: MockableBaseServiceProtocol {
-    typealias Mock = MockURLProtocol.MockedResponse
-    var mockManager: ServiceProtocol { get }
-    var cancellable: AnyCancellable? { get set }
-    var mockRequestUrl: URLRequest { get }
-}
-
-extension MockableServiceProtocol {
-    func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
-
-    func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
-    
-    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
-        var cancellable: AnyCancellable?
-        cancellable = mockManager.fetchData(mockRequestUrl)
-            .sinkToResult({ result in
-                closure(result)
-                done()
-            })
-        return cancellable
-     
-    }
-
-}
-
 class ServiceSpec: QuickSpec, MockableServiceProtocol {
     @LazyInjected var mockManager: ServiceProtocol
     lazy var cancellable: AnyCancellable? = nil

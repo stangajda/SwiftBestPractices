@@ -11,7 +11,7 @@ import Nimble
 
 class PollingConfiguration: QuickConfiguration {
     override class func configure(_ configuration: QCKConfiguration) {
-        Injection.shared.setupTestURLSession()
+        TestInjection.shared.setupTestURLSession()
         Nimble.PollingDefaults.timeout = .seconds(5)
         Nimble.PollingDefaults.pollInterval = .milliseconds(100)
     }
