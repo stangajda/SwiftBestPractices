@@ -50,26 +50,5 @@ extension URLSession{
         configuration.requestCachePolicy = .useProtocolCachePolicy
         return URLSession(configuration: configuration)
     }
-    static func mockURLSession() -> URLSession {
-        let configuration = URLSessionConfiguration.ephemeral
-        configuration.protocolClasses = [MockURLProtocol.self]
-        configuration.timeoutIntervalForRequest = 1
-        configuration.timeoutIntervalForResource = 1
-        configuration.waitsForConnectivity = false
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        configuration.urlCache = nil
-        configuration.httpCookieStorage = nil
-        configuration.urlCredentialStorage = nil
-        configuration.httpCookieAcceptPolicy = .never
-        configuration.httpShouldSetCookies = false
-        configuration.httpMaximumConnectionsPerHost = 1
-        configuration.httpAdditionalHeaders = ["Content-Type": "application/json"]
-        configuration.networkServiceType = .responsiveData
-        configuration.allowsCellularAccess = true
-        configuration.isDiscretionary = false
-        configuration.shouldUseExtendedBackgroundIdleMode = false
-        configuration.urlCredentialStorage = nil
-        return URLSession(configuration: configuration)
-    }
 }
 
