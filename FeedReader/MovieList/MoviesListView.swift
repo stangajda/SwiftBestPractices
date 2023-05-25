@@ -73,7 +73,7 @@ extension MoviesListView {
     }
     
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailViewWrapper(Injection.shared.container.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)!))
+        LazyView(MovieDetailViewWrapper(Injection.shared.container.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)))
 
     }
 }

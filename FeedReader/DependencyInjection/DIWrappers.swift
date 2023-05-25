@@ -11,10 +11,10 @@ import Foundation
     private var service: Service
     
     public init() {
-        self.service = Injection.shared.container.resolve(Service.self)!
+        self.service = Injection.shared.container.resolve(Service.self)
     }
     public init(name: Injection.Name? = nil) {
-        self.service = Injection.shared.container.resolve(Service.self, name: name?.rawValue) ?? Injection.shared.container.resolve(Service.self, name: name?.rawValue)!
+        self.service = Injection.shared.container.resolve(Service.self, name: name?.rawValue) ?? Injection.shared.container.resolve(Service.self, name: name?.rawValue)
     }
     public var wrappedValue: Service {
         get { return service }
@@ -29,7 +29,7 @@ import Foundation
 @propertyWrapper public struct LazyInjected<Service> {
     private var lock = Injection.lock
     private var initialize: Bool = true
-    private var service: Service!
+    private var service: Service?
     public init() {}
     public var isEmpty: Bool {
         lock.lock()
@@ -43,6 +43,9 @@ import Foundation
             if initialize {
                 self.initialize = false
                 self.service = Injection.shared.container.resolve(Service.self)
+            }
+            guard let service = service else {
+                fatalError("Can not find Service")
             }
             return service
         }
