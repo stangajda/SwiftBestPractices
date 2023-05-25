@@ -8,8 +8,8 @@
 import Foundation
 import Swinject
 
+//MARK:- Injection
 extension Injection {
-
     public struct Name: ExpressibleByStringLiteral, Hashable, Equatable {
         public let rawValue: String
         public init(_ rawValue: String) {
@@ -29,7 +29,6 @@ extension Injection {
             hasher.combine(rawValue)
         }
     }
-
 }
 
 extension Container {

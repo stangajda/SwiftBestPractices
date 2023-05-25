@@ -124,7 +124,6 @@ fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
 
 // MARK:- Injection.Name
 extension Injection.Name {
-    
     static let movieListStateLoaded = Self("MovieListStateLoaded")
     static let movieListStateLoading = Self("MovieListStateLoading")
     static let movieListStateFailed = Self("MovieListStateFailed")

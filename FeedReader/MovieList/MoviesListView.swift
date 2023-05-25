@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK:- Main
 struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
     @Environment(\.scenePhase) var scenePhase
@@ -40,6 +41,7 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
     
 }
 
+//MARK:- States
 extension MoviesListView {
     typealias MovieDetailViewWrapper = MovieDetailView<AnyMovieDetailViewModelProtocol>
     private var startView: some View {
@@ -78,7 +80,7 @@ extension MoviesListView {
     }
 }
 
-
+//MARK:- Preview
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {

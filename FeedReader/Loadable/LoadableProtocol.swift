@@ -14,7 +14,7 @@ protocol LoadableProtocol {
     var input: PassthroughSubject<Action, Never> { get }
     var fetch: AnyPublisher<T, Error> { get }
 }
-
+ 
 extension LoadableProtocol {
     typealias State = LoadableEnums<T,U>.State
     typealias Action = LoadableEnums<T,U>.Action
@@ -53,6 +53,5 @@ extension LoadableProtocol {
         Feedback { _ in
             input
         }
-       
     }
 }

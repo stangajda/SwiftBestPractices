@@ -12,6 +12,7 @@ public protocol InjectionRegistering {
     func initialRegistration()
 }
 
+// MARK:- Injection
 public final class Injection: InjectionRegistering  {
     static let shared = Injection()
     let container = Container()

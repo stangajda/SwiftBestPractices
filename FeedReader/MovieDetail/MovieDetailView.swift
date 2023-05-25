@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK:- Main
 struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
     
@@ -34,6 +35,7 @@ struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelPro
     
 }
 
+//MARK:- States
 private extension MovieDetailView {
     typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
     var initialView: some View {

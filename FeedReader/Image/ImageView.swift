@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+//MARK:- ImageViewModel
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
     private let cancelOnDisapear: Bool = false
@@ -14,7 +14,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     private var placeholderError: (Error) -> ImageErrorView
 
 
-    
+//MARK:- Path initialiser
     init (imageURL: String, imageSizePath: ImagePathProtocol, cancelOnDisapear: Bool = false, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
 
         let cache: ImageCacheProtocol? = Environment (\.imageCache).wrappedValue
@@ -24,6 +24,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
         
     }
     
+//MARK:- viewModel initialiser
     init(viewModel: AnyImageViewModelProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
             self.placeholderLoading = placeholderLoading ()
             self.placeholderError = placeholderError
@@ -44,7 +45,8 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
                 cancelOnDisapear ? viewModel.send(action: .onReset) : ()
             }
     }
-    
+
+//MARK:- Content
     private var content: AnyView {
         switch viewModel.state {
         case .start:
@@ -59,6 +61,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     }
 }
 
+//MARK:- States
 private extension AsyncImageCached {
     var initialView: some View {
         Color.clear

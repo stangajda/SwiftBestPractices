@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//MARK:- MovieRowView
 struct MovieRowView: View {
     typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
     @State var movie: MoviesListViewModel.MovieItem

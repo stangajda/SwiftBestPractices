@@ -11,7 +11,7 @@ import Combine
 protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Any {
 }
 
-
+//MARK:- MoviesViewModel
 final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published fileprivate(set) var state = State.start()
     @Injected fileprivate var service: MovieListServiceProtocol
@@ -38,7 +38,8 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     
 }
 
-extension MoviesListViewModel: LoadableProtocol{
+//MARK:- Fetch
+extension MoviesListViewModel {
     var fetch: AnyPublisher<Array<MovieItem>, Error>{
         
         guard let url = APIUrlBuilder[TrendingPath()] else {

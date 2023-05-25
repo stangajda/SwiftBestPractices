@@ -12,6 +12,7 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
    
 }
 
+//MARK: - ImageViewModel
 final class ImageViewModel: ImageViewModelProtocol{
     
     @Published var state: State
@@ -67,7 +68,10 @@ final class ImageViewModel: ImageViewModelProtocol{
         self?.input.send(.onReset)
         self?.cancelable?.cancel()
     }
-    
+}
+
+//Mark: - Fetch Publishers
+extension ImageViewModel {
     var fetch: AnyPublisher<ImageItem, Error>{
         guard let url = getURL() else {
             return Fail(error: APIError.invalidURL)
@@ -80,9 +84,9 @@ final class ImageViewModel: ImageViewModelProtocol{
             }
             .eraseToAnyPublisher()
     }
-    
 }
 
+//MARK: - ImageItem
 extension ImageViewModel{
     struct ImageItem{
         let image: Image
@@ -92,6 +96,7 @@ extension ImageViewModel{
     }
 }
 
+//MARK: - ImageWrapper
 class AnyImageViewModelProtocol: ImageViewModelProtocol{
     typealias ViewModel = ImageViewModel
     

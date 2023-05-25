@@ -7,6 +7,7 @@
 
 import Foundation
 
+// MARK:- Injected
 @propertyWrapper public struct Injected<Service> {
     private var service: Service
     
@@ -26,6 +27,7 @@ import Foundation
     }
 }
 
+// MARK:- LazyInjected
 @propertyWrapper public struct LazyInjected<Service> {
     private var lock = Injection.lock
     private var initialize: Bool = true
@@ -67,10 +69,12 @@ import Foundation
     }
 }
 
+// MARK:- Lock
 extension Injection {
     fileprivate static let lock = SwinjectRecursiveLock()
 }
 
+// MARK:- SwinjectRecursiveLock
 fileprivate final class SwinjectRecursiveLock {
     init() {
         pthread_mutexattr_init(&recursiveMutexAttr)

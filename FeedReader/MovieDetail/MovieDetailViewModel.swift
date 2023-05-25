@@ -11,6 +11,7 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
+//MARK:- ViewDetailViewModel
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     @Published fileprivate(set) var state: State
     @Injected fileprivate var service: MovieDetailServiceProtocol
@@ -59,7 +60,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     
 }
 
-extension MovieDetailViewModel: LoadableProtocol {
+//MARK:- Fetch
+extension MovieDetailViewModel {
     var fetch: AnyPublisher<MovieDetailItem, Error> {
         guard let url = APIUrlBuilder[MoviePath(movieList.id)] else {
             return Fail(error: APIError.invalidURL)
