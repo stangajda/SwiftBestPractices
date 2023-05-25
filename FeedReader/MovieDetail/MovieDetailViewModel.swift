@@ -24,7 +24,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
 
     fileprivate var cancellables = Set<AnyCancellable>()
     
-    init(movieList: MoviesListViewModel.MovieItem){
+    init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
         

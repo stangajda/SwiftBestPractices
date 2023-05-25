@@ -18,6 +18,12 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         self.mockState = mockState
         self.movieList = movieList
     }
+    
+    init(_ movieList: MoviesListViewModel.MovieItem){
+        self.mockState = .loaded
+        self.movieList = movieList
+    }
+    
 
     var fetch: AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> {
         switch mockState {

@@ -17,4 +17,7 @@ extension AssemblyProtocol {
     func register<Service>(_ serviceType: Service.Type, container: Container, name: Injection.Name, _ factory: @escaping (Resolver) -> Service ){
         container.register(serviceType, name: name.rawValue, factory: factory)
     }
+    func register<Service, Arg>(_ serviceType: Service.Type, container: Container, _ factory: @escaping (Resolver, Arg) -> Service ){
+        container.register(serviceType, factory: factory)
+    }
 }

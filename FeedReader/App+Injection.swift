@@ -63,7 +63,7 @@ fileprivate class ViewModelAssembly: Assembly {
         }
         
         container.register(AnyMovieDetailViewModelProtocol.self) { resolver , movie in
-            AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movieList: movie))
+            AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movie))
         }
         
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
@@ -85,6 +85,10 @@ fileprivate class MockMoviesListViewModeLAssembly: AssemblyProtocol {
 
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateFailed) { resolver in
             AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.failedLoaded))
+        }
+        
+        register(AnyMovieDetailViewModelProtocol.self, container: container) { resolver, movie in
+            AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(movie))
         }
     }
 }
