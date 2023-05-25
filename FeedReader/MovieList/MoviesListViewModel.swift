@@ -13,15 +13,15 @@ protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Arra
 
 
 final class MoviesListViewModel: MoviesListViewModelProtocol {
-    @Published var state = State.start()
-    @Injected private var service: MovieListServiceProtocol
+    @Published fileprivate(set) var state = State.start()
+    @Injected fileprivate var service: MovieListServiceProtocol
     
     typealias T = Array<MovieItem>
     typealias U = Any
     
     var input = PassthroughSubject<Action, Never>()
     
-    private var cancelable: AnyCancellable?
+    fileprivate var cancelable: AnyCancellable?
     
     init() {
         cancelable = self.assignNoRetain(self, to: \.state)
@@ -31,7 +31,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
         reset()
     }
     
-    lazy var reset: () -> Void = { [weak self] in
+    fileprivate lazy var reset: () -> Void = { [weak self] in
         self?.input.send(.onReset)
         self?.cancelable?.cancel()
     }
@@ -79,7 +79,7 @@ class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
     var input: PassthroughSubject<ViewModel.Action, Never>
     var fetch: AnyPublisher<T, Error>
 
-    private var cancellable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input

@@ -13,7 +13,7 @@ protocol ImageCacheProtocol {
 }
 
 struct TemporaryImageCache: ImageCacheProtocol {
-    private let cache = NSCache<NSURL, UIImage>()
+    let cache = NSCache<NSURL, UIImage>()
     
     init(){
         cache.totalCostLimit = CACHE_TOTAL_COST_LIMIT

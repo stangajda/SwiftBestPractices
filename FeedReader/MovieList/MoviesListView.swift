@@ -42,7 +42,7 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
 
 extension MoviesListView {
     typealias MovieDetailViewWrapper = MovieDetailView<AnyMovieDetailViewModelProtocol>
-    var startView: some View {
+    private var startView: some View {
         Color.clear
             .onAppear {
                 viewModel.send(action: .onAppear)

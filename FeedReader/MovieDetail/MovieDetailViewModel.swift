@@ -12,9 +12,8 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
 }
 
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
-    
-    @Published var state: State
-    @Injected var service: MovieDetailServiceProtocol
+    @Published fileprivate(set) var state: State
+    @Injected fileprivate var service: MovieDetailServiceProtocol
     
     typealias T = MovieDetailItem
     typealias U = Int
@@ -22,7 +21,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
 
-    private var cancellables = Set<AnyCancellable>()
+    fileprivate var cancellables = Set<AnyCancellable>()
     
     init(movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
@@ -40,13 +39,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
         reset()
     }
     
-    lazy var reset: () -> Void = { [weak self] in
+    fileprivate lazy var reset: () -> Void = { [weak self] in
         self?.cancellables.forEach { cancellable in
             cancellable.cancel() 
         } 
     }
     
-    func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
+    fileprivate func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
         input
             .sink(receiveValue: { [unowned self] action in
                 switch action {
@@ -110,7 +109,7 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
     var fetch: AnyPublisher<T, Error>
     var movieList: MoviesListViewModel.MovieItem
 
-    private var cancellable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MovieDetailViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input

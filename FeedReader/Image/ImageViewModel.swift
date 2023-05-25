@@ -22,11 +22,11 @@ final class ImageViewModel: ImageViewModelProtocol{
     typealias U = String
     
     var input = PassthroughSubject<Action, Never>()
-    private var cache: ImageCacheProtocol?
-    private var imagePath: String
-    private var imageSizePath: ImagePathProtocol
+    fileprivate var cache: ImageCacheProtocol?
+    fileprivate var imagePath: String
+    fileprivate var imageSizePath: ImagePathProtocol
     
-    private var cancelable: AnyCancellable?
+    fileprivate var cancelable: AnyCancellable?
     
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         state = State.loading(imagePath)
@@ -36,11 +36,11 @@ final class ImageViewModel: ImageViewModelProtocol{
         self.setUp()
     }
     
-    private func getURL() -> URL?{
+    fileprivate func getURL() -> URL?{
         return APIUrlImageBuilder[OriginalPath(), imagePath]
     }
     
-    private func setUp(){
+    fileprivate func setUp(){
         guard let url = getURL() else {
             state = .failedLoaded(APIError.invalidURL)
             return
@@ -54,7 +54,7 @@ final class ImageViewModel: ImageViewModelProtocol{
         load()
     }
     
-    private func load(){
+    fileprivate func load(){
         cancelable = self.publishersSystem(state)
                         .assignNoRetain(to: \.state, on: self)
     }
@@ -63,7 +63,7 @@ final class ImageViewModel: ImageViewModelProtocol{
         reset()
     }
     
-    lazy var reset: () -> Void = { [weak self] in
+    fileprivate lazy var reset: () -> Void = { [weak self] in
         self?.input.send(.onReset)
         self?.cancelable?.cancel()
     }
@@ -103,7 +103,7 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
     var input: PassthroughSubject<ViewModel.Action, Never>
     var fetch: AnyPublisher<ViewModel.ImageItem, Error>
     
-    private var cancellable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
         state = viewModel.state
         input = viewModel.input
