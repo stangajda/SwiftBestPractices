@@ -24,7 +24,7 @@ struct TrendingPath: PathProtocol{
 }
 
 struct MoviePath: PathProtocol{
-    var id: Int
+    fileprivate var id: Int
     
     init(_ id: Int){
         self.id = id

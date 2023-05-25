@@ -25,6 +25,7 @@ extension Injection {
     }
 }
 
+// MARK:- Session
 fileprivate class NetworkAssembly: Assembly {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
@@ -33,6 +34,7 @@ fileprivate class NetworkAssembly: Assembly {
     }
 }
 
+// MARK:- Service
 fileprivate class ServiceAssembly: Assembly {
     func assemble(container: Container) {
         container.register(ServiceProtocol.self) { resolver in
@@ -53,6 +55,7 @@ fileprivate class ServiceAssembly: Assembly {
     }
 }
 
+// MARK:- ViewModel
 fileprivate class ViewModelAssembly: Assembly {
     func assemble(container: Container) {
         container.register(AnyMoviesListViewModelProtocol.self) { _ in
@@ -69,6 +72,7 @@ fileprivate class ViewModelAssembly: Assembly {
     }
 }
 
+// MARK:- Preview
 fileprivate class MockMoviesListViewModeLAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
@@ -118,6 +122,7 @@ fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
     }
 }
 
+// MARK:- Injection.Name
 extension Injection.Name {
     
     static let movieListStateLoaded = Self("MovieListStateLoaded")

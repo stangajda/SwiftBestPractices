@@ -7,6 +7,8 @@
 import SwiftUI
 
 extension View {
+    
+// MARK:- Overview
     func withTitleStyle() -> some View{
             frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
             .font(.largeTitle)

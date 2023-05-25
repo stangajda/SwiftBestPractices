@@ -25,6 +25,7 @@ let DI_IMAGE_PATH = "imagePath"
 let DI_IMAGE_SIZE_PATH = "imageSizePath"
 let DI_IMAGE_CACHE = "imageCache"
 
+// MARK:- Preview
 let VIEW_MOVIE_LIST_LOADED = "Movies list loaded"
 let VIEW_MOVIE_LIST_LOADING = "Movies list loading"
 let VIEW_MOVIE_LIST_FAILED = "Movies list failed"
