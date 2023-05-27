@@ -32,18 +32,6 @@ extension MockableBaseServiceProtocol {
             fatalError("Error: \(error.localizedDescription)")
         }
     }
-    
-    func checkResponse(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
-        var cancellable: AnyCancellable?
-        cancellable = Service().fetchData(mockRequestUrl)
-            .sinkToResult({ result in
-                closure(result)
-                done()
-            })
-        return cancellable
-     
-    }
-
 }
 
 
