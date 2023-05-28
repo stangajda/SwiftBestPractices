@@ -10,6 +10,19 @@ import Combine
 
 @main
 struct FeedReaderApp: App {
+    init(){
+        #if DEBUG
+            Injection.shared.setupTestURLSession()
+        #else
+            Injection.shared.initialRegistration()
+        #endif
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .systemBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+    }
     var body: some Scene {
         WindowGroup {
             ContentView()

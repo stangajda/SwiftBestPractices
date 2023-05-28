@@ -17,8 +17,4 @@ public final class Injection: InjectionRegistering  {
     static let shared = Injection()
     let container = Container()
     lazy var assembler = Assembler()
-    
-    private init() {
-        initialRegistration()
-    }
 }

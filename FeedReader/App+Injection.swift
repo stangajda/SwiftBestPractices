@@ -13,6 +13,10 @@ extension Injection {
         assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
     }
     
+    func setupTestURLSession() {
+        assembler = Assembler([MockNetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
+    }
+    
     func setupPreviewMode() {
         assembler.apply(assembly: MockMoviesListViewModeLAssembly())
         assembler.apply(assembly: MockMovieDetailViewModelAssembly())
@@ -123,6 +127,14 @@ fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             AnyImageViewModelProtocol(MockImageViewModelDetail(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
         }
+    }
+}
+
+fileprivate class MockNetworkAssembly: Assembly {
+    func assemble(container: Container) {
+        container.register(URLSessionProtocol.self) { _ in
+            URLSession.mockURLSession()
+        }.inObjectScope(.container)
     }
 }
 
