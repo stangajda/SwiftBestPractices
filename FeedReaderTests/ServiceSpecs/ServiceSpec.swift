@@ -14,7 +14,7 @@ import Quick
 class ServiceSpec: QuickSpec, MockableServiceProtocol {
     @LazyInjected var mockManager: ServiceProtocol
     lazy var cancellable: AnyCancellable? = nil
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[TrendingPath()]!).get()
+    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     var result: Result<Data, Swift.Error>!
     
     override func spec() {

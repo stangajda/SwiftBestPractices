@@ -34,3 +34,9 @@ struct MoviePath: PathProtocol{
         API_MOVIE_PATH + "/\(String(id))"
     }
 }
+
+struct MockEmptyPath: PathProtocol{
+    func stringPath() -> String {
+        String()
+    }
+}

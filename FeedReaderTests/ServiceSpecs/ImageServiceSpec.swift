@@ -15,7 +15,7 @@ import Quick
 class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
     @LazyInjected var mockManager: ImageServiceProtocol
     
-    lazy var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[TrendingPath()]!).get()
+    lazy var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[MockEmptyPath()]!).get()
     lazy var cancellable: AnyCancellable? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse
