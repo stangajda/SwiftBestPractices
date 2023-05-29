@@ -11,21 +11,21 @@ import Combine
 @main
 struct FeedReaderApp: App {
     init(){
-        #if DEBUG
-            Injection.shared.setupTestURLSession()
-        #else
-            Injection.shared.initialRegistration()
-        #endif
-        let appearance = UINavigationBarAppearance()
-        appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .systemBackground
-        appearance.titleTextAttributes = [.foregroundColor: UIColor.label]
-        UINavigationBar.appearance().standardAppearance = appearance
-        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        injectDependency()
     }
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
+    
+    func injectDependency(){
+#if DEBUG
+    Injection.shared.setupTestURLSession()
+#else
+    Injection.shared.initialRegistration()
+#endif
+    }
+
 }
