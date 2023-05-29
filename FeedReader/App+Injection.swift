@@ -77,7 +77,7 @@ fileprivate class ViewModelAssembly: Assembly {
 }
 
 // MARK:- Preview
-fileprivate class MockMoviesListViewModeLAssembly: AssemblyProtocol {
+fileprivate class MockMoviesListViewModeLAssembly: AssemblyName {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loaded))
@@ -97,7 +97,7 @@ fileprivate class MockMoviesListViewModeLAssembly: AssemblyProtocol {
     }
 }
 
-fileprivate class MockMovieDetailViewModelAssembly: AssemblyProtocol {
+fileprivate class MockMovieDetailViewModelAssembly: AssemblyName {
     func assemble(container: Container) {
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
             AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock))
