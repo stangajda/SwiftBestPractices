@@ -9,12 +9,14 @@ import Foundation
 import Swinject
 
 public protocol InjectionRegistering {
+    static var shared: Self { get }
+    var container: Container { get }
     func initialRegistration()
 }
 
 // MARK:- Injection
 public final class Injection: InjectionRegistering  {
-    static let shared = Injection()
-    let container = Container()
+    public static let shared = Injection()
+    public let container = Container()
     lazy var assembler = Assembler()
 }
