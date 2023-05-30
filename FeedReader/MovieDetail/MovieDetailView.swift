@@ -106,11 +106,11 @@ struct MovieDetailView_Previews: PreviewProvider {
 
         return Group {
              MovieDetailView(viewModelLoaded)
-                .previewDisplayName(VIEW_MOVIE_DETAIL_LOADED)
+                .previewDisplayName(Config.View.MovieList.loaded)
              MovieDetailView(viewModelLoading)
-                .previewDisplayName(VIEW_MOVIE_DETAIL_LOADING)
+                .previewDisplayName(Config.View.MovieList.loading)
              MovieDetailView(viewModelFailedLoaded)
-                .previewDisplayName(VIEW_MOVIE_DETAIL_FAILED)
+                .previewDisplayName(Config.View.MovieList.loaded)
         }
     }
 }

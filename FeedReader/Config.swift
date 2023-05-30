@@ -7,35 +7,50 @@
 
 import SwiftUI
 
-let MOVIELIST_TITLE = "Trending Daily"
-
-// MARK:- API
-let API_BASE_URL = "https://api.themoviedb.org/"
-let API_PREFIX = "3"
-let API_KEY = "babcada8d42a5fd4857231c42240debd"
-let API_TRENDING_PATH = "trending/movie/day"
-let API_MOVIE_PATH = "movie"
+struct Config {
+    struct MovieList {
+        static let title = "Trending Daily"
+    }
     
-let API_IMAGE_URL = "https://image.tmdb.org/t/p/"
-let API_IMAGE_ORIGINAL_PATH = "original"
-let API_IMAGE_W200_PATH = "w200"
-
-let DI_MOVIE_LIST = "movieList"
-let DI_IMAGE_PATH = "imagePath"
-let DI_IMAGE_SIZE_PATH = "imageSizePath"
-let DI_IMAGE_CACHE = "imageCache"
-
-// MARK:- Preview
-let VIEW_MOVIE_LIST_LOADED = "Movies list loaded"
-let VIEW_MOVIE_LIST_LOADING = "Movies list loading"
-let VIEW_MOVIE_LIST_FAILED = "Movies list failed"
-
-let VIEW_MOVIE_DETAIL_LOADED = "Movie detail loaded"
-let VIEW_MOVIE_DETAIL_LOADING = "Movie detail loading"
-let VIEW_MOVIE_DETAIL_FAILED = "Movie detail failed"
-
-// MARK:- Cache
-let CACHE_TOTAL_COST_LIMIT = 50_000_000
+    struct API {
+        static let baseURL = "https://api.themoviedb.org/"
+        static let prefix = "3"
+        static let key = "babcada8d42a5fd4857231c42240debd"
+        static let trendingPath = "trending/movie/day"
+        static let moviePath = "movie"
+        
+        struct Image {
+            static let url = "https://image.tmdb.org/t/p/"
+            static let originalPath = "original"
+            static let w200Path = "w200"
+        }
+    }
+    
+    struct DI {
+        static let movieList = "movieList"
+        static let imagePath = "imagePath"
+        static let imageSizePath = "imageSizePath"
+        static let imageCache = "imageCache"
+    }
+    
+    struct View {
+        struct MovieList {
+            static let loaded = "Movies list loaded"
+            static let loading = "Movies list loading"
+            static let failed = "Movies list failed"
+        }
+        
+        struct MovieDetail {
+            static let loaded = "Movie detail loaded"
+            static let loading = "Movie detail loading"
+            static let failed = "Movie detail failed"
+        }
+    }
+    
+    struct Cache {
+        static let totalCostLimit = 50_000_000
+    }
+}
 
 // MARK:- URLSession
 extension URLSession{

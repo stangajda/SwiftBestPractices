@@ -8,9 +8,9 @@
 import Foundation
 
 struct APIUrlBuilder: APIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string: API_BASE_URL) }
-    static var prefix: String { API_PREFIX }
-    static var apiKey: String { API_KEY }
+    static var baseURL: URL? { URL(string: Config.API.baseURL) }
+    static var prefix: String { Config.API.prefix }
+    static var apiKey: String { Config.API.key }
 }
 
 protocol PathProtocol {
@@ -19,7 +19,7 @@ protocol PathProtocol {
 
 struct TrendingPath: PathProtocol{
     func stringPath() -> String {
-        API_TRENDING_PATH
+        Config.API.trendingPath
     }
 }
 
@@ -31,7 +31,7 @@ struct MoviePath: PathProtocol{
     }
     
     func stringPath() -> String {
-        API_MOVIE_PATH + "/\(String(id))"
+        Config.API.moviePath + "/\(String(id))"
     }
 }
 

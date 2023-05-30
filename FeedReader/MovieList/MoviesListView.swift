@@ -21,7 +21,7 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
                     loadingView
                 case .loaded(let movies):
                     loadedView(movies)
-                        .navigationTitle(MOVIELIST_TITLE)
+                        .navigationTitle(Config.MovieList.title)
                         .navigationBarTitleDisplayMode(.inline)
                 case .failedLoaded(let error):
                     failedView(error)
@@ -91,11 +91,11 @@ struct MoviesList_Previews: PreviewProvider {
 
         return Group {
             MoviesListView(viewModel: viewModelLoaded)
-                .previewDisplayName(VIEW_MOVIE_LIST_LOADED)
+                .previewDisplayName(Config.View.MovieList.loaded)
             MoviesListView(viewModel: viewModelLoading)
-                .previewDisplayName(VIEW_MOVIE_LIST_LOADING)
+                .previewDisplayName(Config.View.MovieList.loading)
             MoviesListView(viewModel: viewModelFailed)
-                .previewDisplayName(VIEW_MOVIE_LIST_FAILED)
+                .previewDisplayName(Config.View.MovieList.failed)
         }
 
     }
