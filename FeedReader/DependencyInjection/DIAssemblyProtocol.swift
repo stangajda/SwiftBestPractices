@@ -8,12 +8,14 @@
 import Foundation
 import Swinject
 
-protocol AssemblyName: Assembly {
-    
+protocol AssemblyProtocol: Assembly {
+}
+
+protocol AssemblyNameProtocol: Assembly {
 }
 
 //MARK:- Register
-extension AssemblyName {
+extension AssemblyNameProtocol {
     func register<Service>(_ serviceType: Service.Type, container: Container, name: Injection.Name, _ factory: @escaping (Resolver) -> Service ){
         container.register(serviceType, name: name.rawValue, factory: factory)
     }

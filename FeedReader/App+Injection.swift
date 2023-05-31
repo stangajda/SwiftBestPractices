@@ -30,7 +30,7 @@ extension Injection {
 }
 
 // MARK:- Session
-fileprivate class NetworkAssembly: Assembly {
+fileprivate class NetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.configuredURLSession()
@@ -39,7 +39,7 @@ fileprivate class NetworkAssembly: Assembly {
 }
 
 // MARK:- Service
-fileprivate class ServiceAssembly: Assembly {
+fileprivate class ServiceAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(ServiceProtocol.self) { resolver in
             Service()
@@ -60,7 +60,7 @@ fileprivate class ServiceAssembly: Assembly {
 }
 
 // MARK:- ViewModel
-fileprivate class ViewModelAssembly: Assembly {
+fileprivate class ViewModelAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyMoviesListViewModelProtocol.self) { _ in
             AnyMoviesListViewModelProtocol(MoviesListViewModel())
@@ -77,7 +77,7 @@ fileprivate class ViewModelAssembly: Assembly {
 }
 
 // MARK:- Preview
-fileprivate class MockMoviesListViewModeLAssembly: AssemblyName {
+fileprivate class MockMoviesListViewModeLAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             AnyMoviesListViewModelProtocol(MockMoviesListViewModel(.loaded))
@@ -97,7 +97,7 @@ fileprivate class MockMoviesListViewModeLAssembly: AssemblyName {
     }
 }
 
-fileprivate class MockMovieDetailViewModelAssembly: AssemblyName {
+fileprivate class MockMovieDetailViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
             AnyMovieDetailViewModelProtocol(MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock))
@@ -113,7 +113,7 @@ fileprivate class MockMovieDetailViewModelAssembly: AssemblyName {
     }
 }
 
-fileprivate class MockImageViewModelAssembly: Assembly {
+fileprivate class MockImageViewModelAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             AnyImageViewModelProtocol(MockImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
@@ -122,7 +122,7 @@ fileprivate class MockImageViewModelAssembly: Assembly {
     
 }
 
-fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
+fileprivate class MockImageViewModelItemDetailAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             AnyImageViewModelProtocol(MockImageViewModelDetail(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
@@ -130,7 +130,7 @@ fileprivate class MockImageViewModelItemDetailAssembly: Assembly {
     }
 }
 
-fileprivate class MockNetworkAssembly: Assembly {
+fileprivate class MockNetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.mockURLSession()
