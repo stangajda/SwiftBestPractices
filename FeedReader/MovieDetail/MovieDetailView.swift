@@ -99,7 +99,7 @@ private extension MovieDetailView {
 #if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        Injection.shared.setupPreviewModeDetail()
+        Injection.main.setupPreviewModeDetail()
         @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
         @Injected(name: .movieDetailStateLoading) var viewModelLoading: AnyMovieDetailViewModelProtocol
         @Injected(name: .movieDetailStateFailed) var viewModelFailedLoaded: AnyMovieDetailViewModelProtocol

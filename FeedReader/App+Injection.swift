@@ -8,6 +8,23 @@
 import Foundation
 import Swinject
 
+protocol InjectionRegistering {
+    func initialRegistration()
+}
+
+// MARK:- Injection
+public final class Injection: InjectionRegistering  {
+    private static let shared = Injection()
+    private let container = Container()
+    private lazy var assembler = Assembler()
+    public static var resolver: Container {
+        Injection.shared.container
+    }
+    public static var main: Injection{
+        Injection.shared
+    }
+}
+
 extension Injection {
     public func initialRegistration() {
         assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)

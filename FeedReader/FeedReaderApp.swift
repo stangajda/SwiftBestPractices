@@ -22,9 +22,9 @@ struct FeedReaderApp: App {
     
     func injectDependency(){
 #if DEBUG
-    Injection.shared.setupTestURLSession()
+    Injection.main.setupTestURLSession()
 #else
-    Injection.shared.initialRegistration()
+    Injection.main.initialRegistration()
 #endif
     }
 

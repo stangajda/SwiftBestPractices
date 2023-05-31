@@ -11,6 +11,6 @@ import Nimble
 
 class PollingConfiguration: QuickConfiguration {
     override class func configure(_ configuration: QCKConfiguration) {
-        Injection.shared.setupTestURLSession()
+        Injection.main.setupTestURLSession()
     }
 }

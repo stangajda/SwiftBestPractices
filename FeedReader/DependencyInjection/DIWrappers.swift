@@ -12,10 +12,10 @@ import Foundation
     private var service: Service
     
     public init() {
-        self.service = Injection.shared.container.resolve(Service.self)
+        self.service = Injection.resolver.resolve(Service.self)
     }
     public init(name: Injection.Name? = nil) {
-        self.service = Injection.shared.container.resolve(Service.self, name: name?.rawValue) ?? Injection.shared.container.resolve(Service.self, name: name?.rawValue)
+        self.service = Injection.resolver.resolve(Service.self, name: name?.rawValue) ?? Injection.resolver.resolve(Service.self, name: name?.rawValue)
     }
     public var wrappedValue: Service {
         get { return service }
@@ -44,7 +44,7 @@ import Foundation
             defer { lock.unlock() }
             if initialize {
                 self.initialize = false
-                self.service = Injection.shared.container.resolve(Service.self)
+                self.service = Injection.resolver.resolve(Service.self)
             }
             guard let service = service else {
                 fatalError("Can not find Service")

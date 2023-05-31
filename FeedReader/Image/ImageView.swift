@@ -18,7 +18,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     init (imageURL: String, imageSizePath: ImagePathProtocol, cancelOnDisapear: Bool = false, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
 
         let cache: ImageCacheProtocol? = Environment (\.imageCache).wrappedValue
-        let imageViewModel: AnyImageViewModelProtocol = Injection.shared.container.resolve(AnyImageViewModelProtocol.self, arguments: imageURL, imageSizePath, cache)
+        let imageViewModel: AnyImageViewModelProtocol = Injection.resolver.resolve(AnyImageViewModelProtocol.self, arguments: imageURL, imageSizePath, cache)
         
         self.init(viewModel: imageViewModel, placeholderLoading: placeholderLoading, placeholderError: placeholderError)
         
@@ -88,14 +88,14 @@ private extension AsyncImageCached {
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         return Group {
-            let _ = Injection.shared.setupPreviewMode()
+            let _ = Injection.main.setupPreviewMode()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)
             }
             
-            let _ = Injection.shared.setupPreviewModeDetail()
+            let _ = Injection.main.setupPreviewModeDetail()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in

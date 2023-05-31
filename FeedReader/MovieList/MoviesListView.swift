@@ -75,7 +75,7 @@ extension MoviesListView {
     }
     
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailViewWrapper(Injection.shared.container.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)))
+        LazyView(MovieDetailViewWrapper(Injection.resolver.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)))
 
     }
 }
@@ -84,7 +84,7 @@ extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        Injection.shared.setupPreviewMode()
+        Injection.main.setupPreviewMode()
         @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
         @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
         @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
