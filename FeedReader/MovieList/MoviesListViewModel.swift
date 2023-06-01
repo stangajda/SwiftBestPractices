@@ -13,6 +13,7 @@ protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Arra
 
 //MARK:- MoviesViewModel
 final class MoviesListViewModel: MoviesListViewModelProtocol {
+    
     @Published fileprivate(set) var state = State.start()
     @Injected fileprivate var service: MovieListServiceProtocol
     
@@ -40,7 +41,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 
 //MARK:- Fetch
 extension MoviesListViewModel {
-    var fetch: AnyPublisher<Array<MovieItem>, Error>{
+    func fetch() -> AnyPublisher<Array<MovieItem>, Error>{
         
         guard let url = APIUrlBuilder[TrendingPath()] else {
             return Fail(error: APIError.invalidURL)
@@ -78,15 +79,21 @@ class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
     
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<T, Error>
+    
+    var viewModel: any MoviesListViewModelProtocol
 
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input
-        fetch = viewModel.fetch
+        self.viewModel = viewModel
         cancellable = self.assignNoRetain(self, to: \.state)
     }
+    
+    func fetch() -> AnyPublisher<T, Error> {
+        viewModel.fetch()
+    }
+    
 }
 
 

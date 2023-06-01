@@ -14,7 +14,6 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
 
 //MARK: - ImageViewModel
 final class ImageViewModel: ImageViewModelProtocol{
-    
     @Published var state: State
     @Injected var service: ImageServiceProtocol
     
@@ -72,7 +71,7 @@ final class ImageViewModel: ImageViewModelProtocol{
 
 //Mark: - Fetch Publishers
 extension ImageViewModel {
-    var fetch: AnyPublisher<ImageItem, Error>{
+    func fetch() -> AnyPublisher<ImageItem, Error>{
         guard let url = getURL() else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
@@ -98,22 +97,28 @@ extension ImageViewModel{
 
 //MARK: - ImageWrapper
 class AnyImageViewModelProtocol: ImageViewModelProtocol{
+    
     typealias ViewModel = ImageViewModel
     
     typealias State = LoadableEnums<T,U>.State
     typealias T = ViewModel.ImageItem
     typealias U = String
     
+    var viewModel: any ImageViewModelProtocol
+    
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<ViewModel.ImageItem, Error>
     
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
         state = viewModel.state
         input = viewModel.input
-        fetch = viewModel.fetch
+        self.viewModel = viewModel
         cancellable = self.assignNoRetain(self, to: \.state)
+    }
+    
+    func fetch() -> AnyPublisher<ViewModel.ImageItem, Error> {
+        return viewModel.fetch()
     }
     
 }

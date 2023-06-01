@@ -42,8 +42,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     
     fileprivate lazy var reset: () -> Void = { [weak self] in
         self?.cancellables.forEach { cancellable in
-            cancellable.cancel() 
-        } 
+            cancellable.cancel()
+        }
     }
     
     fileprivate func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
@@ -62,7 +62,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
 
 //MARK:- Fetch
 extension MovieDetailViewModel {
-    var fetch: AnyPublisher<MovieDetailItem, Error> {
+    func fetch() -> AnyPublisher<MovieDetailItem, Error> {
         guard let url = APIUrlBuilder[MoviePath(movieList.id)] else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
@@ -108,15 +108,20 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
 
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
-    var fetch: AnyPublisher<T, Error>
     var movieList: MoviesListViewModel.MovieItem
+    
+    var viewModel: any MovieDetailViewModelProtocol
 
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MovieDetailViewModelProtocol>(_ viewModel: ViewModel) {
         state = viewModel.state
         input = viewModel.input
-        fetch = viewModel.fetch
+        self.viewModel = viewModel
         movieList = viewModel.movieList
         cancellable = self.assignNoRetain(self, to: \.state)
+    }
+    
+    func fetch() -> AnyPublisher<ViewModel.MovieDetailItem, Error> {
+        viewModel.fetch()
     }
 }

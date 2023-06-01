@@ -12,7 +12,7 @@ protocol LoadableProtocol {
     associatedtype T
     associatedtype U
     var input: PassthroughSubject<Action, Never> { get }
-    var fetch: AnyPublisher<T, Error> { get }
+    func fetch() -> AnyPublisher<T, Error>
 }
  
 extension LoadableProtocol {
@@ -38,7 +38,7 @@ extension LoadableProtocol {
     private func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
-            return self.fetch
+            return self.fetch()
                 .map(
                     Action.onLoaded
                 )
