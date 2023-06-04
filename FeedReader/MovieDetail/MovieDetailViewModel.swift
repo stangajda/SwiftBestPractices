@@ -13,6 +13,20 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
 
 //MARK:- ViewDetailViewModel
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
+    var statePublisher: Published<State>.Publisher
+    
+//    static var instances: [Int: MovieDetailViewModel] = [:]
+//
+//    static func instance(for movieList: MoviesListViewModel.MovieItem) -> MovieDetailViewModel {
+//        if let instance = instances[movieList.id] {
+//            return instance
+//        } else {
+//            let instance = MovieDetailViewModel(movieList)
+//            instances[movieList.id] = instance
+//            return instance
+//        }
+//    }
+    
     @Published fileprivate(set) var state: State
     @Injected fileprivate var service: MovieDetailServiceProtocol
     
@@ -27,7 +41,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
-        
+        statePublisher = _state.projectedValue
         self.assignNoRetain(self, to: \.state)
             .store(in: &cancellables)
         
@@ -103,6 +117,8 @@ extension MovieDetailViewModel{
 }
 
 class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
+    fileprivate(set) var statePublisher: Published<State>.Publisher
+    
     typealias ViewModel = MovieDetailViewModel
     typealias T = ViewModel.MovieDetailItem
 
@@ -118,7 +134,11 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
         input = viewModel.input
         self.viewModel = viewModel
         movieList = viewModel.movieList
-        cancellable = self.assignNoRetain(self, to: \.state)
+        statePublisher = viewModel.statePublisher
+        
+        cancellable = viewModel.statePublisher.sink { [weak self] newState in
+                    self?.state = newState
+                }
     }
     
     func fetch() -> AnyPublisher<ViewModel.MovieDetailItem, Error> {

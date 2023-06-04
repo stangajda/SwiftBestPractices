@@ -10,6 +10,8 @@ import UIKit
 import Combine
 
 class BaseMockImageViewModel: ImageViewModelProtocol {
+    var statePublisher: Published<State>.Publisher
+    
     typealias T = ImageViewModel.ImageItem
     typealias U = String
     
@@ -19,6 +21,7 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
     
     init(imageName: String) {
         image = UIImage(named: imageName)
+        statePublisher = _state.projectedValue
     }
     
     func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {

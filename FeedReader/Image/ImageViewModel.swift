@@ -17,6 +17,8 @@ final class ImageViewModel: ImageViewModelProtocol{
     @Published var state: State
     @Injected var service: ImageServiceProtocol
     
+    fileprivate(set) var statePublisher: Published<State>.Publisher
+    
     typealias State = LoadableEnums<T,U>.State
     typealias T = ImageViewModel.ImageItem
     typealias U = String
@@ -30,6 +32,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         state = State.loading(imagePath)
+        statePublisher = _state.projectedValue
         self.imageSizePath = imageSizePath
         self.cache = cache
         self.imagePath = imagePath
@@ -97,6 +100,7 @@ extension ImageViewModel{
 
 //MARK: - ImageWrapper
 class AnyImageViewModelProtocol: ImageViewModelProtocol{
+    fileprivate(set) var statePublisher: Published<State>.Publisher
     
     typealias ViewModel = ImageViewModel
     
@@ -113,8 +117,11 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
     init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
         state = viewModel.state
         input = viewModel.input
+        statePublisher = viewModel.statePublisher
         self.viewModel = viewModel
-        cancellable = self.assignNoRetain(self, to: \.state)
+        cancellable = viewModel.statePublisher.sink { [weak self] newState in
+                    self?.state = newState
+                }
     }
     
     func fetch() -> AnyPublisher<ViewModel.ImageItem, Error> {

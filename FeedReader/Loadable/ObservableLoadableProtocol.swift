@@ -10,11 +10,14 @@ import Combine
 
 protocol ObservableLoadableProtocol: ObservableObject, LoadableProtocol {
     var state: State { get }
+    var statePublisher: Published<State>.Publisher { get }
 }
 
 extension ObservableLoadableProtocol {
     func assignNoRetain<Root: AnyObject>(_ self: Root, to keyPath: ReferenceWritableKeyPath<Root, State>) -> AnyCancellable {
         publishersSystem(state)
+            .handleEvents(receiveOutput: { print("---",$0) })
+            //.removeDuplicates()
                 .assignNoRetain(to: keyPath, on: self)
     }
 }

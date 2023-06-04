@@ -13,9 +13,10 @@ protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Arra
 
 //MARK:- MoviesViewModel
 final class MoviesListViewModel: MoviesListViewModelProtocol {
-    
     @Published fileprivate(set) var state = State.start()
     @Injected fileprivate var service: MovieListServiceProtocol
+    
+    fileprivate(set) var statePublisher: Published<State>.Publisher
     
     typealias T = Array<MovieItem>
     typealias U = Any
@@ -25,6 +26,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     fileprivate var cancelable: AnyCancellable?
     
     init() {
+        statePublisher = _state.projectedValue
         cancelable = self.assignNoRetain(self, to: \.state)
     }
     
@@ -74,6 +76,8 @@ extension MoviesListViewModel {
 }
 
 class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
+    fileprivate(set) var statePublisher: Published<State>.Publisher
+    
     typealias ViewModel = MoviesListViewModel
     typealias T = Array<ViewModel.MovieItem>
     
@@ -87,7 +91,10 @@ class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
         state = viewModel.state
         input = viewModel.input
         self.viewModel = viewModel
-        cancellable = self.assignNoRetain(self, to: \.state)
+        statePublisher = viewModel.statePublisher
+        cancellable = viewModel.statePublisher.sink { [weak self] newState in
+                    self?.state = newState
+                }
     }
     
     func fetch() -> AnyPublisher<T, Error> {

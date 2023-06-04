@@ -9,6 +9,7 @@ import Foundation
 import Combine
 
 class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
+    var statePublisher: Published<State>.Publisher
     
     @Published var state: MoviesListViewModel.State = .start()
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
@@ -16,6 +17,7 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
     
     init(_ mockState: MockState.State){
         self.mockState = mockState
+        statePublisher = _state.projectedValue
     }
 
     func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {

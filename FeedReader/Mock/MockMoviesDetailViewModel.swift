@@ -9,6 +9,8 @@ import Foundation
 import Combine
 
 class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
+    var statePublisher: Published<State>.Publisher
+    
     var movieList: MoviesListViewModel.MovieItem
     @Published var state: MovieDetailViewModel.State = .start()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
@@ -17,11 +19,14 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     init(_ mockState: MockState.State, _ movieList: MoviesListViewModel.MovieItem){
         self.mockState = mockState
         self.movieList = movieList
+        self.statePublisher = _state.projectedValue
+    
     }
     
     init(_ movieList: MoviesListViewModel.MovieItem){
         self.mockState = .loaded
         self.movieList = movieList
+        self.statePublisher = _state.projectedValue
     }
     
 
