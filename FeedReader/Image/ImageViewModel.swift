@@ -40,7 +40,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     }
     
     fileprivate func getURL() -> URL?{
-        return APIUrlImageBuilder[OriginalPath(), imagePath]
+        return APIUrlImageBuilder[self.imageSizePath, imagePath]
     }
     
     fileprivate func setUp(){
