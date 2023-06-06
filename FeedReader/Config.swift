@@ -50,6 +50,23 @@ struct Config {
     struct Cache {
         static let totalCostLimit = 50_000_000
     }
+    
+    struct Queue {
+        struct MovieList {
+            static let label = "com.feedReader.MovieListQueue"
+            static let qos = DispatchQoS.userInitiated
+        }
+        
+        struct MovieDetail {
+            static let label = "com.feedReader.MovieDetailQueue"
+            static let qos = DispatchQoS.userInteractive
+        }
+        
+        struct Image {
+            static let label = "com.feedReader.ImageQueue"
+            static let qos = DispatchQoS.background
+        }
+    }
 }
 
 // MARK:- URLSession

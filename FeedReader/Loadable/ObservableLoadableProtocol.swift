@@ -16,8 +16,6 @@ protocol ObservableLoadableProtocol: ObservableObject, LoadableProtocol {
 extension ObservableLoadableProtocol {
     func assignNoRetain<Root: AnyObject>(_ self: Root, to keyPath: ReferenceWritableKeyPath<Root, State>) -> AnyCancellable {
         publishersSystem(state)
-            .handleEvents(receiveOutput: { print("---",$0) })
-            //.removeDuplicates()
                 .assignNoRetain(to: keyPath, on: self)
     }
 }

@@ -84,11 +84,11 @@ fileprivate class ViewModelAssembly: AssemblyProtocol {
         }
         
         container.register(AnyMovieDetailViewModelProtocol.self) { resolver , movie in
-            AnyMovieDetailViewModelProtocol(MovieDetailViewModel(movie))
+            AnyMovieDetailViewModelProtocol(MovieDetailViewModel.instance(movie))
         }
         
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
-            AnyImageViewModelProtocol(ImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
+            AnyImageViewModelProtocol(ImageViewModel.instance(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache))
         }
     }
 }

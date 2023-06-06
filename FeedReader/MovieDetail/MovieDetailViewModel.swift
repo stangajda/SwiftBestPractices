@@ -13,22 +13,9 @@ protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == Mov
 
 //MARK:- ViewDetailViewModel
 final class MovieDetailViewModel: MovieDetailViewModelProtocol{
-    var statePublisher: Published<State>.Publisher
-    
-//    static var instances: [Int: MovieDetailViewModel] = [:]
-//
-//    static func instance(for movieList: MoviesListViewModel.MovieItem) -> MovieDetailViewModel {
-//        if let instance = instances[movieList.id] {
-//            return instance
-//        } else {
-//            let instance = MovieDetailViewModel(movieList)
-//            instances[movieList.id] = instance
-//            return instance
-//        }
-//    }
-    
     @Published fileprivate(set) var state: State
     @Injected fileprivate var service: MovieDetailServiceProtocol
+    var statePublisher: Published<State>.Publisher
     
     typealias T = MovieDetailItem
     typealias U = Int
@@ -38,7 +25,19 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
 
     fileprivate var cancellables = Set<AnyCancellable>()
     
-    init(_ movieList: MoviesListViewModel.MovieItem){
+    static var instances: [Int: MovieDetailViewModel] = [:]
+
+    static func instance(_ movieList: MoviesListViewModel.MovieItem) -> MovieDetailViewModel {
+        if let instance = instances[movieList.id] {
+            return instance
+        } else {
+            let instance = MovieDetailViewModel(movieList)
+            instances[movieList.id] = instance
+            return instance
+        }
+    }
+    
+    fileprivate init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
         statePublisher = _state.projectedValue
@@ -117,16 +116,16 @@ extension MovieDetailViewModel{
 }
 
 class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
-    fileprivate(set) var statePublisher: Published<State>.Publisher
-    
-    typealias ViewModel = MovieDetailViewModel
-    typealias T = ViewModel.MovieDetailItem
-
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
     var movieList: MoviesListViewModel.MovieItem
     
-    var viewModel: any MovieDetailViewModelProtocol
+    fileprivate(set) var statePublisher: Published<State>.Publisher
+    
+    typealias ViewModel = MovieDetailViewModel
+    typealias T = ViewModel.MovieDetailItem
+    
+    fileprivate var viewModel: any MovieDetailViewModelProtocol
 
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MovieDetailViewModelProtocol>(_ viewModel: ViewModel) {

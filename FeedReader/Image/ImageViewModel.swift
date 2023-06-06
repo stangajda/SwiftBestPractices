@@ -14,7 +14,7 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
 
 //MARK: - ImageViewModel
 final class ImageViewModel: ImageViewModelProtocol{
-    @Published var state: State
+    @Published fileprivate(set) var state = State.start()
     @Injected var service: ImageServiceProtocol
     
     fileprivate(set) var statePublisher: Published<State>.Publisher
@@ -30,8 +30,21 @@ final class ImageViewModel: ImageViewModelProtocol{
     
     fileprivate var cancelable: AnyCancellable?
     
-    init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
-        state = State.loading(imagePath)
+    static var instances: [String: ImageViewModel] = [:]
+
+    static func instance(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) -> ImageViewModel {
+        let fullPath: String = imageSizePath.stringPath() + imagePath
+        
+        if let instance = instances[fullPath] {
+            return instance
+        } else {
+            let instance = ImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
+            instances[fullPath] = instance
+            return instance
+        }
+    }
+    
+    fileprivate init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         statePublisher = _state.projectedValue
         self.imageSizePath = imageSizePath
         self.cache = cache
@@ -58,8 +71,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     }
     
     fileprivate func load(){
-        cancelable = self.publishersSystem(state)
-                        .assignNoRetain(to: \.state, on: self)
+        cancelable = self.assignNoRetain(self, to: \.state)
     }
     
     deinit {
@@ -74,6 +86,7 @@ final class ImageViewModel: ImageViewModelProtocol{
 
 //Mark: - Fetch Publishers
 extension ImageViewModel {
+    
     func fetch() -> AnyPublisher<ImageItem, Error>{
         guard let url = getURL() else {
             return Fail(error: APIError.invalidURL)
@@ -100,6 +113,9 @@ extension ImageViewModel{
 
 //MARK: - ImageWrapper
 class AnyImageViewModelProtocol: ImageViewModelProtocol{
+    @Published var state: ViewModel.State
+    var input: PassthroughSubject<ViewModel.Action, Never>
+    
     fileprivate(set) var statePublisher: Published<State>.Publisher
     
     typealias ViewModel = ImageViewModel
@@ -108,10 +124,8 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
     typealias T = ViewModel.ImageItem
     typealias U = String
     
-    var viewModel: any ImageViewModelProtocol
-    
-    @Published var state: ViewModel.State
-    var input: PassthroughSubject<ViewModel.Action, Never>
+    fileprivate var viewModel: any ImageViewModelProtocol
+
     
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){

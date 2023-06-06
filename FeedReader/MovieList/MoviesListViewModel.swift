@@ -76,15 +76,14 @@ extension MoviesListViewModel {
 }
 
 class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
-    fileprivate(set) var statePublisher: Published<State>.Publisher
-    
-    typealias ViewModel = MoviesListViewModel
-    typealias T = Array<ViewModel.MovieItem>
-    
     @Published var state: ViewModel.State
     var input: PassthroughSubject<ViewModel.Action, Never>
     
-    var viewModel: any MoviesListViewModelProtocol
+    fileprivate(set) var statePublisher: Published<State>.Publisher
+    typealias ViewModel = MoviesListViewModel
+    typealias T = Array<ViewModel.MovieItem>
+    
+    fileprivate var viewModel: any MoviesListViewModelProtocol
 
     fileprivate var cancellable: AnyCancellable?
     init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {

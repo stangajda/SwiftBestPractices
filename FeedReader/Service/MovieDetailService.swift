@@ -14,7 +14,10 @@ protocol MovieDetailServiceProtocol {
 
 struct MovieDetailService: MovieDetailServiceProtocol{
     @Injected var service: ServiceProtocol
+    fileprivate let queue = DispatchQueue(label: Config.Queue.MovieDetail.label, qos: Config.Queue.MovieDetail.qos)
     func fetchMovieDetail(_ request: URLRequest) -> AnyPublisher<MovieDetail, Error>{
         return self.service.fetchData(request)
+            .subscribe(on: queue)
+            .eraseToAnyPublisher()
     }
 }
