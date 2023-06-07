@@ -15,9 +15,12 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
     var input = PassthroughSubject<MoviesListViewModel.Action, Never>()
     var mockState: MockState.State
     
+    fileprivate var cancelable: AnyCancellable?
+    
     init(_ mockState: MockState.State){
         self.mockState = mockState
         statePublisher = _state.projectedValue
+        cancelable = self.assignNoRetain(self, to: \.state)
     }
 
     func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
