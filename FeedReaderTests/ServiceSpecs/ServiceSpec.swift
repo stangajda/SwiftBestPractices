@@ -46,8 +46,8 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when failure error code \(errorCode)"){
-                    result = .failure(NSError.stubCode(code: errorCode))
                     beforeEach { [self] in
+                        result = .failure(APIError.apiCode(errorCode))
                         self.mockResponse(result: result, apiCode: errorCode)
                     }
 
