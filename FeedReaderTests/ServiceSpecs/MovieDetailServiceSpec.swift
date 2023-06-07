@@ -1,8 +1,8 @@
 //
-//  MovieListServiceSpec.swift
+//  MovieDetailServiceSpec.swift
 //  FeedReaderTests
 //
-//  Created by Stan Gajda on 02/08/2021.
+//  Created by Stan Gajda on 07/06/2023.
 //
 
 import Foundation
