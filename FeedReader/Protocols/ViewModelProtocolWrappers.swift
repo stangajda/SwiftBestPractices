@@ -68,7 +68,7 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
     }
 
     
-    func fetch() -> AnyPublisher<ViewModel.MovieDetailItem, Error> {
+    func fetch() -> AnyPublisher<T, Error> {
         viewModel.fetch()
     }
 }
