@@ -75,37 +75,6 @@ extension MoviesListViewModel {
     }
 }
 
-class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
-    @Published var state: ViewModel.State
-    var input: PassthroughSubject<ViewModel.Action, Never>
-    
-    fileprivate(set) var statePublisher: Published<State>.Publisher
-    typealias ViewModel = MoviesListViewModel
-    typealias T = Array<ViewModel.MovieItem>
-    
-    fileprivate var viewModel: any MoviesListViewModelProtocol
 
-    fileprivate var cancellable: AnyCancellable?
-    init<ViewModel: MoviesListViewModelProtocol>(_ viewModel: ViewModel) {
-        state = viewModel.state
-        input = viewModel.input
-        self.viewModel = viewModel
-        statePublisher = viewModel.statePublisher
-        cancellable = viewModel.statePublisher.sink { [weak self] newState in
-            self?.state = newState
-        }
-    }
-    
-    func fetch() -> AnyPublisher<T, Error> {
-        viewModel.fetch()
-    }
-    
-}
-
-extension MoviesListViewModelProtocol {
-    func eraseToAnyViewModelProtocol() -> AnyMoviesListViewModelProtocol {
-        AnyMoviesListViewModelProtocol(self)
-    }
-}
 
 

@@ -111,43 +111,6 @@ extension ImageViewModel{
     }
 }
 
-//MARK: - ImageWrapper
-class AnyImageViewModelProtocol: ImageViewModelProtocol{
-    @Published var state: ViewModel.State
-    var input: PassthroughSubject<ViewModel.Action, Never>
-    
-    fileprivate(set) var statePublisher: Published<State>.Publisher
-    
-    typealias ViewModel = ImageViewModel
-    
-    typealias State = LoadableEnums<T,U>.State
-    typealias T = ViewModel.ImageItem
-    typealias U = String
-    
-    fileprivate var viewModel: any ImageViewModelProtocol
 
-    
-    fileprivate var cancellable: AnyCancellable?
-    init<ViewModel: ImageViewModelProtocol>(_ viewModel: ViewModel){
-        state = viewModel.state
-        input = viewModel.input
-        statePublisher = viewModel.statePublisher
-        self.viewModel = viewModel
-        cancellable = viewModel.statePublisher.sink { [weak self] newState in
-            self?.state = newState
-        }
-    }
-    
-    func fetch() -> AnyPublisher<ViewModel.ImageItem, Error> {
-        return viewModel.fetch()
-    }
-    
-}
-
-extension ImageViewModelProtocol{
-    func eraseToAnyViewModelProtocol() -> AnyImageViewModelProtocol{
-        return AnyImageViewModelProtocol(self)
-    }
-}
 
 
