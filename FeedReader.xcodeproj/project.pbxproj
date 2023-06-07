@@ -85,6 +85,7 @@
 		F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
 		F66999972A1B37C8006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
 		F672138A2A30C70F0059E397 /* ViewModelProtocolWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */; };
+		F672138B2A30D5A10059E397 /* ViewModelProtocolWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */; };
 		F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */; };
 		F678764A2A1D0EFA00A4FD54 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */; };
 		F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */; };
@@ -411,7 +412,7 @@
 				CC3EC7B626A603C6005D71A9 /* Loadable */,
 				CC351E28269DC1E80037DB34 /* Service */,
 				CC351E2E269DC32D0037DB34 /* Model */,
-				F67213882A30C6BD0059E397 /* Protocol */,
+				F67213882A30C6BD0059E397 /* Protocols */,
 				F678765C2A1E052800A4FD54 /* DependencyInjection */,
 				CC351E2F269DC3E80037DB34 /* Extensions */,
 				CC351E29269DC25A0037DB34 /* Helper */,
@@ -450,12 +451,12 @@
 			path = MocksProtocols;
 			sourceTree = "<group>";
 		};
-		F67213882A30C6BD0059E397 /* Protocol */ = {
+		F67213882A30C6BD0059E397 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */,
 			);
-			path = Protocol;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		F678765C2A1E052800A4FD54 /* DependencyInjection */ = {
@@ -681,6 +682,7 @@
 				CC351E33269DC4D60037DB34 /* Helper.swift in Sources */,
 				F655B2E22A3058C00009146E /* MovieDetailServiceSpec.swift in Sources */,
 				F678766B2A1E3BE300A4FD54 /* MockableServiceProtocol.swift in Sources */,
+				F672138B2A30D5A10059E397 /* ViewModelProtocolWrappers.swift in Sources */,
 				F678764C2A1D0F0100A4FD54 /* ImageViewModel.swift in Sources */,
 				F678764E2A1D0F1800A4FD54 /* LoadableProtocol.swift in Sources */,
 				F67876592A1D5F4200A4FD54 /* MockMovie.swift in Sources */,
