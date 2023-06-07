@@ -1,0 +1,36 @@
+{
+  "backdrop_path": "/AsqUSUqXrK8JfH8WEQnCXVbIAv6.jpg",
+  "budget": 61000000,
+  "genres": [
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 53,
+      "name": "Thriller"
+    },
+    {
+      "id": 27,
+      "name": "Horror"
+    }
+  ],
+  "id": 520763,
+  "overview": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras vitae elit nec leo consectetur aliquam. Nulla facilisi. Donec sed semper elit. Sed auctor, nunc eget suscipit ultricies, eros nunc aliquet nisl, in tincidunt arcu odio nec nunc. Nullam sit amet justo ut lacus aliquam ultrices. Donec auctor, mi vitae aliquet ultricies, est nisl aliquam libero, vitae vestibulum nunc eros a ante. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec euismod, nunc eu tincidunt lacinia, nisl quam ultricies elit, vel dapibus tellus ipsum eu nisl. In hac habitasse platea dictumst.",
+  "release_date": "2021-05-21",
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    },
+    {
+      "english_name": "German",
+      "iso_639_1": "de",
+      "name": "Deutch"
+    }
+  ],
+  "title": "Mock title",
+  "vote_average": 7.1,
+  "vote_count": 11111
+}

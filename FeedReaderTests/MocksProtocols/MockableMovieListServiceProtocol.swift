@@ -25,5 +25,4 @@ extension MockableMovieListServiceProtocol {
         return cancellable
 
     }
-
 }
