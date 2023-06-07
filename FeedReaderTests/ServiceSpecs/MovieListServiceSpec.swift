@@ -56,6 +56,51 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 
             }
             
+            let errorCodes: Array<Int> = [300,404,500]
+            errorCodes.forEach { errorCode in
+                context("when failure error code \(errorCode)"){
+                    beforeEach { [self] in
+                        mockResponse(result: .failure(APIError.apiCode(errorCode)) as Result<Movies, Swift.Error>)
+                    }
+
+                    it("it should get failed response match error code"){ [unowned self] in
+                        await waitUntil{ [unowned self] done in
+                            cancellable = self.fetchMovies(done: done){ result in
+                                result.isExpectFailedToEqual(APIError.apiCode(errorCode).errorDescription)
+                            }
+                        }
+                    }
+                }
+            }
+  
+            context("when failure invalid url") {
+                beforeEach { [self] in
+                    mockResponse(result: .failure(APIError.invalidURL) as Result<Movies, Swift.Error>)
+                }
+                
+                it("it should get failed invalid url"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.fetchMovies(done: done){ result in
+                            result.isExpectFailedToEqual(APIError.invalidURL.errorDescription)
+                        }
+                    }
+                }
+            }
+            
+            context("when failure invalid url") {
+                beforeEach { [self] in
+                    mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
+                }
+                
+                it("it should get failed invalid url"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.fetchMovies(done: done){ result in
+                            result.isExpectFailedToEqual(APIError.unknownResponse.errorDescription)
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

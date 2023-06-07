@@ -45,6 +45,7 @@ extension Result where Success: Equatable {
             )
         }
     }
+    
 }
 
 extension Result where Success == Void {
@@ -57,6 +58,7 @@ extension Result where Success == Void {
         }
     }
 }
+
 
 extension Result where Failure == Error {
     func isExpectFailedToEqual(_ message: String? = nil, file: String = #file, line: UInt = #line) {

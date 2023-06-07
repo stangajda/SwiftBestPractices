@@ -61,6 +61,65 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
             }
             
+            let errorCodes: Array<Int> = [300,404,500]
+            errorCodes.forEach { errorCode in
+                context("when failure error code \(errorCode)"){
+                    beforeEach { [self] in
+                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
+                    }
+
+                    it("it should get failed response match error code"){ [unowned self] in
+                        await waitUntil{ [unowned self] done in
+                            cancellable = self.fetchImage(done: done){ result in
+                                result.isExpectFailedToEqual(APIError.apiCode(errorCode).errorDescription)
+                            }
+                        }
+                    }
+                }
+            }
+  
+            context("when failure invalid url") {
+                beforeEach { [self] in
+                    mockResponse(result: .failure(APIError.invalidURL))
+                }
+                
+                it("it should get failed invalid url"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.fetchImage(done: done){ result in
+                            result.isExpectFailedToEqual(APIError.invalidURL.errorDescription)
+                        }
+                    }
+                }
+            }
+            
+            context("when failure invalid url") {
+                beforeEach { [self] in
+                    mockResponse(result: .failure(APIError.unknownResponse))
+                }
+                
+                it("it should get failed invalid url"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.fetchImage(done: done){ result in
+                            result.isExpectFailedToEqual(APIError.unknownResponse.errorDescription)
+                        }
+                    }
+                }
+            }
+            
+            context("when failure image conversion") {
+                beforeEach { [self] in
+                    mockResponse(result: .failure(APIError.imageConversion(mockRequestUrl)))
+                }
+                
+                it("it should get failed image conversion"){ [unowned self] in
+                    await waitUntil{ [unowned self] done in
+                        cancellable = self.fetchImage(done: done){ [self] result in
+                            result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }
