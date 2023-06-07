@@ -20,7 +20,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
     typealias Mock = MockURLProtocol.MockedResponse
     
     override func spec() {
-        describe("check movie list service"){
+        describe("check movie detail service"){
 
             var moviesFromData: MovieDetail!
             var anotherMoviesFromData: MovieDetail!
@@ -86,12 +86,12 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                 }
             }
             
-            context("when failure invalid url") {
+            context("when failure unknown response") {
                 beforeEach { [self] in
                     mockResponse(result: .failure(APIError.unknownResponse) as Result<MovieDetail, Swift.Error>)
                 }
                 
-                it("it should get failed invalid url"){ [unowned self] in
+                it("it should get failed unknown response"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchMovieDetail(done: done){ result in
                             result.isExpectFailedToMatchError(APIError.unknownResponse)

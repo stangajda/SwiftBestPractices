@@ -87,12 +87,12 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 }
             }
             
-            context("when failure invalid url") {
+            context("when failure unknown response") {
                 beforeEach { [self] in
                     mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
                 }
                 
-                it("it should get failed invalid url"){ [unowned self] in
+                it("it should get failed unknown response"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchMovies(done: done){ result in
                             result.isExpectFailedToMatchError(APIError.unknownResponse)
