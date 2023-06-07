@@ -144,3 +144,10 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
         viewModel.fetch()
     }
 }
+
+extension MovieDetailViewModelProtocol {
+    func eraseToAnyViewModelProtocol() -> AnyMovieDetailViewModelProtocol {
+        AnyMovieDetailViewModelProtocol(self)
+    }
+}
+

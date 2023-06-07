@@ -144,3 +144,10 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
     
 }
 
+extension ImageViewModelProtocol{
+    func eraseToAnyViewModelProtocol() -> AnyImageViewModelProtocol{
+        return AnyImageViewModelProtocol(self)
+    }
+}
+
+

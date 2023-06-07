@@ -102,4 +102,10 @@ class AnyMoviesListViewModelProtocol: MoviesListViewModelProtocol {
     
 }
 
+extension MoviesListViewModelProtocol {
+    func eraseToAnyViewModelProtocol() -> AnyMoviesListViewModelProtocol {
+        AnyMoviesListViewModelProtocol(self)
+    }
+}
+
 
