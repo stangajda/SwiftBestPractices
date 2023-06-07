@@ -134,8 +134,8 @@ class AnyImageViewModelProtocol: ImageViewModelProtocol{
         statePublisher = viewModel.statePublisher
         self.viewModel = viewModel
         cancellable = viewModel.statePublisher.sink { [weak self] newState in
-                    self?.state = newState
-                }
+            self?.state = newState
+        }
     }
     
     func fetch() -> AnyPublisher<ViewModel.ImageItem, Error> {

@@ -136,8 +136,8 @@ class AnyMovieDetailViewModelProtocol: MovieDetailViewModelProtocol {
         statePublisher = viewModel.statePublisher
         
         cancellable = viewModel.statePublisher.sink { [weak self] newState in
-                    self?.state = newState
-                }
+            self?.state = newState
+        }
     }
     
     func fetch() -> AnyPublisher<ViewModel.MovieDetailItem, Error> {
