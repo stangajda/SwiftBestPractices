@@ -55,7 +55,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 it("it should get failure response match error") { [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchImage(done: done){ [unowned self] result in
-                                result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+                                result.isExpectFailedToMatchError(APIError.imageConversion(mockRequestUrl))
                         }
                     }
                 }
@@ -71,7 +71,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                     it("it should get failed response match error code"){ [unowned self] in
                         await waitUntil{ [unowned self] done in
                             cancellable = self.fetchImage(done: done){ result in
-                                result.isExpectFailedToEqual(APIError.apiCode(errorCode).errorDescription)
+                                result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
                             }
                         }
                     }
@@ -86,7 +86,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 it("it should get failed invalid url"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchImage(done: done){ result in
-                            result.isExpectFailedToEqual(APIError.invalidURL.errorDescription)
+                            result.isExpectFailedToMatchError(APIError.invalidURL)
                         }
                     }
                 }
@@ -100,7 +100,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 it("it should get failed invalid url"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchImage(done: done){ result in
-                            result.isExpectFailedToEqual(APIError.unknownResponse.errorDescription)
+                            result.isExpectFailedToMatchError(APIError.unknownResponse)
                         }
                     }
                 }
@@ -114,7 +114,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 it("it should get failed image conversion"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchImage(done: done){ [self] result in
-                            result.isExpectFailedToEqual(APIError.imageConversion(mockRequestUrl).errorDescription)
+                            result.isExpectFailedToMatchError(APIError.imageConversion(mockRequestUrl))
                         }
                     }
                 }

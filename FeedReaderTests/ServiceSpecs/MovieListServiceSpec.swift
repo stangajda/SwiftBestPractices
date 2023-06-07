@@ -66,7 +66,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                     it("it should get failed response match error code"){ [unowned self] in
                         await waitUntil{ [unowned self] done in
                             cancellable = self.fetchMovies(done: done){ result in
-                                result.isExpectFailedToEqual(APIError.apiCode(errorCode).errorDescription)
+                                result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
                             }
                         }
                     }
@@ -81,7 +81,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 it("it should get failed invalid url"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchMovies(done: done){ result in
-                            result.isExpectFailedToEqual(APIError.invalidURL.errorDescription)
+                            result.isExpectFailedToMatchError(APIError.invalidURL)
                         }
                     }
                 }
@@ -95,7 +95,7 @@ class MovieListServiceSpec: QuickSpec, MockableMovieListServiceProtocol {
                 it("it should get failed invalid url"){ [unowned self] in
                     await waitUntil{ [unowned self] done in
                         cancellable = self.fetchMovies(done: done){ result in
-                            result.isExpectFailedToEqual(APIError.unknownResponse.errorDescription)
+                            result.isExpectFailedToMatchError(APIError.unknownResponse)
                         }
                     }
                 }

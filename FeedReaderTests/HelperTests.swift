@@ -72,6 +72,17 @@ extension Result where Failure == Error {
         }
     }
     
+    func isExpectFailedToMatchError(_ apiError: APIError? = nil, file: String = #file, line: UInt = #line) {
+        switch self {
+        case .success(let value):
+            fail("Unexpected error: \(value)", file: file, line: line)
+        case .failure(let error):
+            if let errorMessage = apiError?.localizedDescription {
+                expect(file: file, line: line, error.localizedDescription) == errorMessage
+            }
+        }
+    }
+    
     func isExpectFailedToContain(_ message: String? = nil, file: String = #file, line: UInt = #line) {
         switch self {
         case .success(let value):
