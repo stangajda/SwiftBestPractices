@@ -80,15 +80,18 @@ fileprivate class ServiceAssembly: AssemblyProtocol {
 fileprivate class ViewModelAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyMoviesListViewModelProtocol.self) { _ in
-            MoviesListViewModel().eraseToAnyViewModelProtocol()
+            MoviesListViewModel()
+                .eraseToAnyViewModelProtocol()
         }
         
         container.register(AnyMovieDetailViewModelProtocol.self) { resolver , movie in
-            MovieDetailViewModel.instance(movie).eraseToAnyViewModelProtocol()
+            MovieDetailViewModel.instance(movie)
+                .eraseToAnyViewModelProtocol()
         }
         
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
-            ImageViewModel.instance(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache).eraseToAnyViewModelProtocol()
+            ImageViewModel.instance(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
+                .eraseToAnyViewModelProtocol()
         }
     }
 }
@@ -97,19 +100,23 @@ fileprivate class ViewModelAssembly: AssemblyProtocol {
 fileprivate class MockMoviesListViewModeLAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
-            MockMoviesListViewModel(.loaded).eraseToAnyViewModelProtocol()
+            MockMoviesListViewModel(.loaded)
+                .eraseToAnyViewModelProtocol()
         }
 
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoading) { resolver in
-            MockMoviesListViewModel(.loading).eraseToAnyViewModelProtocol()
+            MockMoviesListViewModel(.loading)
+                .eraseToAnyViewModelProtocol()
         }
 
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateFailed) { resolver in
-            MockMoviesListViewModel(.failedLoaded).eraseToAnyViewModelProtocol()
+            MockMoviesListViewModel(.failedLoaded)
+                .eraseToAnyViewModelProtocol()
         }
         
         register(AnyMovieDetailViewModelProtocol.self, container: container) { resolver, movie in
-            MockMovieDetailViewModel(movie).eraseToAnyViewModelProtocol()
+            MockMovieDetailViewModel(movie)
+                .eraseToAnyViewModelProtocol()
         }
     }
 }
@@ -117,15 +124,18 @@ fileprivate class MockMoviesListViewModeLAssembly: AssemblyNameProtocol {
 fileprivate class MockMovieDetailViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
-            MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock).eraseToAnyViewModelProtocol()
+            MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock)
+                .eraseToAnyViewModelProtocol()
         }
 
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoading) { resolver in
-            MockMovieDetailViewModel(.loading, MoviesListViewModel.MovieItem.mock).eraseToAnyViewModelProtocol()
+            MockMovieDetailViewModel(.loading, MoviesListViewModel.MovieItem.mock)
+                .eraseToAnyViewModelProtocol()
         }
 
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateFailed) { resolver in
-            MockMovieDetailViewModel(.failedLoaded, MoviesListViewModel.MovieItem.mock).eraseToAnyViewModelProtocol()
+            MockMovieDetailViewModel(.failedLoaded, MoviesListViewModel.MovieItem.mock)
+                .eraseToAnyViewModelProtocol()
         }
     }
 }
@@ -133,7 +143,8 @@ fileprivate class MockMovieDetailViewModelAssembly: AssemblyNameProtocol {
 fileprivate class MockImageViewModelAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
-            MockImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache).eraseToAnyViewModelProtocol()
+            MockImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
+                .eraseToAnyViewModelProtocol()
         }
     }
     
@@ -142,7 +153,8 @@ fileprivate class MockImageViewModelAssembly: AssemblyProtocol {
 fileprivate class MockImageViewModelItemDetailAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
-            MockImageViewModelDetail(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache).eraseToAnyViewModelProtocol()
+            MockImageViewModelDetail(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
+                .eraseToAnyViewModelProtocol()
         }
     }
 }
