@@ -8,11 +8,25 @@
 import Foundation
 
 struct LoadableEnums<T,U>{
-    enum State {
+    enum State: Equatable {
         case start(U? = nil)
         case loading(U? = nil)
         case loaded(T)
         case failedLoaded(Error)
+        static func == (lhs: LoadableEnums<T, U>.State, rhs: LoadableEnums<T, U>.State) -> Bool {
+            switch (lhs, rhs) {
+            case (.start, .start):
+                return true
+            case (.loading, .loading):
+                return true
+            case (.loaded, .loaded):
+                return true
+            case (.failedLoaded, .failedLoaded):
+                return true
+            default:
+                return false
+            }
+        }
     }
     enum Action {
         case onAppear

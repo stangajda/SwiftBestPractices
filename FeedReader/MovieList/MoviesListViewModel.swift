@@ -30,15 +30,6 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
         cancelable = self.assignNoRetain(self, to: \.state)
     }
     
-    deinit {
-        reset()
-    }
-    
-    fileprivate lazy var reset: () -> Void = { [weak self] in
-        self?.input.send(.onReset)
-        self?.cancelable?.cancel()
-    }
-    
 }
 
 //MARK:- Fetch

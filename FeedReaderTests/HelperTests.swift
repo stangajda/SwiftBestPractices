@@ -152,3 +152,11 @@ extension Data {
         return Data([0,1,0,1])
     }
 }
+
+extension Error {
+    func isExpectFailedToMatchError(_ apiError: APIError? = nil, file: String = #file, line: UInt = #line) {
+        if let errorMessage = apiError?.localizedDescription {
+            expect(file: file, line: line, self.localizedDescription) == errorMessage
+        }
+    }
+}

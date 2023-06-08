@@ -10,7 +10,7 @@ import Combine
 import Nimble
 
 protocol MockableMovieListServiceProtocol: MockableBaseServiceProtocol {
-    var mockManager: MovieListServiceProtocol{ get }
+    var mockManager: MovieListServiceProtocol { get }
 }
 
 extension MockableMovieListServiceProtocol {
@@ -24,5 +24,40 @@ extension MockableMovieListServiceProtocol {
             })
         return cancellable
 
+    }
+}
+
+protocol MockableMovieListViewModelProtocol: MockableBaseServiceProtocol {
+    var listViewModel: (any MoviesListViewModelProtocol)? { get }
+}
+
+extension MockableMovieListViewModelProtocol {
+
+    func getMoviesFromLoadedState(done: @escaping() -> Void, closure: @escaping (Array<MoviesListViewModel.MovieItem>) -> Void) -> AnyCancellable? {
+        var cancellable: AnyCancellable?
+        cancellable = listViewModel?.statePublisher.sink { state in
+            switch state {
+            case .loaded(let movies):
+                closure(movies)
+                done()
+            default:
+                break
+            }
+        }
+        return cancellable
+    }
+    
+    func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (Error) -> Void) -> AnyCancellable? {
+        var cancellable: AnyCancellable?
+        cancellable = listViewModel?.statePublisher.sink { state in
+            switch state {
+            case .failedLoaded(let error):
+                closure(error)
+                done()
+            default:
+                break
+            }
+        }
+        return cancellable
     }
 }
