@@ -47,12 +47,12 @@ extension MockableMovieListViewModelProtocol {
         return cancellable
     }
     
-    func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (Error) -> Void) -> AnyCancellable? {
+    func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (APIError) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
         cancellable = listViewModel?.statePublisher.sink { state in
             switch state {
             case .failedLoaded(let error):
-                closure(error)
+                closure(APIError(error))
                 done()
             default:
                 break

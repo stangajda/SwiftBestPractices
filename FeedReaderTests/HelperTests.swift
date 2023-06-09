@@ -153,10 +153,11 @@ extension Data {
     }
 }
 
-extension Error {
+extension APIError {
     func isExpectFailedToMatchError(_ apiError: APIError? = nil, file: String = #file, line: UInt = #line) {
-        if let errorMessage = apiError?.localizedDescription {
-            expect(file: file, line: line, self.localizedDescription) == errorMessage
+        if let errorMessage = apiError {
+            expect(file: file, line: line, self).to(equal(errorMessage))
+        
         }
     }
 }
