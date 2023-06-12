@@ -67,7 +67,7 @@ extension Result where Failure == Error {
             fail("Unexpected error: \(value)", file: file, line: line)
         case .failure(let error):
             if let message = message {
-                expect(file: file, line: line, error.localizedDescription) == message
+                expect(file: file, line: line, error.localizedDescription).to(equal(message))
             }
         }
     }
@@ -78,7 +78,7 @@ extension Result where Failure == Error {
             fail("Unexpected error: \(value)", file: file, line: line)
         case .failure(let error):
             if let errorMessage = apiError?.localizedDescription {
-                expect(file: file, line: line, error.localizedDescription) == errorMessage
+                expect(file: file, line: line, error.localizedDescription).to(equal(errorMessage))
             }
         }
     }
