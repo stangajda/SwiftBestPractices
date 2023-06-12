@@ -61,17 +61,7 @@ extension Result where Success == Void {
 
 
 extension Result where Failure == Error {
-    func isExpectFailedToEqual(_ message: String? = nil, file: String = #file, line: UInt = #line) {
-        switch self {
-        case .success(let value):
-            fail("Unexpected error: \(value)", file: file, line: line)
-        case .failure(let error):
-            if let message = message {
-                expect(file: file, line: line, error.localizedDescription).to(equal(message))
-            }
-        }
-    }
-    
+
     func isExpectFailedToMatchError(_ apiError: APIError? = nil, file: String = #file, line: UInt = #line) {
         switch self {
         case .success(let value):
@@ -79,6 +69,17 @@ extension Result where Failure == Error {
         case .failure(let error):
             if let errorMessage = apiError?.localizedDescription {
                 expect(file: file, line: line, error.localizedDescription).to(equal(errorMessage))
+            }
+        }
+    }
+    
+    func isExpectFailedToNotMatchError(_ apiError: APIError? = nil, file: String = #file, line: UInt = #line) {
+        switch self {
+        case .success(let value):
+            fail("Unexpected error: \(value)", file: file, line: line)
+        case .failure(let error):
+            if let errorMessage = apiError?.localizedDescription {
+                expect(file: file, line: line, error.localizedDescription).toNot(equal(errorMessage))
             }
         }
     }
