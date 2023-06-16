@@ -89,7 +89,7 @@ extension MovieDetailViewModel {
 }
 
 extension MovieDetailViewModel{
-    struct MovieDetailItem {
+    struct MovieDetailItem: Identifiable, Hashable {
         let id: Int
         let title: String
         let overview: String

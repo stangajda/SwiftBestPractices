@@ -55,10 +55,18 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                         await waitUntil{ [self] done in
                             cancellable = self.fetchData(done: done){ result in
                                 result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
+                            }
+                        }
+                    }
+                    
+                    it("it should not get failure response match error code 0"){ [self] in
+                        await waitUntil{ [self] done in
+                            cancellable = self.fetchData(done: done){ result in
                                 result.isExpectFailedToNotMatchError(APIError.apiCode(0))
                             }
                         }
                     }
+                    
                 }
             }
             

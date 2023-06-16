@@ -88,6 +88,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when send on reset action") {
                 beforeEach { [self] in
+                    viewModel?.send(action: .onAppear)
                     viewModel?.send(action: .onReset)
                 }
                 
