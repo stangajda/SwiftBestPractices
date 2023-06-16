@@ -28,14 +28,14 @@ extension MockableMovieListServiceProtocol {
 }
 
 protocol MockableMovieListViewModelProtocol: MockableBaseServiceProtocol {
-    var listViewModel: (any MoviesListViewModelProtocol)? { get }
+    var viewModel: (any MoviesListViewModelProtocol)? { get }
 }
 
 extension MockableMovieListViewModelProtocol {
 
     func getMoviesFromLoadedState(done: @escaping() -> Void, closure: @escaping (Array<MoviesListViewModel.MovieItem>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = listViewModel?.statePublisher.sink { state in
+        cancellable = viewModel?.statePublisher.sink { state in
             switch state {
             case .loaded(let movies):
                 closure(movies)
@@ -49,7 +49,42 @@ extension MockableMovieListViewModelProtocol {
     
     func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (APIError) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = listViewModel?.statePublisher.sink { state in
+        cancellable = viewModel?.statePublisher.sink { state in
+            switch state {
+            case .failedLoaded(let error):
+                closure(APIError(error))
+                done()
+            default:
+                break
+            }
+        }
+        return cancellable
+    }
+}
+
+protocol MockableMovieDetailViewModelProtocol: MockableBaseServiceProtocol {
+    var viewModel: (any MovieDetailViewModelProtocol)? { get }
+}
+
+extension MockableMovieDetailViewModelProtocol {
+
+    func getMovieFromLoadedState(done: @escaping() -> Void, closure: @escaping (MovieDetailViewModel.MovieDetailItem) -> Void) -> AnyCancellable? {
+        var cancellable: AnyCancellable?
+        cancellable = viewModel?.statePublisher.sink { state in
+            switch state {
+            case .loaded(let movie):
+                closure(movie)
+                done()
+            default:
+                break
+            }
+        }
+        return cancellable
+    }
+    
+    func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (APIError) -> Void) -> AnyCancellable? {
+        var cancellable: AnyCancellable?
+        cancellable = viewModel?.statePublisher.sink { state in
             switch state {
             case .failedLoaded(let error):
                 closure(APIError(error))

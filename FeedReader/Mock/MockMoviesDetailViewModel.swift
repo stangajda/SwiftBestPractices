@@ -39,7 +39,7 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
             return Empty(completeImmediately: false)
                 .eraseToAnyPublisher()
         case .loaded:
-            return Just(MovieDetailViewModel.MovieDetailItem(MovieDetail.mock))
+            return Just(MovieDetailViewModel.MovieDetailItem.mock)
                 .setFailureType(to: Error.self)
                 .eraseToAnyPublisher()
         case .failedLoaded:

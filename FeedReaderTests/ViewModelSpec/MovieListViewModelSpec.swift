@@ -16,16 +16,16 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
     @LazyInjected var mockManager: MovieListServiceProtocol
     lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    lazy var listViewModel: (any MoviesListViewModelProtocol)? = nil
+    lazy var viewModel: (any MoviesListViewModelProtocol)? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse
+    
+    var movieItem: Array<MoviesListViewModel.MovieItem>!
+    var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
     
     override func spec() {
         describe("check movie list service"){
 
-            var movieItem: Array<MoviesListViewModel.MovieItem>!
-            var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
-            
             beforeEach { [self] in
                 let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
                 let anotherMoviesFromData: Movies = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
@@ -39,7 +39,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                     MoviesListViewModel.MovieItem(movie)
                 }
                 
-                listViewModel = MoviesListViewModel()
+                viewModel = MoviesListViewModel()
             
             }
             
@@ -47,12 +47,12 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()
                 cancellable = nil
-                listViewModel = nil
+                viewModel = nil
             }
 
             context("when send on appear action") {
                 beforeEach { [self] in
-                    listViewModel?.send(action: .onAppear)
+                    viewModel?.send(action: .onAppear)
                 }
                 
                 it("it should match from loaded state counted objects in array"){ [unowned self] in
@@ -68,7 +68,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 it("it should get movies from loaded state match mapped object"){ [unowned self] in
                    
                     await waitUntil{[self] done in
-                        cancellable = self.getMoviesFromLoadedState(done: done) { movies in
+                        cancellable = self.getMoviesFromLoadedState(done: done) { [self] movies in
                             expect(movies).to(equal(movieItem))
                         }
                     }
@@ -78,7 +78,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 it("it should get movies from loaded state match not mapped object"){ [unowned self] in
                    
                     await waitUntil{[self] done in
-                        cancellable = self.getMoviesFromLoadedState(done: done) { movies in
+                        cancellable = self.getMoviesFromLoadedState(done: done) { [self] movies in
                             expect(movies).notTo(equal(anotherMovieItem))
                         }
                     }
@@ -88,13 +88,13 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when send on reset action") {
                 beforeEach { [self] in
-                    listViewModel?.send(action: .onReset)
+                    viewModel?.send(action: .onReset)
                 }
                 
                 it("it should get start state"){ [unowned self] in
                     
                     await waitUntil { [self] done in
-                        cancellable = listViewModel?.statePublisher.sink { state in
+                        cancellable = viewModel?.statePublisher.sink { state in
                             expect(state).to(equal(.start()))
                             done()
                         }
@@ -107,9 +107,9 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach { [self] in
-                        listViewModel?.send(action: .onReset)
+                        viewModel?.send(action: .onReset)
                         mockResponse(result: .failure(APIError.apiCode(errorCode)) as Result<Movies, Swift.Error>)
-                        listViewModel?.send(action: .onAppear)
+                        viewModel?.send(action: .onAppear)
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
@@ -126,9 +126,9 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when error response unknown error") {
                 beforeEach { [self] in
-                    listViewModel?.send(action: .onReset)
+                    viewModel?.send(action: .onReset)
                     mockResponse(result: .failure(APIError.unknownResponse))
-                    listViewModel?.send(action: .onAppear)
+                    viewModel?.send(action: .onAppear)
                 }
                 
                 it("it should get state failed loaded with unknown error"){ [unowned self] in
