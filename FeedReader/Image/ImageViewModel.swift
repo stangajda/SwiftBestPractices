@@ -103,7 +103,7 @@ extension ImageViewModel {
 
 //MARK: - ImageItem
 extension ImageViewModel{
-    struct ImageItem{
+    struct ImageItem: Equatable{
         let image: Image
         init(_ uiImage: UIImage){
             image = Image(uiImage: uiImage)

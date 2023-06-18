@@ -56,32 +56,19 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 }
                 
                 it("it should match from loaded state counted objects in array"){ [unowned self] in
-
-                    await waitUntil { [self] done in
-                        cancellable = self.getMoviesFromLoadedState(done: done) { movies in
-                            expect(movies.count).to(equal(22))
-                        }
-                    }
-                
+                    await expect(self.viewModel?.state).toEventually(beLoadedMovies{
+                        movies in
+                        expect(movies.count).to(equal(22))
+                    })
                 }
                 
                 it("it should get movies from loaded state match mapped object"){ [unowned self] in
-                   
-                    await waitUntil{[self] done in
-                        cancellable = self.getMoviesFromLoadedState(done: done) { [self] movies in
-                            expect(movies).to(equal(movieItem))
-                        }
-                    }
-                
+                    await expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
                 }
                 
                 it("it should get movies from loaded state match not mapped object"){ [unowned self] in
-                   
-                    await waitUntil{[self] done in
-                        cancellable = self.getMoviesFromLoadedState(done: done) { [self] movies in
-                            expect(movies).notTo(equal(anotherMovieItem))
-                        }
-                    }
+                    
+                    await expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
                 
                 }
             }
@@ -93,14 +80,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 }
                 
                 it("it should get start state"){ [unowned self] in
-                    
-                    await waitUntil { [self] done in
-                        cancellable = viewModel?.statePublisher.sink { state in
-                            expect(state).to(equal(.start()))
-                            done()
-                        }
-                    }
-                    
+                    await expect(self.viewModel?.state).toEventually(equal(.start()))
                 }
             }
             
@@ -114,13 +94,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
-                        
-                        await waitUntil { [self] done in
-                            cancellable = self.getErrorFromFailedLoadedState(done: done) { error in
-                                error.isExpectFailedToMatchError(APIError.apiCode(errorCode))
-                            }
-                        }
-                        
+                        await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
@@ -133,14 +107,38 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 }
                 
                 it("it should get state failed loaded with unknown error"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.getErrorFromFailedLoadedState(done: done){ error in
-                            error.isExpectFailedToMatchError(APIError.unknownResponse)
-                        }
-                    }
+                    await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
         }
     }
 }
 
+func beLoadedMovies<Movies, U>(
+    test: ((Movies) -> Void)? = nil
+) -> Predicate<LoadableEnums<Movies, U>.State> {
+    return Predicate.define { expression in
+        var rawMessage = "be <loaded Movies (\(Movie.self))>"
+        if test != nil {
+            rawMessage += " that satisfies block"
+        }
+        let message = ExpectationMessage.expectedActualValueTo(rawMessage)
+
+        guard case let .loaded(value)? = try expression.evaluate() else {
+            return PredicateResult(status: .doesNotMatch, message: message)
+        }
+
+        var matches = true
+        if let test = test {
+            let assertions = gatherFailingExpectations {
+                test(value)
+            }
+            let messages = assertions.map { $0.message }
+            if !messages.isEmpty {
+                matches = false
+            }
+        }
+
+        return PredicateResult(bool: matches, message: message)
+    }
+}

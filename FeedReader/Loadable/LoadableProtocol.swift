@@ -9,8 +9,8 @@ import Foundation
 import Combine
 
 protocol LoadableProtocol {
-    associatedtype T
-    associatedtype U
+    associatedtype T: Equatable
+    associatedtype U: Equatable
     var input: PassthroughSubject<Action, Never> { get }
     func fetch() -> AnyPublisher<T, Error>
 }

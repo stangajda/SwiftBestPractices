@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Any {
+protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Int {
 }
 
 //MARK:- MoviesViewModel
@@ -19,7 +19,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     fileprivate(set) var statePublisher: Published<State>.Publisher
     
     typealias T = Array<MovieItem>
-    typealias U = Any
+    typealias U = Int
     
     var input = PassthroughSubject<Action, Never>()
     

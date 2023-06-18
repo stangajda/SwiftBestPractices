@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct LoadableEnums<T,U>{
+struct LoadableEnums<T: Equatable, U:Equatable>{
     enum State: Equatable {
         case start(U? = nil)
         case loading(U? = nil)
@@ -15,14 +15,14 @@ struct LoadableEnums<T,U>{
         case failedLoaded(Error)
         static func == (lhs: LoadableEnums<T, U>.State, rhs: LoadableEnums<T, U>.State) -> Bool {
             switch (lhs, rhs) {
-            case (.start, .start):
-                return true
-            case (.loading, .loading):
-                return true
-            case (.loaded, .loaded):
-                return true
-            case (.failedLoaded, .failedLoaded):
-                return true
+            case (.start(let lhsValue), .start(let rhsValue)):
+                return lhsValue == rhsValue
+            case (.loading(let lhsValue), .loading(let rhsValue)):
+                return lhsValue == rhsValue
+            case (.loaded(let lhsValue), .loaded(let rhsValue)):
+                return lhsValue == rhsValue
+            case (.failedLoaded(let lhsValue), .failedLoaded(let rhsValue)):
+                return lhsValue.localizedDescription == rhsValue.localizedDescription
             default:
                 return false
             }
