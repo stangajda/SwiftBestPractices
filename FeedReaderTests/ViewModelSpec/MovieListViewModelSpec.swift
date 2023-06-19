@@ -26,20 +26,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
         describe("check movie list service"){
 
             beforeEach { [self] in
-                let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
-                let anotherMoviesFromData: Movies = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
-                mockResponse(result: .success(moviesFromData) as Result<Movies, Swift.Error>)
-                
-                movieItem = moviesFromData.results.map { movie in
-                    MoviesListViewModel.MovieItem(movie)
-                }
-                
-                anotherMovieItem = anotherMoviesFromData.results.map { movie in
-                    MoviesListViewModel.MovieItem(movie)
-                }
-                
                 viewModel = MoviesListViewModel()
-            
             }
             
             afterEach { [unowned self] in
@@ -49,7 +36,19 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             }
 
             context("when send on appear action") {
-                beforeEach { [self] in
+                beforeEach { [unowned self] in
+                    let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
+                    let anotherMoviesFromData: Movies = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
+                    mockResponse(result: .success(moviesFromData) as Result<Movies, Swift.Error>)
+                    
+                    movieItem = moviesFromData.results.map { movie in
+                        MoviesListViewModel.MovieItem(movie)
+                    }
+                    
+                    anotherMovieItem = anotherMoviesFromData.results.map { movie in
+                        MoviesListViewModel.MovieItem(movie)
+                    }
+                    
                     viewModel?.send(action: .onAppear)
                 }
                 
