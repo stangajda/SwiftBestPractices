@@ -11,7 +11,6 @@ import Nimble
 
 protocol MockableBaseServiceProtocol {
     typealias Mock = MockURLProtocol.MockedResponse
-    var cancellable: AnyCancellable? { get }
     var mockRequestUrl: URLRequest { get }
 }
 

@@ -14,7 +14,6 @@ import Quick
 
 class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
     @LazyInjected var mockManager: MovieListServiceProtocol
-    lazy var cancellable: AnyCancellable? = nil
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     lazy var viewModel: (any MoviesListViewModelProtocol)? = nil
     
@@ -46,8 +45,6 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             afterEach { [unowned self] in
                 viewModel?.send(action: .onReset)
                 MockURLProtocol.mock = nil
-                cancellable?.cancel()
-                cancellable = nil
                 viewModel = nil
             }
 
@@ -57,10 +54,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 }
                 
                 it("it should match from loaded state counted objects in array"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(beLoadedMovies{
-                        movies in
-                        expect(movies.count).to(equal(22))
-                    })
+                    await expect(self.viewModel?.state).toEventually(beLoadedStateMoviesCount(22))
                 }
                 
                 it("it should get movies from loaded state match mapped object"){ [unowned self] in
@@ -73,7 +67,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             }
             
             context("when send on reset action") {
-                beforeEach { [self] in
+                beforeEach { [unowned self] in
                     viewModel?.send(action: .onAppear)
                     viewModel?.send(action: .onReset)
                 }
@@ -86,7 +80,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
-                    beforeEach { [self] in
+                    beforeEach { [unowned self] in
                         mockResponse(result: .failure(APIError.apiCode(errorCode)) as Result<Movies, Swift.Error>)
                         viewModel?.send(action: .onAppear)
                     }
@@ -98,7 +92,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             }
             
             context("when error response unknown error") {
-                beforeEach { [self] in
+                beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
                     viewModel?.send(action: .onAppear)
                 }
@@ -108,34 +102,5 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 }
             }
         }
-    }
-}
-
-func beLoadedMovies<Movies, U>(
-    test: ((Movies) -> Void)? = nil
-) -> Predicate<LoadableEnums<Movies, U>.State> {
-    return Predicate.define { expression in
-        var rawMessage = "be <loaded Movies (\(Movie.self))>"
-        if test != nil {
-            rawMessage += " that satisfies block"
-        }
-        let message = ExpectationMessage.expectedActualValueTo(rawMessage)
-
-        guard case let .loaded(value)? = try expression.evaluate() else {
-            return PredicateResult(status: .doesNotMatch, message: message)
-        }
-
-        var matches = true
-        if let test = test {
-            let assertions = gatherFailingExpectations {
-                test(value)
-            }
-            let messages = assertions.map { $0.message }
-            if !messages.isEmpty {
-                matches = false
-            }
-        }
-
-        return PredicateResult(bool: matches, message: message)
     }
 }

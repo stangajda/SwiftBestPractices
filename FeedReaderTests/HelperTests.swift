@@ -162,3 +162,39 @@ extension APIError {
         }
     }
 }
+
+func beLoadedStateMoviesCount(_ expectedCount: Int) -> Predicate<LoadableEnums<Array<MoviesListViewModel.MovieItem>, Int>.State> {
+    beLoadedState{
+        movies in
+        expect(movies.count).to(equal(expectedCount))
+    }
+}
+
+func beLoadedState<T, U>(
+    test: ((T) -> Void)? = nil
+) -> Predicate<LoadableEnums<T, U>.State> {
+    return Predicate.define { expression in
+        var rawMessage = "be <loaded State value>"
+        if test != nil {
+            rawMessage += " that satisfies block"
+        }
+        let message = ExpectationMessage.expectedActualValueTo(rawMessage)
+
+        guard case let .loaded(value)? = try expression.evaluate() else {
+            return PredicateResult(status: .doesNotMatch, message: message)
+        }
+
+        var matches = true
+        if let test = test {
+            let assertions = gatherFailingExpectations {
+                test(value)
+            }
+            let messages = assertions.map { $0.message }
+            if !messages.isEmpty {
+                matches = false
+            }
+        }
+
+        return PredicateResult(bool: matches, message: message)
+    }
+}
