@@ -28,7 +28,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     fileprivate var imagePath: String
     fileprivate var imageSizePath: ImagePathProtocol
     
-    fileprivate var cancelable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     
     static var instances: [String: ImageViewModel] = [:]
 
@@ -71,7 +71,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     }
     
     fileprivate func load(){
-        cancelable = self.assignNoRetain(self, to: \.state)
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
     
     deinit {
@@ -80,7 +80,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     
     fileprivate lazy var reset: () -> Void = { [weak self] in
         self?.input.send(.onReset)
-        self?.cancelable?.cancel()
+        self?.cancellable?.cancel()
     }
 }
 

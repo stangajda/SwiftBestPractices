@@ -16,13 +16,13 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
     var mockState: MockState.State
     
-    fileprivate var cancelable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     
     init(_ mockState: MockState.State, _ movieList: MoviesListViewModel.MovieItem){
         self.mockState = mockState
         self.movieList = movieList
         self.statePublisher = _state.projectedValue
-        cancelable = self.assignNoRetain(self, to: \.state)
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
     
     init(_ movieList: MoviesListViewModel.MovieItem){

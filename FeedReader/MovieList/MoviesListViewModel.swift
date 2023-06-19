@@ -23,11 +23,11 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     
     var input = PassthroughSubject<Action, Never>()
     
-    fileprivate var cancelable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     
     init() {
         statePublisher = _state.projectedValue
-        cancelable = self.assignNoRetain(self, to: \.state)
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
     
 }

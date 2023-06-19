@@ -19,12 +19,12 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
     var input = PassthroughSubject<ImageViewModel.Action, Never>()
     var image: UIImage?
     
-    fileprivate var cancelable: AnyCancellable?
+    fileprivate var cancellable: AnyCancellable?
     
     init(imageName: String) {
         image = UIImage(named: imageName)
         statePublisher = _state.projectedValue
-        cancelable = self.assignNoRetain(self, to: \.state)
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
     
     func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {
