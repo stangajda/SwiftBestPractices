@@ -163,6 +163,27 @@ extension APIError {
     }
 }
 
+func beSuccessAndEqual(_ expected: Data) -> Predicate<Result<Data, Error>>  {
+    beSuccess{
+        value in
+        expect(value).to(equal(expected))
+    }
+}
+
+func beFailureAndMatchError(_ expected: APIError) -> Predicate<Result<Data, Error>>  {
+    beFailure{
+        error in
+        expect(error.localizedDescription).to(equal(expected.localizedDescription))
+    }
+}
+
+func beFailureAndNotMatchError(_ expected: APIError) -> Predicate<Result<Data, Error>>  {
+    beFailure{
+        error in
+        expect(error.localizedDescription).toNot(equal(expected.localizedDescription))
+    }
+}
+
 func beLoadedStateMoviesCount(_ expectedCount: Int) -> Predicate<LoadableEnums<Array<MoviesListViewModel.MovieItem>, Int>.State> {
     beLoadedState{
         movies in

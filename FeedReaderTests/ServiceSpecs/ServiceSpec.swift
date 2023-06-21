@@ -34,11 +34,7 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
                 
                 it("it should get successful response match to data"){ [self] in
-                   await waitUntil{ [self] done in
-                        cancellable = self.fetchData(done: done){ result in
-                            result.isExpectSuccessToEqual(Data.stubData)
-                        }
-                   }
+                    expect(self.fetchDataResult).to(beSuccessAndEqual(Data.stubData))
                 }
                 
             }
@@ -52,19 +48,11 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                     }
 
                     it("it should get failure response match given error code \(errorCode)"){ [self] in
-                        await waitUntil{ [self] done in
-                            cancellable = self.fetchData(done: done){ result in
-                                result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
-                            }
-                        }
+                        expect(self.fetchDataResult).to(beFailureAndMatchError(APIError.apiCode(errorCode)))
                     }
                     
                     it("it should not get failure response match error code 0"){ [self] in
-                        await waitUntil{ [self] done in
-                            cancellable = self.fetchData(done: done){ result in
-                                result.isExpectFailedToNotMatchError(APIError.apiCode(0))
-                            }
-                        }
+                        expect(self.fetchDataResult).to(beFailureAndNotMatchError(APIError.apiCode(0)))
                     }
                     
                 }
@@ -78,14 +66,23 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
                 }
 
                 it("it should failure response match error code"){ [self] in
-                    await waitUntil{ [self] done in
-                        cancellable = self.fetchData(done: done){ result in
-                                result.isExpectFailedToMatchError(APIError.apiCode(0))
-                        }
-                    }
+                    expect(self.fetchDataResult).to(beFailureAndMatchError(APIError.apiCode(0)))
                 }
             }
             
         }
     }
+    
+    func fetchDataResult() -> Result<Data, Swift.Error> {
+        var mainResult: Result<Data, Swift.Error> = .success(Data())
+        waitUntil{ [self] done in
+            cancellable = mockManager.fetchData(mockRequestUrl)
+                .sinkToResult({ result in
+                    mainResult = result
+                    done()
+                })
+        }
+        return mainResult
+    }
+    
 }
