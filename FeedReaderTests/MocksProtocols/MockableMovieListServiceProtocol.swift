@@ -34,34 +34,3 @@ protocol MockableMovieListViewModelProtocol: MockableBaseServiceProtocol {
 protocol MockableMovieDetailViewModelProtocol: MockableBaseServiceProtocol {
     var viewModel: (any MovieDetailViewModelProtocol)? { get }
 }
-
-extension MockableMovieDetailViewModelProtocol {
-
-    func getMovieFromLoadedState(done: @escaping() -> Void, closure: @escaping (MovieDetailViewModel.MovieDetailItem) -> Void) -> AnyCancellable? {
-        var cancellable: AnyCancellable?
-        cancellable = viewModel?.statePublisher.sink { state in
-            switch state {
-            case .loaded(let movie):
-                closure(movie)
-                done()
-            default:
-                break
-            }
-        }
-        return cancellable
-    }
-    
-    func getErrorFromFailedLoadedState(done: @escaping() -> Void, closure: @escaping (APIError) -> Void) -> AnyCancellable? {
-        var cancellable: AnyCancellable?
-        cancellable = viewModel?.statePublisher.sink { state in
-            switch state {
-            case .failedLoaded(let error):
-                closure(APIError(error))
-                done()
-            default:
-                break
-            }
-        }
-        return cancellable
-    }
-}
