@@ -36,13 +36,9 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get succesful response on Type UIImage") { [unowned self] in
-
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchImage(done: done){ result in
-                                result.isExpectSuccessType(UIImage())
-                        }
-                    }
-
+                    expect(self.fetchImageResult).to(beSuccess{ value in
+                        expect(value).to(beAnInstanceOf(UIImage.self))
+                    })
                 }
             }
             
@@ -53,11 +49,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
 
                 it("it should get failure response match error") { [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchImage(done: done){ [unowned self] result in
-                                result.isExpectFailedToMatchError(APIError.imageConversion(mockRequestUrl))
-                        }
-                    }
+                    expect(self.fetchImageResult).to(beFailureAndMatchError(APIError.imageConversion(mockRequestUrl)))
                 }
             }
             
@@ -69,11 +61,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                     }
 
                     it("it should get failed response match error code"){ [unowned self] in
-                        await waitUntil{ [unowned self] done in
-                            cancellable = self.fetchImage(done: done){ result in
-                                result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
-                            }
-                        }
+                        expect(self.fetchImageResult).to(beFailureAndMatchError(APIError.apiCode(errorCode)))
                     }
                 }
             }
@@ -84,11 +72,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get failed invalid url"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchImage(done: done){ result in
-                            result.isExpectFailedToMatchError(APIError.invalidURL)
-                        }
-                    }
+                    expect(self.fetchImageResult).to(beFailureAndMatchError(APIError.invalidURL))
                 }
             }
             
@@ -98,11 +82,7 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get failed unknown response"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchImage(done: done){ result in
-                            result.isExpectFailedToMatchError(APIError.unknownResponse)
-                        }
-                    }
+                    expect(self.fetchImageResult).to(beFailureAndMatchError(APIError.unknownResponse))
                 }
             }
             
@@ -112,14 +92,27 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 }
                 
                 it("it should get failed image conversion"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchImage(done: done){ [self] result in
-                            result.isExpectFailedToMatchError(APIError.imageConversion(mockRequestUrl))
-                        }
-                    }
+                    expect(self.fetchImageResult).to(beFailureAndMatchError(APIError.imageConversion(mockRequestUrl)))
                 }
             }
             
         }
+    }
+    
+    func fetchImageResult() -> Result<UIImage, Swift.Error> {
+        var mainResult: Result<UIImage, Swift.Error>? = nil
+        waitUntil{ [self] done in
+            cancellable = mockManager.fetchImage(mockRequestUrl)
+                .sinkToResult({ result in
+                    mainResult = result
+                    done()
+                })
+        }
+        
+        guard let mainResult = mainResult else {
+            fatalError("mainResult is nil")
+        }
+        
+        return mainResult
     }
 }

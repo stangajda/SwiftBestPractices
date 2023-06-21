@@ -170,7 +170,28 @@ func beSuccessAndEqual(_ expected: Data) -> Predicate<Result<Data, Error>>  {
     }
 }
 
+func beSuccessAndEqual<T:Equatable>(_ expected: T) -> Predicate<Result<T, Error>>  {
+    beSuccess{
+        value in
+        expect(value).to(equal(expected))
+    }
+}
+
+func beSuccessAndNotEqual<T:Equatable>(_ expected: T) -> Predicate<Result<T, Error>>  {
+    beSuccess{
+        value in
+        expect(value).toNot(equal(expected))
+    }
+}
+
 func beFailureAndMatchError(_ expected: APIError) -> Predicate<Result<Data, Error>>  {
+    beFailure{
+        error in
+        expect(error.localizedDescription).to(equal(expected.localizedDescription))
+    }
+}
+
+func beFailureAndMatchError<T:Equatable>(_ expected: APIError) -> Predicate<Result<T, Error>>  {
     beFailure{
         error in
         expect(error.localizedDescription).to(equal(expected.localizedDescription))

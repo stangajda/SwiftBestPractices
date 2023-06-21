@@ -39,19 +39,11 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                 }
                 
                 it("it should get successful response match mapped object"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchMovieDetail(done: done){ result in
-                                result.isExpectSuccessToEqual(moviesFromData)
-                        }
-                    }
+                    expect(self.fetchMovieDetailResult).to(beSuccessAndEqual(moviesFromData))
                 }
 
                 it("it should get successful response not match mapped object"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchMovieDetail(done: done){ result in
-                                result.isExpectSuccessNotToEqual(anotherMoviesFromData)
-                        }
-                    }
+                    expect(self.fetchMovieDetailResult).to(beSuccessAndNotEqual(anotherMoviesFromData))
                 }
             }
             
@@ -63,11 +55,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                     }
 
                     it("it should get failed response match error code"){ [unowned self] in
-                        await waitUntil{ [unowned self] done in
-                            cancellable = self.fetchMovieDetail(done: done){ result in
-                                result.isExpectFailedToMatchError(APIError.apiCode(errorCode))
-                            }
-                        }
+                        expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.apiCode(errorCode)))
                     }
                 }
             }
@@ -78,11 +66,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                 }
                 
                 it("it should get failed invalid url"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchMovieDetail(done: done){ result in
-                            result.isExpectFailedToMatchError(APIError.invalidURL)
-                        }
-                    }
+                    expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.invalidURL))
                 }
             }
             
@@ -92,14 +76,28 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                 }
                 
                 it("it should get failed unknown response"){ [unowned self] in
-                    await waitUntil{ [unowned self] done in
-                        cancellable = self.fetchMovieDetail(done: done){ result in
-                            result.isExpectFailedToMatchError(APIError.unknownResponse)
-                        }
-                    }
+                    expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.unknownResponse))
                 }
             }
             
         }
     }
+    
+    func fetchMovieDetailResult() -> Result<MovieDetail, Swift.Error> {
+        var mainResult: Result<MovieDetail, Swift.Error>? = nil
+        waitUntil{ [self] done in
+            cancellable = mockManager.fetchMovieDetail(mockRequestUrl)
+                .sinkToResult({ result in
+                    mainResult = result
+                    done()
+                })
+        }
+        
+        guard let mainResult = mainResult else {
+            fatalError("mainResult is nil")
+        }
+        
+        return mainResult
+    }
+    
 }

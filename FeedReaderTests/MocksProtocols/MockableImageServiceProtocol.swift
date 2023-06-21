@@ -26,6 +26,13 @@ extension MockableImageServiceProtocol {
         return cancellable
      
     }
+    
+    func convertImageToData(uiImage: UIImage) -> Data {
+        guard let imageData = uiImage.pngData() else {
+            fatalError("Error: \(String(describing: APIError.imageConversion(mockRequestUrl).errorDescription))")
+        }
+        return imageData
+    }
   
     func convertImageToData(_ named:String) -> Data {
         let image = UIImage(named: named)
