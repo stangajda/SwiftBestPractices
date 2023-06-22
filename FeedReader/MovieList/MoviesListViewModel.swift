@@ -47,6 +47,9 @@ extension MoviesListViewModel {
             }
             .eraseToAnyPublisher()
     }
+    
+    func onResetAction() {
+    }
 }
 
 extension MoviesListViewModel {

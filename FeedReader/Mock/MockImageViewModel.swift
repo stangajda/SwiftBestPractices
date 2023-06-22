@@ -36,6 +36,10 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
+    
+    func onResetAction() {
+        
+    }
 }
 
 final class MockImageViewModel: BaseMockImageViewModel {

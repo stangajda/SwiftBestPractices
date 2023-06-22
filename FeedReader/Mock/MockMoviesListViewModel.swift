@@ -39,4 +39,7 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
                 .eraseToAnyPublisher()
         }
     }
+    
+    func onResetAction() {
+    }
 }

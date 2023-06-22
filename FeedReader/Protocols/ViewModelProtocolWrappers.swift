@@ -47,6 +47,10 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
     func fetch() -> AnyPublisher<T, Error> {
         viewModel.fetch()
     }
+    
+    func onResetAction() {
+        viewModel.onResetAction()
+    }
 }
 
 //MARK: - MovieDetailViewModelWrapper
@@ -71,6 +75,10 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
     func fetch() -> AnyPublisher<T, Error> {
         viewModel.fetch()
     }
+    
+    func onResetAction() {
+        viewModel.onResetAction()
+    }
 }
 
 //MARK: - ImageWrapper
@@ -90,6 +98,10 @@ class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, Imag
     
     func fetch() -> AnyPublisher<T, Error> {
         viewModel.fetch()
+    }
+    
+    func onResetAction() {
+        viewModel.onResetAction()
     }
 }
 

@@ -14,6 +14,8 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
 
 //MARK: - ImageViewModel
 final class ImageViewModel: ImageViewModelProtocol{
+    
+    
     @Published fileprivate(set) var state = State.start()
     @Injected var service: ImageServiceProtocol
     
@@ -78,9 +80,12 @@ final class ImageViewModel: ImageViewModelProtocol{
         reset()
     }
     
-    fileprivate lazy var reset: () -> Void = { [weak self] in
-        self?.input.send(.onReset)
-        self?.cancellable?.cancel()
+    fileprivate func reset(){
+        self.cancellable?.cancel()
+    }
+    
+    func onResetAction(){
+        reset()
     }
 }
 

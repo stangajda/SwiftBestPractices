@@ -47,4 +47,7 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
                 .eraseToAnyPublisher()
         }
     }
+    
+    func onResetAction() {
+    }
 }

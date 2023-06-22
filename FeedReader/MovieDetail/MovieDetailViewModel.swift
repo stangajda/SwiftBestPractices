@@ -23,7 +23,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
 
-    fileprivate var cancellables = Set<AnyCancellable>()
+    fileprivate var cancellable: AnyCancellable?
     
     static var instances: [Int: MovieDetailViewModel] = [:]
 
@@ -41,34 +41,19 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
         self.movieList = movieList
         state = State.start(movieList.id)
         statePublisher = _state.projectedValue
-        self.assignNoRetain(self, to: \.state)
-            .store(in: &cancellables)
-        
-        onResetAction(input: input)
-            .store(in: &cancellables)
-        
+        cancellable = self.assignNoRetain(self, to: \.state)
     }
     
     deinit {
         reset()
     }
     
-    fileprivate lazy var reset: () -> Void = { [weak self] in
-        self?.cancellables.forEach { cancellable in
-            cancellable.cancel()
-        }
+    fileprivate func reset(){
+        self.cancellable?.cancel()
     }
     
-    fileprivate func onResetAction(input: PassthroughSubject<MovieDetailViewModel.Action, Never>) -> AnyCancellable {
-        input
-            .sink(receiveValue: { [unowned self] action in
-                switch action {
-                case .onReset:
-                    reset()
-                default:
-                    break
-                }
-            })
+    func onResetAction(){
+        reset()
     }
     
 }
