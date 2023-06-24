@@ -46,6 +46,10 @@ final class ImageViewModel: ImageViewModelProtocol{
         }
     }
     
+    static func deallocateAllInstances() {
+        instances.removeAll()
+    }
+    
     fileprivate init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
         statePublisher = _state.projectedValue
         self.imageSizePath = imageSizePath
@@ -81,7 +85,8 @@ final class ImageViewModel: ImageViewModelProtocol{
     }
     
     fileprivate func reset(){
-        self.cancellable?.cancel()
+        cancellable?.cancel()
+        Self.deallocateAllInstances()
     }
     
     func onResetAction(){

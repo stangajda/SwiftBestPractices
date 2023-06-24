@@ -34,3 +34,7 @@ protocol MockableMovieListViewModelProtocol: MockableBaseServiceProtocol {
 protocol MockableMovieDetailViewModelProtocol: MockableBaseServiceProtocol {
     var viewModel: (any MovieDetailViewModelProtocol)? { get }
 }
+
+protocol MockableImageViewModelProtocol: MockableBaseServiceProtocol {
+    var viewModel: (any ImageViewModelProtocol)? { get }
+}

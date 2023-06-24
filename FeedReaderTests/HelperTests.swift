@@ -212,9 +212,9 @@ func beLoadedStateMoviesCount(_ expectedCount: Int) -> Predicate<LoadableEnums<A
     }
 }
 
-func beLoadedState<T, U>(
-    test: ((T) -> Void)? = nil
-) -> Predicate<LoadableEnums<T, U>.State> {
+func beLoadedState<Loaded, Start>(
+    test: ((Loaded) -> Void)? = nil
+) -> Predicate<LoadableEnums<Loaded, Start>.State> {
     return Predicate.define { expression in
         var rawMessage = "be <loaded State value>"
         if test != nil {
