@@ -36,6 +36,10 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
             return instance
         }
     }
+
+    static func deallocateAllInstances() {
+        instances.removeAll()
+    }
     
     fileprivate init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
@@ -49,7 +53,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     }
     
     fileprivate func reset(){
-        self.cancellable?.cancel()
+        cancellable?.cancel()
+        Self.deallocateAllInstances()
     }
     
     func onResetAction(){
