@@ -13,7 +13,6 @@ import Nimble
 import Quick
 
 class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol {
-    @LazyInjected var mockManager: MovieDetailServiceProtocol
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     lazy var viewModel: (any MovieDetailViewModelProtocol)? = nil
     

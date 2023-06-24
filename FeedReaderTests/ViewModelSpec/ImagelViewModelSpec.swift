@@ -13,8 +13,7 @@ import Nimble
 import Quick
 import SwiftUI
 
-class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol, MockableImageServiceProtocol {
-    @LazyInjected var mockManager: ImageServiceProtocol
+class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
     lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     lazy var viewModel: (any ImageViewModelProtocol)? = nil
     
