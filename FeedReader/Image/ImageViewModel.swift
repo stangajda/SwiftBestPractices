@@ -14,9 +14,7 @@ protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageView
 
 //MARK: - ImageViewModel
 final class ImageViewModel: ImageViewModelProtocol{
-    
-    
-    @Published fileprivate(set) var state = State.start()
+    @Published fileprivate(set) var state = State.loading()
     @Injected var service: ImageServiceProtocol
     
     fileprivate(set) var statePublisher: Published<State>.Publisher

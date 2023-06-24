@@ -60,7 +60,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
                 }
                 
                 it("it should get start state"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.start()))
+                    await expect(self.viewModel?.state).toEventually(equal(.loading()))
                 }
             }
             
