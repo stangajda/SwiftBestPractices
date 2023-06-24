@@ -30,25 +30,10 @@ struct LoadableEnums<Loaded, Start> where Loaded: Equatable, Start: Equatable {
         }
     }
     
-    enum Action: Equatable {
+    enum Action {
         case onAppear
         case onLoaded(Loaded)
         case onFailedLoaded(Error)
         case onReset
-        
-        static func == (lhs: LoadableEnums<Loaded, Start>.Action, rhs: LoadableEnums<Loaded, Start>.Action) -> Bool {
-            switch (lhs, rhs) {
-            case (.onAppear, .onAppear):
-                return true
-            case (.onLoaded(let lhsValue), .onLoaded(let rhsValue)):
-                return lhsValue == rhsValue
-            case (.onFailedLoaded(let lhsValue), .onFailedLoaded(let rhsValue)):
-                return lhsValue.localizedDescription == rhsValue.localizedDescription
-            case (.onReset, .onReset):
-                return true
-            default:
-                return false
-            }
-        }
     }
 }
