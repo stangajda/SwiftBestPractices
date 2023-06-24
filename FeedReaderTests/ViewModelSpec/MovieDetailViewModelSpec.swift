@@ -69,7 +69,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach { [unowned self] in
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)) as Result<Movies, Swift.Error>)
+                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
                         viewModel?.send(action: .onAppear)
                     }
                     
@@ -81,7 +81,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             
             context("when error response unknown error") {
                 beforeEach { [unowned self] in
-                    mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
+                    mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
                 }
                 
@@ -92,7 +92,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach { [unowned self] in
-                    mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
+                    mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
                     MovieDetailViewModel.deallocateAllInstances()
                 }
@@ -104,7 +104,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach { [unowned self] in
-                    mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
+                    mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
                     MovieDetailViewModel.deallocateAllInstances()
                 }

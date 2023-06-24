@@ -38,7 +38,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 beforeEach { [unowned self] in
                     let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
                     let anotherMoviesFromData: Movies = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
-                    mockResponse(result: .success(moviesFromData) as Result<Movies, Swift.Error>)
+                    mockResponse(result: .success(moviesFromData))
                     
                     movieItem = moviesFromData.results.map { movie in
                         MoviesListViewModel.MovieItem(movie)
@@ -79,7 +79,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach { [unowned self] in
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)) as Result<Movies, Swift.Error>)
+                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
                         viewModel?.send(action: .onAppear)
                     }
                     
@@ -91,7 +91,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when error response unknown error") {
                 beforeEach { [unowned self] in
-                    mockResponse(result: .failure(APIError.unknownResponse) as Result<Movies, Swift.Error>)
+                    mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
                 }
                 
