@@ -87,7 +87,7 @@ private extension MovieDetailView {
                 Text(movieDetail.overview)
                     .withOverviewStyle()
                 
-                if movieDetail.budget != "0" {
+                if movieDetail.budget.isNotZero() {
                     IconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
                 }
                 
