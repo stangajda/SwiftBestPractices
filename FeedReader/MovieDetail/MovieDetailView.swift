@@ -80,7 +80,7 @@ private extension MovieDetailView {
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .withStarsVotedSizeStyle()
                 
-                if movieDetail.release_date != "unknown" {
+                if !movieDetail.release_date.isEmpty{
                     IconValueView(iconName: "calendar", textValue: movieDetail.release_date)
                 }
                 

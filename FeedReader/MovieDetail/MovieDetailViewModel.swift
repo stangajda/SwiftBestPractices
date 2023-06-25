@@ -98,7 +98,7 @@ extension MovieDetailViewModel{
             vote_average = movie.vote_average.halfDivide()
             vote_count = movie.vote_count
             budget = movie.budget.formatNumber()
-            release_date = movie.release_date.formatDate()
+            release_date = movie.release_date.toStringDate()
             genres = movie.genres.getNameOnly()
             spoken_languages = movie.spoken_languages.groupValues()
         }

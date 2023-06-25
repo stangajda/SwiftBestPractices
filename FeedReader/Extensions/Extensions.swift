@@ -30,15 +30,17 @@ extension Double{
 }
 
 extension String {
-    func formatDate() -> String{
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
-        let date = dateFormatter.date(from: self)
-        dateFormatter.dateFormat = "d MMM yy"
+    func toStringDate() -> String{
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        let date = formatter.date(from: self)
+        formatter.locale = Locale(identifier: "en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        formatter.dateFormat = "d MMM yy"
         guard let date = date else {
-            return "unknown"
+            return ""
         }
-        return dateFormatter.string(from: date)
+        return formatter.string(from: date)
     }
 }
 
