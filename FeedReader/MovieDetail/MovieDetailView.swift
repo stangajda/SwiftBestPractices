@@ -38,6 +38,8 @@ struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelPro
 //MARK:- States
 private extension MovieDetailView {
     typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
+    
+    @ViewBuilder
     var initialView: some View {
         Color.clear
             .onAppear {
