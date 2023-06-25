@@ -54,6 +54,11 @@ extension String {
     func isNotZero() -> Bool {
         return self != "0"
     }
+    
+    func addDollar() -> String {
+        return "$\(self)"
+    }
+    
 }
 
 extension Int {

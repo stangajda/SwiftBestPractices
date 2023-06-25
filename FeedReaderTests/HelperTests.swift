@@ -95,9 +95,8 @@ func beLoadedState<Loaded, Start>(
     }
 }
 
-func convertImageToData(_ named:String) -> Data {
-    let image = UIImage(named: named)
-    guard let imageData = image?.pngData() else {
+func convertImageToData(_ uiImage: UIImage?) -> Data {
+    guard let imageData = uiImage?.pngData() else {
         fatalError("Error: Can not convert image to data")
     }
     return imageData

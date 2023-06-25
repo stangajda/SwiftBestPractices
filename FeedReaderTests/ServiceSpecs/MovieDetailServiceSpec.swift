@@ -33,8 +33,8 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
 
             context("when successful json data") {
                 beforeEach { [self] in
-                    moviesFromData = Data.jsonDataToObject("MockMovieDetailResponseResult.json")
-                    anotherMoviesFromData = Data.jsonDataToObject("MockAnotherMovieDetailResponseResult.json")
+                    moviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
+                    anotherMoviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
                     mockResponse(result: .success(moviesFromData))
                 }
                 

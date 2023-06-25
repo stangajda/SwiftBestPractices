@@ -36,8 +36,8 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
 
             context("when send on appear action") {
                 beforeEach { [unowned self] in
-                    let moviesFromData: Movies = Data.jsonDataToObject("MockMovieListResponseResult.json")
-                    let anotherMoviesFromData: Movies = Data.jsonDataToObject("MockAnotherMovieListResponseResult.json")
+                    let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)
+                    let anotherMoviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.anotherMovieListResponseResult)
                     mockResponse(result: .success(moviesFromData))
                     
                     movieItem = moviesFromData.results.map { movie in

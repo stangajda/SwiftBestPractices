@@ -67,6 +67,30 @@ struct Config {
             static let qos = DispatchQoS.background
         }
     }
+
+    struct Icon {
+        static let calendar = "calendar"
+        static let starFill = "star.fill"
+        static let banknote = "banknote"
+        static let speaker = "speaker"
+    }
+
+    struct Mock {
+        struct MovieList {
+            static let movieListResponseResult = "MockMovieListResponseResult.json"
+            static let anotherMovieListResponseResult = "MockAnotherMovieListResponseResult.json"
+
+        }
+
+        struct MovieDetail {
+            static let movieDetailResponseResult = "MockMovieDetailResponseResult.json"
+            static let anotherMovieDetailResponseResult = "MockAnotherMovieDetailResponseResult.json"
+        }
+
+        struct Image {
+            static let stubImageMovieMedium = "stubImageMovieMedium"
+        }
+    }
 }
 
 // MARK:- URLSession

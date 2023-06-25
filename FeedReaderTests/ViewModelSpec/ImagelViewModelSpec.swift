@@ -38,8 +38,8 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
 
             context("when send on appear action") {
                 beforeEach { [unowned self] in
-                    let testImage: UIImage = UIImage(named: "stubImageMovieMedium")!
-                    let imageData = convertImageToData("stubImageMovieMedium")
+                    let testImage: UIImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)!
+                    let imageData = convertImageToData(testImage)
                    
                     mockResponse(result: .success(imageData))
                     imageItem = ImageViewModel.ImageItem(testImage)

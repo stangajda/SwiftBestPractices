@@ -31,7 +31,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             
             context("when succesful image") {
                 beforeEach { [self] in
-                    let imageData = convertImageToData("stubImage")
+                    let testImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)
+                    let imageData = convertImageToData(testImage)
                     mockResponse(result: .success(imageData))
                 }
                 

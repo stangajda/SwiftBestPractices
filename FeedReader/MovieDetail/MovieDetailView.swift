@@ -83,17 +83,17 @@ private extension MovieDetailView {
                     .withStarsVotedSizeStyle()
                 
                 if !movieDetail.release_date.isEmpty{
-                    IconValueView(iconName: "calendar", textValue: movieDetail.release_date)
+                    IconValueView(iconName: Config.Icon.calendar, textValue: movieDetail.release_date)
                 }
                 
                 Text(movieDetail.overview)
                     .withOverviewStyle()
                 
                 if movieDetail.budget.isNotZero() {
-                    IconValueView(iconName: "banknote", textValue: "$\(movieDetail.budget)")
+                    IconValueView(iconName: Config.Icon.banknote, textValue: movieDetail.budget.addDollar())
                 }
                 
-                IconValueView(iconName: "speaker", textValue: movieDetail.spoken_languages)
+                IconValueView(iconName: Config.Icon.speaker, textValue: movieDetail.spoken_languages)
                 
                 OverlayTextView(stringArray: movieDetail.genres)
             }
