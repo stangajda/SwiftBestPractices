@@ -45,17 +45,21 @@ private extension MovieDetailView {
             }
     }
     
+    @ViewBuilder
     var loadingView: some View {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
+    @ViewBuilder
     func loadedView(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         movieContent(movieDetail)
     }
     
+    @ViewBuilder
     func failedView(_ error: Error) -> some View {
         ErrorView(error: error)
     }
+    
     
     func movieContent(_ movieDetail: MovieDetailViewModel.MovieDetailItem) -> some View {
         ScrollView {

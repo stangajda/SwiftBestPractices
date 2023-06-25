@@ -63,20 +63,25 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
 
 //MARK:- States
 private extension AsyncImageCached {
+    
+    @ViewBuilder
     var initialView: some View {
         Color.clear
     }
     
+    @ViewBuilder
     var loadingView: some View {
         placeholderLoading
     }
     
+    @ViewBuilder
     func loadedView(_ image: Image) -> some View {
         image
             .resizable()
             .aspectRatio(contentMode: .fit)
     }
     
+    @ViewBuilder
     func failedView(_ error: Error) -> some View {
         placeholderError(error)
     }

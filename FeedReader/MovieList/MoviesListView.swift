@@ -44,6 +44,8 @@ struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProto
 //MARK:- States
 extension MoviesListView {
     typealias MovieDetailViewWrapper = MovieDetailView<AnyMovieDetailViewModelProtocol>
+    
+    @ViewBuilder
     private var startView: some View {
         Color.clear
             .onAppear {
@@ -51,10 +53,12 @@ extension MoviesListView {
             }
     }
     
+    @ViewBuilder
     var loadingView: some View {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
     
+    @ViewBuilder
     func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
         listMovies(movies)
             .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
@@ -62,6 +66,7 @@ extension MoviesListView {
             }
     }
     
+    @ViewBuilder
     func failedView(_ error: Error) -> some View {
         ErrorView(error: error)
     }
@@ -74,6 +79,7 @@ extension MoviesListView {
         }
     }
     
+
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
         LazyView(MovieDetailViewWrapper(Injection.resolver.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)))
 
