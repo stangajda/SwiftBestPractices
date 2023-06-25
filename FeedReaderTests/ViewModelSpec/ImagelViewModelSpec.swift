@@ -26,7 +26,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
         describe("check movie list service"){
 
             beforeEach { [self] in
-                viewModel = ImageViewModel.instance(imagePath: "stubPath", imageSizePath: MockEmptyImagePath())
+                viewModel = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath())
             }
             
             afterEach { [unowned self] in
@@ -89,15 +89,14 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
                 }
             }
             
-            context("when deaalocate MovieDetailViewModel instances") {
+            context("when 1 instance exist") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
-                    MovieDetailViewModel.deallocateAllInstances()
                 }
                 
-                it("it should get MovieDetailViewModel instances count 0"){
-                    expect(MovieDetailViewModel.instances.count).to(equal(0))
+                it("it should get MovieDetailViewModel instances count 1"){
+                    expect(ImageViewModel.instances.count).to(equal(1))
                 }
             }
             
@@ -105,11 +104,11 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
-                    MovieDetailViewModel.deallocateAllInstances()
+                    ImageViewModel.deallocateAllInstances()
                 }
                 
                 it("it should get MovieDetailViewModel instances count 0"){
-                    expect(MovieDetailViewModel.instances.count).to(equal(0))
+                    expect(ImageViewModel.instances.count).to(equal(0))
                 }
             }
         }

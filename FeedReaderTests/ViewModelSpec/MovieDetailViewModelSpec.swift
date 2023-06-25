@@ -90,15 +90,14 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
                 }
             }
             
-            context("when deaalocate MovieDetailViewModel instances") {
+            context("when 1 instance exist") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.send(action: .onAppear)
-                    MovieDetailViewModel.deallocateAllInstances()
                 }
                 
-                it("it should get MovieDetailViewModel instances count 0"){
-                    expect(MovieDetailViewModel.instances.count).to(equal(0))
+                it("it should get MovieDetailViewModel instances count 1"){
+                    expect(MovieDetailViewModel.instances.count).to(equal(1))
                 }
             }
             
