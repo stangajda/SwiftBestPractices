@@ -89,6 +89,7 @@ struct Config {
 
         struct Image {
             static let stubImageMovieMedium = "stubImageMovieMedium"
+            static let stubImageMoviedetailsBig = "stubImageMovieDetailsBig"
         }
     }
 }

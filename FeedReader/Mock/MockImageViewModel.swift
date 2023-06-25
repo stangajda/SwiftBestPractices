@@ -44,12 +44,12 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
 
 final class MockImageViewModel: BaseMockImageViewModel {
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
-        super.init(imageName: "stubImageMovieMedium")
+        super.init(imageName: Config.Mock.Image.stubImageMovieMedium)
     }
 }
 
 final class MockImageViewModelDetail: BaseMockImageViewModel {
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
-        super.init(imageName: "stubImageMovieDetailsBig")
+        super.init(imageName: Config.Mock.Image.stubImageMoviedetailsBig)
     }
 }
