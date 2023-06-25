@@ -21,11 +21,7 @@ struct FeedReaderApp: App {
     }
     
     func injectDependency(){
-#if DEBUG
-    Injection.main.setupTestURLSession()
-#else
-    Injection.main.initialRegistration()
-#endif
+        Injection.main.initialRegistration()
     }
 
 }
