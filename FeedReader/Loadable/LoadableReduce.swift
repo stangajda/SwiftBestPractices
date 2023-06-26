@@ -19,6 +19,8 @@ extension LoadableProtocol {
             }
         case .loading(let id):
             switch action {
+            case .onAppear:
+                return .loading(id)
             case .onFailedLoaded(let error):
                 return .failedLoaded(error)
             case .onLoaded(let result):
@@ -26,8 +28,6 @@ extension LoadableProtocol {
             case .onReset:
                 self.onResetAction()
                 return .start(id)
-            default:
-                return state
             }
         case .loaded:
             switch action {

@@ -29,11 +29,12 @@ final class ImageViewModel: ImageViewModelProtocol{
     fileprivate var imageSizePath: ImagePathProtocol
     
     fileprivate var cancellable: AnyCancellable?
+    fileprivate static var fullPath: String = String()
     
     static var instances: [String: ImageViewModel] = [:]
 
     static func instance(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) -> ImageViewModel {
-        let fullPath: String = imageSizePath.stringPath() + imagePath
+        fullPath = imageSizePath.stringPath() + imagePath
         
         if let instance = instances[fullPath] {
             return instance
@@ -44,8 +45,8 @@ final class ImageViewModel: ImageViewModelProtocol{
         }
     }
     
-    static func deallocateAllInstances() {
-        instances.removeAll()
+    static func deallocateCurrentInstance() {
+        instances.removeValue(forKey: fullPath)
     }
     
     fileprivate init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil){
@@ -84,7 +85,7 @@ final class ImageViewModel: ImageViewModelProtocol{
     
     fileprivate func reset(){
         cancellable?.cancel()
-        Self.deallocateAllInstances()
+        Self.deallocateCurrentInstance()
     }
     
     func onResetAction(){

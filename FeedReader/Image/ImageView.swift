@@ -9,7 +9,6 @@ import SwiftUI
 //MARK:- ImageViewModel
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
-    private let cancelOnDisapear: Bool = false
     private var placeholderLoading: ImageLoadingView
     private var placeholderError: (Error) -> ImageErrorView
 
@@ -42,7 +41,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
                 viewModel.send(action: .onAppear)
             }
             .onDisappear{
-                cancelOnDisapear ? viewModel.send(action: .onReset) : ()
+                viewModel.send(action: .onReset)
             }
     }
 
