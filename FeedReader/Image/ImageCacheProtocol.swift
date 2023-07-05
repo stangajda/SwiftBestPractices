@@ -17,7 +17,7 @@ struct TemporaryImageCache: ImageCacheProtocol {
     fileprivate let cache = NSCache<NSURL, UIImage>()
     
     init(){
-        cache.totalCostLimit = Config.Cache.totalCostLimit
+        cache.totalCostLimit = Config.ImageCache.totalCostLimit
     }
     
     subscript(_ key: URL) -> UIImage? {

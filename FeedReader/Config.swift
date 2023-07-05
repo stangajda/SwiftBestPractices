@@ -47,7 +47,7 @@ struct Config {
         }
     }
     
-    struct Cache {
+    struct ImageCache {
         static let totalCostLimit = 50_000_000
     }
     
