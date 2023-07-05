@@ -83,6 +83,10 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
 
 //MARK: - ImageWrapper
 class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, ImageViewModel.Action>, ImageViewModelProtocol {
+    func setUp() {
+        viewModel.setUp()
+    }
+    
     typealias ViewModel = ImageViewModel
     typealias T = ViewModel.ImageItem
     typealias U = String

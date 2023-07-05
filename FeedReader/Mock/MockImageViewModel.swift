@@ -10,6 +10,10 @@ import UIKit
 import Combine
 
 class BaseMockImageViewModel: ImageViewModelProtocol {
+    func setUp() {
+        
+    }
+    
     var statePublisher: Published<State>.Publisher
     
     typealias T = ImageViewModel.ImageItem

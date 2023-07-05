@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageViewModel.ImageItem, U == String {
-   
+   func setUp()
 }
 
 //MARK: - ImageViewModel
@@ -61,22 +61,9 @@ final class ImageViewModel: ImageViewModelProtocol{
         return APIUrlImageBuilder[self.imageSizePath, imagePath]
     }
     
-    fileprivate func setUp(){
-        guard let url = getURL() else {
-            state = .failedLoaded(APIError.invalidURL)
-            return
-        }
-        
-        if let image = cache?[url] {
-            state = .loaded(ImageItem(image))
-            return
-        }
-        
-        load()
-    }
-    
-    fileprivate func load(){
+    func setUp(){
         cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
     }
     
     deinit {
@@ -101,6 +88,15 @@ extension ImageViewModel {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
         }
+        
+        if let image = cache?[url] {
+            let imageItem = ImageItem(image)
+            state = .loaded(imageItem)
+            return Just(imageItem)
+                .setFailureType(to: Error.self)
+                .eraseToAnyPublisher()
+        }
+        
         return self.service.fetchImage(URLRequest(url: url))
             .map { [unowned self] item in
                 self.cache?[url] = item
