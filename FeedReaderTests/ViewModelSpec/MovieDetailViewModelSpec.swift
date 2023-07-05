@@ -29,10 +29,10 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             }
             
             afterEach { [unowned self] in
-                viewModel?.send(action: .onReset)
+                viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
-                MovieDetailViewModel.deallocateAllInstances()
+                MovieDetailViewModel.deallocateCurrentInstances()
             }
 
             context("when send on appear action") {
@@ -42,7 +42,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
                     mockResponse(result: .success(moviesFromData) as Result<MovieDetail, Swift.Error>)
                     movieItem = MovieDetailViewModel.MovieDetailItem(moviesFromData)
                     anotherMovieItem = MovieDetailViewModel.MovieDetailItem(anotherMoviesFromData)
-                    viewModel?.send(action: .onAppear)
+                    viewModel?.onAppear()
                 }
                 
                 it("it should get movies from loaded state match mapped object"){ [unowned self] in
@@ -56,8 +56,8 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             
             context("when send on reset action") {
                 beforeEach { [unowned self] in
-                    viewModel?.send(action: .onAppear)
-                    viewModel?.send(action: .onReset)
+                    viewModel?.onAppear()
+                    viewModel?.onDisappear()
                 }
                 
                 it("it should get start state"){ [unowned self] in
@@ -70,7 +70,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
                 context("when error response with error code \(errorCode)") {
                     beforeEach { [unowned self] in
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
-                        viewModel?.send(action: .onAppear)
+                        viewModel?.onAppear()
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
@@ -82,7 +82,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             context("when error response unknown error") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
-                    viewModel?.send(action: .onAppear)
+                    viewModel?.onAppear()
                 }
                 
                 it("it should get state failed loaded with unknown error"){ [unowned self] in
@@ -93,7 +93,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             context("when 1 instance exist") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
-                    viewModel?.send(action: .onAppear)
+                    viewModel?.onAppear()
                 }
                 
                 it("it should get MovieDetailViewModel instances count 1"){
@@ -104,8 +104,8 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
-                    viewModel?.send(action: .onAppear)
-                    MovieDetailViewModel.deallocateAllInstances()
+                    viewModel?.onAppear()
+                    MovieDetailViewModel.deallocateCurrentInstances()
                 }
                 
                 it("it should get MovieDetailViewModel instances count 0"){

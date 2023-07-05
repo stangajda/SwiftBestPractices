@@ -29,7 +29,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             }
             
             afterEach { [unowned self] in
-                viewModel?.send(action: .onReset)
+                viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
             }
@@ -48,7 +48,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                         MoviesListViewModel.MovieItem(movie)
                     }
                     
-                    viewModel?.send(action: .onAppear)
+                    viewModel?.onAppear()
                 }
                 
                 it("it should match from loaded state counted objects in array"){ [unowned self] in
@@ -66,8 +66,8 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when send on reset action") {
                 beforeEach { [unowned self] in
-                    viewModel?.send(action: .onAppear)
-                    viewModel?.send(action: .onReset)
+                    viewModel?.onAppear()
+                    viewModel?.onDisappear()
                 }
                 
                 it("it should get start state"){ [unowned self] in
@@ -80,7 +80,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 context("when error response with error code \(errorCode)") {
                     beforeEach { [unowned self] in
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
-                        viewModel?.send(action: .onAppear)
+                        viewModel?.onAppear()
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
@@ -92,7 +92,7 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             context("when error response unknown error") {
                 beforeEach { [unowned self] in
                     mockResponse(result: .failure(APIError.unknownResponse))
-                    viewModel?.send(action: .onAppear)
+                    viewModel?.onAppear()
                 }
                 
                 it("it should get state failed loaded with unknown error"){ [unowned self] in
