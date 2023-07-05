@@ -38,10 +38,10 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     var body: some View {
         content
             .onAppear {
-                viewModel.setUp()
+                viewModel.onAppear()
             }
             .onDisappear{
-                viewModel.send(action: .onReset)
+                viewModel.onDisappear()
             }
     }
 

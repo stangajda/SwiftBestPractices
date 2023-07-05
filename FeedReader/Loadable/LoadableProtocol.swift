@@ -13,7 +13,6 @@ protocol LoadableProtocol {
     associatedtype U: Equatable
     var input: PassthroughSubject<Action, Never> { get }
     func fetch() -> AnyPublisher<T, Error>
-    func onResetAction()
 }
  
 extension LoadableProtocol {

@@ -40,6 +40,4 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
         }
     }
     
-    func onResetAction() {
-    }
 }

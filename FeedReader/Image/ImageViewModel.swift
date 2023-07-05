@@ -8,8 +8,8 @@ import Combine
 import UIKit
 import SwiftUI
 
-protocol ImageViewModelProtocol: ObservableLoadableProtocol where T == ImageViewModel.ImageItem, U == String {
-   func setUp()
+protocol ImageViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol where T == ImageViewModel.ImageItem, U == String {
+   
 }
 
 //MARK: - ImageViewModel
@@ -54,29 +54,30 @@ final class ImageViewModel: ImageViewModelProtocol{
         self.imageSizePath = imageSizePath
         self.cache = cache
         self.imagePath = imagePath
-        self.setUp()
-    }
-    
-    fileprivate func getURL() -> URL?{
-        return APIUrlImageBuilder[self.imageSizePath, imagePath]
-    }
-    
-    func setUp(){
-        cancellable = self.assignNoRetain(self, to: \.state)
-        send(action: .onAppear)
+        self.onAppear()
     }
     
     deinit {
         reset()
     }
     
-    fileprivate func reset(){
-        cancellable?.cancel()
-        Self.deallocateCurrentInstance()
+    func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
     }
     
-    func onResetAction(){
+    func onDisappear() {
         reset()
+    }
+    
+    fileprivate func getURL() -> URL?{
+        return APIUrlImageBuilder[self.imageSizePath, imagePath]
+    }
+    
+    fileprivate func reset(){
+        send(action: .onReset)
+        cancellable?.cancel()
+        Self.deallocateCurrentInstance()
     }
 }
 

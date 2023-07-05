@@ -56,11 +56,6 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
         cancellable?.cancel()
         Self.deallocateAllInstances()
     }
-    
-    func onResetAction(){
-        reset()
-    }
-    
 }
 
 //MARK:- Fetch

@@ -10,10 +10,6 @@ import UIKit
 import Combine
 
 class BaseMockImageViewModel: ImageViewModelProtocol {
-    func setUp() {
-        
-    }
-    
     var statePublisher: Published<State>.Publisher
     
     typealias T = ImageViewModel.ImageItem
@@ -31,6 +27,12 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
         cancellable = self.assignNoRetain(self, to: \.state)
     }
     
+    func onAppear() {
+    }
+    
+    func onDisappear() {
+    }
+    
     func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {
         guard let image = image else {
             return Fail(error: APIError.invalidURL)
@@ -39,10 +41,6 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
         return Just(ImageViewModel.ImageItem(image))
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
-    }
-    
-    func onResetAction() {
-        
     }
 }
 
