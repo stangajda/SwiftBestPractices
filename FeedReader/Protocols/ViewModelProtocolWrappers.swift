@@ -44,6 +44,22 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
                    statePublisher: viewModel.statePublisher)
     }
     
+    func onAppear() {
+        viewModel.onAppear()
+    }
+    
+    func onDisappear() {
+        viewModel.onDisappear()
+    }
+    
+    func onActive() {
+        viewModel.onActive()
+    }
+    
+    func onBackground() {
+        viewModel.onBackground()
+    }
+    
     func fetch() -> AnyPublisher<T, Error> {
         viewModel.fetch()
     }
@@ -61,6 +77,14 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
         super.init(state: viewModel.state,
                    input: viewModel.input,
                    statePublisher: viewModel.statePublisher)
+    }
+    
+    func onAppear() {
+        viewModel.onAppear()
+    }
+    
+    func onDisappear() {
+        viewModel.onDisappear()
     }
     
     var movieList: MoviesListViewModel.MovieItem {

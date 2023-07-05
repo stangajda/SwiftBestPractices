@@ -8,7 +8,9 @@
 import Foundation
 import Combine
 
-protocol MoviesListViewModelProtocol: ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Int {
+protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Int {
+    func onActive()
+    func onBackground()
 }
 
 //MARK:- MoviesViewModel
@@ -28,6 +30,22 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     init() {
         statePublisher = _state.projectedValue
         cancellable = self.assignNoRetain(self, to: \.state)
+    }
+    
+    func onAppear() {
+        send(action: .onAppear)
+    }
+    
+    func onDisappear() {
+        send(action: .onReset)
+    }
+    
+    func onActive() {
+        send(action: .onAppear)
+    }
+    
+    func onBackground() {
+        send(action: .onReset)
     }
     
 }

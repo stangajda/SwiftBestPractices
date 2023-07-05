@@ -29,7 +29,7 @@ struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelPro
             }
         }
         .onDisappear{
-            viewModel.send(action: .onReset)
+            viewModel.onDisappear()
         }
     }
     
@@ -43,7 +43,7 @@ private extension MovieDetailView {
     var initialView: some View {
         Color.clear
             .onAppear {
-                viewModel.send(action: .onAppear)
+                viewModel.onAppear()
             }
     }
     

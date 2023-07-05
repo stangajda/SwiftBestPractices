@@ -7,7 +7,7 @@
 import Foundation
 import Combine
 
-protocol MovieDetailViewModelProtocol: ObservableLoadableProtocol where T == MovieDetailViewModel.MovieDetailItem, U == Int {
+protocol MovieDetailViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol where T == MovieDetailViewModel.MovieDetailItem, U == Int {
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
@@ -24,11 +24,13 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     var movieList: MoviesListViewModel.MovieItem
 
     fileprivate var cancellable: AnyCancellable?
+    fileprivate static var movieListId: Int = 0
     
     static var instances: [Int: MovieDetailViewModel] = [:]
 
     static func instance(_ movieList: MoviesListViewModel.MovieItem) -> MovieDetailViewModel {
-        if let instance = instances[movieList.id] {
+        movieListId = movieList.id
+        if let instance = instances[movieListId] {
             return instance
         } else {
             let instance = MovieDetailViewModel(movieList)
@@ -37,24 +39,33 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
         }
     }
 
-    static func deallocateAllInstances() {
-        instances.removeAll()
+    static func deallocateCurrentInstances() {
+        instances.removeValue(forKey: movieListId)
     }
     
     fileprivate init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
         statePublisher = _state.projectedValue
-        cancellable = self.assignNoRetain(self, to: \.state)
+        self.onAppear()
     }
     
     deinit {
         reset()
     }
     
+    func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
+    }
+    
+    func onDisappear() {
+        reset()
+    }
+    
     fileprivate func reset(){
         cancellable?.cancel()
-        Self.deallocateAllInstances()
+        Self.deallocateCurrentInstances()
     }
 }
 

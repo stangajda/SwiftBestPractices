@@ -47,4 +47,10 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
                 .eraseToAnyPublisher()
         }
     }
+    
+    func onAppear() {
+    }
+    
+    func onDisappear() {
+    }
 }
