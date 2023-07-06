@@ -8,7 +8,7 @@
 import SwiftUI
 
 //MARK:- Main
-struct MovieDetailView<ViewModel>: View where ViewModel: MovieDetailViewModelProtocol {
+struct MovieDetailView<ViewModel>: View where ViewModel: AnyMovieDetailViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
     
     init(_ viewModel: ViewModel){
