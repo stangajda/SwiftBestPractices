@@ -120,6 +120,7 @@
 		F6A686D02A55F274004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
 		F6AC12442A570871003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12432A570871003A55F9 /* SnapshotTesting */; };
 		F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12452A5708AC003A55F9 /* SnapshotTesting */; };
+		F6AC12492A570DCD003A55F9 /* MovieDetailViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -221,6 +222,7 @@
 		F67876692A1E3BE300A4FD54 /* MockableServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableServiceProtocol.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
+		F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewSpec.swift; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
 		F6F2D2BF2A46E42300297308 /* ImagelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagelViewModelSpec.swift; sourceTree = "<group>"; };
@@ -444,6 +446,7 @@
 			children = (
 				F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */,
 				CC569509268205B00055C07C /* HelperTests.swift */,
+				F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */,
 				F672138C2A310C310059E397 /* ViewModelSpec */,
 				F67876702A1E445800A4FD54 /* ServiceSpecs */,
 				CC4E708026BBF00700B3288D /* Mocks */,
@@ -503,6 +506,14 @@
 				CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */,
 			);
 			path = ServiceSpecs;
+			sourceTree = "<group>";
+		};
+		F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */ = {
+			isa = PBXGroup;
+			children = (
+				F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */,
+			);
+			path = SnapshotViewSpec;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -729,6 +740,7 @@
 				F67F06292A23CD4400889775 /* Config.swift in Sources */,
 				F67876542A1D0F4E00A4FD54 /* ImageCacheProtocol.swift in Sources */,
 				F64CEBF02A43AB9A00C4C175 /* MovieDetailViewModelSpec.swift in Sources */,
+				F6AC12492A570DCD003A55F9 /* MovieDetailViewSpec.swift in Sources */,
 				F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */,
 				F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
