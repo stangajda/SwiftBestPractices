@@ -18,14 +18,14 @@ class MovieDetailViewTests: XCTestCase {
     var viewController: UIViewController!
 
     override func setUpWithError() throws {
-      try super.setUpWithError()
-      let viewModelLoaded = MockMovieDetailViewModel(MoviesListViewModel.MovieItem.mock).eraseToAnyViewModelProtocol()
-      let movieDetailView = MovieDetailView(viewModelLoaded)
-      viewController = UIHostingController(rootView: movieDetailView)
+        try super.setUpWithError()
+        Injection.main.setupPreviewModeDetail()
+        @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
+        let movieDetailView = MovieDetailView(viewModelLoaded)
+        viewController = UIHostingController(rootView: movieDetailView)
     }
 
     func testMovieDetailView() throws {
-        //delay to allow for image loading
         RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
         assertSnapshot(matching: viewController, as: .image)
     }
