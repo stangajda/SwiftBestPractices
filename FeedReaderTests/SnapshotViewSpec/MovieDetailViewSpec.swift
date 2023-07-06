@@ -5,7 +5,6 @@
 //  Created by Stan Gajda on 06/07/2023.
 //
 
-import XCTest
 import Foundation
 @testable import FeedReader
 import SwiftUI
@@ -13,60 +12,26 @@ import Nimble
 import Quick
 import SnapshotTesting
 
-class MovieDetailViewTests: XCTestCase {
+class MovieDetailViewSpec: QuickSpec {
+    override func spec() {
+        describe("check movie detail view to match recorded snapshot") {
+                    
+            var viewController: UIViewController!
 
-    var viewController: UIViewController!
+            beforeEach { @MainActor in
+                Injection.main.setupPreviewModeDetail()
+            }
 
-    override func setUpWithError() throws {
-        try super.setUpWithError()
-        Injection.main.setupPreviewModeDetail()
-        @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
-        let movieDetailView = MovieDetailView(viewModelLoaded)
-        viewController = UIHostingController(rootView: movieDetailView)
-    }
+            context("when movie detail is loaded") {
+                beforeEach { @MainActor in
+                    @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
+                    viewController = UIHostingController(rootView: MovieDetailView(viewModelLoaded))
+                }
 
-    func testMovieDetailView() throws {
-        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
-        assertSnapshot(matching: viewController, as: .image)
+                it("it should match recorded image") { @MainActor in
+                    assertSnapshot(matching: viewController, as: .image)
+                }
+            }
+        }
     }
 }
-
-//class MovieDetailViewSpec: QuickSpec {
-//
-//    required init() {
-//        //Injection.main.setupPreviewModeDetail()
-//    }
-//
-//    override func spec() {
-//        describe("describe") {
-//            //Injection.main.setupPreviewModeDetail()
-//            let viewModelLoaded: AnyMovieDetailViewModelProtocol = MockMovieDetailViewModel(MoviesListViewModel.MovieItem.mock).eraseToAnyViewModelProtocol() as AnyMovieDetailViewModelProtocol
-//            let movieDetailView = MovieDetailView(viewModelLoaded)
-//            let view: UIView = UIHostingController(rootView: movieDetailView).view
-//
-//            beforeEach {
-//
-//            }
-//
-//            afterEach {
-//
-//            }
-//
-//            context("context") {
-//                beforeEach {
-//
-//                }
-//
-//                it("it 1") {
-//
-//                    await assertSnapshot(matching: view, as: .image(size: view.intrinsicContentSize))
-//
-//                }
-//
-//                it("it 2") {
-//
-//                }
-//            }
-//        }
-//    }
-//}
