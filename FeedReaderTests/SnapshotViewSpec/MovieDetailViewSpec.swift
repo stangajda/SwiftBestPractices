@@ -25,7 +25,9 @@ class MovieDetailViewTests: XCTestCase {
     }
 
     func testMovieDetailView() throws {
-      assertSnapshot(matching: viewController, as: .image(on: .iPhone13))
+        //delay to allow for image loading
+        RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.1))
+        assertSnapshot(matching: viewController, as: .image)
     }
 }
 
