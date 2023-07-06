@@ -11,6 +11,7 @@ import SwiftUI
 import Nimble
 import Quick
 import SnapshotTesting
+import Nimble_SnapshotTesting
 
 class MovieDetailViewSpec: QuickSpec {
     override func spec() {
@@ -29,7 +30,7 @@ class MovieDetailViewSpec: QuickSpec {
                 }
 
                 it("it should match recorded image") { @MainActor in
-                    assertSnapshot(matching: viewController, as: .image)
+                    expect(viewController).to(haveValidSnapshot(as: .image))
                 }
             }
         }

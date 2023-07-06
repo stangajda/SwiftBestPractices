@@ -129,6 +129,7 @@
 		F6AC12512A573DD3003A55F9 /* StarsRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCBF629726B0806100BB0592 /* StarsRatingView.swift */; };
 		F6AC12522A573DE0003A55F9 /* OverlayTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC199F426B1A77C00134803 /* OverlayTextView.swift */; };
 		F6AC12532A573DEE003A55F9 /* Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC35563D26AF50FE002D0B07 /* Styles.swift */; };
+		F6AC12582A577039003A55F9 /* Nimble-SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12572A577039003A55F9 /* Nimble-SnapshotTesting */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -249,6 +250,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6AC12582A577039003A55F9 /* Nimble-SnapshotTesting in Frameworks */,
 				F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */,
 				CC45F75126B32A3F0050B77C /* Quick in Frameworks */,
 				CC45F75326B32C3B0050B77C /* Nimble in Frameworks */,
@@ -565,6 +567,7 @@
 				CC45F75026B32A3F0050B77C /* Quick */,
 				CC45F75226B32C3B0050B77C /* Nimble */,
 				F6AC12452A5708AC003A55F9 /* SnapshotTesting */,
+				F6AC12572A577039003A55F9 /* Nimble-SnapshotTesting */,
 			);
 			productName = FeedReaderTests;
 			productReference = CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */;
@@ -604,6 +607,7 @@
 				CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */,
 				F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */,
 				F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -1051,6 +1055,14 @@
 				version = 1.11.1;
 			};
 		};
+		F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tahirmt/Nimble-SnapshotTesting.git";
+			requirement = {
+				kind = exactVersion;
+				version = 3.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1073,6 +1085,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
+		};
+		F6AC12572A577039003A55F9 /* Nimble-SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */;
+			productName = "Nimble-SnapshotTesting";
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
