@@ -33,6 +33,28 @@ class MovieDetailViewSpec: QuickSpec {
                     expect(viewController).to(haveValidSnapshot(as: .image))
                 }
             }
+            
+            context("when movie detail is loading") {
+                beforeEach { @MainActor in
+                    @Injected(name: .movieDetailStateLoading) var viewModelLoaded: AnyMovieDetailViewModelProtocol
+                    viewController = UIHostingController(rootView: MovieDetailView(viewModelLoaded))
+                }
+
+                it("it should match recorded image") { @MainActor in
+                    expect(viewController).to(haveValidSnapshot(as: .image))
+                }
+            }
+            
+            context("when movie detail is failed") {
+                beforeEach { @MainActor in
+                    @Injected(name: .movieDetailStateFailed) var viewModelLoaded: AnyMovieDetailViewModelProtocol
+                    viewController = UIHostingController(rootView: MovieDetailView(viewModelLoaded))
+                }
+
+                it("it should match recorded image") { @MainActor in
+                    expect(viewController).to(haveValidSnapshot(as: .image))
+                }
+            }
         }
     }
 }
