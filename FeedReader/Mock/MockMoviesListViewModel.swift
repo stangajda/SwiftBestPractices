@@ -20,19 +20,25 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
     init(_ mockState: MockState.State){
         self.mockState = mockState
         statePublisher = _state.projectedValue
-        cancellable = self.assignNoRetain(self, to: \.state)
+        onAppear()
     }
     
     func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
     }
     
     func onDisappear() {
+        send(action: .onReset)
+        cancellable?.cancel()
     }
     
     func onActive() {
+        onAppear()
     }
     
     func onBackground() {
+        onDisappear()
     }
 
     func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {

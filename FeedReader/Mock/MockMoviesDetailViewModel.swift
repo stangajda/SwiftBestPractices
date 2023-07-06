@@ -22,14 +22,14 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         self.mockState = mockState
         self.movieList = movieList
         self.statePublisher = _state.projectedValue
-        cancellable = self.assignNoRetain(self, to: \.state)
+        onAppear()
     }
     
     init(_ movieList: MoviesListViewModel.MovieItem){
         self.mockState = .loaded
         self.movieList = movieList
         self.statePublisher = _state.projectedValue
-        
+        onAppear()
     }
     
 
@@ -49,8 +49,12 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     }
     
     func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
     }
     
     func onDisappear() {
+        send(action: .onReset)
+        cancellable?.cancel()
     }
 }

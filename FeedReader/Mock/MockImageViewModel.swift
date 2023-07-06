@@ -24,13 +24,17 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
     init(imageName: String) {
         image = UIImage(named: imageName)
         statePublisher = _state.projectedValue
-        cancellable = self.assignNoRetain(self, to: \.state)
+        onAppear()
     }
     
     func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        send(action: .onAppear)
     }
     
     func onDisappear() {
+        send(action: .onReset)
+        cancellable?.cancel()
     }
     
     func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {
@@ -38,7 +42,9 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
         }
-        return Just(ImageViewModel.ImageItem(image))
+        let imageItem = ImageViewModel.ImageItem(image)
+        state = .loaded(imageItem)
+        return Just(imageItem)
             .setFailureType(to: Error.self)
             .eraseToAnyPublisher()
     }
