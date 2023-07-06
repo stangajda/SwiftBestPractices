@@ -29,23 +29,25 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     
     init() {
         statePublisher = _state.projectedValue
-        cancellable = self.assignNoRetain(self, to: \.state)
+        onAppear()
     }
     
     func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
         send(action: .onAppear)
     }
     
     func onDisappear() {
         send(action: .onReset)
+        cancellable?.cancel()
     }
     
     func onActive() {
-        send(action: .onAppear)
+        onAppear()
     }
     
     func onBackground() {
-        send(action: .onReset)
+        onDisappear()
     }
     
 }
