@@ -118,7 +118,6 @@
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
 		F6A686D02A55F274004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
-		F6AC12442A570871003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12432A570871003A55F9 /* SnapshotTesting */; };
 		F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12452A5708AC003A55F9 /* SnapshotTesting */; };
 		F6AC12492A570DCD003A55F9 /* MovieDetailViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
@@ -234,7 +233,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F669997D2A1A6604006AF593 /* Swinject in Frameworks */,
-				F6AC12442A570871003A55F9 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -535,7 +533,6 @@
 			name = FeedReader;
 			packageProductDependencies = (
 				F669997C2A1A6604006AF593 /* Swinject */,
-				F6AC12432A570871003A55F9 /* SnapshotTesting */,
 			);
 			productName = FeedReader;
 			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
@@ -1053,11 +1050,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
-		};
-		F6AC12432A570871003A55F9 /* SnapshotTesting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
-			productName = SnapshotTesting;
 		};
 		F6AC12452A5708AC003A55F9 /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
