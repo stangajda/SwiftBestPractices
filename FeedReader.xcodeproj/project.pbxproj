@@ -118,6 +118,8 @@
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
 		F6A686D02A55F274004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
+		F6AC12442A570871003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12432A570871003A55F9 /* SnapshotTesting */; };
+		F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6AC12452A5708AC003A55F9 /* SnapshotTesting */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -230,6 +232,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F669997D2A1A6604006AF593 /* Swinject in Frameworks */,
+				F6AC12442A570871003A55F9 /* SnapshotTesting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */,
 				CC45F75126B32A3F0050B77C /* Quick in Frameworks */,
 				CC45F75326B32C3B0050B77C /* Nimble in Frameworks */,
 			);
@@ -520,6 +524,7 @@
 			name = FeedReader;
 			packageProductDependencies = (
 				F669997C2A1A6604006AF593 /* Swinject */,
+				F6AC12432A570871003A55F9 /* SnapshotTesting */,
 			);
 			productName = FeedReader;
 			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
@@ -542,6 +547,7 @@
 			packageProductDependencies = (
 				CC45F75026B32A3F0050B77C /* Quick */,
 				CC45F75226B32C3B0050B77C /* Nimble */,
+				F6AC12452A5708AC003A55F9 /* SnapshotTesting */,
 			);
 			productName = FeedReaderTests;
 			productReference = CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */;
@@ -580,6 +586,7 @@
 				CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */,
 				CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */,
 				F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */,
+				F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -1009,6 +1016,14 @@
 				version = 2.8.3;
 			};
 		};
+		F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
+			requirement = {
+				kind = exactVersion;
+				version = 1.11.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1026,6 +1041,16 @@
 			isa = XCSwiftPackageProductDependency;
 			package = F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */;
 			productName = Swinject;
+		};
+		F6AC12432A570871003A55F9 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
+		};
+		F6AC12452A5708AC003A55F9 /* SnapshotTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
+			productName = SnapshotTesting;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
