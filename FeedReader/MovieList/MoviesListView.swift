@@ -8,7 +8,7 @@
 import SwiftUI
 
 //MARK:- Main
-struct MoviesListView<ViewModel>: View where ViewModel: MoviesListViewModelProtocol {
+struct MoviesListView<ViewModel>: View where ViewModel: AnyMoviesListViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
     @Environment(\.scenePhase) var scenePhase
     

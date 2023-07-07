@@ -13,31 +13,20 @@ import Quick
 import SnapshotTesting
 import Nimble_SnapshotTesting
 
-class MovieDetailViewSpec: QuickSpec {
+class MovieListViewSpec: QuickSpec {
     override func spec() {
-        describe("check movie detail view to match recorded snapshot") {
+        describe("check movies list view to match recorded snapshot") {
                     
             var viewController: UIViewController!
 
             beforeEach { @MainActor in
-                Injection.main.setupPreviewModeDetail()
+                Injection.main.setupPreviewMode()
             }
 
-            context("when movie detail is loaded") {
+            context("when movies list is loaded") {
                 beforeEach { @MainActor in
-                    @Injected(name: .movieDetailStateLoaded) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
-                }
-
-                it("it should match recorded image") { @MainActor in
-                    expect(viewController).to(haveValidSnapshot(as: .image))
-                }
-            }
-            
-            context("when movie detail is loading") {
-                beforeEach { @MainActor in
-                    @Injected(name: .movieDetailStateLoading) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
+                    @Injected(name: .movieListStateLoaded) var viewModel: AnyMoviesListViewModelProtocol
+                    viewController = UIHostingController(rootView: MoviesListView(viewModel: viewModel))
                 }
 
                 it("it should match recorded image") { @MainActor in
@@ -45,10 +34,21 @@ class MovieDetailViewSpec: QuickSpec {
                 }
             }
             
-            context("when movie detail is failed") {
+            context("when movies list is loading") {
                 beforeEach { @MainActor in
-                    @Injected(name: .movieDetailStateFailed) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
+                    @Injected(name: .movieListStateLoading) var viewModel: AnyMoviesListViewModelProtocol
+                    viewController = UIHostingController(rootView: MoviesListView(viewModel: viewModel))
+                }
+
+                it("it should match recorded image") { @MainActor in
+                    expect(viewController).to(haveValidSnapshot(as: .image))
+                }
+            }
+            
+            context("when movies list is failed") {
+                beforeEach { @MainActor in
+                    @Injected(name: .movieListStateFailed) var viewModel: AnyMoviesListViewModelProtocol
+                    viewController = UIHostingController(rootView: MoviesListView(viewModel: viewModel))
                 }
 
                 it("it should match recorded image") { @MainActor in

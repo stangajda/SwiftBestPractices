@@ -7,7 +7,7 @@
 
 import SwiftUI
 //MARK:- ImageViewModel
-struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: ImageViewModelProtocol{
+struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: AnyImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
     private var placeholderLoading: ImageLoadingView
     private var placeholderError: (Error) -> ImageErrorView
