@@ -10,15 +10,15 @@ import Combine
 
 protocol MockableServiceProtocol: MockableBaseServiceProtocol {
     typealias Mock = MockURLProtocol.MockedResponse
-    var mockManager: ServiceProtocol { get }
-    var cancellable: AnyCancellable? { get set }
-    var mockRequestUrl: URLRequest { get }
+    static var mockManager: ServiceProtocol { get }
+    static var cancellable: AnyCancellable? { get set }
+    static var mockRequestUrl: URLRequest { get }
 }
 
 extension MockableServiceProtocol {
     func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
         do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
+            MockURLProtocol.mock = try Mock(request: Self.mockRequestUrl, result: result, apiCode: apiCode)
         } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
@@ -26,7 +26,7 @@ extension MockableServiceProtocol {
 
     func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
         do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
+            MockURLProtocol.mock = try Mock(request: Self.mockRequestUrl, result: result, apiCode: apiCode)
         } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
@@ -34,7 +34,7 @@ extension MockableServiceProtocol {
     
     func fetchData(done: @escaping() -> Void, closure: @escaping (Result<Data, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = mockManager.fetchData(mockRequestUrl)
+        cancellable = Self.mockManager.fetchData(Self.mockRequestUrl)
             .sinkToResult({ result in
                 closure(result)
                 done()

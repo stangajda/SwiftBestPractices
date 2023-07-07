@@ -13,22 +13,22 @@ import Nimble
 import Quick
 
 class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol {
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    lazy var viewModel: (any MovieDetailViewModelProtocol)? = nil
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
+    static var viewModel: (any MovieDetailViewModelProtocol)? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse
     
-    var movieItem: MovieDetailViewModel.MovieDetailItem!
-    var anotherMovieItem: MovieDetailViewModel.MovieDetailItem!
-    
-    override func spec() {
+    override class func spec() {
         describe("check movie list service"){
+            
+            var movieItem: MovieDetailViewModel.MovieDetailItem!
+            var anotherMovieItem: MovieDetailViewModel.MovieDetailItem!
 
-            beforeEach { [self] in
+            beforeEach {
                 viewModel = MovieDetailViewModel.instance(MoviesListViewModel.MovieItem.mock)
             }
             
-            afterEach { [unowned self] in
+            afterEach {
                 viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
@@ -36,7 +36,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             }
 
             context("when send on appear action") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     let moviesFromData: MovieDetail = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
                     let anotherMoviesFromData: MovieDetail = Data.jsonDataToObject(Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
                     mockResponse(result: .success(moviesFromData) as Result<MovieDetail, Swift.Error>)
@@ -45,53 +45,53 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
                     viewModel?.onAppear()
                 }
                 
-                it("it should get movies from loaded state match mapped object"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
+                it("it should get movies from loaded state match mapped object"){
+                    expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
                 }
                 
-                it("it should get movies from loaded state match not mapped object"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
+                it("it should get movies from loaded state match not mapped object"){
+                    expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
                 }
             }
             
             context("when send on reset action") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     viewModel?.onAppear()
                     viewModel?.onDisappear()
                 }
                 
-                it("it should get start state"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.start(497698)))
+                it("it should get start state"){
+                    expect(self.viewModel?.state).toEventually(equal(.start(497698)))
                 }
             }
             
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
-                    beforeEach { [unowned self] in
+                    beforeEach {
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
                         viewModel?.onAppear()
                     }
                     
-                    it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
-                        await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
+                    it("it should get state failed loaded with error code \(errorCode)"){
+                        expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
             
             context("when error response unknown error") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
                 
-                it("it should get state failed loaded with unknown error"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
+                it("it should get state failed loaded with unknown error"){
+                    expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
             
             context("when 1 instance exist") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
@@ -102,7 +102,7 @@ class MovieDetailViewModelSpec: QuickSpec, MockableMovieDetailViewModelProtocol 
             }
             
             context("when deaalocate MovieDetailViewModel instances") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                     MovieDetailViewModel.deallocateCurrentInstances()

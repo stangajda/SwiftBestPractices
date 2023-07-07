@@ -10,14 +10,14 @@ import Combine
 import Nimble
 
 protocol MockableMovieDetailServiceProtocol: MockableBaseServiceProtocol {
-    var mockManager: MovieDetailServiceProtocol { get }
+    static var mockManager: MovieDetailServiceProtocol { get }
 }
 
 extension MockableMovieDetailServiceProtocol {
 
     func fetchMovieDetail(done: @escaping() -> Void, closure: @escaping (Result<MovieDetail, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = mockManager.fetchMovieDetail(mockRequestUrl)
+        cancellable = Self.mockManager.fetchMovieDetail(Self.mockRequestUrl)
             .sinkToResult({ result in
                 closure(result)
                 done()

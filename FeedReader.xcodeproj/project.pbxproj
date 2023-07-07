@@ -1050,7 +1050,7 @@
 			repositoryURL = "https://github.com/Quick/Quick";
 			requirement = {
 				kind = exactVersion;
-				version = 6.1.0;
+				version = 7.1.0;
 			};
 		};
 		F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */ = {

@@ -13,29 +13,29 @@ import Nimble
 import Quick
 
 class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    lazy var viewModel: (any MoviesListViewModelProtocol)? = nil
-    
-    typealias Mock = MockURLProtocol.MockedResponse
-    
-    var movieItem: Array<MoviesListViewModel.MovieItem>!
-    var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
-    
-    override func spec() {
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
+    static var viewModel: (any MoviesListViewModelProtocol)? = nil
+ 
+    override class func spec() {
         describe("check movie list service"){
+            
+            typealias Mock = MockURLProtocol.MockedResponse
+            
+            var movieItem: Array<MoviesListViewModel.MovieItem>!
+            var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
 
-            beforeEach { [self] in
+            beforeEach {
                 viewModel = MoviesListViewModel()
             }
             
-            afterEach { [unowned self] in
+            afterEach {
                 viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
             }
 
             context("when send on appear action") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)
                     let anotherMoviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.anotherMovieListResponseResult)
                     mockResponse(result: .success(moviesFromData))
@@ -51,52 +51,52 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                     viewModel?.onAppear()
                 }
                 
-                it("it should match from loaded state counted objects in array"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(beLoadedStateMoviesCount(22))
+                it("it should match from loaded state counted objects in array"){
+                    expect(self.viewModel?.state).toEventually(beLoadedStateMoviesCount(22))
                 }
                 
-                it("it should get movies from loaded state match mapped object"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
+                it("it should get movies from loaded state match mapped object"){
+                    expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
                 }
                 
-                it("it should get movies from loaded state match not mapped object"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
+                it("it should get movies from loaded state match not mapped object"){
+                    expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
                 }
             }
             
             context("when send on reset action") {
-                beforeEach { [unowned self] in
+                beforeEach { [self] in
                     viewModel?.onAppear()
                     viewModel?.onDisappear()
                 }
                 
-                it("it should get start state"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.start()))
+                it("it should get start state"){
+                    expect(self.viewModel?.state).toEventually(equal(.start()))
                 }
             }
             
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
-                    beforeEach { [unowned self] in
+                    beforeEach { [self] in
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
                         viewModel?.onAppear()
                     }
                     
-                    it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
-                        await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
+                    it("it should get state failed loaded with error code \(errorCode)"){ [self] in
+                        expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
             
             context("when error response unknown error") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
                 
-                it("it should get state failed loaded with unknown error"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
+                it("it should get state failed loaded with unknown error"){
+                    expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
         }

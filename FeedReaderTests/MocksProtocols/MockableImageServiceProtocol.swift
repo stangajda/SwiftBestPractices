@@ -11,14 +11,14 @@ import Combine
 import Nimble
 
 protocol MockableImageServiceProtocol: MockableBaseServiceProtocol {
-    var mockManager: ImageServiceProtocol { get }
+    static var mockManager: ImageServiceProtocol { get }
 }
 
 extension MockableImageServiceProtocol {
     
     func fetchImage(done: @escaping() -> Void, closure: @escaping (Result<UIImage, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = mockManager.fetchImage(mockRequestUrl)
+        cancellable = Self.mockManager.fetchImage(Self.mockRequestUrl)
             .sinkToResult({ result in
                 closure(result)
                 done()

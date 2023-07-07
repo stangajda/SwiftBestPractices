@@ -14,45 +14,45 @@ import SnapshotTesting
 import Nimble_SnapshotTesting
 
 class MovieDetailViewSpec: QuickSpec {
-    override func spec() {
+    override class func spec() {
         describe("check movie detail view to match recorded snapshot") {
-                    
+
             var viewController: UIViewController!
 
-            beforeEach { @MainActor in
+            beforeEach {
                 Injection.main.setupPreviewModeDetail()
             }
 
             context("when movie detail is loaded") {
-                beforeEach { @MainActor in
+                beforeEach {
                     @Injected(name: .movieDetailStateLoaded) var viewModel: AnyMovieDetailViewModelProtocol
                     viewController = UIHostingController(rootView: MovieDetailView(viewModel))
                 }
 
-                it("it should match recorded image") { @MainActor in
-                    expect(viewController).to(haveValidSnapshot(as: .image))
+                it("it should match recorded image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movie detail is loading") {
-                beforeEach { @MainActor in
+                beforeEach {
                     @Injected(name: .movieDetailStateLoading) var viewModel: AnyMovieDetailViewModelProtocol
                     viewController = UIHostingController(rootView: MovieDetailView(viewModel))
                 }
 
-                it("it should match recorded image") { @MainActor in
-                    expect(viewController).to(haveValidSnapshot(as: .image))
+                it("it should match recorded image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movie detail is failed") {
-                beforeEach { @MainActor in
+                beforeEach {
                     @Injected(name: .movieDetailStateFailed) var viewModel: AnyMovieDetailViewModelProtocol
                     viewController = UIHostingController(rootView: MovieDetailView(viewModel))
                 }
 
-                it("it should match recorded image") { @MainActor in
-                    expect(viewController).to(haveValidSnapshot(as: .image))
+                it("it should match recorded image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
         }

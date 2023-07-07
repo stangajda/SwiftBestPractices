@@ -13,36 +13,36 @@ import Nimble
 import Quick
 
 class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
-    @LazyInjected var mockManager: MovieDetailServiceProtocol
-    lazy var cancellable: AnyCancellable? = nil
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
+    @LazyInjected static var mockManager: MovieDetailServiceProtocol
+    static var cancellable: AnyCancellable? = nil
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     
     typealias Mock = MockURLProtocol.MockedResponse
     
-    override func spec() {
+    override class func spec() {
         describe("check movie detail service"){
 
             var moviesFromData: MovieDetail!
             var anotherMoviesFromData: MovieDetail!
             
-            afterEach { [unowned self] in
+            afterEach {
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()
                 cancellable = nil
             }
 
             context("when successful json data") {
-                beforeEach { [self] in
+                beforeEach {
                     moviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
                     anotherMoviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
                     mockResponse(result: .success(moviesFromData))
                 }
                 
-                it("it should get successful response match mapped object"){ [unowned self] in
+                it("it should get successful response match mapped object"){
                     expect(self.fetchMovieDetailResult).to(beSuccessAndEqual(moviesFromData))
                 }
 
-                it("it should get successful response not match mapped object"){ [unowned self] in
+                it("it should get successful response not match mapped object"){
                     expect(self.fetchMovieDetailResult).to(beSuccessAndNotEqual(anotherMoviesFromData))
                 }
             }
@@ -54,7 +54,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
                     }
 
-                    it("it should get failed response match error code"){ [unowned self] in
+                    it("it should get failed response match error code"){
                         expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.apiCode(errorCode)))
                     }
                 }
@@ -65,7 +65,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                     mockResponse(result: .failure(APIError.invalidURL))
                 }
                 
-                it("it should get failed invalid url"){ [unowned self] in
+                it("it should get failed invalid url"){
                     expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.invalidURL))
                 }
             }
@@ -75,7 +75,7 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                     mockResponse(result: .failure(APIError.unknownResponse))
                 }
                 
-                it("it should get failed unknown response"){ [unowned self] in
+                it("it should get failed unknown response"){
                     expect(self.fetchMovieDetailResult).to(beFailureAndMatchError(APIError.unknownResponse))
                 }
             }
@@ -83,20 +83,20 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
         }
     }
     
-    func fetchMovieDetailResult() -> Result<MovieDetail, Swift.Error> {
+    class func fetchMovieDetailResult() -> Result<MovieDetail, Swift.Error> {
         var mainResult: Result<MovieDetail, Swift.Error>? = nil
-        waitUntil{ [self] done in
+        waitUntil{ done in
             cancellable = mockManager.fetchMovieDetail(mockRequestUrl)
                 .sinkToResult({ result in
                     mainResult = result
                     done()
                 })
         }
-        
+
         guard let mainResult = mainResult else {
             fatalError("mainResult is nil")
         }
-        
+
         return mainResult
     }
     

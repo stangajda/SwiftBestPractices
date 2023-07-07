@@ -12,12 +12,12 @@ import Nimble
 import Quick
 
 class ServiceSpec: QuickSpec, MockableServiceProtocol {
-    @LazyInjected var mockManager: ServiceProtocol
-    lazy var cancellable: AnyCancellable? = nil
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    var result: Result<Data, Swift.Error>!
+    @LazyInjected static var mockManager: ServiceProtocol
+    static var cancellable: AnyCancellable? = nil
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
+    static var result: Result<Data, Swift.Error>!
     
-    override func spec() {
+    override class func spec() {
         describe("check service responses") {
             
             afterEach { [self] in
@@ -73,9 +73,9 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
         }
     }
     
-    func fetchDataResult() -> Result<Data, Swift.Error> {
+    static func fetchDataResult() -> Result<Data, Swift.Error> {
         var mainResult: Result<Data, Swift.Error> = .success(Data())
-        waitUntil{ [self] done in
+        waitUntil{ done in
             cancellable = mockManager.fetchData(mockRequestUrl)
                 .sinkToResult({ result in
                     mainResult = result

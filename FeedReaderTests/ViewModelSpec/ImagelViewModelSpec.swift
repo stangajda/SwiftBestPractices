@@ -14,82 +14,78 @@ import Quick
 import SwiftUI
 
 class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
-    lazy var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    lazy var viewModel: (any ImageViewModelProtocol)? = nil
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
+    static var viewModel: (any ImageViewModelProtocol)? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse
     
-    var imageItem: ImageViewModel.ImageItem!
-    var anotherImageItem: ImageViewModel.ImageItem!
-    
-    override func spec() {
+    override class func spec() {
         describe("check movie list service"){
-
-            beforeEach { [self] in
+            
+            beforeEach {
                 viewModel = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath())
             }
             
-            afterEach { [unowned self] in
+            afterEach {
                 viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
             }
 
             context("when send on appear action") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     let testImage: UIImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)!
                     let imageData = convertImageToData(testImage)
                    
                     mockResponse(result: .success(imageData))
-                    imageItem = ImageViewModel.ImageItem(testImage)
                     viewModel?.onAppear()
                 }
                 
-                it("it should get movies from loaded state match mapped object"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(beLoadedState{ image in
+                it("it should get movies from loaded state match mapped object"){
+                    expect(self.viewModel?.state).toEventually(beLoadedState{ image in
                         expect(image).to(beAnInstanceOf(ImageViewModel.ImageItem.self))
                     })
                 }
             }
             
             context("when send on reset action") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     viewModel?.onAppear()
                     viewModel?.onDisappear()
                 }
                 
-                it("it should get loading state"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.loading()))
+                it("it should get loading state"){
+                    expect(self.viewModel?.state).toEventually(equal(.loading()))
                 }
             }
             
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
-                    beforeEach { [unowned self] in
+                    beforeEach {
                         mockResponse(result: .failure(APIError.apiCode(errorCode)))
                         viewModel?.onAppear()
                     }
                     
-                    it("it should get state failed loaded with error code \(errorCode)"){ [unowned self] in
-                        await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
+                    it("it should get state failed loaded with error code \(errorCode)"){
+                        expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
             
             context("when error response unknown error") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
                 
-                it("it should get state failed loaded with unknown error"){ [unowned self] in
-                    await expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
+                it("it should get state failed loaded with unknown error"){
+                    expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
             
             context("when 1 instance exist") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
@@ -100,7 +96,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             }
             
             context("when deaalocate MovieDetailViewModel instances") {
-                beforeEach { [unowned self] in
+                beforeEach {
                     mockResponse(result: .failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                     ImageViewModel.deallocateCurrentInstance()

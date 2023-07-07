@@ -11,12 +11,12 @@ import Nimble
 
 protocol MockableBaseServiceProtocol {
     typealias Mock = MockURLProtocol.MockedResponse
-    var mockRequestUrl: URLRequest { get }
+    static var mockRequestUrl: URLRequest { get }
 }
 
 extension MockableBaseServiceProtocol {
     
-    func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
+    static func mockResponse(result: Result<Data, Swift.Error>, apiCode: APICode = 200) {
         do {
             MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
         } catch {
@@ -24,7 +24,7 @@ extension MockableBaseServiceProtocol {
         }
     }
 
-    func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
+    static func mockResponse<T:Encodable> (result: Result<T, Swift.Error>, apiCode: APICode = 200) {
         do {
             MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: apiCode)
         } catch {

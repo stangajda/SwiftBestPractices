@@ -10,31 +10,29 @@ import Combine
 import Nimble
 
 protocol MockableMovieListServiceProtocol: MockableBaseServiceProtocol {
-    var mockManager: MovieListServiceProtocol { get }
+    static var mockManager: MovieListServiceProtocol { get }
 }
 
 extension MockableMovieListServiceProtocol {
-
-    func fetchMovies(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
+    static func fetchMovies(done: @escaping() -> Void, closure: @escaping (Result<Movies, Swift.Error>) -> Void) -> AnyCancellable? {
         var cancellable: AnyCancellable?
-        cancellable = mockManager.fetchMovies(mockRequestUrl)
+        cancellable = mockManager.fetchMovies(Self.mockRequestUrl)
             .sinkToResult({ result in
                 closure(result)
                 done()
             })
         return cancellable
-
     }
 }
 
 protocol MockableMovieListViewModelProtocol: MockableBaseServiceProtocol {
-    var viewModel: (any MoviesListViewModelProtocol)? { get }
+    static var viewModel: (any MoviesListViewModelProtocol)? { get }
 }
 
 protocol MockableMovieDetailViewModelProtocol: MockableBaseServiceProtocol {
-    var viewModel: (any MovieDetailViewModelProtocol)? { get }
+    static var viewModel: (any MovieDetailViewModelProtocol)? { get }
 }
 
 protocol MockableImageViewModelProtocol: MockableBaseServiceProtocol {
-    var viewModel: (any ImageViewModelProtocol)? { get }
+    static var viewModel: (any ImageViewModelProtocol)? { get }
 }
