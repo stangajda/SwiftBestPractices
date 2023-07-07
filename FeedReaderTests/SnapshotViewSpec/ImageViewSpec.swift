@@ -15,10 +15,10 @@ import Nimble_SnapshotTesting
 
 class MovieImageViewSpec: QuickSpec {
     override func spec() {
-        describe("check movie detail view to match recorded snapshot") {
+        describe("check image view to match recorded snapshot") {
             var viewController: UIViewController!
 
-            context("when movie detail is loaded") {
+            context("when image is in preview mode") {
                 beforeEach { @MainActor in
                     Injection.main.setupPreviewMode()
                     let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
@@ -34,7 +34,7 @@ class MovieImageViewSpec: QuickSpec {
                 }
             }
             
-            context("when movie detail is loading") {
+            context("when image is in preview mode detail") {
                 beforeEach { @MainActor in
                     Injection.main.setupPreviewModeDetail()
                     let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
