@@ -44,7 +44,7 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
     func fetch() -> AnyPublisher<Array<MoviesListViewModel.MovieItem>, Error> {
         switch mockState {
         case .loading:
-            return Empty(completeImmediately: false)
+            return Empty()
                 .eraseToAnyPublisher()
         case .loaded:
             let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)

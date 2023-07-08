@@ -36,7 +36,7 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     func fetch() -> AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> {
         switch mockState {
         case .loading:
-            return Empty(completeImmediately: false)
+            return Empty()
                 .eraseToAnyPublisher()
         case .loaded:
             state = .loaded(MovieDetailViewModel.MovieDetailItem.mock)
