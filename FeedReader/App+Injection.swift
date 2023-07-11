@@ -27,35 +27,47 @@ public final class Injection: InjectionRegistering  {
 
 extension Injection {
     public func initialRegistration() {
-        assembler = Assembler([NetworkAssembly(),
-                               ServiceAssembly(),
-                               ViewModelAssembly()],
-                              container: container)
+        assembler = Assembler(
+        [
+            NetworkAssembly(),
+            ServiceAssembly(),
+            ViewModelAssembly()
+        ],
+        container: container)
     }
     
     func setupTestURLSession() {
-        assembler = Assembler([MockNetworkAssembly(),
-                               ServiceAssembly(),
-                               ViewModelAssembly()],
-                              container: container)
+        assembler = Assembler(
+        [
+            MockNetworkAssembly(),
+            ServiceAssembly(),
+            ViewModelAssembly()
+        ],
+        container: container)
     }
     
     func setupPreviewMode() {
-        assembler = Assembler([NetworkAssembly(),
-                               ServiceAssembly(),
-                               MockMoviesListViewModelAssembly(),
-                               MockMovieDetailViewModelAssembly(),
-                               MockImageViewModelAssembly()],
-                              container: container)
+        assembler = Assembler(
+        [
+            NetworkAssembly(),
+            ServiceAssembly(),
+            MockMoviesListViewModelAssembly(),
+            MockMovieDetailViewModelAssembly(),
+            MockImageViewModelAssembly()
+        ],
+        container: container)
     }
     
     func setupPreviewModeDetail() {
-        assembler = Assembler([NetworkAssembly(),
-                               ServiceAssembly(),
-                               MockMoviesListViewModelAssembly(),
-                               MockImageViewModelItemDetailAssembly(),
-                               MockImageViewModelItemDetailAssembly()],
-                              container: container)
+        assembler = Assembler(
+        [
+            NetworkAssembly(),
+            ServiceAssembly(),
+            MockMoviesListViewModelAssembly(),
+            MockImageViewModelItemDetailAssembly(),
+            MockImageViewModelItemDetailAssembly()
+        ],
+        container: container)
     }
 }
 
