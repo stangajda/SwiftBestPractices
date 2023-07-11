@@ -27,22 +27,35 @@ public final class Injection: InjectionRegistering  {
 
 extension Injection {
     public func initialRegistration() {
-        assembler = Assembler([NetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
+        assembler = Assembler([NetworkAssembly(),
+                               ServiceAssembly(),
+                               ViewModelAssembly()],
+                              container: container)
     }
     
     func setupTestURLSession() {
-        assembler = Assembler([MockNetworkAssembly(), ServiceAssembly(), ViewModelAssembly()], container: container)
+        assembler = Assembler([MockNetworkAssembly(),
+                               ServiceAssembly(),
+                               ViewModelAssembly()],
+                              container: container)
     }
     
     func setupPreviewMode() {
-        assembler.apply(assembly: MockMoviesListViewModelAssembly())
-        assembler.apply(assembly: MockMovieDetailViewModelAssembly())
-        assembler.apply(assembly: MockImageViewModelAssembly())
+        assembler = Assembler([NetworkAssembly(),
+                               ServiceAssembly(),
+                               MockMoviesListViewModelAssembly(),
+                               MockMovieDetailViewModelAssembly(),
+                               MockImageViewModelAssembly()],
+                              container: container)
     }
     
     func setupPreviewModeDetail() {
-        assembler.apply(assembly: MockMovieDetailViewModelAssembly())
-        assembler.apply(assembly: MockImageViewModelItemDetailAssembly())
+        assembler = Assembler([NetworkAssembly(),
+                               ServiceAssembly(),
+                               MockMoviesListViewModelAssembly(),
+                               MockImageViewModelItemDetailAssembly(),
+                               MockImageViewModelItemDetailAssembly()],
+                              container: container)
     }
 }
 
@@ -99,6 +112,11 @@ fileprivate class ViewModelAssembly: AssemblyProtocol {
 // MARK:- Preview
 fileprivate class MockMoviesListViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
+        container.register(AnyMoviesListViewModelProtocol.self) { resolver in
+            MockMoviesListViewModel(.loaded)
+                .eraseToAnyViewModelProtocol()
+        }
+        
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             MockMoviesListViewModel(.loaded)
                 .eraseToAnyViewModelProtocol()
