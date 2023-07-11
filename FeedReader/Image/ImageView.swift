@@ -24,7 +24,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     }
     
 //MARK:- viewModel initialiser
-    init(viewModel: AnyImageViewModelProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
+    private init(viewModel: AnyImageViewModelProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
             self.placeholderLoading = placeholderLoading ()
             self.placeholderError = placeholderError
         
