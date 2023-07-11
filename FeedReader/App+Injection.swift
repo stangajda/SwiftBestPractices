@@ -64,7 +64,7 @@ extension Injection {
             MockNetworkAssembly(),
             ServiceAssembly(),
             MockMoviesListViewModelAssembly(),
-            MockImageViewModelItemDetailAssembly(),
+            MockMovieDetailViewModelAssembly(),
             MockImageViewModelItemDetailAssembly()
         ],
         container: container)
