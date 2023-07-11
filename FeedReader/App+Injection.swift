@@ -35,7 +35,7 @@ extension Injection {
     }
     
     func setupPreviewMode() {
-        assembler.apply(assembly: MockMoviesListViewModeLAssembly())
+        assembler.apply(assembly: MockMoviesListViewModelAssembly())
         assembler.apply(assembly: MockMovieDetailViewModelAssembly())
         assembler.apply(assembly: MockImageViewModelAssembly())
     }
@@ -97,7 +97,7 @@ fileprivate class ViewModelAssembly: AssemblyProtocol {
 }
 
 // MARK:- Preview
-fileprivate class MockMoviesListViewModeLAssembly: AssemblyNameProtocol {
+fileprivate class MockMoviesListViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             MockMoviesListViewModel(.loaded)
