@@ -337,9 +337,7 @@
 		CC351E30269DC49E0037DB34 /* Mock */ = {
 			isa = PBXGroup;
 			children = (
-				CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */,
-				CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */,
-				CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */,
+				F67B45D42A5F216E00ECC9D5 /* MockViewModel */,
 				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
 				F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */,
 			);
@@ -522,6 +520,16 @@
 				CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */,
 			);
 			path = ServiceSpecs;
+			sourceTree = "<group>";
+		};
+		F67B45D42A5F216E00ECC9D5 /* MockViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				CC35563526AB23C2002D0B07 /* MockMoviesListViewModel.swift */,
+				CC35563926AC5189002D0B07 /* MockMoviesDetailViewModel.swift */,
+				CC35563726AB5C25002D0B07 /* MockImageViewModel.swift */,
+			);
+			path = MockViewModel;
 			sourceTree = "<group>";
 		};
 		F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */ = {
