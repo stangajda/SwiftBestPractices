@@ -15,10 +15,8 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
 
 //MARK:- Path initialiser
     init (imageURL: String, imageSizePath: ImagePathProtocol, @ViewBuilder placeholderLoading: () -> ImageLoadingView, @ViewBuilder placeholderError: @escaping (Error) -> ImageErrorView) {
-
         let cache: ImageCacheProtocol? = Environment (\.imageCache).wrappedValue
-        let imageViewModel: AnyImageViewModelProtocol = Injection.resolver.resolve(AnyImageViewModelProtocol.self, arguments: imageURL, imageSizePath, cache)
-        
+        @Injected(imageURL, imageSizePath, cache) var imageViewModel: AnyImageViewModelProtocol
         self.init(viewModel: imageViewModel, placeholderLoading: placeholderLoading, placeholderError: placeholderError)
         
     }

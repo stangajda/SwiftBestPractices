@@ -146,6 +146,11 @@ fileprivate class MockMoviesListViewModelAssembly: AssemblyNameProtocol {
 
 fileprivate class MockMovieDetailViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
+        container.register(AnyMovieDetailViewModelProtocol.self) { resolver in
+            MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock)
+                .eraseToAnyViewModelProtocol()
+        }
+        
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
             MockMovieDetailViewModel(.loaded, MoviesListViewModel.MovieItem.mock)
                 .eraseToAnyViewModelProtocol()

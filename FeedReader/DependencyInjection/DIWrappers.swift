@@ -17,6 +17,9 @@ import Foundation
     public init(name: Injection.Name? = nil) {
         self.service = Injection.resolver.resolve(Service.self, name: name?.rawValue) ?? Injection.resolver.resolve(Service.self, name: name?.rawValue)
     }
+    public init<ARG1, ARG2, ARG3>(_ argument1: ARG1, _ argument2: ARG2, _ argument3: ARG3) {
+        self.service = Injection.resolver.resolve(Service.self, arguments: argument1, argument2, argument3)!
+    }
     public var wrappedValue: Service {
         get { return service }
         mutating set { service = newValue }
