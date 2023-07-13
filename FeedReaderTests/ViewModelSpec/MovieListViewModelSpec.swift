@@ -12,15 +12,12 @@ import Combine
 import Nimble
 import Quick
 
-class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
+class MovieListViewModelSpec: QuickSpec {
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     static var viewModel: (any MoviesListViewModelProtocol)? = nil
  
     override class func spec() {
         describe("check movie list service"){
-            
-            typealias Mock = MockURLProtocol.MockedResponse
-            
             var movieItem: Array<MoviesListViewModel.MovieItem>!
             var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
 
@@ -38,7 +35,8 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
                 beforeEach {
                     let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)
                     let anotherMoviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.anotherMovieListResponseResult)
-                    mockResponse(result: .success(moviesFromData))
+                    @Injected(argument: .success(moviesFromData)) var service: MovieListServiceProtocol
+                    viewModel = MoviesListViewModel(service)
                     
                     movieItem = moviesFromData.results.map { movie in
                         MoviesListViewModel.MovieItem(movie)
@@ -78,8 +76,10 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
-                    beforeEach { [self] in
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
+                    beforeEach {
+                        let result: Result<Movies, Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(argument: result) var service: MovieListServiceProtocol
+                        viewModel = MoviesListViewModel(service)
                         viewModel?.onAppear()
                     }
                     
@@ -91,7 +91,9 @@ class MovieListViewModelSpec: QuickSpec, MockableMovieListViewModelProtocol {
             
             context("when error response unknown error") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                    let result: Result<Movies, Error> = .failure(APIError.unknownResponse)
+                    @Injected(argument: result) var service: MovieListServiceProtocol
+                    viewModel = MoviesListViewModel(service)
                     viewModel?.onAppear()
                 }
                 

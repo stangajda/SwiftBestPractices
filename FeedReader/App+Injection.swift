@@ -50,7 +50,7 @@ extension Injection {
         assembler = Assembler(
         [
             MockNetworkAssembly(),
-            ServiceAssembly(),
+            MockServiceAssembly(),
             MockMoviesListViewModelAssembly(),
             MockMovieDetailViewModelAssembly(),
             MockImageViewModelAssembly()
@@ -90,6 +90,23 @@ fileprivate class ServiceAssembly: AssemblyProtocol {
         
         container.register(ImageServiceProtocol.self) { resolver in
             ImageService()
+        }
+    }
+}
+
+// MARK:- Mock Service
+fileprivate class MockServiceAssembly: AssemblyProtocol {
+    func assemble(container: Container) {
+        container.register(MovieListServiceProtocol.self) { resolver, result in
+            MockMovieListService(result)
+        }
+
+        container.register(MovieDetailServiceProtocol.self) { resolver, result in
+            MockMovieDetailService(result)
+        }
+
+        container.register(ImageServiceProtocol.self) { resolver, result in
+            MockImageService(result)
         }
     }
 }

@@ -114,6 +114,8 @@
 		F67876642A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
 		F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
 		F678766B2A1E3BE300A4FD54 /* MockableServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876692A1E3BE300A4FD54 /* MockableServiceProtocol.swift */; };
+		F67B45D62A5F356000ECC9D5 /* MockMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */; };
+		F67B45D82A5F634F00ECC9D5 /* MockMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */; };
 		F67F06292A23CD4400889775 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
@@ -234,6 +236,7 @@
 		F67876602A1E06A600A4FD54 /* DIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIExtensions.swift; sourceTree = "<group>"; };
 		F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIAssemblyProtocol.swift; sourceTree = "<group>"; };
 		F67876692A1E3BE300A4FD54 /* MockableServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableServiceProtocol.swift; sourceTree = "<group>"; };
+		F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieListService.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
 		F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewSpec.swift; sourceTree = "<group>"; };
@@ -338,6 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				F67B45D42A5F216E00ECC9D5 /* MockViewModel */,
+				F67B45D72A5F35F000ECC9D5 /* MockService */,
 				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
 				F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */,
 			);
@@ -532,6 +536,14 @@
 			path = MockViewModel;
 			sourceTree = "<group>";
 		};
+		F67B45D72A5F35F000ECC9D5 /* MockService */ = {
+			isa = PBXGroup;
+			children = (
+				F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */,
+			);
+			path = MockService;
+			sourceTree = "<group>";
+		};
 		F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */ = {
 			isa = PBXGroup;
 			children = (
@@ -692,6 +704,7 @@
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
 				F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */,
 				CCBF629C26B0C23A00BB0592 /* IconValueView.swift in Sources */,
+				F67B45D62A5F356000ECC9D5 /* MockMovieListService.swift in Sources */,
 				CC6114E826C5BD5800ECFB63 /* APIUrlImageBuilder.swift in Sources */,
 				CC4E706C26B83BFE00B3288D /* MovieDetailService.swift in Sources */,
 				F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */,
@@ -761,6 +774,7 @@
 				F6AC124C2A573C5B003A55F9 /* ImageView.swift in Sources */,
 				F678764C2A1D0F0100A4FD54 /* ImageViewModel.swift in Sources */,
 				F678764E2A1D0F1800A4FD54 /* LoadableProtocol.swift in Sources */,
+				F67B45D82A5F634F00ECC9D5 /* MockMovieListService.swift in Sources */,
 				F6A686D02A55F274004D583F /* LifecycleProtocol.swift in Sources */,
 				F672138E2A310C9E0059E397 /* MovieListViewModelSpec.swift in Sources */,
 				F67876592A1D5F4200A4FD54 /* MockMovie.swift in Sources */,
