@@ -90,7 +90,7 @@ extension MoviesListView {
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
     static var previews: some View {
-        Injection.main.setupPreviewMode()
+        Injection.main.mockViewModel()
         @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
         @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
         @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol

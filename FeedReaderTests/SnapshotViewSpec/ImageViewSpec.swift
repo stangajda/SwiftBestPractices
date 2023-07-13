@@ -20,7 +20,7 @@ class MovieImageViewSpec: QuickSpec {
 
             context("when image is in preview mode") {
                 beforeEach {
-                    Injection.main.setupPreviewMode()
+                    Injection.main.mockViewModel()
                     let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                         ActivityIndicator(isAnimating: .constant(true), style: .large)
                     } placeholderError: { error in
@@ -36,7 +36,7 @@ class MovieImageViewSpec: QuickSpec {
             
             context("when image is in preview mode detail") {
                 beforeEach {
-                    Injection.main.setupPreviewModeDetail()
+                    Injection.main.mockDetailViewModel()
                     let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                         ActivityIndicator(isAnimating: .constant(true), style: .large)
                     } placeholderError: { error in

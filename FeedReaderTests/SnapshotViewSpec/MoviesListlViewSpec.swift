@@ -21,7 +21,7 @@ class MovieListViewSpec: QuickSpec {
             var viewController: UIViewController!
 
             beforeEach {
-                Injection.main.setupPreviewMode()
+                Injection.main.mockViewModel()
             }
             
             context("when movies list is loaded") {

@@ -54,11 +54,9 @@ extension Injection {
         container: container)
     }
     
-    func setupPreviewMode() {
+    func mockViewModel() {
         assembler = Assembler(
         [
-//            MockNetworkAssembly(),
-//            MockServiceAssembly(),
             MockMoviesListViewModelAssembly(),
             MockMovieDetailViewModelAssembly(),
             MockImageViewModelAssembly()
@@ -66,8 +64,8 @@ extension Injection {
         container: container)
     }
     
-    func setupPreviewModeDetail() {
-        setupPreviewMode()
+    func mockDetailViewModel() {
+        mockViewModel()
         assembler.apply(assembly: MockImageViewModelItemDetailAssembly())
     }
 }

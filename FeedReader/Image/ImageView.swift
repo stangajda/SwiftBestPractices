@@ -90,14 +90,14 @@ private extension AsyncImageCached {
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
         return Group {
-            let _ = Injection.main.setupPreviewMode()
+            let _ = Injection.main.mockViewModel()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in
                 ErrorView(error: error)
             }
             
-            let _ = Injection.main.setupPreviewModeDetail()
+            let _ = Injection.main.mockDetailViewModel()
             AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
                 ActivityIndicator(isAnimating: .constant(true), style: .large)
             } placeholderError: { error in

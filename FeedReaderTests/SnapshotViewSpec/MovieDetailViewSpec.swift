@@ -20,7 +20,7 @@ class MovieDetailViewSpec: QuickSpec {
             var viewController: UIViewController!
 
             beforeEach {
-                Injection.main.setupPreviewModeDetail()
+                Injection.main.mockDetailViewModel()
             }
 
             context("when movie detail is loaded") {
