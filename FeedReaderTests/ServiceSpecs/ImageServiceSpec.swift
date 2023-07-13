@@ -22,6 +22,10 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
  
     override class func spec() {
         describe("check image service"){
+            
+            beforeEach {
+                Injection.main.mockNetwork()
+            }
 
             afterEach {
                 MockURLProtocol.mock = nil

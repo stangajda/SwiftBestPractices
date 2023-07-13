@@ -25,6 +25,10 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
             var moviesFromData: MovieDetail!
             var anotherMoviesFromData: MovieDetail!
             
+            beforeEach {
+                Injection.main.mockNetwork()
+            }
+            
             afterEach {
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()

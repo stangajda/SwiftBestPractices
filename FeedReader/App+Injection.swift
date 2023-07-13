@@ -36,11 +36,19 @@ extension Injection {
         container: container)
     }
     
-    func setupTestURLSession() {
+    func mockNetwork() {
         assembler = Assembler(
         [
             MockNetworkAssembly(),
             ServiceAssembly(),
+        ],
+        container: container)
+    }
+    
+    func mockService() {
+        assembler = Assembler(
+        [
+            MockServiceAssembly(),
             ViewModelAssembly()
         ],
         container: container)
@@ -49,8 +57,8 @@ extension Injection {
     func setupPreviewMode() {
         assembler = Assembler(
         [
-            MockNetworkAssembly(),
-            MockServiceAssembly(),
+//            MockNetworkAssembly(),
+//            MockServiceAssembly(),
             MockMoviesListViewModelAssembly(),
             MockMovieDetailViewModelAssembly(),
             MockImageViewModelAssembly()
@@ -97,16 +105,16 @@ fileprivate class ServiceAssembly: AssemblyProtocol {
 // MARK:- Mock Service
 fileprivate class MockServiceAssembly: AssemblyProtocol {
     func assemble(container: Container) {
-        container.register(MovieListServiceProtocol.self) { resolver, result in
-            MockMovieListService(result)
+        container.register(MovieListServiceProtocol.self) { resolver in
+            MockMovieListService()
         }
 
-        container.register(MovieDetailServiceProtocol.self) { resolver, result in
-            MockMovieDetailService(result)
+        container.register(MovieDetailServiceProtocol.self) { resolver in
+            MockMovieDetailService()
         }
 
-        container.register(ImageServiceProtocol.self) { resolver, result in
-            MockImageService(result)
+        container.register(ImageServiceProtocol.self) { resolver in
+            MockImageService()
         }
     }
 }

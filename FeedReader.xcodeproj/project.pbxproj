@@ -140,6 +140,10 @@
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
+		F6ECD0E72A6069ED0008441E /* MockMovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */; };
+		F6ECD0E82A6069ED0008441E /* MockMovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */; };
+		F6ECD0EA2A606A3A0008441E /* MockImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E92A606A3A0008441E /* MockImageService.swift */; };
+		F6ECD0EB2A606A3A0008441E /* MockImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E92A606A3A0008441E /* MockImageService.swift */; };
 		F6F2D2C02A46E42300297308 /* ImagelViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F2D2BF2A46E42300297308 /* ImagelViewModelSpec.swift */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +248,8 @@
 		F6AC125A2A57F2D6003A55F9 /* MoviesListlViewSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MoviesListlViewSpec.swift; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
+		F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieDetailService.swift; sourceTree = "<group>"; };
+		F6ECD0E92A606A3A0008441E /* MockImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageService.swift; sourceTree = "<group>"; };
 		F6F2D2BF2A46E42300297308 /* ImagelViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagelViewModelSpec.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -540,6 +546,8 @@
 			isa = PBXGroup;
 			children = (
 				F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */,
+				F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */,
+				F6ECD0E92A606A3A0008441E /* MockImageService.swift */,
 			);
 			path = MockService;
 			sourceTree = "<group>";
@@ -691,6 +699,7 @@
 				CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */,
 				CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
+				F6ECD0EA2A606A3A0008441E /* MockImageService.swift in Sources */,
 				F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */,
 				CC4E707526BACCEC00B3288D /* APIError.swift in Sources */,
 				CC6114E626C5BD1A00ECFB63 /* APIUrlBuilder.swift in Sources */,
@@ -710,6 +719,7 @@
 				F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* Helper.swift in Sources */,
 				F67876612A1E06A600A4FD54 /* DIExtensions.swift in Sources */,
+				F6ECD0E72A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
 				CC4E706A26B83BC800B3288D /* MovieListService.swift in Sources */,
 				CCF3A8BB267A8ED100CB5765 /* ContentView.swift in Sources */,
 				CC351E37269F1ABE0037DB34 /* MovieDetailViewModel.swift in Sources */,
@@ -740,6 +750,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F67876562A1D0F6800A4FD54 /* APIUrlImageBuilderProtocol.swift in Sources */,
+				F6ECD0E82A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
 				F655B2E42A3059FE0009146E /* MockableMovieDetailServiceProtocol.swift in Sources */,
 				F6AC12522A573DE0003A55F9 /* OverlayTextView.swift in Sources */,
 				F6AC125F2A57F6A1003A55F9 /* LaunchesView.swift in Sources */,
@@ -770,6 +781,7 @@
 				F6AC12512A573DD3003A55F9 /* StarsRatingView.swift in Sources */,
 				F6AC125B2A57F2D6003A55F9 /* ImageViewSpec.swift in Sources */,
 				F678766B2A1E3BE300A4FD54 /* MockableServiceProtocol.swift in Sources */,
+				F6ECD0EB2A606A3A0008441E /* MockImageService.swift in Sources */,
 				F672138B2A30D5A10059E397 /* ViewModelProtocolWrappers.swift in Sources */,
 				F6AC124C2A573C5B003A55F9 /* ImageView.swift in Sources */,
 				F678764C2A1D0F0100A4FD54 /* ImageViewModel.swift in Sources */,

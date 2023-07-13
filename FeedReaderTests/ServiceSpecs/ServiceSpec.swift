@@ -20,6 +20,10 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
     override class func spec() {
         describe("check service responses") {
             
+            beforeEach {
+                Injection.main.mockNetwork()
+            }
+            
             afterEach { [self] in
                 MockURLProtocol.mock = nil
                 cancellable?.cancel()

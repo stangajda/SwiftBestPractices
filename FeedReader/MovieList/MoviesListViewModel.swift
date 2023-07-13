@@ -27,11 +27,6 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
     
     fileprivate var cancellable: AnyCancellable?
     
-    convenience init(_ service: MovieListServiceProtocol) {
-        self.init()
-        self.service = service
-    }
-    
     init() {
         statePublisher = _state.projectedValue
         onAppear()

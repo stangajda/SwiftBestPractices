@@ -13,16 +13,15 @@ import Nimble
 import Quick
 import SwiftUI
 
-class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
+class ImageViewModelSpec: QuickSpec {
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     static var viewModel: (any ImageViewModelProtocol)? = nil
-    
-    typealias Mock = MockURLProtocol.MockedResponse
     
     override class func spec() {
         describe("check movie list service"){
             
             beforeEach {
+                Injection.main.mockService()
                 viewModel = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath())
             }
             
@@ -35,9 +34,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             context("when send on appear action") {
                 beforeEach {
                     let testImage: UIImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)!
-                    let imageData = convertImageToData(testImage)
-                   
-                    mockResponse(result: .success(imageData))
+                    MockImageService.mockResult(.success(testImage))
                     viewModel?.onAppear()
                 }
                 
@@ -63,7 +60,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach {
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
+                        MockImageService.mockResult(.failure(APIError.apiCode(errorCode)))
                         viewModel?.onAppear()
                     }
                     
@@ -75,7 +72,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             
             context("when error response unknown error") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                    MockImageService.mockResult(.failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
                 
@@ -86,7 +83,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             
             context("when 1 instance exist") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                    MockImageService.mockResult(.failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                 }
                 
@@ -97,7 +94,7 @@ class ImageViewModelSpec: QuickSpec, MockableImageViewModelProtocol {
             
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                    MockImageService.mockResult(.failure(APIError.unknownResponse))
                     viewModel?.onAppear()
                     ImageViewModel.deallocateCurrentInstance()
                 }

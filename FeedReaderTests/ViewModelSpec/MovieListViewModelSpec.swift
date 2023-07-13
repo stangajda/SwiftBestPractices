@@ -22,12 +22,12 @@ class MovieListViewModelSpec: QuickSpec {
             var anotherMovieItem: Array<MoviesListViewModel.MovieItem>!
 
             beforeEach {
+                Injection.main.mockService()
                 viewModel = MoviesListViewModel()
             }
             
             afterEach {
                 viewModel?.onDisappear()
-                MockURLProtocol.mock = nil
                 viewModel = nil
             }
 
@@ -35,8 +35,8 @@ class MovieListViewModelSpec: QuickSpec {
                 beforeEach {
                     let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)
                     let anotherMoviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.anotherMovieListResponseResult)
-                    @Injected(argument: .success(moviesFromData)) var service: MovieListServiceProtocol
-                    viewModel = MoviesListViewModel(service)
+
+                    MockMovieListService.mockResult(.success(moviesFromData))
                     
                     movieItem = moviesFromData.results.map { movie in
                         MoviesListViewModel.MovieItem(movie)
@@ -78,8 +78,7 @@ class MovieListViewModelSpec: QuickSpec {
                 context("when error response with error code \(errorCode)") {
                     beforeEach {
                         let result: Result<Movies, Error> = .failure(APIError.apiCode(errorCode))
-                        @Injected(argument: result) var service: MovieListServiceProtocol
-                        viewModel = MoviesListViewModel(service)
+                        MockMovieListService.mockResult(result)
                         viewModel?.onAppear()
                     }
                     
@@ -92,8 +91,7 @@ class MovieListViewModelSpec: QuickSpec {
             context("when error response unknown error") {
                 beforeEach {
                     let result: Result<Movies, Error> = .failure(APIError.unknownResponse)
-                    @Injected(argument: result) var service: MovieListServiceProtocol
-                    viewModel = MoviesListViewModel(service)
+                    MockMovieListService.mockResult(result)
                     viewModel?.onAppear()
                 }
                 
