@@ -10,7 +10,7 @@ extension View {
     
 // MARK:- Overview
     func withTitleStyle() -> some View{
-            frame(maxWidth: .infinity, maxHeight: 20.0, alignment: .center)
+            frame(maxWidth: .infinity, maxHeight: 20.0)
             .font(.largeTitle)
             .bold()
             .minimumScaleFactor(0.5)
@@ -19,7 +19,7 @@ extension View {
     }
     
     func withImageStyle() -> some View{
-        frame(maxWidth: .infinity, minHeight: 220, alignment: .center)
+        frame(maxWidth: .infinity, minHeight: 220)
             .padding(.bottom, 20.0)
     }
     
@@ -36,7 +36,7 @@ extension View {
     }
     
     func withStarsVotedSizeStyle() -> some View{
-        self.withStarsVotedSizeStyle(180, 25)
+        withStarsVotedSizeStyle(180, 25)
             .padding(.bottom)
     }
     
