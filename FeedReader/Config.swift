@@ -96,7 +96,7 @@ struct Config {
 
 // MARK:- URLSession
 extension URLSession{
-    static func configuredURLSession() -> URLSession {
+    static var `default`: URLSession {
         let configuration = URLSessionConfiguration.default
         let urlCache = URLCache(memoryCapacity: 20_000_000, diskCapacity: 50_000_000)
         configuration.waitsForConnectivity = true
@@ -110,7 +110,7 @@ extension URLSession{
 }
 
 extension URLSession {
-    static func mockURLSession() -> URLSession {
+    static var mock: URLSession {
         let configuration = URLSessionConfiguration.ephemeral
         configuration.protocolClasses = [MockURLProtocol.self]
         configuration.timeoutIntervalForRequest = 1

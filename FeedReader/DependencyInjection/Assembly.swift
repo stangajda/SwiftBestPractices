@@ -12,7 +12,7 @@ import Swinject
 class NetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
-            URLSession.configuredURLSession()
+            URLSession.`default`
         }
     }
 }
@@ -160,7 +160,7 @@ class MockImageViewModelItemDetailAssembly: AssemblyProtocol {
 class MockNetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
-            URLSession.mockURLSession()
+            URLSession.mock
         }.inObjectScope(.container)
     }
 }
