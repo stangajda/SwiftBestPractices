@@ -13,59 +13,48 @@ protocol InjectionRegistering {
 }
 
 // MARK:- Injection
-public final class Injection: InjectionRegistering  {
-    private static let shared = Injection()
+public final class Injection: InjectionRegistering {
+    static let main = Injection()
     private let container = Container()
     private lazy var assembler = Assembler()
+    
     public static var resolver: Container {
-        Injection.shared.container
+        Injection.main.container
     }
-    public static var main: Injection{
-        Injection.shared
-    }
-}
-
-extension Injection {
+    
     public func initialRegistration() {
-        assembler = Assembler(
-        [
+        assembler = Assembler([
             NetworkAssembly(),
             ServiceAssembly(),
             ViewModelAssembly()
-        ],
-        container: container)
+        ], container: container)
     }
     
     func mockNetwork() {
-        assembler = Assembler(
-        [
+        assembler = Assembler([
             MockNetworkAssembly(),
-            ServiceAssembly(),
-        ],
-        container: container)
+            ServiceAssembly()
+        ], container: container)
     }
     
     func mockService() {
-        assembler = Assembler(
-        [
+        assembler = Assembler([
             MockServiceAssembly(),
             ViewModelAssembly()
-        ],
-        container: container)
+        ], container: container)
     }
     
     func mockViewModel() {
-        assembler = Assembler(
-        [
+        assembler = Assembler([
             MockMoviesListViewModelAssembly(),
             MockMovieDetailViewModelAssembly(),
             MockImageViewModelAssembly()
-        ],
-        container: container)
+        ], container: container)
     }
     
     func mockDetailViewModel() {
         mockViewModel()
         assembler.apply(assembly: MockImageViewModelItemDetailAssembly())
     }
+
 }
