@@ -111,12 +111,16 @@
 		F678765F2A1E058C00A4FD54 /* DIWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F678765D2A1E058700A4FD54 /* DIWrappers.swift */; };
 		F67876612A1E06A600A4FD54 /* DIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876602A1E06A600A4FD54 /* DIExtensions.swift */; };
 		F67876622A1E06A600A4FD54 /* DIExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876602A1E06A600A4FD54 /* DIExtensions.swift */; };
-		F67876642A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
-		F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */; };
+		F67876642A1E06E900A4FD54 /* AssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* AssemblyProtocol.swift */; };
+		F67876652A1E06E900A4FD54 /* AssemblyProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876632A1E06E900A4FD54 /* AssemblyProtocol.swift */; };
 		F678766B2A1E3BE300A4FD54 /* MockableServiceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876692A1E3BE300A4FD54 /* MockableServiceProtocol.swift */; };
 		F67B45D62A5F356000ECC9D5 /* MockMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */; };
 		F67B45D82A5F634F00ECC9D5 /* MockMovieListService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */; };
 		F67F06292A23CD4400889775 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1026979BBF0037DB34 /* Config.swift */; };
+		F69F14FE2A632ECE00873639 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F14FD2A632ECE00873639 /* Assembly.swift */; };
+		F69F14FF2A632ECE00873639 /* Assembly.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F14FD2A632ECE00873639 /* Assembly.swift */; };
+		F69F15012A6330A700873639 /* InjectionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F15002A6330A700873639 /* InjectionName.swift */; };
+		F69F15022A6330A700873639 /* InjectionName.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69F15002A6330A700873639 /* InjectionName.swift */; };
 		F6A5CF1B2A0292FE003745D1 /* ObservableLoadableProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */; };
 		F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
 		F6A686D02A55F274004D583F /* LifecycleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */; };
@@ -238,9 +242,11 @@
 		F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Tests.swift"; sourceTree = "<group>"; };
 		F678765D2A1E058700A4FD54 /* DIWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIWrappers.swift; sourceTree = "<group>"; };
 		F67876602A1E06A600A4FD54 /* DIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIExtensions.swift; sourceTree = "<group>"; };
-		F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIAssemblyProtocol.swift; sourceTree = "<group>"; };
+		F67876632A1E06E900A4FD54 /* AssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyProtocol.swift; sourceTree = "<group>"; };
 		F67876692A1E3BE300A4FD54 /* MockableServiceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockableServiceProtocol.swift; sourceTree = "<group>"; };
 		F67B45D52A5F356000ECC9D5 /* MockMovieListService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieListService.swift; sourceTree = "<group>"; };
+		F69F14FD2A632ECE00873639 /* Assembly.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assembly.swift; sourceTree = "<group>"; };
+		F69F15002A6330A700873639 /* InjectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionName.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
 		F6AC12482A570DCD003A55F9 /* MovieDetailViewSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewSpec.swift; sourceTree = "<group>"; };
@@ -516,7 +522,9 @@
 			children = (
 				F678765D2A1E058700A4FD54 /* DIWrappers.swift */,
 				F67876602A1E06A600A4FD54 /* DIExtensions.swift */,
-				F67876632A1E06E900A4FD54 /* DIAssemblyProtocol.swift */,
+				F67876632A1E06E900A4FD54 /* AssemblyProtocol.swift */,
+				F69F14FD2A632ECE00873639 /* Assembly.swift */,
+				F69F15002A6330A700873639 /* InjectionName.swift */,
 			);
 			path = DependencyInjection;
 			sourceTree = "<group>";
@@ -689,13 +697,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC35563C26AE2F4A002D0B07 /* ImageCacheProtocol.swift in Sources */,
+				F69F14FE2A632ECE00873639 /* Assembly.swift in Sources */,
 				CC351E1F269BC7B50037DB34 /* ImageView.swift in Sources */,
 				CC35563A26AC5189002D0B07 /* MockMoviesDetailViewModel.swift in Sources */,
 				CC3EC7B526A238D9005D71A9 /* System.swift in Sources */,
 				CC351E35269F1A790037DB34 /* MoviesListViewModel.swift in Sources */,
 				CCCA022226A9740A0056D018 /* LoadableReduce.swift in Sources */,
 				CC35563E26AF50FE002D0B07 /* Styles.swift in Sources */,
-				F67876642A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */,
+				F67876642A1E06E900A4FD54 /* AssemblyProtocol.swift in Sources */,
 				CC35563826AB5C25002D0B07 /* MockImageViewModel.swift in Sources */,
 				CC3EC7B326A238CA005D71A9 /* Feedback.swift in Sources */,
 				CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */,
@@ -713,6 +722,7 @@
 				CC351E1126979BBF0037DB34 /* Config.swift in Sources */,
 				F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */,
 				CCBF629C26B0C23A00BB0592 /* IconValueView.swift in Sources */,
+				F69F15012A6330A700873639 /* InjectionName.swift in Sources */,
 				F67B45D62A5F356000ECC9D5 /* MockMovieListService.swift in Sources */,
 				CC6114E826C5BD5800ECFB63 /* APIUrlImageBuilder.swift in Sources */,
 				CC4E706C26B83BFE00B3288D /* MovieDetailService.swift in Sources */,
@@ -749,6 +759,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F69F15022A6330A700873639 /* InjectionName.swift in Sources */,
 				F67876562A1D0F6800A4FD54 /* APIUrlImageBuilderProtocol.swift in Sources */,
 				F6ECD0E82A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
 				F655B2E42A3059FE0009146E /* MockableMovieDetailServiceProtocol.swift in Sources */,
@@ -780,6 +791,7 @@
 				F655B2E22A3058C00009146E /* MovieDetailServiceSpec.swift in Sources */,
 				F6AC12512A573DD3003A55F9 /* StarsRatingView.swift in Sources */,
 				F6AC125B2A57F2D6003A55F9 /* ImageViewSpec.swift in Sources */,
+				F69F14FF2A632ECE00873639 /* Assembly.swift in Sources */,
 				F678766B2A1E3BE300A4FD54 /* MockableServiceProtocol.swift in Sources */,
 				F6ECD0EB2A606A3A0008441E /* MockImageService.swift in Sources */,
 				F672138B2A30D5A10059E397 /* ViewModelProtocolWrappers.swift in Sources */,
@@ -807,7 +819,7 @@
 				F6AC124B2A573BF9003A55F9 /* MovieDetailView.swift in Sources */,
 				F64CEBF02A43AB9A00C4C175 /* MovieDetailViewModelSpec.swift in Sources */,
 				F6AC12492A570DCD003A55F9 /* MovieDetailViewSpec.swift in Sources */,
-				F67876652A1E06E900A4FD54 /* DIAssemblyProtocol.swift in Sources */,
+				F67876652A1E06E900A4FD54 /* AssemblyProtocol.swift in Sources */,
 				F678765B2A1DD68200A4FD54 /* MockImageViewModel.swift in Sources */,
 				CC4E707626BACD1E00B3288D /* APIError.swift in Sources */,
 				F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */,
