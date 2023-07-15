@@ -81,8 +81,8 @@ extension MoviesListView {
     
 
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
-        LazyView(MovieDetailViewWrapper(Injection.resolver.resolve(AnyMovieDetailViewModelProtocol.self, argument: movie)))
-
+        @Injected(movie) var viewModel: AnyMovieDetailViewModelProtocol
+        return MovieDetailViewWrapper(viewModel)
     }
 }
 
