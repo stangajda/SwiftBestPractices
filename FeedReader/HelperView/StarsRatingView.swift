@@ -39,7 +39,6 @@ struct StarsRatingView: View {
 struct DRStarsRatingView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StarsRatingView(rating: 2.7, maxRating: 5).preferredColorScheme(.dark)
             StarsRatingView(rating: 2.7, maxRating: 5)
         }
     }

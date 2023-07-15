@@ -25,7 +25,6 @@ struct StarsVotedView: View {
 struct StarsVotedView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            StarsVotedView(rating: 3.7,voteCount: 1920).preferredColorScheme(.dark)
             StarsVotedView(rating: 3.7,voteCount: 1920)
         }
     }

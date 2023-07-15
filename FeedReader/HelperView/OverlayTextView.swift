@@ -31,7 +31,6 @@ struct OverlayTextView: View {
 struct OverlayTextView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            OverlayTextView(stringArray: ["thriller","horror","comedy"]).preferredColorScheme(.dark)
             OverlayTextView(stringArray: ["thriller","horror","comedy"])
         }
     }

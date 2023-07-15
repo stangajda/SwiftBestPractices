@@ -28,7 +28,6 @@ struct IconValueView: View {
 struct IconValueView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            IconValueView(iconName: "banknote", textValue: "17,000,000").preferredColorScheme(.dark)
             IconValueView(iconName: "banknote", textValue: "17,000,000")
         }
     }
