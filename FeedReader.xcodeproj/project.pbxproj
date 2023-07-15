@@ -49,7 +49,6 @@
 		CC4E707526BACCEC00B3288D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707426BACCEC00B3288D /* APIError.swift */; };
 		CC4E707626BACD1E00B3288D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707426BACCEC00B3288D /* APIError.swift */; };
 		CC4E707A26BB3D7200B3288D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707926BB3D7100B3288D /* Extensions.swift */; };
-		CC4E708226BD37EB00B3288D /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E708126BD37E900B3288D /* LaunchesView.swift */; };
 		CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
 		CC569508268135E70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
@@ -139,7 +138,6 @@
 		F6AC125C2A57F2D6003A55F9 /* MoviesListlViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6AC125A2A57F2D6003A55F9 /* MoviesListlViewSpec.swift */; };
 		F6AC125D2A57F4AC003A55F9 /* MoviesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E14269A5C020037DB34 /* MoviesListView.swift */; };
 		F6AC125E2A57F68E003A55F9 /* MovieRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E1A269BA2070037DB34 /* MovieRowView.swift */; };
-		F6AC125F2A57F6A1003A55F9 /* LaunchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E708126BD37E900B3288D /* LaunchesView.swift */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
 		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
@@ -206,7 +204,6 @@
 		CC4E707426BACCEC00B3288D /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CC4E707926BB3D7100B3288D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMovieDetailResponseResult.json; sourceTree = "<group>"; };
-		CC4E708126BD37E900B3288D /* LaunchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchesView.swift; sourceTree = "<group>"; };
 		CC5695012680ED070055C07C /* MockMovieListResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMovieListResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		CC6114E126C53E1900ECFB63 /* APIUrlImageBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrlImageBuilderProtocol.swift; sourceTree = "<group>"; };
@@ -374,7 +371,6 @@
 				CCBF629926B0BF8F00BB0592 /* StarsVotedView.swift */,
 				CCBF629B26B0C23A00BB0592 /* IconValueView.swift */,
 				CCC199F426B1A77C00134803 /* OverlayTextView.swift */,
-				CC4E708126BD37E900B3288D /* LaunchesView.swift */,
 			);
 			path = HelperView;
 			sourceTree = "<group>";
@@ -711,7 +707,6 @@
 				CC6114E626C5BD1A00ECFB63 /* APIUrlBuilder.swift in Sources */,
 				CC35563226AB018B002D0B07 /* MockURLProtocol.swift in Sources */,
 				CC4E706826B83BAA00B3288D /* ImageService.swift in Sources */,
-				CC4E708226BD37EB00B3288D /* LaunchesView.swift in Sources */,
 				F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */,
 				CCC199F526B1A77C00134803 /* OverlayTextView.swift in Sources */,
 				CC351E1B269BA2070037DB34 /* MovieRowView.swift in Sources */,
@@ -761,7 +756,6 @@
 				F6ECD0E82A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
 				F655B2E42A3059FE0009146E /* MockableMovieDetailServiceProtocol.swift in Sources */,
 				F6AC12522A573DE0003A55F9 /* OverlayTextView.swift in Sources */,
-				F6AC125F2A57F6A1003A55F9 /* LaunchesView.swift in Sources */,
 				F678764F2A1D0F1B00A4FD54 /* LoadableEnums.swift in Sources */,
 				CCF3A8EA267BFCFF00CB5765 /* Service.swift in Sources */,
 				F67876582A1D5F2000A4FD54 /* MockStateProtocol.swift in Sources */,
