@@ -88,7 +88,6 @@
 		F672138A2A30C70F0059E397 /* ViewModelProtocolWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */; };
 		F672138B2A30D5A10059E397 /* ViewModelProtocolWrappers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */; };
 		F672138E2A310C9E0059E397 /* MovieListViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F672138D2A310C9E0059E397 /* MovieListViewModelSpec.swift */; };
-		F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */; };
 		F678764A2A1D0EFA00A4FD54 /* MoviesListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E34269F1A780037DB34 /* MoviesListViewModel.swift */; };
 		F678764B2A1D0EFD00A4FD54 /* MovieDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E36269F1ABE0037DB34 /* MovieDetailViewModel.swift */; };
 		F678764C2A1D0F0100A4FD54 /* ImageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC351E38269F1ADD0037DB34 /* ImageViewModel.swift */; };
@@ -239,7 +238,6 @@
 		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocolWrappers.swift; sourceTree = "<group>"; };
 		F672138D2A310C9E0059E397 /* MovieListViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelSpec.swift; sourceTree = "<group>"; };
-		F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Config+Tests.swift"; sourceTree = "<group>"; };
 		F678765D2A1E058700A4FD54 /* DIWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIWrappers.swift; sourceTree = "<group>"; };
 		F67876602A1E06A600A4FD54 /* DIExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DIExtensions.swift; sourceTree = "<group>"; };
 		F67876632A1E06E900A4FD54 /* AssemblyProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AssemblyProtocol.swift; sourceTree = "<group>"; };
@@ -474,7 +472,6 @@
 		CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				F67876472A1CDF9F00A4FD54 /* Config+Tests.swift */,
 				CC569509268205B00055C07C /* HelperTests.swift */,
 				F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */,
 				F672138C2A310C310059E397 /* ViewModelSpec */,
@@ -813,7 +810,6 @@
 				F67876512A1D0F2D00A4FD54 /* Feedback.swift in Sources */,
 				F6AC124E2A573DAA003A55F9 /* ErrorView.swift in Sources */,
 				F6AC125C2A57F2D6003A55F9 /* MoviesListlViewSpec.swift in Sources */,
-				F67876482A1CDF9F00A4FD54 /* Config+Tests.swift in Sources */,
 				F67F06292A23CD4400889775 /* Config.swift in Sources */,
 				F67876542A1D0F4E00A4FD54 /* ImageCacheProtocol.swift in Sources */,
 				F6AC124B2A573BF9003A55F9 /* MovieDetailView.swift in Sources */,
