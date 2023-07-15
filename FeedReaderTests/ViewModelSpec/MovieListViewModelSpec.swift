@@ -14,7 +14,7 @@ import Quick
 
 class MovieListViewModelSpec: QuickSpec {
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    static var viewModel: (any MoviesListViewModelProtocol)? = nil
+    static var viewModel: AnyMoviesListViewModelProtocol?
  
     override class func spec() {
         describe("check movie list service"){
@@ -23,7 +23,8 @@ class MovieListViewModelSpec: QuickSpec {
 
             beforeEach {
                 Injection.main.mockService()
-                viewModel = MoviesListViewModel()
+                @Injected var viewModel: AnyMoviesListViewModelProtocol
+                Self.viewModel = viewModel
             }
             
             afterEach {

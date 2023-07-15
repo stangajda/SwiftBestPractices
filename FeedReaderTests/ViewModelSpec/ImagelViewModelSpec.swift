@@ -15,14 +15,15 @@ import SwiftUI
 
 class ImageViewModelSpec: QuickSpec {
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    static var viewModel: (any ImageViewModelProtocol)? = nil
+    static var viewModel: AnyImageViewModelProtocol?
     
     override class func spec() {
         describe("check movie list service"){
             
             beforeEach {
                 Injection.main.mockService()
-                viewModel = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath())
+                @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModel: AnyImageViewModelProtocol
+                Self.viewModel = viewModel
             }
             
             afterEach {

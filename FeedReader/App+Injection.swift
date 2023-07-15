@@ -130,6 +130,11 @@ fileprivate class ViewModelAssembly: AssemblyProtocol {
                 .eraseToAnyViewModelProtocol()
         }
         
+        container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath in
+            ImageViewModel.instance(imagePath: imagePath, imageSizePath: imageSizePath)
+                .eraseToAnyViewModelProtocol()
+        }
+        
         container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
             ImageViewModel.instance(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
                 .eraseToAnyViewModelProtocol()
