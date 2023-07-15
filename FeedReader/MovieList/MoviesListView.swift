@@ -78,7 +78,6 @@ extension MoviesListView {
             }
         }
     }
-    
 
     func makeMovieDetailView(for movie: MoviesListViewModel.MovieItem) -> some View {
         @Injected(movie) var viewModel: AnyMovieDetailViewModelProtocol

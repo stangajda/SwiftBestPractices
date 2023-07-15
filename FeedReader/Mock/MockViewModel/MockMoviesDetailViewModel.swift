@@ -24,14 +24,6 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         self.statePublisher = _state.projectedValue
         onAppear()
     }
-    
-    init(_ movieList: MoviesListViewModel.MovieItem){
-        self.mockState = .loaded
-        self.movieList = movieList
-        self.statePublisher = _state.projectedValue
-        onAppear()
-    }
-    
 
     func fetch() -> AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> {
         switch mockState {

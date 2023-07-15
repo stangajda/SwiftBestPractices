@@ -12,16 +12,9 @@ enum APIError: Swift.Error, Equatable {
     case apiCode(APICode)
     case unknownResponse
     case imageConversion(URLRequest)
-    static func == (lhs: APIError, rhs: APIError) -> Bool {
-        lhs.localizedDescription == rhs.localizedDescription
-    }
 }
 
 extension APIError: LocalizedError {
-    init(_ error: Swift.Error) {
-        self = error as? APIError ?? .unknownResponse
-    }
-    
     var errorDescription: String? {
         switch self {
         case .invalidURL:
@@ -34,5 +27,4 @@ extension APIError: LocalizedError {
             return "Unable to load image"
         }
     }
-
 }

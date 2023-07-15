@@ -19,10 +19,6 @@ import Foundation
         self.service = Injection.resolver.resolve(Service.self, name: name?.rawValue) ?? Injection.resolver.resolve(Service.self)
     }
     
-    public init<T>(argument: Result<T, Error>) {
-        self.service = Injection.resolver.resolve(Service.self, argument: argument) ?? Injection.resolver.resolve(Service.self)
-    }
-    
     public init<ARG1>(_ argument1: ARG1) {
         self.service = Injection.resolver.resolve(Service.self, argument: argument1) ?? Injection.resolver.resolve(Service.self)
     }

@@ -55,7 +55,6 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 //MARK:- Fetch
 extension MoviesListViewModel {
     func fetch() -> AnyPublisher<Array<MovieItem>, Error>{
-        
         guard let url = APIUrlBuilder[TrendingPath()] else {
             return Fail(error: APIError.invalidURL)
                 .eraseToAnyPublisher()
