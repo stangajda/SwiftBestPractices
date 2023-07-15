@@ -21,7 +21,11 @@ struct FeedReaderApp: App {
     }
     
     func injectDependency(){
+#if MOCK
+        Injection.main.mockViewModel()
+#else
         Injection.main.initialRegistration()
+#endif
     }
 
 }
