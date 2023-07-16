@@ -18,15 +18,8 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     
     fileprivate var cancellable: AnyCancellable?
     
-    init(_ mockState: MockState.State, _ movieList: MoviesListViewModel.MovieItem){
+    init(_ movieList: MoviesListViewModel.MovieItem, _ mockState: MockState.State = .loaded){
         self.mockState = mockState
-        self.movieList = movieList
-        self.statePublisher = _state.projectedValue
-        onAppear()
-    }
-    
-    init(_ movieList: MoviesListViewModel.MovieItem){
-        self.mockState = .loaded
         self.movieList = movieList
         self.statePublisher = _state.projectedValue
         onAppear()
