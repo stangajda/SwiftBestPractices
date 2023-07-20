@@ -29,7 +29,7 @@ class MovieImageViewSpec: QuickSpec {
                     viewController = UIHostingController(rootView: imageView)
                 }
 
-                it("it should match recorded image") {
+                it("it should match movie list image") {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
@@ -45,7 +45,7 @@ class MovieImageViewSpec: QuickSpec {
                     viewController = UIHostingController(rootView: imageView)
                 }
 
-                it("it should match recorded image") {
+                it("it should match movie detail image") {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
