@@ -37,7 +37,9 @@ class MovieListViewModelSpec: QuickSpec {
                     let moviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.movieListResponseResult)
                     let anotherMoviesFromData: Movies = Data.jsonDataToObject(Config.Mock.MovieList.anotherMovieListResponseResult)
 
-                    MockMovieListService.mockResult(.success(moviesFromData))
+                    let result: Result<Movies, Error> = .success(moviesFromData)
+                    @Injected(result) var service: MovieListServiceProtocol
+                    
                     
                     movieItem = moviesFromData.results.map { movie in
                         MoviesListViewModel.MovieItem(movie)
@@ -79,7 +81,7 @@ class MovieListViewModelSpec: QuickSpec {
                 context("when error response with error code \(errorCode)") {
                     beforeEach {
                         let result: Result<Movies, Error> = .failure(APIError.apiCode(errorCode))
-                        MockMovieListService.mockResult(result)
+                        @Injected(result) var service: MovieListServiceProtocol
                         viewModel?.onAppear()
                     }
                     
@@ -92,7 +94,7 @@ class MovieListViewModelSpec: QuickSpec {
             context("when error response unknown error") {
                 beforeEach {
                     let result: Result<Movies, Error> = .failure(APIError.unknownResponse)
-                    MockMovieListService.mockResult(result)
+                    @Injected(result) var service: MovieListServiceProtocol
                     viewModel?.onAppear()
                 }
                 

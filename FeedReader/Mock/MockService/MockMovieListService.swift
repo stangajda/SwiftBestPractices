@@ -9,9 +9,12 @@ import Foundation
 import Combine
 
 struct MockMovieListService: MovieListServiceProtocol {
-    fileprivate static var result: Result<Movies, Error> = .success(Movies(results: [], page: 0))
-
-    static func mockResult(_ result: Result<Movies, Error>) {
+    private static var result: Result<Movies, Error> = .success(Movies(results: [], page: 0))
+    
+    init(){
+    }
+    
+    init(_ result: Result<Movies, Error>) {
         Self.result = result
     }
     

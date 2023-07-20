@@ -38,7 +38,8 @@ class MovieDetailViewModelSpec: QuickSpec {
                 beforeEach {
                     let moviesFromData: MovieDetail = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
                     let anotherMoviesFromData: MovieDetail = Data.jsonDataToObject(Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
-                    MockMovieDetailService.mockResult(.success(moviesFromData))
+                    let result: Result<MovieDetail, Error> = .success(moviesFromData)
+                    @Injected(result) var service: MovieDetailServiceProtocol
                     movieItem = MovieDetailViewModel.MovieDetailItem(moviesFromData)
                     anotherMovieItem = MovieDetailViewModel.MovieDetailItem(anotherMoviesFromData)
                     viewModel?.onAppear()
@@ -68,7 +69,8 @@ class MovieDetailViewModelSpec: QuickSpec {
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach {
-                        MockMovieDetailService.mockResult(.failure(APIError.apiCode(errorCode)))
+                        let result: Result<MovieDetail, Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(result) var service: MovieDetailServiceProtocol
                         viewModel?.onAppear()
                     }
                     
@@ -80,7 +82,8 @@ class MovieDetailViewModelSpec: QuickSpec {
             
             context("when error response unknown error") {
                 beforeEach {
-                    MockMovieDetailService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<MovieDetail, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: MovieDetailServiceProtocol
                     viewModel?.onAppear()
                 }
                 
@@ -91,7 +94,8 @@ class MovieDetailViewModelSpec: QuickSpec {
             
             context("when 1 instance exist") {
                 beforeEach {
-                    MockMovieDetailService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<MovieDetail, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: MovieDetailServiceProtocol
                     viewModel?.onAppear()
                 }
                 
@@ -102,7 +106,8 @@ class MovieDetailViewModelSpec: QuickSpec {
             
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach {
-                    MockMovieDetailService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<MovieDetail, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: MovieDetailServiceProtocol
                     viewModel?.onAppear()
                     MovieDetailViewModel.deallocateCurrentInstances()
                 }

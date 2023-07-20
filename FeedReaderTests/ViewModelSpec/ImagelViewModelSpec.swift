@@ -35,7 +35,8 @@ class ImageViewModelSpec: QuickSpec {
             context("when send on appear action") {
                 beforeEach {
                     let testImage: UIImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)!
-                    MockImageService.mockResult(.success(testImage))
+                    let result: Result<UIImage, Error> = .success(testImage)
+                    @Injected(result) var service: ImageServiceProtocol
                     viewModel?.onAppear()
                 }
                 
@@ -61,7 +62,8 @@ class ImageViewModelSpec: QuickSpec {
             errorCodes.forEach { errorCode in
                 context("when error response with error code \(errorCode)") {
                     beforeEach {
-                        MockImageService.mockResult(.failure(APIError.apiCode(errorCode)))
+                        let result: Result<UIImage, Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(result) var service: ImageServiceProtocol
                         viewModel?.onAppear()
                     }
                     
@@ -73,7 +75,8 @@ class ImageViewModelSpec: QuickSpec {
             
             context("when error response unknown error") {
                 beforeEach {
-                    MockImageService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<UIImage, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: ImageServiceProtocol
                     viewModel?.onAppear()
                 }
                 
@@ -84,7 +87,8 @@ class ImageViewModelSpec: QuickSpec {
             
             context("when 1 instance exist") {
                 beforeEach {
-                    MockImageService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<UIImage, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: ImageServiceProtocol
                     viewModel?.onAppear()
                 }
                 
@@ -95,7 +99,8 @@ class ImageViewModelSpec: QuickSpec {
             
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach {
-                    MockImageService.mockResult(.failure(APIError.unknownResponse))
+                    let result: Result<UIImage, Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var service: ImageServiceProtocol
                     viewModel?.onAppear()
                     ImageViewModel.deallocateCurrentInstance()
                 }

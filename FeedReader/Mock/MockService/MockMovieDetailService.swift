@@ -11,7 +11,10 @@ import Combine
 struct MockMovieDetailService: MovieDetailServiceProtocol {
     fileprivate static var result: Result<MovieDetail, Error> = .success(MovieDetail.mock)
     
-    static func mockResult(_ result: Result<MovieDetail, Error>) {
+    init(){
+    }
+    
+    init(_ result: Result<MovieDetail, Error>) {
         Self.result = result
     }
     

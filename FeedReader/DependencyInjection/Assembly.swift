@@ -44,13 +44,25 @@ class MockServiceAssembly: AssemblyProtocol {
         container.register(MovieListServiceProtocol.self) { resolver in
             MockMovieListService()
         }
-
+        
+        container.register(MovieListServiceProtocol.self) { resolver, argument in
+            MockMovieListService(argument)
+        }
+        
         container.register(MovieDetailServiceProtocol.self) { resolver in
             MockMovieDetailService()
         }
 
+        container.register(MovieDetailServiceProtocol.self) { resolver, argument in
+            MockMovieDetailService(argument)
+        }
+
         container.register(ImageServiceProtocol.self) { resolver in
             MockImageService()
+        }
+
+        container.register(ImageServiceProtocol.self) { resolver, argument in
+            MockImageService(argument)
         }
     }
 }

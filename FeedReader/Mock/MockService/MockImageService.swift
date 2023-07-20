@@ -12,7 +12,10 @@ import UIKit
 struct MockImageService: ImageServiceProtocol {
     fileprivate static var result: Result<UIImage, Error> = .success(UIImage())
     
-    static func mockResult(_ result: Result<UIImage, Error>) {
+    init(){
+    }
+    
+    init(_ result: Result<UIImage, Error>) {
         Self.result = result
     }
     
