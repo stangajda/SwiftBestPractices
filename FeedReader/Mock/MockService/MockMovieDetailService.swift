@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 struct MockMovieDetailService: MovieDetailServiceProtocol {
-    fileprivate static var result: Result<MovieDetail, Error> = .success(MovieDetail.mock)
+    private static var result: Result<MovieDetail, Error> = .success(MovieDetail.mock)
     
     init(){
     }

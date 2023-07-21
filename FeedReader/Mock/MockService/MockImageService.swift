@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 struct MockImageService: ImageServiceProtocol {
-    fileprivate static var result: Result<UIImage, Error> = .success(UIImage())
+    private static var result: Result<UIImage, Error> = .success(UIImage())
     
     init(){
     }
