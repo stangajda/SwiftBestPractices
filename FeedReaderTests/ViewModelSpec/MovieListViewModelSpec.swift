@@ -13,7 +13,6 @@ import Nimble
 import Quick
 
 class MovieListViewModelSpec: QuickSpec {
-    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     static var viewModel: AnyMoviesListViewModelProtocol?
  
     override class func spec() {

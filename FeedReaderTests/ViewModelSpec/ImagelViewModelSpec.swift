@@ -14,7 +14,6 @@ import Quick
 import SwiftUI
 
 class ImageViewModelSpec: QuickSpec {
-    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
     static var viewModel: AnyImageViewModelProtocol?
     
     override class func spec() {
