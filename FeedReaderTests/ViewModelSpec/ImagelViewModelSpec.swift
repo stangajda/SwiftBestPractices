@@ -18,7 +18,7 @@ class ImageViewModelSpec: QuickSpec {
     
     override class func spec() {
         describe("check movie list service"){
-            
+
             beforeEach {
                 Injection.main.mockService()
                 @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModel: AnyImageViewModelProtocol
@@ -29,6 +29,7 @@ class ImageViewModelSpec: QuickSpec {
                 viewModel?.onDisappear()
                 MockURLProtocol.mock = nil
                 viewModel = nil
+                ImageViewModel.deallocateCurrentInstance()
             }
 
             context("when send on appear action") {
