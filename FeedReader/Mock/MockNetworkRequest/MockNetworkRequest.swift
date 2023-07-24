@@ -20,18 +20,6 @@ struct MockNetworkRequest: NetworkResponseProtocol {
     init(_ result: Result<Data, Swift.Error>) {
         Self.response(result)
     }
-
-    static func getApiCode<T>(_ result: Result<T, Swift.Error>) -> APICode {
-        switch result {
-        case .success(_):
-            return 200
-        case .failure(let error):
-            if let error = error as? URLError {
-                return APICode(error.errorCode)
-            }
-            return 0
-        }
-    }
     
     static var mockRequestUrl: URLRequest {
         return URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
@@ -39,7 +27,7 @@ struct MockNetworkRequest: NetworkResponseProtocol {
     
     static func response<T:Encodable> (_ result: Result<T, Swift.Error>) {
         do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: getApiCode(result))
+            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: result.getApiCode())
         } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
@@ -47,7 +35,7 @@ struct MockNetworkRequest: NetworkResponseProtocol {
     
     static func response(_ result: Result<Data, Swift.Error>) {
         do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: getApiCode(result))
+            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: result.getApiCode())
         } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
@@ -55,7 +43,7 @@ struct MockNetworkRequest: NetworkResponseProtocol {
 
     static func response(_ result: Result<Bool, Swift.Error>) {
         do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: getApiCode(result))
+            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: result.getApiCode())
         } catch {
             fatalError("Error: \(error.localizedDescription)")
         }
