@@ -13,18 +13,18 @@ import Nimble
 import Quick
 
 class MovieDetailViewModelSpec: QuickSpec {
-    static var viewModel: AnyMovieDetailViewModelProtocol?
     
     override class func spec() {
         describe("check movie list service"){
+            var viewModel: AnyMovieDetailViewModelProtocol?
             
             var movieItem: MovieDetailViewModel.MovieDetailItem!
             var anotherMovieItem: MovieDetailViewModel.MovieDetailItem!
 
             beforeEach {
                 Injection.main.mockService()
-                @Injected(MoviesListViewModel.MovieItem.mock) var viewModel: AnyMovieDetailViewModelProtocol
-                Self.viewModel = viewModel
+                @Injected(MoviesListViewModel.MovieItem.mock) var viewModelInjected: AnyMovieDetailViewModelProtocol
+                viewModel = viewModelInjected
             }
             
             afterEach {
@@ -45,11 +45,11 @@ class MovieDetailViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get movies from loaded state match mapped object"){
-                    expect(self.viewModel?.state).toEventually(equal(.loaded(movieItem)))
+                    expect(viewModel?.state).toEventually(equal(.loaded(movieItem)))
                 }
                 
                 it("it should get movies from loaded state match not mapped object"){
-                    expect(self.viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
+                    expect(viewModel?.state).toEventuallyNot(equal(.loaded(anotherMovieItem)))
                 }
             }
             
@@ -60,7 +60,7 @@ class MovieDetailViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get start state"){
-                    expect(self.viewModel?.state).toEventually(equal(.start(497698)))
+                    expect(viewModel?.state).toEventually(equal(.start(497698)))
                 }
             }
             
@@ -74,7 +74,7 @@ class MovieDetailViewModelSpec: QuickSpec {
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){
-                        expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
+                        expect(viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
@@ -87,7 +87,7 @@ class MovieDetailViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get state failed loaded with unknown error"){
-                    expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
+                    expect(viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
             

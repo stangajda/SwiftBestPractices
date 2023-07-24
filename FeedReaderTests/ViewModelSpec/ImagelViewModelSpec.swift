@@ -14,15 +14,14 @@ import Quick
 import SwiftUI
 
 class ImageViewModelSpec: QuickSpec {
-    static var viewModel: AnyImageViewModelProtocol?
-    
     override class func spec() {
         describe("check movie list service"){
-
+            var viewModel: AnyImageViewModelProtocol?
+            
             beforeEach {
                 Injection.main.mockService()
-                @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModel: AnyImageViewModelProtocol
-                Self.viewModel = viewModel
+                @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
+                viewModel = viewModelInjected
             }
             
             afterEach {
@@ -41,7 +40,7 @@ class ImageViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get movies from loaded state match mapped object"){
-                    expect(self.viewModel?.state).toEventually(beLoadedState{ image in
+                    expect(viewModel?.state).toEventually(beLoadedState{ image in
                         expect(image).to(beAnInstanceOf(ImageViewModel.ImageItem.self))
                     })
                 }
@@ -54,7 +53,7 @@ class ImageViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get loading state"){
-                    expect(self.viewModel?.state).toEventually(equal(.loading()))
+                    expect(viewModel?.state).toEventually(equal(.loading()))
                 }
             }
             
@@ -68,7 +67,7 @@ class ImageViewModelSpec: QuickSpec {
                     }
                     
                     it("it should get state failed loaded with error code \(errorCode)"){
-                        expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
+                        expect(viewModel?.state).toEventually(equal(.failedLoaded(APIError.apiCode(errorCode))))
                     }
                 }
             }
@@ -81,7 +80,7 @@ class ImageViewModelSpec: QuickSpec {
                 }
                 
                 it("it should get state failed loaded with unknown error"){
-                    expect(self.viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
+                    expect(viewModel?.state).toEventually(equal(.failedLoaded(APIError.unknownResponse)))
                 }
             }
             
