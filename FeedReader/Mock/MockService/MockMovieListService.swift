@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 struct MockMovieListService: MovieListServiceProtocol {
-    private static var result: Result<Movies, Error> = .success(Movies(results: [], page: 0))
+    private static var result: Result<Movies, Error>? = nil
     
     init(){
     }
@@ -19,6 +19,9 @@ struct MockMovieListService: MovieListServiceProtocol {
     }
     
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error> {
-        return Self.result.publisher.eraseToAnyPublisher()
+        guard let result = Self.result else {
+            return Empty().eraseToAnyPublisher()
+        }
+        return result.publisher.eraseToAnyPublisher()
     }
 }

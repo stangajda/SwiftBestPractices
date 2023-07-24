@@ -10,7 +10,7 @@ import Combine
 import UIKit
 
 struct MockImageService: ImageServiceProtocol {
-    private static var result: Result<UIImage, Error> = .success(UIImage())
+    private static var result: Result<UIImage, Error>? = nil
     
     init(){
     }
@@ -20,6 +20,9 @@ struct MockImageService: ImageServiceProtocol {
     }
     
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {
-        return Self.result.publisher.eraseToAnyPublisher()
+        guard let result = Self.result else {
+            return Empty().eraseToAnyPublisher()
+        }
+        return result.publisher.eraseToAnyPublisher()
     }
 }
