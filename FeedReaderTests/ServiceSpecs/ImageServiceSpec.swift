@@ -12,7 +12,7 @@ import Combine
 import Nimble
 import Quick
 
-class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
+class ImageServiceSpec: QuickSpec {
     @LazyInjected static var mockManager: ImageServiceProtocol
     
     static var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[MockEmptyPath()]!).get()
@@ -37,7 +37,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
                 beforeEach {
                     let testImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)
                     let imageData = convertImageToData(testImage)
-                    mockResponse(result: .success(imageData))
+                    let result: Result<Data, Swift.Error> = .success(imageData)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get succesful response on Type UIImage") {
@@ -50,7 +51,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             context("when failure not image stubdata"){
                 beforeEach {
                     let stubData = Data.stubData
-                    mockResponse(result: .success(stubData))
+                    let result: Result<Data, Swift.Error> = .success(stubData)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
 
                 it("it should get failure response match error") {
@@ -62,7 +64,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             errorCodes.forEach { errorCode in
                 context("when failure error code \(errorCode)"){
                     beforeEach {
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
+                        let result: Result<Data, Swift.Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(result) var networkResponse: NetworkResponseProtocol
                     }
 
                     it("it should get failed response match error code"){
@@ -73,7 +76,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
   
             context("when failure invalid url") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.invalidURL))
+                    let result: Result<Data, Swift.Error> = .failure(APIError.invalidURL)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get failed invalid url"){
@@ -83,7 +87,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             
             context("when failure unknown response") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                    let result: Result<Data, Swift.Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get failed unknown response"){
@@ -93,7 +98,8 @@ class ImageServiceSpec: QuickSpec, MockableImageServiceProtocol{
             
             context("when failure image conversion") {
                 beforeEach {
-                    mockResponse(result: .failure(APIError.imageConversion(mockRequestUrl)))
+                    let result: Result<Data, Swift.Error> = .failure(APIError.imageConversion(mockRequestUrl))
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get failed image conversion"){

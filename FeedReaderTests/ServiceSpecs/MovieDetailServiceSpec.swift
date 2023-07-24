@@ -12,7 +12,7 @@ import Combine
 import Nimble
 import Quick
 
-class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
+class MovieDetailServiceSpec: QuickSpec {
     @LazyInjected static var mockManager: MovieDetailServiceProtocol
     static var cancellable: AnyCancellable? = nil
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
@@ -39,7 +39,8 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
                 beforeEach {
                     moviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
                     anotherMoviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
-                    mockResponse(result: .success(moviesFromData))
+                    let result: Result<MovieDetail, Swift.Error> = .success(moviesFromData)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get successful response match mapped object"){
@@ -54,8 +55,9 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when failure error code \(errorCode)"){
-                    beforeEach { [self] in
-                        mockResponse(result: .failure(APIError.apiCode(errorCode)))
+                    beforeEach {
+                        let result: Result<MovieDetail, Swift.Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(result) var networkResponse: NetworkResponseProtocol
                     }
 
                     it("it should get failed response match error code"){
@@ -65,8 +67,9 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
             }
   
             context("when failure invalid url") {
-                beforeEach { [self] in
-                    mockResponse(result: .failure(APIError.invalidURL))
+                beforeEach {
+                    let result: Result<MovieDetail, Swift.Error> = .failure(APIError.invalidURL)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get failed invalid url"){
@@ -75,8 +78,9 @@ class MovieDetailServiceSpec: QuickSpec, MockableMovieDetailServiceProtocol {
             }
             
             context("when failure unknown response") {
-                beforeEach { [self] in
-                    mockResponse(result: .failure(APIError.unknownResponse))
+                beforeEach {
+                    let result: Result<MovieDetail, Swift.Error> = .failure(APIError.unknownResponse)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get failed unknown response"){

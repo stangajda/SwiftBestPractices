@@ -11,11 +11,10 @@ import Combine
 import Nimble
 import Quick
 
-class ServiceSpec: QuickSpec, MockableServiceProtocol {
+class ServiceSpec: QuickSpec {
     @LazyInjected static var mockManager: ServiceProtocol
     static var cancellable: AnyCancellable? = nil
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]!).get()
-    static var result: Result<Data, Swift.Error>!
     
     override class func spec() {
         describe("check service responses") {
@@ -32,9 +31,9 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
             
             context("when successful data in service") {
                 
-                beforeEach { [self] in
-                    result = .success(Data.stubData)
-                    mockResponse(result: result)
+                beforeEach {
+                    let result: Result<Data, Swift.Error> = .success(Data.stubData)
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
                 
                 it("it should get successful response match to data"){ [self] in
@@ -46,27 +45,26 @@ class ServiceSpec: QuickSpec, MockableServiceProtocol {
             let errorCodes: Array<Int> = [300,404,500]
             errorCodes.forEach { errorCode in
                 context("when failure error code \(errorCode)"){
-                    beforeEach { [self] in
-                        result = .failure(APIError.apiCode(errorCode))
-                        self.mockResponse(result: result, apiCode: errorCode)
+                    beforeEach {
+                        let result: Result<Data, Swift.Error> = .failure(APIError.apiCode(errorCode))
+                        @Injected(result) var networkResponse: NetworkResponseProtocol
                     }
 
                     it("it should get failure response match given error code \(errorCode)"){ [self] in
                         expect(self.fetchDataResult).to(beFailureAndMatchError(APIError.apiCode(errorCode)))
                     }
-                    
+
                     it("it should not get failure response match error code 0"){ [self] in
                         expect(self.fetchDataResult).to(beFailureAndNotMatchError(APIError.apiCode(0)))
                     }
-                    
+
                 }
             }
             
             context("when successful response with error code 0"){
                 beforeEach {
-                    let stubErrorCode = 0
-                    let result: Result<Bool, Swift.Error>! = .success(false)
-                    self.mockResponse(result: result, apiCode: stubErrorCode)
+                    let result: Result<Data, Swift.Error> = .failure(APIError.apiCode(0))
+                    @Injected(result) var networkResponse: NetworkResponseProtocol
                 }
 
                 it("it should failure response match error code"){ [self] in

@@ -173,6 +173,15 @@ class MockNetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
             URLSession.mock
-        }.inObjectScope(.container)
+        }
+        container.register(NetworkResponseProtocol.self) { resolver, result in
+            MockNetworkRequest(result as Result<Movies, Error>)
+        }
+        container.register(NetworkResponseProtocol.self) { resolver, result in
+            MockNetworkRequest(result as Result<MovieDetail, Error>)
+        }
+        container.register(NetworkResponseProtocol.self) { resolver, result in
+            MockNetworkRequest(result as Result<Data, Error>)
+        }
     }
 }
