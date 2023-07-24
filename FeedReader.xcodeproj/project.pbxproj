@@ -343,6 +343,7 @@
 				F67B45D42A5F216E00ECC9D5 /* MockViewModel */,
 				F67B45D72A5F35F000ECC9D5 /* MockService */,
 				F65AAB0B2A6E5A3F00B65A84 /* MockNetworkRequest */,
+				CC4E708026BBF00700B3288D /* MocksJSON */,
 				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
 				F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */,
 			);
@@ -390,7 +391,7 @@
 			path = Loadable;
 			sourceTree = "<group>";
 		};
-		CC4E708026BBF00700B3288D /* Mocks */ = {
+		CC4E708026BBF00700B3288D /* MocksJSON */ = {
 			isa = PBXGroup;
 			children = (
 				F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */,
@@ -398,7 +399,7 @@
 				CC5695012680ED070055C07C /* MockMovieListResponseResult.json */,
 				CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */,
 			);
-			path = Mocks;
+			path = MocksJSON;
 			sourceTree = "<group>";
 		};
 		CC6114E426C5BCDC00ECFB63 /* UrlBuilder */ = {
@@ -466,7 +467,6 @@
 				F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */,
 				F672138C2A310C310059E397 /* ViewModelSpec */,
 				F67876702A1E445800A4FD54 /* ServiceSpecs */,
-				CC4E708026BBF00700B3288D /* Mocks */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
 			);
 			path = FeedReaderTests;
