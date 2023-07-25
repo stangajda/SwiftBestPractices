@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIUrlBuilder: APIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string: Config.API.baseURL) }
+    static var baseURL: URL { URL(string: Config.API.baseURL) ?? URL(fileURLWithPath: String()) }
     static var prefix: String { Config.API.prefix }
     static var apiKey: String { Config.API.key }
 }

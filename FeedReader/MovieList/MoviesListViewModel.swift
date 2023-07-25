@@ -55,11 +55,7 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 //MARK:- Fetch
 extension MoviesListViewModel {
     func fetch() -> AnyPublisher<Array<MovieItem>, Error>{
-        guard let url = APIUrlBuilder[TrendingPath()] else {
-            return Fail(error: APIError.invalidURL)
-                .eraseToAnyPublisher()
-        }
-        
+        let url = APIUrlBuilder[TrendingPath()]
         return self.service.fetchMovies(URLRequest(url: url).get())
             .map { item in
                 item.results.map(MovieItem.init)

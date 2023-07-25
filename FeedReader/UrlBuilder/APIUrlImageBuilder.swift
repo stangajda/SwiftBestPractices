@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIUrlImageBuilder: APIUrlImageBuilderProtocol{
-    static var imageURL: URL? { URL(string: Config.API.Image.url) }
+    static var imageURL: URL { URL(string: Config.API.Image.url) ?? URL(fileURLWithPath: String()) }
 }
 
 protocol ImagePathProtocol {

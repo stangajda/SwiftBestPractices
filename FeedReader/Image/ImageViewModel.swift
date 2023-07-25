@@ -70,10 +70,6 @@ final class ImageViewModel: ImageViewModelProtocol{
         reset()
     }
     
-    fileprivate func getURL() -> URL?{
-        return APIUrlImageBuilder[self.imageSizePath, imagePath]
-    }
-    
     fileprivate func reset(){
         send(action: .onReset)
         cancellable?.cancel()
@@ -85,11 +81,7 @@ final class ImageViewModel: ImageViewModelProtocol{
 extension ImageViewModel {
     
     func fetch() -> AnyPublisher<ImageItem, Error>{
-        guard let url = getURL() else {
-            return Fail(error: APIError.invalidURL)
-                .eraseToAnyPublisher()
-        }
-        
+        let url = APIUrlImageBuilder[self.imageSizePath, imagePath]
         if let image = cache?[url] {
             let imageItem = ImageItem(image)
             state = .loaded(imageItem)

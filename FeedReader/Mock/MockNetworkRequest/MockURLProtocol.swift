@@ -8,8 +8,8 @@
 import Foundation
 
 struct MockAPIRequest: APIUrlBuilderProtocol {
-    static var baseURL: URL? { URL(string:"https://any.test.com/") }
-    static var imageURL: URL? { URL(string: "https://image.test.com/") }
+    static var baseURL: URL { URL(string:"https://any.test.com/") ?? URL(fileURLWithPath: String()) }
+    static var imageURL: URL { URL(string: "https://image.test.com/") ?? URL(fileURLWithPath: String()) }
     static var prefix: String { "stubPrefix" }
     static var type: String { "stubTypeI" }
     static var timeWindow: String { "stubTimeWindow" }

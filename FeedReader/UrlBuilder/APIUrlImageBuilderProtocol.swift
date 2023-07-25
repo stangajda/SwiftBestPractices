@@ -8,14 +8,12 @@
 import Foundation
 
 protocol APIUrlImageBuilderProtocol {
-    static var imageURL: URL? { get }
+    static var imageURL: URL { get }
 }
 
 extension APIUrlImageBuilderProtocol{
-    static subscript(_ imageSizePath: ImagePathProtocol, _ imagePath: String) -> URL?{
-        guard var url = Self.imageURL else {
-            return nil
-        }
+    static subscript(_ imageSizePath: ImagePathProtocol, _ imagePath: String) -> URL{
+        var url = Self.imageURL
         url.appendPathComponent(imageSizePath.stringPath())
         url.appendPathComponent(imagePath)
         return url

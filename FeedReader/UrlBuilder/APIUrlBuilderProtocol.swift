@@ -8,21 +8,19 @@
 import Foundation
 
 protocol APIUrlBuilderProtocol {
-    static var baseURL: URL? { get }
+    static var baseURL: URL { get }
     static var prefix: String { get }
     static var apiKey: String { get }
 }
 
 extension APIUrlBuilderProtocol {
-    static subscript(_ path: PathProtocol) -> URL?{
-        guard var url = Self.baseURL else {
-            return nil
-        }
+    static subscript(_ path: PathProtocol) -> URL{
+        var url = Self.baseURL
         url.appendPathComponent(Self.prefix)
         url.appendPathComponent(path.stringPath())
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)?
             .addQueryItem(Self.apiKey, forName: "api_key")
-        return urlComponents?.url
+        return urlComponents?.url ?? url
     }
 }
 
