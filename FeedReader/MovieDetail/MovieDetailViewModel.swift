@@ -73,7 +73,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
 extension MovieDetailViewModel {
     func fetch() -> AnyPublisher<MovieDetailItem, Error> {
         let url = APIUrlBuilder[MoviePath(movieList.id)]
-        return self.service.fetchMovieDetail(URLRequest(url: url).get())
+        let urlRequest = URLRequest(url: url).get()
+        return self.service.fetchMovieDetail(urlRequest)
             .map { item in
                 MovieDetailItem(item)
             }

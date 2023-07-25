@@ -90,7 +90,8 @@ extension ImageViewModel {
                 .eraseToAnyPublisher()
         }
         
-        return self.service.fetchImage(URLRequest(url: url))
+        let urlRequest = URLRequest(url: url).get()
+        return self.service.fetchImage(urlRequest)
             .map { [unowned self] item in
                 self.cache?[url] = item
                 return ImageItem(item)
