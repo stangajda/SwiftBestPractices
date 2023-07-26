@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 //MARK:- Main
 struct MoviesListView<ViewModel>: View where ViewModel: AnyMoviesListViewModelProtocol {
@@ -88,21 +89,26 @@ extension MoviesListView {
 //MARK:- Preview
 #if DEBUG
 struct MoviesList_Previews: PreviewProvider {
+    
     static var previews: some View {
-        Injection.main.mockViewModel()
-        @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
-        @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
-        @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
-
-        return Group {
-            MoviesListView(viewModel: viewModelLoaded)
-                .previewDisplayName(Config.View.MovieList.loaded)
-            MoviesListView(viewModel: viewModelLoading)
-                .previewDisplayName(Config.View.MovieList.loading)
-            MoviesListView(viewModel: viewModelFailed)
-                .previewDisplayName(Config.View.MovieList.failed)
-        }
-
+        snapshots.previews.previewLayout(.sizeThatFits)
     }
+
+    static var snapshots: PreviewSnapshots<AnyMoviesListViewModelProtocol> {
+            Injection.main.mockViewModel()
+            @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
+            @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
+            @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
+            return PreviewSnapshots(
+                configurations: [
+                    .init(named: .movieListStateLoaded, state: viewModelLoaded),
+                    .init(named: .movieListStateLoading, state: viewModelLoading),
+                    .init(named: .movieListStateFailed, state: viewModelFailed)
+                ],
+                configure: { state in
+                    MoviesListView(viewModel: state)
+                }
+            )
+        }
 }
 #endif

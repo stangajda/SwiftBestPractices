@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import PreviewSnapshots
 
 extension Array where Element == MoviesSubItem{
     func getNameOnly() -> Array<String>{
@@ -70,5 +71,11 @@ extension Int {
             return String()
         }
         return formattedNumber
+    }
+}
+
+public extension PreviewSnapshots.Configuration {
+    init(named name: Injection.Name, state: State) {
+        self.init(name: name.rawValue, state: state)
     }
 }

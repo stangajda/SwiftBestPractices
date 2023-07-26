@@ -79,6 +79,9 @@
 		F65AAB0D2A6E5A8200B65A84 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */; };
 		F65AAB0E2A6E5A8200B65A84 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */; };
 		F65AAB142A6EDB5A00B65A84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F65AAB132A6EDB5A00B65A84 /* README.md */; };
+		F65AAB1A2A70A98E00B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB192A70A98E00B65A84 /* PreviewSnapshots */; };
+		F65AAB1E2A70AA4600B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */; };
+		F65AAB202A70AA5000B65A84 /* PreviewSnapshotsTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
 		F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
@@ -255,6 +258,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F669997D2A1A6604006AF593 /* Swinject in Frameworks */,
+				F65AAB1A2A70A98E00B65A84 /* PreviewSnapshots in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,9 +266,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F65AAB1E2A70AA4600B65A84 /* PreviewSnapshots in Frameworks */,
 				F6AC12582A577039003A55F9 /* Nimble-SnapshotTesting in Frameworks */,
 				F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */,
 				CC45F75126B32A3F0050B77C /* Quick in Frameworks */,
+				F65AAB202A70AA5000B65A84 /* PreviewSnapshotsTesting in Frameworks */,
 				CC45F75326B32C3B0050B77C /* Nimble in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -574,6 +580,7 @@
 			name = FeedReader;
 			packageProductDependencies = (
 				F669997C2A1A6604006AF593 /* Swinject */,
+				F65AAB192A70A98E00B65A84 /* PreviewSnapshots */,
 			);
 			productName = FeedReader;
 			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
@@ -598,6 +605,8 @@
 				CC45F75226B32C3B0050B77C /* Nimble */,
 				F6AC12452A5708AC003A55F9 /* SnapshotTesting */,
 				F6AC12572A577039003A55F9 /* Nimble-SnapshotTesting */,
+				F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */,
+				F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */,
 			);
 			productName = FeedReaderTests;
 			productReference = CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */;
@@ -638,6 +647,7 @@
 				F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */,
 				F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
 				F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */,
+				F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */,
 			);
 			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
 			projectDirPath = "";
@@ -1194,6 +1204,14 @@
 				version = 7.1.0;
 			};
 		};
+		F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/doordash-oss/swiftui-preview-snapshots";
+			requirement = {
+				kind = exactVersion;
+				version = 1.0.0;
+			};
+		};
 		F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
@@ -1230,6 +1248,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC45F74226B2EA7C0050B77C /* XCRemoteSwiftPackageReference "Nimble" */;
 			productName = Nimble;
+		};
+		F65AAB192A70A98E00B65A84 /* PreviewSnapshots */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshots;
+		};
+		F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshots;
+		};
+		F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
+			productName = PreviewSnapshotsTesting;
 		};
 		F669997C2A1A6604006AF593 /* Swinject */ = {
 			isa = XCSwiftPackageProductDependency;

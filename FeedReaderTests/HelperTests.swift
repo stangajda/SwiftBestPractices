@@ -8,6 +8,9 @@
 import Foundation
 import Nimble
 import UIKit
+import PreviewSnapshots
+import PreviewSnapshotsTesting
+import SwiftUI
 
 // MARK: - Result
 
@@ -100,4 +103,27 @@ func convertImageToData(_ uiImage: UIImage?) -> Data {
         fatalError("Error: Can not convert image to data")
     }
     return imageData
+}
+
+extension PreviewSnapshots {
+    func getView( _ name: Injection.Name) -> AnyView {
+        let view = configurations
+            .filter { configuration in
+                configuration.name == name.rawValue
+            }
+            .map { configuration in
+                configure(configuration.state)
+            }
+            .first
+        
+        guard let view = view else {
+            return AnyView(EmptyView())
+        }
+        return view
+    }
+
+    func getViewController( _ name: Injection.Name) -> UIHostingController<AnyView> {
+        let view = getView(name)
+        return UIHostingController(rootView: view)
+    }
 }
