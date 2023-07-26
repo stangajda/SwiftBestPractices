@@ -17,12 +17,12 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
     
     @Published var state: ImageViewModel.State = .loading()
     var input = PassthroughSubject<ImageViewModel.Action, Never>()
-    var image: UIImage?
+    var image: UIImage
     
     fileprivate var cancellable: AnyCancellable?
     
     init(imageName: String) {
-        image = UIImage(named: imageName)
+        image = UIImage(named: imageName) ?? UIImage()
         statePublisher = _state.projectedValue
         onAppear()
     }
@@ -38,10 +38,6 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
     }
     
     func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {
-        guard let image = image else {
-            return Fail(error: APIError.invalidURL)
-                .eraseToAnyPublisher()
-        }
         let imageItem = ImageViewModel.ImageItem(image)
         state = .loaded(imageItem)
         return Just(imageItem)

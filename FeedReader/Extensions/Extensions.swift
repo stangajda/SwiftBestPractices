@@ -46,7 +46,7 @@ extension String {
         let formatter = toDateFormatter()
         formatter.dateFormat = "d MMM yy"
         guard let date = toDate() else {
-            return ""
+            return String()
         }
         return formatter.string(from: date)
     }
