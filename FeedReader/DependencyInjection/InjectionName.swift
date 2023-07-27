@@ -20,6 +20,7 @@ extension Injection.Name {
     static let movieDetailStateFailed = Self("MovieDetailStateFailed")
     
     static let imageStateLoaded = Self("ImageStateLoaded")
+    static let imageStateFailed = Self("ImageStateFailed")
 
     static let movieList = Self("movieList")
     static let movieDetail = Self("movieDetail")

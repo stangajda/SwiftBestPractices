@@ -56,5 +56,10 @@ public final class Injection: InjectionRegistering {
         mockViewModel()
         assembler.apply(assembly: MockImageViewModelItemDetailAssembly())
     }
+    
+    func mockFailedImageViewModel() {
+        mockViewModel()
+        assembler.apply(assembly: MockFailedImageViewModelAssembly())
+    }
 
 }

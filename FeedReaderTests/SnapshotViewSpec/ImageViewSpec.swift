@@ -38,6 +38,16 @@ class MovieImageViewSpec: QuickSpec {
                 }
             }
             
+            context("when image is in preview mode failed") {
+                beforeEach {
+                    viewController = ImageView_Previews_Failed.snapshots.getViewController()
+                }
+
+                it("it should match movie detail image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
+                }
+            }
+            
         }
     }
 }

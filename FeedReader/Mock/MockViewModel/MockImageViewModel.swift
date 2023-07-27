@@ -57,3 +57,14 @@ final class MockImageViewModelDetail: BaseMockImageViewModel {
         super.init(imageName: Config.Mock.Image.stubImageMoviedetailsBig)
     }
 }
+
+final class MockFailedImageViewModel: BaseMockImageViewModel {
+    init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
+        super.init(imageName: Config.Mock.Image.stubImageMovieMedium)
+    }
+    
+    override func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {
+        return Fail(error: APIError.apiCode(404))
+            .eraseToAnyPublisher()
+    }
+}

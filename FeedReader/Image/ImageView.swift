@@ -127,4 +127,26 @@ struct ImageView_Previews_MovieDetail: PreviewProvider {
     }
 }
 
+struct ImageView_Previews_Failed: PreviewProvider {
+    static var previews: some View {
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+
+    static var snapshots: PreviewSnapshots<Any> {
+        Injection.main.mockFailedImageViewModel()
+        return PreviewSnapshots(
+            configurations: [
+                .init(named: .imageStateFailed)
+            ],
+            configure: { state in
+                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: String(), imageSizePath: OriginalPath()) {
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                } placeholderError: { error in
+                    ErrorView(error: error)
+                }
+            }
+        )
+    }
+}
+
 #endif

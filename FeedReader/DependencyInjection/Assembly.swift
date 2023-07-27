@@ -161,6 +161,15 @@ class MockImageViewModelItemDetailAssembly: AssemblyProtocol {
     }
 }
 
+class MockFailedImageViewModelAssembly: AssemblyProtocol {
+    func assemble(container: Container) {
+        container.register(AnyImageViewModelProtocol.self) { resolver , imagePath, imageSizePath, cache in
+            MockFailedImageViewModel(imagePath: imagePath, imageSizePath: imageSizePath, cache: cache)
+                .eraseToAnyViewModelProtocol()
+        }
+    }
+}
+
 class MockNetworkAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(URLSessionProtocol.self) { _ in
