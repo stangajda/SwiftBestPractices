@@ -25,6 +25,34 @@
 If you still encounter access errors after deleting the snapshot folder, you may need to check the file permissions for the snapshot folder and ensure that you have read and write access to it. You can also try resetting the simulator or cleaning the build folder in Xcode.
 
 
+## Project Features
+
+1. Follows SOLID principles
+2. Uses MVVM architecture
+3. Achieves a code coverage of 93%
+4. Includes snapshot tests and unit tests
+5. Implements error handling
+6. Uses dependency injection with the @Injected wrapper for easier finding
+7. Follows the feedback pattern with the Loadable protocol
+8. Uses the state pattern and reducers
+9. Uses reactive programming
+10. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
+11. Names snapshot image files the same as the test descriptions
+12. Separates styles
+13. Includes a separate scheme (FeedReader-Mock) for mocking the project
+14. Merges previews with snapshot tests to keep the same code for both
+
+
+## Libraries
+
+Nimble 12.0.1
+Quick 7.1.0
+Swinject 2.8.3
+swift-snapshot-testing 1.11.1
+Nimble-snapshot-testing 3.0.0
+swiftui-preview-snapshots 1.0.0 
+
+
 
 
 
