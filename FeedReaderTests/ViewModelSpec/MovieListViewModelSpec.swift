@@ -64,10 +64,21 @@ class MovieListViewModelSpec: QuickSpec {
                 }
             }
             
-            context("when send on reset action") {
+            context("when send on reset action make on appear and on disappear") {
                 beforeEach {
                     viewModel?.onAppear()
                     viewModel?.onDisappear()
+                }
+                
+                it("it should get start state"){
+                    expect(viewModel?.state).toEventually(equal(.start()))
+                }
+            }
+            
+            context("when send on reset action make on active and on background") {
+                beforeEach {
+                    viewModel?.onActive()
+                    viewModel?.onBackground()
                 }
                 
                 it("it should get start state"){
