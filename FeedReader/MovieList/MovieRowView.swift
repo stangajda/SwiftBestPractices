@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 //MARK:- MovieRowView
 struct MovieRowView: View {
@@ -38,10 +39,17 @@ struct MovieRowView: View {
 #if DEBUG
 struct MovieRow_Previews: PreviewProvider {
     static var previews: some View {
-        return Group{
-            MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
-        }
-        .previewLayout(.sizeThatFits)
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                MovieRowView(movie: MoviesListViewModel.MovieItem.mock)
+            }
+        )
     }
 }
 #endif

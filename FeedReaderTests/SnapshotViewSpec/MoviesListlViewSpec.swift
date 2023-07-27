@@ -51,6 +51,17 @@ class MovieListViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
+            
+            context("when movies list row") {
+                beforeEach {
+                    viewController = MovieRow_Previews.snapshots.getViewController()
+                }
+
+                it("it should match movie list row image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
+                }
+            }
+            
         }
     }
 }
