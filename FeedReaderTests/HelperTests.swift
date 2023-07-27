@@ -106,7 +106,7 @@ func convertImageToData(_ uiImage: UIImage?) -> Data {
 }
 
 extension PreviewSnapshots {
-    func getView( _ name: Injection.Name? = nil) -> AnyView {
+    private func getView( _ name: Injection.Name? = nil) -> AnyView {
 
         guard let name = name else {
             return configurations
