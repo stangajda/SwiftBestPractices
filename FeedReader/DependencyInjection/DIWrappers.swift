@@ -42,24 +42,6 @@ import Foundation
     }
 }
 
-@propertyWrapper public struct OptionalInjected<Service> {
-    private var service: Service?
-    public init() {
-        self.service = Injection.resolver.resolve(Service.self)
-    }
-    public init(name: Injection.Name? = nil) {
-        self.service = Injection.resolver.resolve(Service.self, name: name?.rawValue) ?? Injection.resolver.resolve(Service.self)
-    }
-    public var wrappedValue: Service? {
-        get { return service }
-        mutating set { service = newValue }
-    }
-    public var projectedValue: OptionalInjected<Service> {
-        get { return self }
-        mutating set { self = newValue }
-    }
-}
-
 // MARK:- LazyInjected
 @propertyWrapper public struct LazyInjected<Service> {
     private var lock = Injection.lock
