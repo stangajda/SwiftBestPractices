@@ -74,6 +74,12 @@ extension Int {
     }
 }
 
+public extension PreviewSnapshots<Any>.Configuration {
+    init(named name: Injection.Name) {
+        self.init(name: name.rawValue, state: String())
+    }
+}
+
 public extension PreviewSnapshots.Configuration {
     init(named name: Injection.Name, state: State) {
         self.init(name: name.rawValue, state: state)

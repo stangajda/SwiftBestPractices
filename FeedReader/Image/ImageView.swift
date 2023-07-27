@@ -97,10 +97,10 @@ struct ImageView_Previews: PreviewProvider {
         Injection.main.mockViewModel()
         return PreviewSnapshots(
             configurations: [
-                .init(named: .movieList, state: EmptyView() )
+                .init(named: .movieList)
             ],
             configure: { _ in
-                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: String(), imageSizePath: OriginalPath()) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                 } placeholderError: { error in
                     ErrorView(error: error)
@@ -119,10 +119,10 @@ struct ImageView_Previews_MovieDetail: PreviewProvider {
         Injection.main.mockDetailViewModel()
         return PreviewSnapshots(
             configurations: [
-                .init(named: .movieDetail, state: EmptyView())
+                .init(named: .movieDetail)
             ],
             configure: { state in
-                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: String(), imageSizePath: OriginalPath()) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
                 } placeholderError: { error in
                     ErrorView(error: error)
