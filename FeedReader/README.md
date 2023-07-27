@@ -1,4 +1,4 @@
-# WRITING HIGH-QUALITY CODE: A STANDALONE PROJECT DEMONSTRATING ADVANCED SOLUTIONS, PRACTICALITY AND EXPERIMENTATION (93% code coverage)
+# WRITING HIGH-QUALITY CODE: A STANDALONE PROJECT DEMONSTRATING ADVANCED SOLUTIONS, PRACTICALITY AND EXPERIMENTATION - 93%! code coverage
 
 ## This project is not over-engineered or excessive in its complexity. Rather, it is intended to showcase my skills to potential employers or clients in writing high-quality code and implementing advanced solutions that can be used in larger projects. However, before using these solutions in a larger project, it is important to experiment with them on a smaller, standalone project to ensure their effectiveness and suitability.
 
