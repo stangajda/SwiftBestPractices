@@ -103,6 +103,17 @@ class MovieDetailViewModelSpec: QuickSpec {
                 }
             }
             
+            context("when allocate another instance") {
+                beforeEach {
+                    @Injected(MoviesListViewModel.MovieItem.mock) var viewModelInjected: AnyMovieDetailViewModelProtocol
+                    _ = MovieDetailViewModel.instance(MoviesListViewModel.MovieItem.mock)
+                }
+                
+                it("it should get MovieDetailViewModel instances count 1"){
+                    expect(MovieDetailViewModel.instances.count).to(equal(1))
+                }
+            }
+            
             context("when deaalocate MovieDetailViewModel instances") {
                 beforeEach {
                     let result: Result<MovieDetail, Error> = .failure(APIError.unknownResponse)
@@ -115,6 +126,7 @@ class MovieDetailViewModelSpec: QuickSpec {
                     expect(MovieDetailViewModel.instances.count).to(equal(0))
                 }
             }
+            
         }
     }
 }

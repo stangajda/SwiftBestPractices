@@ -91,12 +91,23 @@ class ImageViewModelSpec: QuickSpec {
                     viewModel?.onAppear()
                 }
                 
-                it("it should get MovieDetailViewModel instances count 1"){
+                it("it should get ImageViewModel instances count 1"){
                     expect(ImageViewModel.instances.count).to(equal(1))
                 }
             }
             
-            context("when deaalocate MovieDetailViewModel instances") {
+            context("when allocate another instance") {
+                beforeEach {
+                    @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
+                    _ = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath() as ImagePathProtocol)
+                }
+                
+                it("it should get ImageViewModel instances count 1"){
+                    expect(ImageViewModel.instances.count).to(equal(1))
+                }
+            }
+            
+            context("when deaalocate ImageViewModel instances") {
                 beforeEach {
                     let result: Result<UIImage, Error> = .failure(APIError.unknownResponse)
                     @Injected(result) var service: ImageServiceProtocol
@@ -104,7 +115,7 @@ class ImageViewModelSpec: QuickSpec {
                     ImageViewModel.deallocateCurrentInstance()
                 }
                 
-                it("it should get MovieDetailViewModel instances count 0"){
+                it("it should get ImageViewModel instances count 0"){
                     expect(ImageViewModel.instances.count).to(equal(0))
                 }
             }
