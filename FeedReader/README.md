@@ -32,7 +32,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 3. Achieves a code coverage of 93%
 4. Includes snapshot tests and unit tests
 5. Implements error handling
-6. Uses dependency injection with the @Injected wrapper for easier finding
+6. Uses dependency injection with the @Injected wrapper for easier finding and registers dependencies in a separate file for better organization and maintainability
 7. Follows the feedback pattern with the Loadable protocol
 8. Uses the state pattern and reducers
 9. Uses reactive programming
