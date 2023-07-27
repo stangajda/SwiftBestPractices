@@ -59,7 +59,6 @@ class HelperViewsSpec: QuickSpec {
                 }
             }
 
-            //StarsRatingView
             context("when stars rating view is loaded") {
                 beforeEach {
                     viewController = StarsRatingView_Previews.snapshots.getViewController()
@@ -70,7 +69,6 @@ class HelperViewsSpec: QuickSpec {
                 }
             }
 
-            //StarsvotesView
             context("when stars votes view is loaded") {
                 beforeEach {
                     viewController = StarsVotedView_Previews.snapshots.getViewController()
