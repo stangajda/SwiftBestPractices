@@ -345,7 +345,6 @@
 			children = (
 				CC4E707926BB3D7100B3288D /* Extensions.swift */,
 				CC456E54268FD9E600FF2113 /* ExtensionsService.swift */,
-				F65AAB232A725ED600B65A84 /* ExtensionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -477,10 +476,11 @@
 		CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */ = {
 			isa = PBXGroup;
 			children = (
-				CC569509268205B00055C07C /* HelperTests.swift */,
 				F6AC12472A570D6B003A55F9 /* SnapshotViewSpec */,
 				F672138C2A310C310059E397 /* ViewModelSpec */,
 				F67876702A1E445800A4FD54 /* ServiceSpecs */,
+				CC569509268205B00055C07C /* HelperTests.swift */,
+				F65AAB232A725ED600B65A84 /* ExtensionView.swift */,
 				CCF3A8CC267A8ED300CB5765 /* Info.plist */,
 			);
 			path = FeedReaderTests;
