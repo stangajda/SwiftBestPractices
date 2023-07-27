@@ -9,7 +9,7 @@
 
 ### To run the project after downloading it, open the .xcodeproj file in Xcode, choose the FeedReader-Debug scheme, select a simulator or connected device, and click the "Run" button or press Command + R.
 
-### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test is confirmed to be working for the iPhone 14 Pro simulator.
+### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 14 Pro simulator.
 
 
 ## Troubleshooting Snapshot Access Errors
