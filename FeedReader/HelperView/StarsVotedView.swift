@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct StarsVotedView: View {
     @State private var maxRating = 5
@@ -24,9 +25,17 @@ struct StarsVotedView: View {
 #if DEBUG
 struct StarsVotedView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            StarsVotedView(rating: 3.7,voteCount: 1920)
-        }
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                StarsVotedView(rating: 8.5, voteCount: 100)
+            }
+        )
     }
 }
 #endif

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct ErrorView: View {
     let error: Error
@@ -30,10 +31,18 @@ struct ErrorView: View {
 #if DEBUG
 struct ErrorView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            ErrorView(error: NSError(domain: "", code: 0, userInfo: [
-                                            NSLocalizedDescriptionKey: "Something went wrong"])).frame(width: 200, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/)
-        }
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                ErrorView(error: NSError(domain: "", code: 0, userInfo: [
+                                            NSLocalizedDescriptionKey: "Something went wrong"]))
+            }
+        )
     }
 }
 #endif

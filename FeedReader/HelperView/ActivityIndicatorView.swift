@@ -5,6 +5,7 @@
 //  Created by Stan Gajda on 11/07/2021.
 //
 import SwiftUI
+import PreviewSnapshots
 
 struct ActivityIndicator: UIViewRepresentable {
 
@@ -19,3 +20,21 @@ struct ActivityIndicator: UIViewRepresentable {
         isAnimating ? uiView.startAnimating() : uiView.stopAnimating()
     }
 }
+
+#if DEBUG
+struct ActivityIndicator_Previews: PreviewProvider {
+    static var previews: some View {
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                ActivityIndicator(isAnimating: .constant(true), style: .large)
+            }
+        )
+    }
+}
+#endif

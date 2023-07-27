@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct IconValueView: View {
     @State var iconName: String
@@ -27,9 +28,17 @@ struct IconValueView: View {
 #if DEBUG
 struct IconValueView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            IconValueView(iconName: "banknote", textValue: "17,000,000")
-        }
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                IconValueView(iconName: "star.fill", textValue: "8.5")
+            }
+        )
     }
 }
 #endif

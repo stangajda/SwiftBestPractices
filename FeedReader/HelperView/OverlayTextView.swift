@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 struct OverlayTextView: View {
     @State var stringArray: Array<String>
@@ -30,9 +31,17 @@ struct OverlayTextView: View {
 #if DEBUG
 struct OverlayTextView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
-            OverlayTextView(stringArray: ["thriller","horror","comedy"])
-        }
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+    static var snapshots: PreviewSnapshots<Any> {
+        return PreviewSnapshots(
+            configurations: [
+                .init()
+            ],
+            configure: { _ in
+                OverlayTextView(stringArray: ["Action", "Adventure", "Fantasy"])
+            }
+        )
     }
 }
 #endif
