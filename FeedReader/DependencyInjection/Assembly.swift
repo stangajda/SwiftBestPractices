@@ -95,6 +95,11 @@ class ViewModelAssembly: AssemblyProtocol {
 // MARK:- Preview
 class MockMoviesListViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
+        container.register(AnyMoviesListViewModelProtocol.self) { resolver in
+            MockMoviesListViewModel(.loaded)
+                .eraseToAnyViewModelProtocol()
+        }
+
         register(AnyMoviesListViewModelProtocol.self, container: container, name: .movieListStateLoaded) { resolver in
             MockMoviesListViewModel(.loaded)
                 .eraseToAnyViewModelProtocol()
@@ -114,12 +119,22 @@ class MockMoviesListViewModelAssembly: AssemblyNameProtocol {
             MockMoviesListViewModel(.failedLoaded)
                 .eraseToAnyViewModelProtocol()
         }
+        
+        register(AnyMovieDetailViewModelProtocol.self, container: container ) { resolver, movie in
+            MockMovieDetailViewModel(movie)
+                .eraseToAnyViewModelProtocol()
+        }
+
     }
 }
 
 class MockMovieDetailViewModelAssembly: AssemblyNameProtocol {
     func assemble(container: Container) {
-        
+        container.register(AnyMovieDetailViewModelProtocol.self) { resolver in
+            MockMovieDetailViewModel(MoviesListViewModel.MovieItem.mock)
+                .eraseToAnyViewModelProtocol()
+        }
+
         register(AnyMovieDetailViewModelProtocol.self, container: container, name: .movieDetailStateLoaded) { resolver in
             MockMovieDetailViewModel(MoviesListViewModel.MovieItem.mock)
                 .eraseToAnyViewModelProtocol()
