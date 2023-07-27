@@ -48,7 +48,7 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
     private var content: AnyView {
         switch viewModel.state {
         case .start:
-            return AnyView(initialView)
+            return AnyView(EmptyView())
         case .loading:
             return AnyView(loadingView)
         case .loaded(let image):
@@ -61,11 +61,6 @@ struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>:
 
 //MARK:- States
 private extension AsyncImageCached {
-    
-    @ViewBuilder
-    var initialView: some View {
-        Color.clear
-    }
     
     @ViewBuilder
     var loadingView: some View {

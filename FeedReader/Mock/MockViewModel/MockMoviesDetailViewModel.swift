@@ -38,6 +38,9 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         case .failedLoaded:
             return Fail(error: APIError.apiCode(404))
                 .eraseToAnyPublisher()
+        case .start:
+            return Empty()
+                .eraseToAnyPublisher()
         }
     }
     

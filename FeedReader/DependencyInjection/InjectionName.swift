@@ -9,10 +9,12 @@ import Foundation
 
 // MARK:- Injection.Name
 extension Injection.Name {
+    static let movieListStateStart = Self("MovieListStateStart")
     static let movieListStateLoaded = Self("MovieListStateLoaded")
     static let movieListStateLoading = Self("MovieListStateLoading")
     static let movieListStateFailed = Self("MovieListStateFailed")
     
+    static let movieDetailStateStart = Self("MovieDetailStateStart")
     static let movieDetailStateLoaded = Self("MovieDetailStateLoaded")
     static let movieDetailStateLoading = Self("MovieDetailStateLoading")
     static let movieDetailStateFailed = Self("MovieDetailStateFailed")

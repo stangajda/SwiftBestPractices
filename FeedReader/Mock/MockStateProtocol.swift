@@ -13,6 +13,7 @@ protocol MockStateProtocol {
 
 struct MockState {
     enum State {
+        case start
         case loading
         case loaded
         case failedLoaded

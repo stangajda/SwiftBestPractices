@@ -97,11 +97,13 @@ struct MoviesListView_Previews: PreviewProvider {
     static var snapshots: PreviewSnapshots<AnyMoviesListViewModelProtocol> {
             Injection.main.mockViewModel()
             @Injected(name: .movieListStateLoaded) var viewModelLoaded: AnyMoviesListViewModelProtocol
+            @Injected(name: .movieListStateStart) var viewModelStart: AnyMoviesListViewModelProtocol
             @Injected(name: .movieListStateLoading) var viewModelLoading: AnyMoviesListViewModelProtocol
             @Injected(name: .movieListStateFailed) var viewModelFailed: AnyMoviesListViewModelProtocol
             return PreviewSnapshots(
                 configurations: [
                     .init(named: .movieListStateLoaded, state: viewModelLoaded),
+                    .init(named: .movieListStateStart, state: viewModelStart),
                     .init(named: .movieListStateLoading, state: viewModelLoading),
                     .init(named: .movieListStateFailed, state: viewModelFailed)
                 ],

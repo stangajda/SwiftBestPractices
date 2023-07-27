@@ -32,6 +32,17 @@ class MovieListViewSpec: QuickSpec {
                 }
             }
             
+            context("when movies list is started") {
+                
+                beforeEach {
+                    viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateStart)
+                }
+                
+                it("it should match movie list start image") {
+                    expect(viewController).toEventually(haveValidSnapshot(as: .image))
+                }
+            }
+            
             context("when movies list is loading") {
                 beforeEach {
                     viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateLoading)

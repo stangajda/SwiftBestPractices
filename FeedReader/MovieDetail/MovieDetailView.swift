@@ -112,12 +112,14 @@ struct MovieDetailView_Previews: PreviewProvider {
     static var snapshots: PreviewSnapshots<AnyMovieDetailViewModelProtocol> {
         Injection.main.mockDetailViewModel()
         @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
+        @Injected(name: .movieDetailStateStart) var viewModelStart: AnyMovieDetailViewModelProtocol
         @Injected(name: .movieDetailStateLoading) var viewModelLoading: AnyMovieDetailViewModelProtocol
         @Injected(name: .movieDetailStateFailed) var viewModelFailed: AnyMovieDetailViewModelProtocol
 
         return PreviewSnapshots(
             configurations: [
                 .init(named: .movieDetailStateLoaded, state: viewModelLoaded),
+                .init(named: .movieDetailStateStart, state: viewModelStart),
                 .init(named: .movieDetailStateLoading, state: viewModelLoading),
                 .init(named: .movieDetailStateFailed, state: viewModelFailed)
             ],
