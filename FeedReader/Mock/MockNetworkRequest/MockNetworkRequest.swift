@@ -41,11 +41,4 @@ struct MockNetworkRequest: NetworkResponseProtocol {
         }
     }
 
-    static func response(_ result: Result<Bool, Swift.Error>) {
-        do {
-            MockURLProtocol.mock = try Mock(request: mockRequestUrl, result: result, apiCode: result.getApiCode())
-        } catch {
-            fatalError("Error: \(error.localizedDescription)")
-        }
-    }
 }
