@@ -21,7 +21,10 @@
 3. Locate the __Snapshots__ folder in the FeedReader/FeedReaderTests/SnapshotViewSpec subdirectory and delete it.
 4. Open Xcode and rebuild the project.
 5. Re-run the tests that use snapshot images.
+
 If you still encounter access errors after deleting the snapshot folder, you may need to check the file permissions for the snapshot folder and ensure that you have read and write access to it. You can also try resetting the simulator or cleaning the build folder in Xcode.
+
+
 
 
 
