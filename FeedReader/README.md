@@ -41,6 +41,8 @@ If you still encounter access errors after deleting the snapshot folder, you may
 12. Separates styles
 13. Includes a separate scheme (FeedReader-Mock) for mocking the project
 14. Merges previews with snapshot tests to keep the same code for both
+15. Implements request caching for improved performance
+16. Implements image caching for faster image loading and improved user experience
 
 
 ## Libraries
