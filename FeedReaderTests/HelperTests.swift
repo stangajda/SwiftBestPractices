@@ -113,7 +113,7 @@ extension PreviewSnapshots {
                 .map { configuration in
                     configure(configuration.state)
                 }
-                .first ?? AnyView(EmptyView())
+                .first ?? AnyView.errorNoViewFound()
         }
 
         let view = configurations
@@ -126,9 +126,9 @@ extension PreviewSnapshots {
             .first
         
         guard let view = view else {
-            return AnyView(EmptyView())
+            return AnyView.errorNoViewFound()
         }
-        
+
         return view
     }
 
