@@ -42,48 +42,6 @@ import Foundation
     }
 }
 
-// MARK:- LazyInjected
-@propertyWrapper public struct LazyInjected<Service> {
-    private var lock = Injection.lock
-    private var initialize: Bool = true
-    private var service: Service?
-    public init() {}
-    public var isEmpty: Bool {
-        lock.lock()
-        defer { lock.unlock() }
-        return service == nil
-    }
-    public var wrappedValue: Service {
-        mutating get {
-            lock.lock()
-            defer { lock.unlock() }
-            if initialize {
-                self.initialize = false
-                self.service = Injection.resolver.resolve(Service.self)
-            }
-            guard let service = service else {
-                fatalError("Can not find Service")
-            }
-            return service
-        }
-        mutating set {
-            lock.lock()
-            defer { lock.unlock() }
-            initialize = false
-            service = newValue
-        }
-    }
-    public var projectedValue: LazyInjected<Service> {
-        get { return self }
-        mutating set { self = newValue }
-    }
-    public mutating func release() {
-        lock.lock()
-        defer { lock.unlock() }
-        self.service = nil
-    }
-}
-
 // MARK:- Lock
 extension Injection {
     fileprivate static let lock = SwinjectRecursiveLock()

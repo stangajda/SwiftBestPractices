@@ -12,7 +12,7 @@ import Nimble
 import Quick
 
 class ServiceSpec: QuickSpec {
-    @LazyInjected static var mockManager: ServiceProtocol
+    @Injected static var mockManager: ServiceProtocol
     static var cancellable: AnyCancellable? = nil
     static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]).get()
     
