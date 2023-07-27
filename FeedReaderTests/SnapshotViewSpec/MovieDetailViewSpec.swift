@@ -12,6 +12,7 @@ import Nimble
 import Quick
 import SnapshotTesting
 import Nimble_SnapshotTesting
+import PreviewSnapshotsTesting
 
 class MovieDetailViewSpec: QuickSpec {
     override class func spec() {
@@ -19,14 +20,9 @@ class MovieDetailViewSpec: QuickSpec {
 
             var viewController: UIViewController!
 
-            beforeEach {
-                Injection.main.mockDetailViewModel()
-            }
-
             context("when movie detail is loaded") {
                 beforeEach {
-                    @Injected(name: .movieDetailStateLoaded) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
+                    viewController = MovieDetailView_Previews.snapshots.getViewController(.movieDetailStateLoaded)
                 }
 
                 it("it should match movie detail loaded image") {
@@ -36,8 +32,7 @@ class MovieDetailViewSpec: QuickSpec {
 
             context("when movie detail is loading") {
                 beforeEach {
-                    @Injected(name: .movieDetailStateLoading) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
+                    viewController = MovieDetailView_Previews.snapshots.getViewController(.movieDetailStateLoading)
                 }
 
                 it("it should match movie detail loading image") {
@@ -47,8 +42,7 @@ class MovieDetailViewSpec: QuickSpec {
 
             context("when movie detail is failed") {
                 beforeEach {
-                    @Injected(name: .movieDetailStateFailed) var viewModel: AnyMovieDetailViewModelProtocol
-                    viewController = UIHostingController(rootView: MovieDetailView(viewModel))
+                    viewController = MovieDetailView_Previews.snapshots.getViewController(.movieDetailStateFailed)
                 }
 
                 it("it should match movie detail failed image") {

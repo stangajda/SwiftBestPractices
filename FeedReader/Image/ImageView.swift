@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 //MARK:- ImageViewModel
 struct AsyncImageCached<ViewModel,ImageLoadingView: View, ImageErrorView: View>: View where ViewModel: AnyImageViewModelProtocol{
     @ObservedObject private var viewModel: ViewModel
@@ -89,21 +90,45 @@ private extension AsyncImageCached {
 
 struct ImageView_Previews: PreviewProvider {
     static var previews: some View {
-        return Group {
-            let _ = Injection.main.mockViewModel()
-            AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            } placeholderError: { error in
-                ErrorView(error: error)
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+
+    static var snapshots: PreviewSnapshots<Any> {
+        Injection.main.mockViewModel()
+        return PreviewSnapshots(
+            configurations: [
+                .init(named: .movieList, state: EmptyView() )
+            ],
+            configure: { _ in
+                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                } placeholderError: { error in
+                    ErrorView(error: error)
+                }
             }
-            
-            let _ = Injection.main.mockDetailViewModel()
-            AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
-                ActivityIndicator(isAnimating: .constant(true), style: .large)
-            } placeholderError: { error in
-                ErrorView(error: error)
+        )
+    }
+}
+
+struct ImageView_Previews_MovieDetail: PreviewProvider {
+    static var previews: some View {
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+
+    static var snapshots: PreviewSnapshots<Any> {
+        Injection.main.mockDetailViewModel()
+        return PreviewSnapshots(
+            configurations: [
+                .init(named: .movieDetail, state: EmptyView())
+            ],
+            configure: { state in
+                AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
+                    ActivityIndicator(isAnimating: .constant(true), style: .large)
+                } placeholderError: { error in
+                    ErrorView(error: error)
+                }
             }
-        }
+        )
     }
 }
 

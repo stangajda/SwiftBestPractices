@@ -20,15 +20,11 @@ class MovieListViewSpec: QuickSpec {
         describe("check movies list view to match recorded snapshot") {
                     
             var viewController: UIViewController!
-
-            beforeEach {
-                //Injection.main.mockViewModel()
-            }
             
             context("when movies list is loaded") {
                 
                 beforeEach {
-                    viewController = MoviesList_Previews.snapshots.getViewController(.movieListStateLoaded)
+                    viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateLoaded)
                 }
                 
                 it("it should match movie list loaded image") {
@@ -38,7 +34,7 @@ class MovieListViewSpec: QuickSpec {
             
             context("when movies list is loading") {
                 beforeEach {
-                    viewController = MoviesList_Previews.snapshots.getViewController(.movieListStateLoading)
+                    viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateLoading)
                 }
 
                 it("it should match movie list loading image") {
@@ -48,7 +44,7 @@ class MovieListViewSpec: QuickSpec {
             
             context("when movies list is failed") {
                 beforeEach {
-                    viewController = MoviesList_Previews.snapshots.getViewController(.movieListStateFailed)
+                    viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateFailed)
                 }
 
                 it("it should match movie list failed image") {

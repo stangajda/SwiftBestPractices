@@ -20,13 +20,7 @@ class MovieImageViewSpec: QuickSpec {
 
             context("when image is in preview mode") {
                 beforeEach {
-                    Injection.main.mockViewModel()
-                    let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
-                        ActivityIndicator(isAnimating: .constant(true), style: .large)
-                    } placeholderError: { error in
-                        ErrorView(error: error)
-                    }
-                    viewController = UIHostingController(rootView: imageView)
+                    viewController = ImageView_Previews.snapshots.getViewController()
                 }
 
                 it("it should match movie list image") {
@@ -36,13 +30,7 @@ class MovieImageViewSpec: QuickSpec {
             
             context("when image is in preview mode detail") {
                 beforeEach {
-                    Injection.main.mockDetailViewModel()
-                    let imageView = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>(imageURL: "", imageSizePath: OriginalPath()) {
-                        ActivityIndicator(isAnimating: .constant(true), style: .large)
-                    } placeholderError: { error in
-                        ErrorView(error: error)
-                    }
-                    viewController = UIHostingController(rootView: imageView)
+                    viewController = ImageView_Previews_MovieDetail.snapshots.getViewController()
                 }
 
                 it("it should match movie detail image") {

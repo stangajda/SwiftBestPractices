@@ -106,7 +106,16 @@ func convertImageToData(_ uiImage: UIImage?) -> Data {
 }
 
 extension PreviewSnapshots {
-    func getView( _ name: Injection.Name) -> AnyView {
+    func getView( _ name: Injection.Name? = nil) -> AnyView {
+
+        guard let name = name else {
+            return configurations
+                .map { configuration in
+                    configure(configuration.state)
+                }
+                .first ?? AnyView(EmptyView())
+        }
+
         let view = configurations
             .filter { configuration in
                 configuration.name == name.rawValue
@@ -119,10 +128,11 @@ extension PreviewSnapshots {
         guard let view = view else {
             return AnyView(EmptyView())
         }
+        
         return view
     }
 
-    func getViewController( _ name: Injection.Name) -> UIHostingController<AnyView> {
+    func getViewController( _ name: Injection.Name? = nil) -> UIHostingController<AnyView> {
         let view = getView(name)
         return UIHostingController(rootView: view)
     }

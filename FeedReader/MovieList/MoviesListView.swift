@@ -88,7 +88,7 @@ extension MoviesListView {
 
 //MARK:- Preview
 #if DEBUG
-struct MoviesList_Previews: PreviewProvider {
+struct MoviesListView_Previews: PreviewProvider {
     
     static var previews: some View {
         snapshots.previews.previewLayout(.sizeThatFits)

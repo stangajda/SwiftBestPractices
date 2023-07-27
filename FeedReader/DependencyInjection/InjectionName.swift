@@ -19,6 +19,6 @@ extension Injection.Name {
     
     static let imageStateLoaded = Self("ImageStateLoaded")
 
-    static let itemList = Self("ItemList")
-    static let itemDetail = Self("ItemDetail")
+    static let movieList = Self("movieList")
+    static let movieDetail = Self("movieDetail")
 }

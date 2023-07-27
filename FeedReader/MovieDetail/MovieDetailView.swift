@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PreviewSnapshots
 
 //MARK:- Main
 struct MovieDetailView<ViewModel>: View where ViewModel: AnyMovieDetailViewModelProtocol {
@@ -105,19 +106,25 @@ private extension MovieDetailView {
 #if DEBUG
 struct MovieDetailView_Previews: PreviewProvider {
     static var previews: some View {
+        snapshots.previews.previewLayout(.sizeThatFits)
+    }
+
+    static var snapshots: PreviewSnapshots<AnyMovieDetailViewModelProtocol> {
         Injection.main.mockDetailViewModel()
         @Injected(name: .movieDetailStateLoaded) var viewModelLoaded: AnyMovieDetailViewModelProtocol
         @Injected(name: .movieDetailStateLoading) var viewModelLoading: AnyMovieDetailViewModelProtocol
-        @Injected(name: .movieDetailStateFailed) var viewModelFailedLoaded: AnyMovieDetailViewModelProtocol
+        @Injected(name: .movieDetailStateFailed) var viewModelFailed: AnyMovieDetailViewModelProtocol
 
-        return Group {
-             MovieDetailView(viewModelLoaded)
-                .previewDisplayName(Config.View.MovieList.loaded)
-             MovieDetailView(viewModelLoading)
-                .previewDisplayName(Config.View.MovieList.loading)
-             MovieDetailView(viewModelFailedLoaded)
-                .previewDisplayName(Config.View.MovieList.loaded)
-        }
+        return PreviewSnapshots(
+            configurations: [
+                .init(named: .movieDetailStateLoaded, state: viewModelLoaded),
+                .init(named: .movieDetailStateLoading, state: viewModelLoading),
+                .init(named: .movieDetailStateFailed, state: viewModelFailed)
+            ],
+            configure: { state in
+                MovieDetailView(state)
+            }
+        )
     }
 }
 #endif
