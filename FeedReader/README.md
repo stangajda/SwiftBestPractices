@@ -25,24 +25,26 @@
 If you still encounter access errors after deleting the snapshot folder, you may need to check the file permissions for the snapshot folder and ensure that you have read and write access to it. You can also try resetting the simulator or cleaning the build folder in Xcode.
 
 
-## Project Features
+## Technical Features
 
 1. Follows SOLID principles
 2. Uses MVVM architecture
 3. Achieves a code coverage of 93%
 4. Includes snapshot tests and unit tests
 5. Implements error handling
-6. Uses dependency injection with the @Injected wrapper for easier finding and registers dependencies in a separate file for better organization and maintainability
-7. Follows the feedback pattern with the Loadable protocol
-8. Uses the state pattern and reducers
-9. Uses reactive programming
-10. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
-11. Names snapshot image files the same as the test descriptions
-12. Separates styles
-13. Includes a separate scheme (FeedReader-Mock) for mocking the project
-14. Merges previews with snapshot tests to keep the same code for both
-15. Implements request caching for improved performance
-16. Implements image caching for faster image loading and improved user experience
+6. Uses dependency injection with the @Injected wrapper for easier finding
+7. Registers dependencies in a separate file for better organization and maintainability
+8. Follows the feedback pattern with the Loadable protocol
+9. Uses the state pattern and reducers
+10. Uses reactive programming
+11. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
+12. Names snapshot image files the same as the test descriptions
+13. Separates styles
+14. Includes a separate scheme (FeedReader-Mock) for mocking the project
+15. Merges previews with snapshot tests to keep the same code for both
+16. Implements request caching for improved performance
+17. Implements image caching for faster image loading and improved user experience
+18. Uses generics for type safety and code reuse
 
 
 ## Libraries
