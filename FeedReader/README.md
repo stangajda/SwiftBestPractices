@@ -47,7 +47,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 18. Uses generics for type safety and code reuse
 
 
-## Libraries
+## 3rd party Libraries
 
 Nimble 12.0.1
 Quick 7.1.0
@@ -55,6 +55,9 @@ Swinject 2.8.3
 swift-snapshot-testing 1.11.1
 Nimble-snapshot-testing 3.0.0
 swiftui-preview-snapshots 1.0.0 
+
+## Sources
+https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/
 
 
 
