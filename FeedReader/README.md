@@ -9,6 +9,8 @@
 
 ### To run the project after downloading it, open the .xcodeproj file in Xcode, choose the FeedReader-Debug scheme, select a simulator or connected device, and click the "Run" button or press Command + R.
 
+### This standalone project has been confirmed to be working on Xcode 14.3 and simulators for the following devices: iPhone 14 Pro and iPhone 14 Pro Max, running iOS 16.0. The project has also been tested on a real device, iPhone 11 Pro Max, running iOS 16.1.1.
+
 ### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 14 Pro simulator.
 
 
@@ -58,6 +60,15 @@ swiftui-preview-snapshots 1.0.0
 
 ## Sources
 https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/
+https://github.com/hmlongco/Resolver
+https://github.com/Swinject/Swinject
+https://github.com/Quick/Quick
+https://github.com/Quick/Nimble
+https://www.browserstack.com/guide/snapshot-testing-ios
+https://github.com/pointfreeco/swift-snapshot-testing
+https://github.com/ashfurrow/Nimble-Snapshots
+https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots
+https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8
 
 
 
