@@ -70,7 +70,7 @@ https://github.com/ashfurrow/Nimble-Snapshots
 https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots
 https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8
 
-MIT License
+## MIT License
 
 Copyright (c) 2023 Stan Gajda
 
