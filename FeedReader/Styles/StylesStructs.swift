@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+// MARK: - StarsVotedSizeStyle
+
 struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
     let maxWidth: CGFloat
     let maxHeight: CGFloat
@@ -23,6 +25,8 @@ struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
             .font(.caption)
     }
 }
+
+// MARK: - MovieDetailView styles
 
 extension MovieDetailView {
     
@@ -65,6 +69,8 @@ extension MovieDetailView {
     }
     
 }
+
+// MARK: - MovieRowView styles
 
 extension MovieRowView {
     
