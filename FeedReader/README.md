@@ -59,6 +59,7 @@ Nimble-snapshot-testing 3.0.0
 swiftui-preview-snapshots 1.0.0 
 
 ## Sources
+https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/
 https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/
 https://github.com/hmlongco/Resolver
 https://github.com/Swinject/Swinject
