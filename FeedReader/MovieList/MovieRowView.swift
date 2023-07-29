@@ -23,13 +23,13 @@ struct MovieRowView: View {
             } placeholderError: { error in
                 ErrorView(error: error)
             }
-            .withRowImageSize()
+            .withImageStyle(ImageStyle())
             
             VStack(alignment:.leading){
                 Text(movie.title)
-                    .withRowTitleStyle()
+                    .withTitleStyle(TitleStyle())
                 StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
-                    .withRowStarsVotedSizeStyle()
+                    .withStarsVotedStyle(StarsVotedStyle())
             }
         }
         .padding()
