@@ -41,7 +41,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 10. Uses reactive programming
 11. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
 12. Names snapshot image files the same as the test descriptions
-13. Separates styles for better maintainability and reusability
+13. Separates styles from views for better maintainability and reusability
 14. Includes a separate scheme (FeedReader-Mock) for mocking the project
 15. Merges previews with snapshot tests to keep the same code for both
 16. Implements request caching for improved performance
