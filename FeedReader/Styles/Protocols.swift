@@ -21,4 +21,5 @@ protocol AnyStarsVotedProtocol: ViewModifier{
 }
 
 protocol AnyStarsVotedSizeProtocol: ViewModifier{
+    init(maxWidth: CGFloat, maxHeight: CGFloat)
 }

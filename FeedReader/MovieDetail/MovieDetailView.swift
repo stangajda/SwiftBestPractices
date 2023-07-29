@@ -68,7 +68,7 @@ private extension MovieDetailView {
         ScrollView {
             VStack(alignment: .leading) {
                 Text(movieDetail.title)
-                    .withTitleStyle(TitleStyle())
+                    .withTitleStyle(MovieDetailTitleStyle())
                 
                 let imageSizePath = OriginalPath() as ImagePathProtocol
                 let imageURL = movieDetail.backdrop_path
@@ -78,17 +78,17 @@ private extension MovieDetailView {
                 } placeholderError: { error in
                     ErrorView(error: error)
                 }
-                .withImageStyle(ImageStyle())
+                .withImageStyle(MovieDetailImageStyle())
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
-                    .withStarsVotedStyle(StarsVotedStyle())
+                    .withStarsVotedStyle(MovieDetailStarsVotedStyle())
                 
                 if !movieDetail.release_date.isEmpty{
                     IconValueView(iconName: Config.Icon.calendar, textValue: movieDetail.release_date)
                 }
                 
                 Text(movieDetail.overview)
-                    .withOverviewStyle(OverviewStyle())
+                    .withOverviewStyle(MovieDetailOverviewStyle())
                 
                 if movieDetail.budget.isNotZero() {
                     IconValueView(iconName: Config.Icon.banknote, textValue: movieDetail.budget.addDollar())

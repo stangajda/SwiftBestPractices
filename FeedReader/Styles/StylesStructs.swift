@@ -12,7 +12,7 @@ struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
     let maxWidth: CGFloat
     let maxHeight: CGFloat
     
-    init(_ maxWidth: CGFloat, _ maxHeight: CGFloat) {
+    init(maxWidth: CGFloat, maxHeight: CGFloat) {
         self.maxWidth = maxWidth
         self.maxHeight = maxHeight
     }
@@ -26,7 +26,7 @@ struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
 
 extension MovieDetailView {
     
-    struct TitleStyle: AnyTitleStyleProtocol {
+    struct MovieDetailTitleStyle: AnyTitleStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, maxHeight: 20.0)
@@ -38,7 +38,7 @@ extension MovieDetailView {
         }
     }
     
-    struct ImageStyle: AnyImageStyleProtocol {
+    struct MovieDetailImageStyle: AnyImageStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, minHeight: 220)
@@ -46,7 +46,7 @@ extension MovieDetailView {
         }
     }
     
-    struct OverviewStyle: AnyOverviewStyleProtocol {
+    struct MovieDetailOverviewStyle: AnyOverviewStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .multilineTextAlignment(.leading)
@@ -56,10 +56,10 @@ extension MovieDetailView {
         }
     }
     
-    struct StarsVotedStyle: AnyStarsVotedProtocol {
+    struct MovieDetailStarsVotedStyle: AnyStarsVotedProtocol {
         func body(content: Content) -> some View {
             content
-                .withStarsVotedSizeStyle(StarsVotedSizeStyle(180.0, 25.0))
+                .withStarsVotedSizeStyle(StarsVotedSizeStyle(maxWidth: 180.0, maxHeight: 25.0))
                 .padding(.bottom)
         }
     }
@@ -68,7 +68,7 @@ extension MovieDetailView {
 
 extension MovieRowView {
     
-    struct TitleStyle: AnyTitleStyleProtocol {
+    struct MoviewRowTitleStyle: AnyTitleStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.title2)
@@ -76,17 +76,17 @@ extension MovieRowView {
         }
     }
 
-    struct ImageStyle: AnyImageStyleProtocol {
+    struct MovieRowImageStyle: AnyImageStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: 64.0, maxHeight: 88.0)
         }
     }
 
-    struct StarsVotedStyle: AnyStarsVotedProtocol {
+    struct MovieRowStarsVotedStyle: AnyStarsVotedProtocol {
         func body(content: Content) -> some View {
             content
-                .withStarsVotedSizeStyle(StarsVotedSizeStyle(140.0, 15.0))
+                .withStarsVotedSizeStyle(StarsVotedSizeStyle(maxWidth: 140.0, maxHeight: 15.0))
         }
     }
     
