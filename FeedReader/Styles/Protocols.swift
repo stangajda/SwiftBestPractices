@@ -8,16 +8,13 @@
 import Foundation
 import SwiftUI
 
-protocol AnyTitleStyleProtocol: ViewModifier{
+protocol AnyTextStyleProtocol: ViewModifier{
 }
 
 protocol AnyAsyncImageStyleProtocol: ViewModifier{
 }
 
 protocol AnyImageStyleProtocol: ViewModifier{
-}
-
-protocol AnyOverviewStyleProtocol: ViewModifier{
 }
 
 protocol AnyStarsVotedProtocol: ViewModifier{

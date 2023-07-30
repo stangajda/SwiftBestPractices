@@ -68,7 +68,7 @@ private extension MovieDetailView {
         ScrollView {
             VStack(alignment: .leading) {
                 Text(movieDetail.title)
-                    .withTitleStyle(MovieDetailTitleStyle())
+                    .withTextStyle(MovieDetailTitleStyle())
                 
                 let imageSizePath = OriginalPath() as ImagePathProtocol
                 let imageURL = movieDetail.backdrop_path
@@ -88,7 +88,7 @@ private extension MovieDetailView {
                 }
                 
                 Text(movieDetail.overview)
-                    .withOverviewStyle(MovieDetailOverviewStyle())
+                    .withTextStyle(MovieDetailOverviewStyle())
                 
                 if movieDetail.budget.isNotZero() {
                     IconValueView(iconName: Config.Icon.banknote, textValue: movieDetail.budget.addDollar())

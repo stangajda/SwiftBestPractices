@@ -27,7 +27,7 @@ struct MovieRowView: View {
             
             VStack(alignment:.leading){
                 Text(movie.title)
-                    .withTitleStyle(MoviewRowTitleStyle())
+                    .withTextStyle(MoviewRowTitleStyle())
                 StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
                     .withStarsVotedStyle(MovieRowStarsVotedStyle())
             }

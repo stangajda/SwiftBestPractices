@@ -30,7 +30,7 @@ struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
 
 extension MovieDetailView {
     
-    struct MovieDetailTitleStyle: AnyTitleStyleProtocol {
+    struct MovieDetailTitleStyle: AnyTextStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, maxHeight: 20.0)
@@ -50,7 +50,7 @@ extension MovieDetailView {
         }
     }
     
-    struct MovieDetailOverviewStyle: AnyOverviewStyleProtocol {
+    struct MovieDetailOverviewStyle: AnyTextStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .multilineTextAlignment(.leading)
@@ -74,7 +74,7 @@ extension MovieDetailView {
 
 extension MovieRowView {
     
-    struct MoviewRowTitleStyle: AnyTitleStyleProtocol {
+    struct MoviewRowTitleStyle: AnyTextStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.title2)
@@ -111,5 +111,25 @@ struct StarsRatingImageStyle: AnyImageStyleProtocol {
     func body(content: Content) -> some View {
         content
             .aspectRatio(contentMode: .fit)
+    }
+}
+
+struct ErrorViewTitleStyle: AnyTextStyleProtocol {
+    func body(content: Content) -> some View {
+        content
+            .font(.headline)
+            .minimumScaleFactor(0.5)
+            .lineLimit(2)
+            .padding(.bottom)
+    }
+}
+
+struct ErrorViewDescriptionStyle: AnyTextStyleProtocol {
+    func body(content: Content) -> some View {
+        content
+            .font(.callout)
+            .minimumScaleFactor(0.5)
+            .lineLimit(2)
+            .padding(.bottom)
     }
 }

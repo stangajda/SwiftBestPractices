@@ -9,11 +9,7 @@ import Foundation
 import SwiftUI
 
 extension Text {
-     func withTitleStyle<Content: AnyTitleStyleProtocol>(_ content: Content) -> some View {
-         self.modifier(content)
-     }
-
-     func withOverviewStyle<Content: AnyOverviewStyleProtocol>(_ content: Content) -> some View {
+     func withTextStyle<Content: AnyTextStyleProtocol>(_ content: Content) -> some View {
          self.modifier(content)
      }
 }
