@@ -14,15 +14,7 @@ struct OverlayTextView: View {
         HStack {
             ForEach(stringArray, id: \.self) { string in
                 Text(string)
-                        .font(.caption)
-                        .padding(6.0)
-                        .foregroundColor(.primary)
-                        .overlay(
-                            RoundedRectangle(cornerRadius: 10.0)
-                                .stroke(lineWidth: 2.0)
-                        )
-                        .foregroundColor(.orange)
-                        .padding(.bottom)
+                    .withTextStyle(OverlayTextViewStyle())
             }
         }
     }

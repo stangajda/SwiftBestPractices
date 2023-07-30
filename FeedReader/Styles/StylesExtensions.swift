@@ -44,10 +44,3 @@ extension Image {
     }
 }
 
-extension HStack {
-    func withHStackStyle<Content: AnyHStackStyleProtocol>(_ content: Content) -> some View {
-        self.modifier(content)
-    }
-}
-
-

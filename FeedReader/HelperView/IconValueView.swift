@@ -15,11 +15,10 @@ struct IconValueView: View {
         HStack(spacing:8){
             Image(systemName: iconName )
                 .resizable()
-                .aspectRatio(contentMode: .fit)
-                .foregroundColor(.orange)
-                .frame(maxWidth: 40, maxHeight: 25, alignment: .leading)
+                .withImageStyle(IconValueImageStyle())
+                
             Text(textValue)
-                .font(.callout)
+                .withTextStyle(IconValueTextStyle())
         }
         .padding(.bottom)
     }

@@ -139,3 +139,38 @@ extension ErrorView {
         }
     }
 }
+
+extension IconValueView {
+    struct IconValueImageStyle: AnyImageStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.orange)
+                .frame(maxWidth: 40, maxHeight: 25, alignment: .leading)
+        }
+    }
+    struct IconValueTextStyle: AnyTextStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .font(.callout)
+        }
+    }
+}
+
+extension OverlayTextView {
+    struct OverlayTextViewStyle: AnyTextStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .font(.caption)
+                .padding(6.0)
+                .foregroundColor(.primary)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 10.0)
+                        .stroke(lineWidth: 2.0)
+                )
+                .foregroundColor(.orange)
+                .padding(.bottom)
+        }
+    }
+}
+
