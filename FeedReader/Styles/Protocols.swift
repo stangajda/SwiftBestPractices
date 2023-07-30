@@ -29,6 +29,3 @@ protocol StyleAnyStarsRatingViewProtocol: ViewModifier{
 protocol StyleAnyStarsVotedSizeProtocol: ViewModifier{
     init(maxWidth: CGFloat, maxHeight: CGFloat)
 }
-
-protocol StyleAnyOverlayProtocol: ViewModifier{
-}
