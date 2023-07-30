@@ -14,16 +14,16 @@ extension View {
     }
 }
 
-extension Image {
-    func withImageStyle<Content: StyleAnyImageProtocol>(_ content: Content) -> some View {
-        self.modifier(content)
-    }
-}
-
 extension Text {
      func withTextStyle<Content: StyleAnyTextProtocol>(_ content: Content) -> some View {
          self.modifier(content)
      }
+}
+
+extension Image {
+    func withImageStyle<Content: StyleAnyImageProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
 }
 
 extension AsyncImageCached {
