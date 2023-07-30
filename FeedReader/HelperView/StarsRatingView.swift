@@ -9,30 +9,40 @@ import SwiftUI
 import PreviewSnapshots
 
 struct StarsRatingView: View {
-    var rating: Double
-    var maxRating: Int
-
+    let rating: Double
+    let maxRating: Int
+    
     var body: some View {
         let stars = HStack(spacing: 2) {
             ForEach(0..<maxRating, id: \.self) { _ in
                 Image(systemName: Config.Icon.starFill)
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .withImageStyle(StarsRatingImageStyle())
             }
         }
-
-        stars.overlay(
-            GeometryReader { geometry in
-                let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(width: width)
-                        .foregroundColor(.orange)
-                }
-            }
-            .mask(stars)
+        
+        let mask = StarsRatingMask(rating: rating, maxRating: maxRating)
+        return stars.overlay(
+            mask.addMask(stars)
+                .foregroundColor(.orange)
         )
         .foregroundColor(.gray)
+    }
+}
+
+struct StarsRatingMask {
+    let rating: Double
+    let maxRating: Int
+    
+    fileprivate func addMask(_ stars: HStack<ForEach<Range<Int>, Int, some View>>) -> some View {
+        return GeometryReader { geometry in
+            let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .frame(width: width)
+            }
+        }
+        .mask(stars)
     }
 }
 

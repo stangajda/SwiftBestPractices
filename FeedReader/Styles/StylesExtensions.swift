@@ -30,6 +30,12 @@ extension StarsVotedView {
      }
  }
 
+extension StarsRatingView {
+    func withStarsRatingViewStyle<Content: AnyStarsRatingViewProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+}
+
 extension View {
     func withStarsVotedSizeStyle<Content: AnyStarsVotedSizeProtocol>(_ content: Content) -> some View {
         self.modifier(content)
@@ -37,7 +43,13 @@ extension View {
 }
 
 extension Image {
-    func withImageStyle<Content: AnyAsyncImageStyleProtocol>(_ content: Content) -> some View {
+    func withImageStyle<Content: AnyImageStyleProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+}
+
+extension HStack {
+    func withHStackStyle<Content: AnyHStackStyleProtocol>(_ content: Content) -> some View {
         self.modifier(content)
     }
 }

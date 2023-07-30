@@ -16,7 +16,7 @@ struct StarsVotedView: View {
     var body: some View {
         HStack(){
             StarsRatingView(rating: rating, maxRating: maxRating)
-                .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
+                .withStarsRatingViewStyle(StarsRatingViewStyle())
             Text("(\(voteCount))")
         }
     }

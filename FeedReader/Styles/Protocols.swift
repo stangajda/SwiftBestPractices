@@ -23,6 +23,12 @@ protocol AnyOverviewStyleProtocol: ViewModifier{
 protocol AnyStarsVotedProtocol: ViewModifier{
 }
 
+protocol AnyStarsRatingViewProtocol: ViewModifier{
+}
+
 protocol AnyStarsVotedSizeProtocol: ViewModifier{
     init(maxWidth: CGFloat, maxHeight: CGFloat)
+}
+
+protocol AnyHStackStyleProtocol: ViewModifier{
 }

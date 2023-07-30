@@ -97,3 +97,19 @@ extension MovieRowView {
     }
     
 }
+
+// MARK: - Helpers View styles
+
+struct StarsRatingViewStyle: AnyStarsRatingViewProtocol {
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
+    }
+}
+
+struct StarsRatingImageStyle: AnyImageStyleProtocol {
+    func body(content: Content) -> some View {
+        content
+            .aspectRatio(contentMode: .fit)
+    }
+}
