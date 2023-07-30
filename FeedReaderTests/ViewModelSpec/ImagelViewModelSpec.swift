@@ -20,7 +20,7 @@ class ImageViewModelSpec: QuickSpec {
             
             beforeEach {
                 Injection.main.mockService()
-                @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
+                @Injected(String(), OriginalPath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
                 viewModel = viewModelInjected
             }
             
@@ -98,8 +98,8 @@ class ImageViewModelSpec: QuickSpec {
             
             context("when allocate another instance") {
                 beforeEach {
-                    @Injected(String(), MockEmptyImagePath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
-                    _ = ImageViewModel.instance(imagePath: String(), imageSizePath: MockEmptyImagePath() as ImagePathProtocol)
+                    @Injected(String(), OriginalPath() as ImagePathProtocol) var viewModelInjected: AnyImageViewModelProtocol
+                    _ = ImageViewModel.instance(imagePath: String(), imageSizePath: OriginalPath() as ImagePathProtocol)
                 }
                 
                 it("it should get ImageViewModel instances count 1"){

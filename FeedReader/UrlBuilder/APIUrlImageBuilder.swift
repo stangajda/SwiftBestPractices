@@ -26,10 +26,3 @@ struct W200Path: ImagePathProtocol {
         Config.API.Image.w200Path
     }
 }
-
-struct MockEmptyImagePath: ImagePathProtocol{
-    func stringPath() -> String {
-        String()
-    }
-}
-
