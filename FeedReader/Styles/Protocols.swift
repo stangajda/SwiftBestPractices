@@ -8,6 +8,9 @@
 import Foundation
 import SwiftUI
 
+protocol AnyViewStyleProtocol: ViewModifier{
+}
+
 protocol AnyTextStyleProtocol: ViewModifier{
 }
 
@@ -27,5 +30,5 @@ protocol AnyStarsVotedSizeProtocol: ViewModifier{
     init(maxWidth: CGFloat, maxHeight: CGFloat)
 }
 
-protocol AnyHStackStyleProtocol: ViewModifier{
+protocol AnyOverlayStyleProtocol: ViewModifier{
 }

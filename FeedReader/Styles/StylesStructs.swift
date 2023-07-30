@@ -116,6 +116,24 @@ extension StarsRatingView {
                 .aspectRatio(contentMode: .fit)
         }
     }
+    struct StarsRatingMaskStyle: AnyStarsRatingViewProtocol {
+        func body(content: Content) -> some View {
+            content
+                .foregroundColor(.orange)
+        }
+    }
+    struct StarsRatingNotMaskStyle: AnyStarsRatingViewProtocol {
+        func body(content: Content) -> some View {
+            content
+                .foregroundColor(.gray)
+        }
+    }
+    struct StarsRatingOverlayStyle: AnyViewStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .foregroundColor(.gray)
+        }
+    }
 }
 
 extension ErrorView {
@@ -171,6 +189,13 @@ extension OverlayTextView {
                 .foregroundColor(.orange)
                 .padding(.bottom)
         }
+    }
+}
+
+struct OverlayViewStyle: AnyOverlayStyleProtocol {
+    func body(content: Content) -> some View {
+        content
+            .padding(.bottom)
     }
 }
 

@@ -36,6 +36,17 @@ extension View {
     func withStarsVotedSizeStyle<Content: AnyStarsVotedSizeProtocol>(_ content: Content) -> some View {
         self.modifier(content)
     }
+
+    func withViewStyle<Content: AnyViewStyleProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+    
+}
+
+extension StarsRatingMask {
+    func withStarsRatingViewStyle<Content: AnyStarsRatingViewProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
 }
 
 extension Image {

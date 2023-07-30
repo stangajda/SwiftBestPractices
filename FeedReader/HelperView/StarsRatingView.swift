@@ -21,28 +21,30 @@ struct StarsRatingView: View {
             }
         }
         
-        let mask = StarsRatingMask(rating: rating, maxRating: maxRating)
+        let starsRatingMask = StarsRatingMask(rating: rating, maxRating: maxRating)
+                                    .withStarsRatingViewStyle(StarsRatingMaskStyle())
         return stars.overlay(
-            mask.addMask(stars)
-                .foregroundColor(.orange)
+            starsRatingMask.mask(stars)
         )
-        .foregroundColor(.gray)
+        .withViewStyle(StarsRatingOverlayStyle())
     }
 }
 
-struct StarsRatingMask {
+struct StarsRatingMask: View {
     let rating: Double
     let maxRating: Int
     
-    fileprivate func addMask(_ stars: HStack<ForEach<Range<Int>, Int, some View>>) -> some View {
-        return GeometryReader { geometry in
-            let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
-            ZStack(alignment: .leading) {
-                Rectangle()
-                    .frame(width: width)
+    var body: some View {
+        //func addMask(_ stars: HStack<ForEach<Range<Int>, Int, some View>>) -> some View {
+            return GeometryReader { geometry in
+                let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
+                ZStack(alignment: .leading) {
+                    Rectangle()
+                        .frame(width: width)
+                }
             }
-        }
-        .mask(stars)
+            //.mask(stars)
+        //}
     }
 }
 
