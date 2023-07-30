@@ -15,7 +15,7 @@ import Quick
 class ImageServiceSpec: QuickSpec {
     @Injected static var mockManager: ImageServiceProtocol
     
-    static var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[MockEmptyPath()]).get()
+    static var mockRequestUrl: URLRequest = URLRequest(url:MockAPIRequest[StubEmptyPath()]).get()
     static var cancellable: AnyCancellable? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse

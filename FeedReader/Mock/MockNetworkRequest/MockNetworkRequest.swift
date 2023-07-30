@@ -22,7 +22,7 @@ struct MockNetworkRequest: NetworkResponseProtocol {
     }
     
     static var mockRequestUrl: URLRequest {
-        return URLRequest(url: MockAPIRequest[MockEmptyPath()]).get()
+        return URLRequest(url: MockAPIRequest[StubEmptyPath()]).get()
     }
     
     static func response<T:Encodable> (_ result: Result<T, Swift.Error>) {

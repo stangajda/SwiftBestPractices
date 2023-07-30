@@ -15,7 +15,7 @@ import Quick
 class MovieListServiceSpec: QuickSpec {
     @Injected static var mockManager: MovieListServiceProtocol
     
-    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]).get()
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[StubEmptyPath()]).get()
     static var cancellable: AnyCancellable? = nil
     
     typealias Mock = MockURLProtocol.MockedResponse

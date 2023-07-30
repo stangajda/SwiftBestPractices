@@ -14,7 +14,7 @@ import Quick
 class ServiceSpec: QuickSpec {
     @Injected static var mockManager: ServiceProtocol
     static var cancellable: AnyCancellable? = nil
-    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]).get()
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[StubEmptyPath()]).get()
     
     override class func spec() {
         describe("check service responses") {

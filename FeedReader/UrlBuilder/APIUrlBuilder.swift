@@ -35,7 +35,7 @@ struct MoviePath: PathProtocol{
     }
 }
 
-struct MockEmptyPath: PathProtocol{
+struct StubEmptyPath: PathProtocol{
     func stringPath() -> String {
         String()
     }

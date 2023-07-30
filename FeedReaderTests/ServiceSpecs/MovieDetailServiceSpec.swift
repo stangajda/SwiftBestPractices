@@ -15,7 +15,7 @@ import Quick
 class MovieDetailServiceSpec: QuickSpec {
     @Injected static var mockManager: MovieDetailServiceProtocol
     static var cancellable: AnyCancellable? = nil
-    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[MockEmptyPath()]).get()
+    static var mockRequestUrl: URLRequest = URLRequest(url: MockAPIRequest[StubEmptyPath()]).get()
     
     typealias Mock = MockURLProtocol.MockedResponse
     
