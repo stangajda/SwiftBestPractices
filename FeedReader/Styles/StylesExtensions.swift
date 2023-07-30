@@ -8,6 +8,18 @@
 import Foundation
 import SwiftUI
 
+extension View {
+    func withViewStyle<Content: StyleAnyViewProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+}
+
+extension Image {
+    func withImageStyle<Content: StyleAnyImageProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+}
+
 extension Text {
      func withTextStyle<Content: StyleAnyTextProtocol>(_ content: Content) -> some View {
          self.modifier(content)
@@ -32,25 +44,8 @@ extension StarsRatingView {
     }
 }
 
-extension View {
-//    func withViewStyle<Content: StyleAnyStarsVotedSizeProtocol>(_ content: Content) -> some View {
-//        self.modifier(content)
-//    }
-
-    func withViewStyle<Content: StyleAnyViewProtocol>(_ content: Content) -> some View {
-        self.modifier(content)
-    }
-    
-}
-
 extension StarsRatingMask {
     func withStarsRatingViewStyle<Content: StyleAnyStarsRatingViewProtocol>(_ content: Content) -> some View {
-        self.modifier(content)
-    }
-}
-
-extension Image {
-    func withImageStyle<Content: StyleAnyImageProtocol>(_ content: Content) -> some View {
         self.modifier(content)
     }
 }

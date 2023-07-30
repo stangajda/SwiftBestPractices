@@ -122,12 +122,6 @@ extension StarsRatingView {
                 .foregroundColor(.orange)
         }
     }
-    struct StarsRatingNotMaskStyle: StyleAnyStarsRatingViewProtocol {
-        func body(content: Content) -> some View {
-            content
-                .foregroundColor(.gray)
-        }
-    }
     struct StarsRatingOverlayStyle: StyleAnyViewProtocol {
         func body(content: Content) -> some View {
             content
@@ -189,13 +183,6 @@ extension OverlayTextView {
                 .foregroundColor(.orange)
                 .padding(.bottom)
         }
-    }
-}
-
-struct OverlayViewStyle: StyleAnyOverlayProtocol {
-    func body(content: Content) -> some View {
-        content
-            .padding(.bottom)
     }
 }
 
