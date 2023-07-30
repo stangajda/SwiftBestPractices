@@ -100,36 +100,42 @@ extension MovieRowView {
 
 // MARK: - Helpers View styles
 
-struct StarsRatingViewStyle: AnyStarsRatingViewProtocol {
-    func body(content: Content) -> some View {
-        content
-            .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
+extension StarsVotedView {
+    struct StarsRatingViewStyle: AnyStarsRatingViewProtocol {
+        func body(content: Content) -> some View {
+            content
+                .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
+        }
     }
 }
 
-struct StarsRatingImageStyle: AnyImageStyleProtocol {
-    func body(content: Content) -> some View {
-        content
-            .aspectRatio(contentMode: .fit)
+extension StarsRatingView {
+    struct StarsRatingImageStyle: AnyImageStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .aspectRatio(contentMode: .fit)
+        }
     }
 }
 
-struct ErrorViewTitleStyle: AnyTextStyleProtocol {
-    func body(content: Content) -> some View {
-        content
-            .font(.headline)
-            .minimumScaleFactor(0.5)
-            .lineLimit(2)
-            .padding(.bottom)
+extension ErrorView {
+    struct ErrorViewTitleStyle: AnyTextStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .font(.headline)
+                .minimumScaleFactor(0.5)
+                .lineLimit(2)
+                .padding(.bottom)
+        }
     }
-}
-
-struct ErrorViewDescriptionStyle: AnyTextStyleProtocol {
-    func body(content: Content) -> some View {
-        content
-            .font(.callout)
-            .minimumScaleFactor(0.5)
-            .lineLimit(2)
-            .padding(.bottom)
+    
+    struct ErrorViewDescriptionStyle: AnyTextStyleProtocol {
+        func body(content: Content) -> some View {
+            content
+                .font(.callout)
+                .minimumScaleFactor(0.5)
+                .lineLimit(2)
+                .padding(.bottom)
+        }
     }
 }
