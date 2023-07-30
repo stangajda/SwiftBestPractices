@@ -35,16 +35,13 @@ struct StarsRatingMask: View {
     let maxRating: Int
     
     var body: some View {
-        //func addMask(_ stars: HStack<ForEach<Range<Int>, Int, some View>>) -> some View {
-            return GeometryReader { geometry in
-                let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
-                ZStack(alignment: .leading) {
-                    Rectangle()
-                        .frame(width: width)
-                }
+        return GeometryReader { geometry in
+            let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width
+            ZStack(alignment: .leading) {
+                Rectangle()
+                    .frame(width: width)
             }
-            //.mask(stars)
-        //}
+        }
     }
 }
 
