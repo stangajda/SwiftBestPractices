@@ -42,7 +42,7 @@ extension MovieDetailView {
         }
     }
     
-    struct MovieDetailImageStyle: AnyImageStyleProtocol {
+    struct MovieDetailImageStyle: AnyAsyncImageStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, minHeight: 220)
@@ -82,7 +82,7 @@ extension MovieRowView {
         }
     }
 
-    struct MovieRowImageStyle: AnyImageStyleProtocol {
+    struct MovieRowImageStyle: AnyAsyncImageStyleProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: 64.0, maxHeight: 88.0)

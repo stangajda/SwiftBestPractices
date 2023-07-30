@@ -11,6 +11,9 @@ import SwiftUI
 protocol AnyTitleStyleProtocol: ViewModifier{
 }
 
+protocol AnyAsyncImageStyleProtocol: ViewModifier{
+}
+
 protocol AnyImageStyleProtocol: ViewModifier{
 }
 

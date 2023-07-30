@@ -19,7 +19,7 @@ extension Text {
 }
 
 extension AsyncImageCached {
-    func withImageStyle<Content: AnyImageStyleProtocol>(_ content: Content) -> some View {
+    func withAsyncImageStyle<Content: AnyAsyncImageStyleProtocol>(_ content: Content) -> some View {
         self.modifier(content)
     }
 }
@@ -35,3 +35,11 @@ extension View {
         self.modifier(content)
     }
 }
+
+extension Image {
+    func withImageStyle<Content: AnyAsyncImageStyleProtocol>(_ content: Content) -> some View {
+        self.modifier(content)
+    }
+}
+
+

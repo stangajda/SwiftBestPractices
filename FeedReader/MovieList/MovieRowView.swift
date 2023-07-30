@@ -23,7 +23,7 @@ struct MovieRowView: View {
             } placeholderError: { error in
                 ErrorView(error: error)
             }
-            .withImageStyle(MovieRowImageStyle())
+            .withAsyncImageStyle(MovieRowImageStyle())
             
             VStack(alignment:.leading){
                 Text(movie.title)

@@ -78,7 +78,7 @@ private extension MovieDetailView {
                 } placeholderError: { error in
                     ErrorView(error: error)
                 }
-                .withImageStyle(MovieDetailImageStyle())
+                .withAsyncImageStyle(MovieDetailImageStyle())
                 
                 StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
                     .withStarsVotedStyle(MovieDetailStarsVotedStyle())
