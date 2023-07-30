@@ -10,7 +10,7 @@ import SwiftUI
 
 // MARK: - StarsVotedSizeStyle
 
-struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
+struct StarsVotedSizeStyle: StyleAnyViewProtocol {
     let maxWidth: CGFloat
     let maxHeight: CGFloat
     
@@ -30,7 +30,7 @@ struct StarsVotedSizeStyle: AnyStarsVotedSizeProtocol {
 
 extension MovieDetailView {
     
-    struct MovieDetailTitleStyle: AnyTextStyleProtocol {
+    struct MovieDetailTitleStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, maxHeight: 20.0)
@@ -42,7 +42,7 @@ extension MovieDetailView {
         }
     }
     
-    struct MovieDetailImageStyle: AnyAsyncImageStyleProtocol {
+    struct MovieDetailImageStyle: StyleAnyAsyncImageProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: .infinity, minHeight: 220)
@@ -50,7 +50,7 @@ extension MovieDetailView {
         }
     }
     
-    struct MovieDetailOverviewStyle: AnyTextStyleProtocol {
+    struct MovieDetailOverviewStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .multilineTextAlignment(.leading)
@@ -60,10 +60,10 @@ extension MovieDetailView {
         }
     }
     
-    struct MovieDetailStarsVotedStyle: AnyStarsVotedProtocol {
+    struct MovieDetailStarsVotedStyle: StyleAnyStarsVotedProtocol {
         func body(content: Content) -> some View {
             content
-                .withStarsVotedSizeStyle(StarsVotedSizeStyle(maxWidth: 180.0, maxHeight: 25.0))
+                .withViewStyle(StarsVotedSizeStyle(maxWidth: 180.0, maxHeight: 25.0))
                 .padding(.bottom)
         }
     }
@@ -74,7 +74,7 @@ extension MovieDetailView {
 
 extension MovieRowView {
     
-    struct MoviewRowTitleStyle: AnyTextStyleProtocol {
+    struct MoviewRowTitleStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.title2)
@@ -82,17 +82,17 @@ extension MovieRowView {
         }
     }
 
-    struct MovieRowImageStyle: AnyAsyncImageStyleProtocol {
+    struct MovieRowImageStyle: StyleAnyAsyncImageProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: 64.0, maxHeight: 88.0)
         }
     }
 
-    struct MovieRowStarsVotedStyle: AnyStarsVotedProtocol {
+    struct MovieRowStarsVotedStyle: StyleAnyStarsVotedProtocol {
         func body(content: Content) -> some View {
             content
-                .withStarsVotedSizeStyle(StarsVotedSizeStyle(maxWidth: 140.0, maxHeight: 15.0))
+                .withViewStyle(StarsVotedSizeStyle(maxWidth: 140.0, maxHeight: 15.0))
         }
     }
     
@@ -101,7 +101,7 @@ extension MovieRowView {
 // MARK: - Helpers View styles
 
 extension StarsVotedView {
-    struct StarsRatingViewStyle: AnyStarsRatingViewProtocol {
+    struct StarsRatingViewStyle: StyleAnyStarsRatingViewProtocol {
         func body(content: Content) -> some View {
             content
                 .frame(maxWidth: 120, maxHeight: 20.0, alignment: .leading)
@@ -110,25 +110,25 @@ extension StarsVotedView {
 }
 
 extension StarsRatingView {
-    struct StarsRatingImageStyle: AnyImageStyleProtocol {
+    struct StarsRatingImageStyle: StyleAnyImageProtocol {
         func body(content: Content) -> some View {
             content
                 .aspectRatio(contentMode: .fit)
         }
     }
-    struct StarsRatingMaskStyle: AnyStarsRatingViewProtocol {
+    struct StarsRatingMaskStyle: StyleAnyStarsRatingViewProtocol {
         func body(content: Content) -> some View {
             content
                 .foregroundColor(.orange)
         }
     }
-    struct StarsRatingNotMaskStyle: AnyStarsRatingViewProtocol {
+    struct StarsRatingNotMaskStyle: StyleAnyStarsRatingViewProtocol {
         func body(content: Content) -> some View {
             content
                 .foregroundColor(.gray)
         }
     }
-    struct StarsRatingOverlayStyle: AnyViewStyleProtocol {
+    struct StarsRatingOverlayStyle: StyleAnyViewProtocol {
         func body(content: Content) -> some View {
             content
                 .foregroundColor(.gray)
@@ -137,7 +137,7 @@ extension StarsRatingView {
 }
 
 extension ErrorView {
-    struct ErrorViewTitleStyle: AnyTextStyleProtocol {
+    struct ErrorViewTitleStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.headline)
@@ -147,7 +147,7 @@ extension ErrorView {
         }
     }
     
-    struct ErrorViewDescriptionStyle: AnyTextStyleProtocol {
+    struct ErrorViewDescriptionStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.callout)
@@ -159,7 +159,7 @@ extension ErrorView {
 }
 
 extension IconValueView {
-    struct IconValueImageStyle: AnyImageStyleProtocol {
+    struct IconValueImageStyle: StyleAnyImageProtocol {
         func body(content: Content) -> some View {
             content
                 .aspectRatio(contentMode: .fit)
@@ -167,7 +167,7 @@ extension IconValueView {
                 .frame(maxWidth: 40, maxHeight: 25, alignment: .leading)
         }
     }
-    struct IconValueTextStyle: AnyTextStyleProtocol {
+    struct IconValueTextStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.callout)
@@ -176,7 +176,7 @@ extension IconValueView {
 }
 
 extension OverlayTextView {
-    struct OverlayTextViewStyle: AnyTextStyleProtocol {
+    struct OverlayTextViewStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
                 .font(.caption)
@@ -192,7 +192,7 @@ extension OverlayTextView {
     }
 }
 
-struct OverlayViewStyle: AnyOverlayStyleProtocol {
+struct OverlayViewStyle: StyleAnyOverlayProtocol {
     func body(content: Content) -> some View {
         content
             .padding(.bottom)
