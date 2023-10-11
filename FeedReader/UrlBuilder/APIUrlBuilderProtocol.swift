@@ -19,7 +19,7 @@ extension APIUrlBuilderProtocol {
         url.appendPathComponent(Self.prefix)
         url.appendPathComponent(path.stringPath())
         let urlComponents = URLComponents(url: url, resolvingAgainstBaseURL: true)?
-            .addQueryItem(Self.apiKey, forName: "api_key")
+            .addQueryItem(Self.apiKey, forName: Config.API.apiKey)
         return urlComponents?.url ?? url
     }
 }

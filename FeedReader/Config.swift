@@ -15,6 +15,7 @@ struct Config {
     struct API {
         static let baseURL = "https://api.themoviedb.org/"
         static let prefix = "3"
+        static let apiKey = "api_key"
         static let key = "babcada8d42a5fd4857231c42240debd"
         static let trendingPath = "trending/movie/day"
         static let moviePath = "movie"
