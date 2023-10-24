@@ -32,21 +32,23 @@ If you still encounter access errors after deleting the snapshot folder, you may
 1. Follows SOLID principles
 2. Uses MVVM architecture
 3. Achieves a code coverage of 93%
-4. Includes snapshot tests and unit tests
-5. Implements error handling
-6. Uses dependency injection with the @Injected wrapper for easier finding
-7. Registers dependencies in a separate file for better organization and maintainability
-8. Follows the feedback pattern with the Loadable protocol
-9. Uses the state pattern and reducers
-10. Uses reactive programming
-11. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
-12. Names snapshot image files the same as the test descriptions
-13. Separates styles from views for better maintainability and reusability
-14. Includes a separate scheme (FeedReader-Mock) for mocking the project
-15. Merges previews with snapshot tests to keep the same code for both
-16. Implements request caching for improved performance
-17. Implements image caching for faster image loading and improved user experience
-18. Uses generics for type safety and code reuse
+4. Implement functionality to cancel the download of images and feeds when the back button is tapped.
+5. implement the dark theme 
+6. Includes snapshot tests and unit tests
+7. Implements error handling
+8. Uses dependency injection with the @Injected wrapper for easier finding
+9. Registers dependencies in a separate file for better organization and maintainability
+10. Follows the feedback pattern with the Loadable protocol
+11. Uses the state pattern and reducers
+12. Uses reactive programming
+13. Follows the Quick and Nimble format for unit and snapshot tests, similar to Jasmine format
+14. Names snapshot image files the same as the test descriptions
+15. Separates styles from views for better maintainability and reusability
+16. Includes a separate scheme (FeedReader-Mock) for mocking the project
+17. Merges previews with snapshot tests to keep the same code for both
+18. Implements request caching for improved performance
+19. Implements image caching for faster image loading and improved user experience
+20. Uses generics for type safety and code reuse
 
 
 ## 3rd party Libraries
