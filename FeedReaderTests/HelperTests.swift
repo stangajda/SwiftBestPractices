@@ -20,49 +20,49 @@ extension Data {
     }
 }
 
-func beSuccessAndEqual(_ expected: Data) -> Predicate<Result<Data, Error>>  {
+func beSuccessAndEqual(_ expected: Data) -> Matcher<Result<Data, Error>>  {
     beSuccess{
         value in
         expect(value).to(equal(expected))
     }
 }
 
-func beSuccessAndEqual<T:Equatable>(_ expected: T) -> Predicate<Result<T, Error>>  {
+func beSuccessAndEqual<T:Equatable>(_ expected: T) -> Matcher<Result<T, Error>>  {
     beSuccess{
         value in
         expect(value).to(equal(expected))
     }
 }
 
-func beSuccessAndNotEqual<T:Equatable>(_ expected: T) -> Predicate<Result<T, Error>>  {
+func beSuccessAndNotEqual<T:Equatable>(_ expected: T) -> Matcher<Result<T, Error>>  {
     beSuccess{
         value in
         expect(value).toNot(equal(expected))
     }
 }
 
-func beFailureAndMatchError(_ expected: APIError) -> Predicate<Result<Data, Error>>  {
+func beFailureAndMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>>  {
     beFailure{
         error in
         expect(error.localizedDescription).to(equal(expected.localizedDescription))
     }
 }
 
-func beFailureAndMatchError<T:Equatable>(_ expected: APIError) -> Predicate<Result<T, Error>>  {
+func beFailureAndMatchError<T:Equatable>(_ expected: APIError) -> Matcher<Result<T, Error>>  {
     beFailure{
         error in
         expect(error.localizedDescription).to(equal(expected.localizedDescription))
     }
 }
 
-func beFailureAndNotMatchError(_ expected: APIError) -> Predicate<Result<Data, Error>>  {
+func beFailureAndNotMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>>  {
     beFailure{
         error in
         expect(error.localizedDescription).toNot(equal(expected.localizedDescription))
     }
 }
 
-func beLoadedStateMoviesCount(_ expectedCount: Int) -> Predicate<LoadableEnums<Array<MoviesListViewModel.MovieItem>, Int>.State> {
+func beLoadedStateMoviesCount(_ expectedCount: Int) -> Matcher<LoadableEnums<Array<MoviesListViewModel.MovieItem>, Int>.State> {
     beLoadedState{
         movies in
         expect(movies.count).to(equal(expectedCount))
@@ -71,7 +71,7 @@ func beLoadedStateMoviesCount(_ expectedCount: Int) -> Predicate<LoadableEnums<A
 
 func beLoadedState<Loaded, Start>(
     test: ((Loaded) -> Void)? = nil
-) -> Predicate<LoadableEnums<Loaded, Start>.State> {
+) -> Matcher<LoadableEnums<Loaded, Start>.State> {
     return Predicate.define { expression in
         var rawMessage = "be <loaded State value>"
         if test != nil {

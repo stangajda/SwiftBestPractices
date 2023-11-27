@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 53;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -1225,7 +1225,7 @@
 			repositoryURL = "https://github.com/Quick/Nimble";
 			requirement = {
 				kind = exactVersion;
-				version = 12.0.1;
+				version = 13.0.0;
 			};
 		};
 		CC45F74526B2F0E80050B77C /* XCRemoteSwiftPackageReference "Quick" */ = {
@@ -1233,7 +1233,7 @@
 			repositoryURL = "https://github.com/Quick/Quick";
 			requirement = {
 				kind = exactVersion;
-				version = 7.1.0;
+				version = 7.3.0;
 			};
 		};
 		F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */ = {
@@ -1241,7 +1241,7 @@
 			repositoryURL = "https://github.com/doordash-oss/swiftui-preview-snapshots";
 			requirement = {
 				kind = exactVersion;
-				version = 1.0.0;
+				version = 1.1.0;
 			};
 		};
 		F669997B2A1A6604006AF593 /* XCRemoteSwiftPackageReference "Swinject" */ = {
@@ -1249,7 +1249,7 @@
 			repositoryURL = "https://github.com/Swinject/Swinject.git";
 			requirement = {
 				kind = exactVersion;
-				version = 2.8.3;
+				version = 2.8.4;
 			};
 		};
 		F6AC12422A570871003A55F9 /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */ = {
@@ -1257,7 +1257,7 @@
 			repositoryURL = "https://github.com/pointfreeco/swift-snapshot-testing";
 			requirement = {
 				kind = exactVersion;
-				version = 1.11.1;
+				version = 1.15.0;
 			};
 		};
 		F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */ = {
@@ -1265,7 +1265,7 @@
 			repositoryURL = "https://github.com/tahirmt/Nimble-SnapshotTesting.git";
 			requirement = {
 				kind = exactVersion;
-				version = 3.0.0;
+				version = 4.0.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
