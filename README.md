@@ -69,6 +69,6 @@ https://github.com/Quick/Quick
 https://github.com/Quick/Nimble
 https://www.browserstack.com/guide/snapshot-testing-ios
 https://github.com/pointfreeco/swift-snapshot-testing
-https://github.com/ashfurrow/Nimble-Snapshots
+https://github.com/tahirmt/Nimble-SnapshotTesting/
 https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots
 https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8
