@@ -80,7 +80,7 @@ func beLoadedState<Loaded, Start>(
         let message = ExpectationMessage.expectedActualValueTo(rawMessage)
 
         guard case let .loaded(value)? = try expression.evaluate() else {
-            return PredicateResult(status: .doesNotMatch, message: message)
+            return MatcherResult(status: .doesNotMatch, message: message)
         }
 
         var matches = true
@@ -94,7 +94,7 @@ func beLoadedState<Loaded, Start>(
             }
         }
 
-        return PredicateResult(bool: matches, message: message)
+        return MatcherResult(bool: matches, message: message)
     }
 }
 
