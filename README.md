@@ -9,9 +9,9 @@
 
 ### To run the project after downloading it, open the .xcodeproj file in Xcode, choose the FeedReader-Debug scheme, select a simulator or connected device, and click the "Run" button or press Command + R.
 
-### This standalone project has been confirmed to be working on Xcode 14.3 and simulators for the following devices: iPhone 14 Pro and iPhone 14 Pro Max, running iOS 16.0. The project has also been tested on a real device, iPhone 11 Pro Max, running iOS 16.1.1.
+### This standalone project has been confirmed to be working on Xcode 15.0.1 and simulators for the following devices: iPhone 15 Pro and iPhone 15 Pro Max, running iOS 17.0.1 The project has also been tested on a real device, iPhone 11 Pro Max, running iOS 16.1.1.
 
-### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 14 Pro simulator.
+### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 15 Pro simulator.
 
 
 ## Troubleshooting Snapshot Access Errors
@@ -53,12 +53,12 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 ## 3rd party Libraries
 
-Nimble 12.0.1
-Quick 7.1.0
-Swinject 2.8.3
-swift-snapshot-testing 1.11.1
-Nimble-snapshot-testing 3.0.0
-swiftui-preview-snapshots 1.0.0 
+Nimble 13.0.0
+Quick 7.3.0
+Swinject 2.8.4
+swift-snapshot-testing 1.15.0
+Nimble-snapshot-testing 4.0.3
+swiftui-preview-snapshots 1.1.0 
 
 ## Sources
 https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/
