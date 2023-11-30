@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Data{
+extension Data {
     static func load(_ filename: String) -> Data {
 
         guard let file = Bundle.main.url(forResource: filename, withExtension: nil)
@@ -23,7 +23,7 @@ extension Data{
 
     }
 
-    static func jsonDataToObject<T:Decodable>(_ filename: String) -> T where T: Encodable {
+    static func jsonDataToObject<T: Decodable>(_ filename: String) -> T where T: Encodable {
         let data = Data.load(filename)
         let decoder = JSONDecoder()
         do {
@@ -33,4 +33,3 @@ extension Data{
         }
     }
 }
-

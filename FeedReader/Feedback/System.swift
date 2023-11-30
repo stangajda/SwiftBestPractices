@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 extension Publishers {
-    
+
     static func system<State, Action, Scheduler: Combine.Scheduler>(
         initial: State,
         reduce: @escaping (State, Action) -> State,
@@ -30,4 +30,5 @@ extension Publishers {
         }
         .eraseToAnyPublisher()
     }
+
 }

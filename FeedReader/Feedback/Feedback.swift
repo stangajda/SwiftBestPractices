@@ -12,7 +12,8 @@ struct Feedback<State, Action> {
 }
 
 extension Feedback {
-    init<Effect: Publisher>(effects: @escaping (State) -> Effect) where Effect.Output == Action, Effect.Failure == Never {
+    init<Effect: Publisher>(effects: @escaping (State) -> Effect)
+        where Effect.Output == Action, Effect.Failure == Never {
         self.run = { state -> AnyPublisher<Action, Never> in
             state
                 .map { item in
