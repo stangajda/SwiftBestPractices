@@ -10,7 +10,7 @@ import PreviewSnapshots
 
 struct ErrorView: View {
     let error: Error
-    
+
     var body: some View {
         VStack {
             Text("An Error Occured")

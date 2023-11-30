@@ -9,7 +9,7 @@ import SwiftUI
 import PreviewSnapshots
 
 struct OverlayTextView: View {
-    @State var stringArray: Array<String>
+    @State var stringArray: [String]
     var body: some View {
         HStack {
             ForEach(stringArray, id: \.self) { string in

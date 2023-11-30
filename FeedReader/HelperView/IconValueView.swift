@@ -12,11 +12,11 @@ struct IconValueView: View {
     @State var iconName: String
     @State var textValue: String
     var body: some View {
-        HStack(spacing:8){
+        HStack(spacing: 8) {
             Image(systemName: iconName )
                 .resizable()
                 .withImageStyle(IconValueImageStyle())
-                
+
             Text(textValue)
                 .withTextStyle(IconValueTextStyle())
         }

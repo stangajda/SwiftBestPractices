@@ -11,7 +11,7 @@ import PreviewSnapshots
 struct StarsRatingView: View {
     let rating: Double
     let maxRating: Int
-    
+
     var body: some View {
         let stars = HStack(spacing: 2) {
             ForEach(0..<maxRating, id: \.self) { _ in
@@ -20,7 +20,7 @@ struct StarsRatingView: View {
                     .withImageStyle(StarsRatingImageStyle())
             }
         }
-        
+
         let starsRatingMask = StarsRatingMask(rating: rating, maxRating: maxRating)
                                     .withStarsRatingViewStyle(StarsRatingMaskStyle())
         return stars.overlay(
@@ -33,7 +33,7 @@ struct StarsRatingView: View {
 struct StarsRatingMask: View {
     let rating: Double
     let maxRating: Int
-    
+
     var body: some View {
         return GeometryReader { geometry in
             let width = CGFloat(rating) / CGFloat(maxRating) * geometry.size.width

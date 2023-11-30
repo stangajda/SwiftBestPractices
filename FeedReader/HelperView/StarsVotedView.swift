@@ -12,9 +12,9 @@ struct StarsVotedView: View {
     @State private var maxRating = 5
     @State var rating: Double
     @State var voteCount: Int
-    
+
     var body: some View {
-        HStack(){
+        HStack {
             StarsRatingView(rating: rating, maxRating: maxRating)
                 .withStarsRatingViewStyle(StarsRatingViewStyle())
             Text("(\(voteCount))")
