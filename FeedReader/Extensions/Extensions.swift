@@ -8,24 +8,24 @@
 import Foundation
 import PreviewSnapshots
 
-extension Array where Element == MoviesSubItem{
-    func getNameOnly() -> Array<String>{
+extension Array where Element == MoviesSubItem {
+    func getNameOnly() -> [String] {
         self.map { item -> String in
             return item.name
         }
     }
 }
 
-extension Array where Element == MoviesSubLanguages{
-    func groupValues() -> String{
+extension Array where Element == MoviesSubLanguages {
+    func groupValues() -> String {
         return self.map { item in
             item.name
         }.joined(separator: ", ")
     }
 }
 
-extension Double{
-    func halfDivide() -> Double{
+extension Double {
+    func halfDivide() -> Double {
         return Double(self/2)
     }
 }
@@ -37,12 +37,12 @@ extension String {
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             return formatter
-        }
-        
+    }
+
     private func toDate() -> Date? {
         return toDateFormatter().date(from: self)
     }
-    
+
     func toStringDate() -> String {
         let formatter = toDateFormatter()
         formatter.dateFormat = "d MMM yy"
@@ -51,22 +51,22 @@ extension String {
         }
         return formatter.string(from: date)
     }
-    
+
     func isNotZero() -> Bool {
         return self != "0"
     }
-    
+
     func addDollar() -> String {
         return "$\(self)"
     }
-    
+
 }
 
 extension Int {
-    func formatNumber() -> String{
+    func formatNumber() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
-        let number = NSNumber(value:self)
+        let number = NSNumber(value: self)
         guard let formattedNumber = numberFormatter.string(from: number) else {
             return String()
         }

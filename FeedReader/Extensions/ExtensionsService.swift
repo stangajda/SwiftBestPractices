@@ -9,6 +9,7 @@ import Combine
 import UIKit
 
 extension Publisher {
+
     func sinkToResult(_ result: @escaping (Result<Output, Failure>) -> Void) -> AnyCancellable {
         return sink(receiveCompletion: { completion in
             switch completion {
@@ -20,17 +21,21 @@ extension Publisher {
             result(.success(value))
         })
     }
-    
+
     func mapUnderlyingError() -> Publishers.MapError<Self, Failure> {
         mapError { error in
             (error.underlyingError as? Failure) ?? error
         }
     }
+
 }
 
 extension Publisher where Failure == Never {
-    func assignNoRetain<Root: AnyObject>(to keyPath: ReferenceWritableKeyPath<Root, Output>, on root: Root) -> AnyCancellable {
-       sink { [weak root] (value) in
+    func assignNoRetain<Root: AnyObject>(
+        to keyPath: ReferenceWritableKeyPath<Root, Output>,
+        on root: Root
+        ) -> AnyCancellable {
+        sink { [weak root] (value) in
             root?[keyPath: keyPath] = value
         }
     }
@@ -45,7 +50,7 @@ extension URLRequest {
 }
 
 extension URLResponse {
-    func mapError(_ data: Data) throws -> Data{
+    func mapError(_ data: Data) throws -> Data {
         let apiCodes: APICodes = .success
         guard let code = (self as? HTTPURLResponse)?.statusCode else {
             throw APIError.unknownResponse
@@ -58,7 +63,7 @@ extension URLResponse {
 }
 
 extension Data {
-    func toImage(_ request: URLRequest) throws -> UIImage{
+    func toImage(_ request: URLRequest) throws -> UIImage {
         guard let image = UIImage(data: self) else {
             throw APIError.imageConversion(request)
         }
