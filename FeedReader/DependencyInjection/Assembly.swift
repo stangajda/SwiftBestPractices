@@ -23,12 +23,15 @@ class ServiceAssembly: AssemblyProtocol {
         container.register(ServiceProtocol.self) { _ in
             Service()
         }
+
         container.register(MovieListServiceProtocol.self) { _ in
             MovieListService()
         }
+
         container.register(MovieDetailServiceProtocol.self) { _ in
             MovieDetailService()
         }
+
         container.register(ImageServiceProtocol.self) { _ in
             ImageService()
         }

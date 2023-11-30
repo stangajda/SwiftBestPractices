@@ -8,7 +8,7 @@
 import Foundation
 import Swinject
 
-//MARK:- Injection
+// MARK: - Injection
 extension Injection {
     public struct Name: ExpressibleByStringLiteral, Hashable, Equatable {
         public let rawValue: String
