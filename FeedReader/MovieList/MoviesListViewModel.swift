@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-    where T == [MoviesListViewModel.MovieItem], U == Int {
+    where TP1 == [MoviesListViewModel.MovieItem], TP2 == Int {
     func onActive()
     func onBackground()
 }
@@ -21,8 +21,8 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 
     fileprivate(set) var statePublisher: Published<State>.Publisher
 
-    typealias T = [MovieItem]
-    typealias U = Int
+    typealias TP1 = [MovieItem]
+    typealias TP2 = Int
 
     var input = PassthroughSubject<Action, Never>()
 

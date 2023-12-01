@@ -12,8 +12,8 @@ import Combine
 class BaseMockImageViewModel: ImageViewModelProtocol {
     var statePublisher: Published<State>.Publisher
 
-    typealias T = ImageViewModel.ImageItem
-    typealias U = String
+    typealias TP1 = ImageViewModel.ImageItem
+    typealias TP2 = String
 
     @Published var state: ImageViewModel.State = .loading()
     var input = PassthroughSubject<ImageViewModel.Action, Never>()

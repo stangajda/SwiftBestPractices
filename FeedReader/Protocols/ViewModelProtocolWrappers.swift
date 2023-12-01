@@ -34,7 +34,7 @@ class BaseViewModelWrapper<StateType, ActionType> {
 class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.State, MoviesListViewModel.Action>,
     MoviesListViewModelProtocol {
     typealias ViewModel = MoviesListViewModel
-    typealias T = [ViewModel.MovieItem]
+    typealias TP1 = [ViewModel.MovieItem]
 
     fileprivate var viewModel: any MoviesListViewModelProtocol
 
@@ -61,7 +61,7 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
         viewModel.onBackground()
     }
 
-    func fetch() -> AnyPublisher<T, Error> {
+    func fetch() -> AnyPublisher<TP1, Error> {
         viewModel.fetch()
     }
 }
@@ -70,7 +70,7 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
 class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel.State, MovieDetailViewModel.Action>,
     MovieDetailViewModelProtocol {
     typealias ViewModel = MovieDetailViewModel
-    typealias T = ViewModel.MovieDetailItem
+    typealias TP1 = ViewModel.MovieDetailItem
 
     fileprivate var viewModel: any MovieDetailViewModelProtocol
 
@@ -93,7 +93,7 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
         viewModel.movieList
     }
 
-    func fetch() -> AnyPublisher<T, Error> {
+    func fetch() -> AnyPublisher<TP1, Error> {
         viewModel.fetch()
     }
 }
@@ -102,8 +102,8 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
 class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, ImageViewModel.Action>,
     ImageViewModelProtocol {
     typealias ViewModel = ImageViewModel
-    typealias T = ViewModel.ImageItem
-    typealias U = String
+    typealias TP1 = ViewModel.ImageItem
+    typealias TP2 = String
 
     fileprivate var viewModel: any ImageViewModelProtocol
 
@@ -122,7 +122,7 @@ class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, Imag
         viewModel.onDisappear()
     }
 
-    func fetch() -> AnyPublisher<T, Error> {
+    func fetch() -> AnyPublisher<TP1, Error> {
         viewModel.fetch()
     }
 
