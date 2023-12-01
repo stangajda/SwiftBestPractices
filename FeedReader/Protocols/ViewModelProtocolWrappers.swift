@@ -90,7 +90,7 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
     }
 
     var movieList: MoviesListViewModel.MovieItem {
-        get { viewModel.movieList }
+        viewModel.movieList
     }
 
     func fetch() -> AnyPublisher<T, Error> {
