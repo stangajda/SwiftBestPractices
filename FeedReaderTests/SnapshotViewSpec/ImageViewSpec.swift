@@ -27,7 +27,7 @@ class MovieImageViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when image is in preview mode detail") {
                 beforeEach {
                     viewController = ImageViewPreviewsMovieDetail.snapshots.getViewController()
@@ -37,7 +37,7 @@ class MovieImageViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when image is in preview mode failed") {
                 beforeEach {
                     viewController = ImageViewPreviewsFailed.snapshots.getViewController()
@@ -47,7 +47,7 @@ class MovieImageViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
         }
     }
 }

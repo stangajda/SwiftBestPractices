@@ -15,34 +15,34 @@ import Nimble_SnapshotTesting
 import PreviewSnapshotsTesting
 
 class MovieListViewSpec: QuickSpec {
-    
+
     override class func spec() {
         describe("check movies list view to match recorded snapshot") {
-                    
+
             var viewController: UIViewController!
-            
+
             context("when movies list is loaded") {
-                
+
                 beforeEach {
                     viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateLoaded)
                 }
-                
+
                 it("it should match movie list loaded image") {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movies list is started") {
-                
+
                 beforeEach {
                     viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateStart)
                 }
-                
+
                 it("it should match movie list start image") {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movies list is loading") {
                 beforeEach {
                     viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateLoading)
@@ -52,7 +52,7 @@ class MovieListViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movies list is failed") {
                 beforeEach {
                     viewController = MoviesListView_Previews.snapshots.getViewController(.movieListStateFailed)
@@ -62,7 +62,7 @@ class MovieListViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movies list row") {
                 beforeEach {
                     viewController = MovieRow_Previews.snapshots.getViewController()
@@ -72,7 +72,7 @@ class MovieListViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
         }
     }
 }

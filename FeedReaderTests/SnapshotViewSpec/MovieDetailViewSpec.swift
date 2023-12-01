@@ -29,7 +29,7 @@ class MovieDetailViewSpec: QuickSpec {
                     expect(viewController).toEventually(haveValidSnapshot(as: .image))
                 }
             }
-            
+
             context("when movie detail is started") {
                 beforeEach {
                     viewController = MovieDetailView_Previews.snapshots.getViewController(.movieDetailStateStart)
