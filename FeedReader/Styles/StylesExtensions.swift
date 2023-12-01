@@ -49,4 +49,3 @@ extension StarsRatingMask {
         self.modifier(content)
     }
 }
-

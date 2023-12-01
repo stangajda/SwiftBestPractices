@@ -12,7 +12,7 @@ protocol MovieListServiceProtocol {
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error>
 }
 
-struct MovieListService: MovieListServiceProtocol{
+struct MovieListService: MovieListServiceProtocol {
     var service: ServiceProtocol = Service()
     func fetchMovies(_ request: URLRequest) -> AnyPublisher<Movies, Error> {
         return self.service.fetchData(request)

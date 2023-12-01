@@ -10,22 +10,21 @@ import Combine
 
 @main
 struct FeedReaderApp: App {
-    init(){
+    init() {
         injectDependency()
     }
-    
+
     var body: some Scene {
         WindowGroup {
             ContentView()
         }
     }
-    
-    func injectDependency(){
+
+    func injectDependency() {
 #if MOCK
         Injection.main.mockViewModel()
 #else
         Injection.main.initialRegistration()
 #endif
     }
-
 }

@@ -16,55 +16,49 @@ import SwiftUI
 
 extension Data {
     static var stubData: Data {
-        return Data([0,1,0,1])
+        return Data([0, 1, 0, 1])
     }
 }
 
-func beSuccessAndEqual(_ expected: Data) -> Matcher<Result<Data, Error>>  {
-    beSuccess{
-        value in
+func beSuccessAndEqual(_ expected: Data) -> Matcher<Result<Data, Error>> {
+    beSuccess { value in
         expect(value).to(equal(expected))
     }
 }
 
-func beSuccessAndEqual<T:Equatable>(_ expected: T) -> Matcher<Result<T, Error>>  {
-    beSuccess{
-        value in
+func beSuccessAndEqual<T: Equatable>(_ expected: T) -> Matcher<Result<T, Error>> {
+    beSuccess { value in
         expect(value).to(equal(expected))
     }
 }
 
-func beSuccessAndNotEqual<T:Equatable>(_ expected: T) -> Matcher<Result<T, Error>>  {
-    beSuccess{
-        value in
+func beSuccessAndNotEqual<T: Equatable>(_ expected: T) -> Matcher<Result<T, Error>> {
+    beSuccess { value in
         expect(value).toNot(equal(expected))
     }
 }
 
-func beFailureAndMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>>  {
-    beFailure{
-        error in
+func beFailureAndMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>> {
+    beFailure { error in
         expect(error.localizedDescription).to(equal(expected.localizedDescription))
     }
 }
 
-func beFailureAndMatchError<T:Equatable>(_ expected: APIError) -> Matcher<Result<T, Error>>  {
-    beFailure{
-        error in
+func beFailureAndMatchError<T: Equatable>(_ expected: APIError) -> Matcher<Result<T, Error>> {
+    beFailure { error in
         expect(error.localizedDescription).to(equal(expected.localizedDescription))
     }
 }
 
-func beFailureAndNotMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>>  {
-    beFailure{
-        error in
+func beFailureAndNotMatchError(_ expected: APIError) -> Matcher<Result<Data, Error>> {
+    beFailure { error in
         expect(error.localizedDescription).toNot(equal(expected.localizedDescription))
     }
 }
 
-func beLoadedStateMoviesCount(_ expectedCount: Int) -> Matcher<LoadableEnums<Array<MoviesListViewModel.MovieItem>, Int>.State> {
-    beLoadedState{
-        movies in
+func beLoadedStateMoviesCount(_ expectedCount: Int) ->
+    Matcher<LoadableEnums<[MoviesListViewModel.MovieItem], Int>.State> {
+    beLoadedState { movies in
         expect(movies.count).to(equal(expectedCount))
     }
 }
@@ -124,7 +118,7 @@ extension PreviewSnapshots {
                 configure(configuration.state)
             }
             .first
-        
+
         guard let view = view else {
             return AnyView.errorNoViewFound()
         }

@@ -14,7 +14,7 @@ protocol APIUrlBuilderProtocol {
 }
 
 extension APIUrlBuilderProtocol {
-    static subscript(_ path: PathProtocol) -> URL{
+    static subscript(_ path: PathProtocol) -> URL {
         var url = Self.baseURL
         url.appendPathComponent(Self.prefix)
         url.appendPathComponent(path.stringPath())

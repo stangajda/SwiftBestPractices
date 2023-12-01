@@ -8,24 +8,24 @@
 import Foundation
 import SwiftUI
 
-protocol StyleAnyViewProtocol: ViewModifier{
+protocol StyleAnyViewProtocol: ViewModifier {
 }
 
-protocol StyleAnyTextProtocol: ViewModifier{
+protocol StyleAnyTextProtocol: ViewModifier {
 }
 
-protocol StyleAnyAsyncImageProtocol: ViewModifier{
+protocol StyleAnyAsyncImageProtocol: ViewModifier {
 }
 
-protocol StyleAnyImageProtocol: ViewModifier{
+protocol StyleAnyImageProtocol: ViewModifier {
 }
 
-protocol StyleAnyStarsVotedProtocol: ViewModifier{
+protocol StyleAnyStarsVotedProtocol: ViewModifier {
 }
 
-protocol StyleAnyStarsRatingViewProtocol: ViewModifier{
+protocol StyleAnyStarsRatingViewProtocol: ViewModifier {
 }
 
-protocol StyleAnyStarsVotedSizeProtocol: ViewModifier{
+protocol StyleAnyStarsVotedSizeProtocol: ViewModifier {
     init(maxWidth: CGFloat, maxHeight: CGFloat)
 }

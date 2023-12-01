@@ -17,25 +17,25 @@ protocol PathProtocol {
     func stringPath() -> String
 }
 
-struct TrendingPath: PathProtocol{
+struct TrendingPath: PathProtocol {
     func stringPath() -> String {
         Config.API.trendingPath
     }
 }
 
-struct MoviePath: PathProtocol{
+struct MoviePath: PathProtocol {
     fileprivate var id: Int
-    
-    init(_ id: Int){
+
+    init(_ id: Int) {
         self.id = id
     }
-    
+
     func stringPath() -> String {
         Config.API.moviePath + "/\(String(id))"
     }
 }
 
-struct StubEmptyPath: PathProtocol{
+struct StubEmptyPath: PathProtocol {
     func stringPath() -> String {
         String()
     }

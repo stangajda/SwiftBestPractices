@@ -13,12 +13,7 @@ import SwiftUI
 struct StarsVotedSizeStyle: StyleAnyViewProtocol {
     let maxWidth: CGFloat
     let maxHeight: CGFloat
-    
-    init(maxWidth: CGFloat, maxHeight: CGFloat) {
-        self.maxWidth = maxWidth
-        self.maxHeight = maxHeight
-    }
-    
+
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: maxWidth, maxHeight: maxHeight, alignment: .leading)
@@ -29,7 +24,7 @@ struct StarsVotedSizeStyle: StyleAnyViewProtocol {
 // MARK: - MovieDetailView styles
 
 extension MovieDetailView {
-    
+
     struct MovieDetailTitleStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
@@ -41,7 +36,7 @@ extension MovieDetailView {
                 .padding()
         }
     }
-    
+
     struct MovieDetailImageStyle: StyleAnyAsyncImageProtocol {
         func body(content: Content) -> some View {
             content
@@ -49,7 +44,7 @@ extension MovieDetailView {
                 .padding(.bottom, 20.0)
         }
     }
-    
+
     struct MovieDetailOverviewStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
@@ -59,7 +54,7 @@ extension MovieDetailView {
                 .padding(.bottom)
         }
     }
-    
+
     struct MovieDetailStarsVotedStyle: StyleAnyStarsVotedProtocol {
         func body(content: Content) -> some View {
             content
@@ -67,13 +62,13 @@ extension MovieDetailView {
                 .padding(.bottom)
         }
     }
-    
+
 }
 
 // MARK: - MovieRowView styles
 
 extension MovieRowView {
-    
+
     struct MoviewRowTitleStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
@@ -95,7 +90,7 @@ extension MovieRowView {
                 .withViewStyle(StarsVotedSizeStyle(maxWidth: 140.0, maxHeight: 15.0))
         }
     }
-    
+
 }
 
 // MARK: - Helpers View styles
@@ -140,7 +135,7 @@ extension ErrorView {
                 .padding(.bottom)
         }
     }
-    
+
     struct ErrorViewDescriptionStyle: StyleAnyTextProtocol {
         func body(content: Content) -> some View {
             content
@@ -185,4 +180,3 @@ extension OverlayTextView {
         }
     }
 }
-
