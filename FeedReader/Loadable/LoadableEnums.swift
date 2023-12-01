@@ -13,7 +13,7 @@ struct LoadableEnums<Loaded, Start> where Loaded: Equatable, Start: Equatable {
         case loading(Start? = nil)
         case loaded(Loaded)
         case failedLoaded(Error)
-        
+
         static func == (lhs: LoadableEnums<Loaded, Start>.State, rhs: LoadableEnums<Loaded, Start>.State) -> Bool {
             switch (lhs, rhs) {
             case (.start(let lhsValue), .start(let rhsValue)):
@@ -29,7 +29,7 @@ struct LoadableEnums<Loaded, Start> where Loaded: Equatable, Start: Equatable {
             }
         }
     }
-    
+
     enum Action {
         case onAppear
         case onLoaded(Loaded)

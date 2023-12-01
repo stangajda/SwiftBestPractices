@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol LifecycleProtocol{
+protocol LifecycleProtocol {
     func onAppear()
     func onDisappear()
 }

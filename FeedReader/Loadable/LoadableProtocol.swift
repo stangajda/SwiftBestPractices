@@ -14,11 +14,11 @@ protocol LoadableProtocol {
     var input: PassthroughSubject<Action, Never> { get }
     func fetch() -> AnyPublisher<T, Error>
 }
- 
+
 extension LoadableProtocol {
-    typealias State = LoadableEnums<T,U>.State
-    typealias Action = LoadableEnums<T,U>.Action
-    
+    typealias State = LoadableEnums<T, U>.State
+    typealias Action = LoadableEnums<T, U>.Action
+
     func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
             initial: state,
@@ -30,11 +30,11 @@ extension LoadableProtocol {
             ]
         )
     }
-    
+
     func send(action: Action) {
         input.send(action)
     }
-    
+
     private func onStateChanged() -> Feedback<State, Action> {
         Feedback { (state: State) -> AnyPublisher<Action, Never> in
             guard case .loading = state else { return Empty().eraseToAnyPublisher() }
@@ -48,7 +48,7 @@ extension LoadableProtocol {
                 .eraseToAnyPublisher()
         }
     }
-    
+
     private func userInput(input: AnyPublisher<Action, Never>) -> Feedback<State, Action> {
         Feedback { _ in
             input
