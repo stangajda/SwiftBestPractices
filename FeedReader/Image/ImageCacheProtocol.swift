@@ -12,14 +12,14 @@ protocol ImageCacheProtocol {
     subscript(_ url: URL) -> UIImage? { get set }
 }
 
-//MARK: - TemporaryImageCache
+// MARK: - TemporaryImageCache
 struct TemporaryImageCache: ImageCacheProtocol {
     fileprivate let cache = NSCache<NSURL, UIImage>()
-    
-    init(){
+
+    init() {
         cache.totalCostLimit = Config.ImageCache.totalCostLimit
     }
-    
+
     subscript(_ key: URL) -> UIImage? {
         get {
             cache.object(forKey: key as NSURL)
@@ -34,12 +34,12 @@ struct TemporaryImageCache: ImageCacheProtocol {
     }
 }
 
-//MARK: - ImageCacheKey
+// MARK: - ImageCacheKey
 struct ImageCacheKey: EnvironmentKey {
     static let defaultValue: ImageCacheProtocol = TemporaryImageCache()
 }
 
-//MARK: - EnvironmentValues
+// MARK: - EnvironmentValues
 extension EnvironmentValues {
    var imageCache: ImageCacheProtocol {
         get {
