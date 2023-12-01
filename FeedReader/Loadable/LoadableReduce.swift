@@ -8,6 +8,7 @@
 import Foundation
 
 // swiftlint:disable cyclomatic_complexity
+
 extension LoadableProtocol {
     func reduce(_ state: State, _ action: Action) -> State {
         switch state {
