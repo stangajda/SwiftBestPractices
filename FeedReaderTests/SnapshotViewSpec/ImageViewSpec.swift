@@ -20,7 +20,7 @@ class MovieImageViewSpec: QuickSpec {
 
             context("when image is in preview mode") {
                 beforeEach {
-                    viewController = ImageView_Previews.snapshots.getViewController()
+                    viewController = ImageViewPreviews.snapshots.getViewController()
                 }
 
                 it("it should match movie list image") {
@@ -30,7 +30,7 @@ class MovieImageViewSpec: QuickSpec {
             
             context("when image is in preview mode detail") {
                 beforeEach {
-                    viewController = ImageView_Previews_MovieDetail.snapshots.getViewController()
+                    viewController = ImageViewPreviewsMovieDetail.snapshots.getViewController()
                 }
 
                 it("it should match movie detail image") {
@@ -40,7 +40,7 @@ class MovieImageViewSpec: QuickSpec {
             
             context("when image is in preview mode failed") {
                 beforeEach {
-                    viewController = ImageView_Previews_Failed.snapshots.getViewController()
+                    viewController = ImageViewPreviewsFailed.snapshots.getViewController()
                 }
 
                 it("it should match movie detail image") {

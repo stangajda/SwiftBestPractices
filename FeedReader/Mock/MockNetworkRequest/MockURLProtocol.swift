@@ -8,7 +8,7 @@
 import Foundation
 
 struct MockAPIRequest: APIUrlBuilderProtocol {
-    static var baseURL: URL { URL(string:"https://any.test.com/") ?? URL(fileURLWithPath: String()) }
+    static var baseURL: URL { URL(string: "https://any.test.com/") ?? URL(fileURLWithPath: String()) }
     static var imageURL: URL { URL(string: "https://image.test.com/") ?? URL(fileURLWithPath: String()) }
     static var prefix: String { "stubPrefix" }
     static var type: String { "stubTypeI" }
@@ -32,7 +32,7 @@ extension MockURLProtocol.MockedResponse {
     enum Error: Swift.Error {
         case failedMockCreation
     }
-    
+
     init<T>(
             request: URLRequest,
             result: Result<T, Swift.Error>,
@@ -54,7 +54,7 @@ extension MockURLProtocol.MockedResponse {
         self.loadingTime = loadingTime
         customResponse = nil
     }
-    
+
     init(
         request: URLRequest,
         result: Result<Data, Swift.Error>,
@@ -76,7 +76,7 @@ extension MockURLProtocol.MockedResponse {
         self.loadingTime = loadingTime
         customResponse = nil
     }
-    
+
 }
 
 extension MockURLProtocol {
@@ -84,15 +84,15 @@ extension MockURLProtocol {
 }
 
 class MockURLProtocol: URLProtocol {
-       
+
     override class func canInit(with request: URLRequest) -> Bool {
         return true
     }
-    
+
     override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
-    
+
     override func startLoading() {
         if let mock = MockURLProtocol.mock,
             let url = request.url,
@@ -116,9 +116,9 @@ class MockURLProtocol: URLProtocol {
             }
         }
     }
-    
+
     override func stopLoading() {
 
     }
-    
+
 }

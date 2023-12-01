@@ -10,15 +10,15 @@ import Combine
 
 class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
     var statePublisher: Published<State>.Publisher
-    
+
     var movieList: MoviesListViewModel.MovieItem
     @Published var state: MovieDetailViewModel.State = .start()
     var input = PassthroughSubject<MovieDetailViewModel.Action, Never>()
     var mockState: MockState.State
-    
+
     fileprivate var cancellable: AnyCancellable?
-    
-    init(_ movieList: MoviesListViewModel.MovieItem, _ mockState: MockState.State = .loaded){
+
+    init(_ movieList: MoviesListViewModel.MovieItem, _ mockState: MockState.State = .loaded) {
         self.mockState = mockState
         self.movieList = movieList
         self.statePublisher = _state.projectedValue
@@ -43,12 +43,12 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
                 .eraseToAnyPublisher()
         }
     }
-    
+
     func onAppear() {
         cancellable = self.assignNoRetain(self, to: \.state)
         send(action: .onAppear)
     }
-    
+
     func onDisappear() {
         send(action: .onReset)
         cancellable?.cancel()
