@@ -49,6 +49,8 @@ If you still encounter access errors after deleting the snapshot folder, you may
 18. Implements request caching for improved performance
 19. Implements image caching for faster image loading and improved user experience
 20. Uses generics for type safety and code reuse
+21. Used swiftlint in vscode IDE to perform code formatting
+22. Uses sonarqube for code quality analysis
 
 
 ## 3rd party Libraries
