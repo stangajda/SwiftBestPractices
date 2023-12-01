@@ -11,9 +11,9 @@ fileprivate extension Movie {
     static let mock = Movie(
         id: 497698,
         title: "mock title",
-        poster_path: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
-        vote_average: 8.2,
-        vote_count: 1511
+        posterPath: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+        voteAverage: 8.2,
+        voteCount: 1511
     )
 }
 
@@ -25,16 +25,16 @@ extension MovieDetail {
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
         incididunt ut labore et dolore magna aliqua.
         """,
-        backdrop_path: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
-        vote_average: 4.2,
-        vote_count: 1821,
+        backdropPath: "/qAZ0pzat24kLdO3o8ejmbLxyOac.jpg",
+        voteAverage: 4.2,
+        voteCount: 1821,
         budget: 1786213,
-        release_date: "2021-05-21",
+        releaseDate: "2021-05-21",
         genres: [
             MoviesSubItem(id: 22, name: "horror"),
             MoviesSubItem(id: 25, name: "thriller")
         ],
-        spoken_languages: [
+        spokenLanguages: [
             MoviesSubLanguages(name: "English"),
             MoviesSubLanguages(name: "Deutch")
         ]

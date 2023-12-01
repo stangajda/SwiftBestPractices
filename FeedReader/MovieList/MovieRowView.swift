@@ -16,7 +16,7 @@ struct MovieRowView: View {
     var body: some View {
         HStack {
             let imageSizePath = W200Path() as ImagePathProtocol
-            let imageURL = movie.poster_path
+            let imageURL = movie.posterPath
 
             AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath) {
                 ActivityIndicator(isAnimating: .constant(true), style: .medium)
@@ -28,7 +28,7 @@ struct MovieRowView: View {
             VStack(alignment: .leading) {
                 Text(movie.title)
                     .withTextStyle(MoviewRowTitleStyle())
-                StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)
+                StarsVotedView(rating: movie.voteAverage, voteCount: movie.voteCount)
                     .withStarsVotedStyle(MovieRowStarsVotedStyle())
             }
         }

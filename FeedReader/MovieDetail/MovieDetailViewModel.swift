@@ -88,24 +88,24 @@ extension MovieDetailViewModel {
         let id: Int
         let title: String
         let overview: String
-        let backdrop_path: String
-        let vote_average: Double
-        let vote_count: Int
+        let backdropPath: String
+        let voteAverage: Double
+        let voteCount: Int
         var budget: String
-        var release_date: String
+        var releaseDate: String
         var genres: [String]
-        var spoken_languages: String
+        var spokenLanguages: String
         init(_ movie: MovieDetail) {
             id = movie.id
             title = movie.title
             overview = movie.overview
-            backdrop_path = movie.backdrop_path
-            vote_average = movie.vote_average.halfDivide()
-            vote_count = movie.vote_count
+            backdropPath = movie.backdropPath
+            voteAverage = movie.voteAverage.halfDivide()
+            voteCount = movie.voteCount
             budget = movie.budget.formatNumber()
-            release_date = movie.release_date.toStringDate()
+            releaseDate = movie.releaseDate.toStringDate()
             genres = movie.genres.getNameOnly()
-            spoken_languages = movie.spoken_languages.groupValues()
+            spokenLanguages = movie.spokenLanguages.groupValues()
         }
     }
 }

@@ -9,25 +9,38 @@ struct MovieDetail: Equatable, Codable {
     var id: Int
     var title: String
     var overview: String
-    var backdrop_path: String
-    var vote_average: Double
-    var vote_count: Int
+    var backdropPath: String
+    var voteAverage: Double
+    var voteCount: Int
     var budget: Int
-    var release_date: String
+    var releaseDate: String
     var genres: [MoviesSubItem]
-    var spoken_languages: [MoviesSubLanguages]
+    var spokenLanguages: [MoviesSubLanguages]
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case overview
+        case backdropPath = "backdrop_path"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+        case budget
+        case releaseDate = "release_date"
+        case genres
+        case spokenLanguages = "spoken_languages"
+    }
 
     static func == (lhs: MovieDetail, rhs: MovieDetail) -> Bool {
         return lhs.id == rhs.id &&
             lhs.title == rhs.title &&
             lhs.overview == rhs.overview &&
-            lhs.backdrop_path == rhs.backdrop_path &&
-            lhs.vote_average == rhs.vote_average &&
-            lhs.vote_count == rhs.vote_count &&
+            lhs.backdropPath == rhs.backdropPath &&
+            lhs.voteAverage == rhs.voteAverage &&
+            lhs.voteCount == rhs.voteCount &&
             lhs.budget == rhs.budget &&
-            lhs.release_date == rhs.release_date &&
+            lhs.releaseDate == rhs.releaseDate &&
             lhs.genres == rhs.genres &&
-            lhs.spoken_languages == rhs.spoken_languages
+            lhs.spokenLanguages == rhs.spokenLanguages
     }
 }
 

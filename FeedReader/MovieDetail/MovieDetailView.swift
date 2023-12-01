@@ -70,7 +70,7 @@ private extension MovieDetailView {
                     .withTextStyle(MovieDetailTitleStyle())
 
                 let imageSizePath = OriginalPath() as ImagePathProtocol
-                let imageURL = movieDetail.backdrop_path
+                let imageURL = movieDetail.backdropPath
 
                 AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath) {
                     ActivityIndicator(isAnimating: .constant(true), style: .large)
@@ -79,11 +79,11 @@ private extension MovieDetailView {
                 }
                 .withAsyncImageStyle(MovieDetailImageStyle())
 
-                StarsVotedView(rating: movieDetail.vote_average, voteCount: movieDetail.vote_count)
+                StarsVotedView(rating: movieDetail.voteAverage, voteCount: movieDetail.voteCount)
                     .withStarsVotedStyle(MovieDetailStarsVotedStyle())
 
-                if !movieDetail.release_date.isEmpty {
-                    IconValueView(iconName: Config.Icon.calendar, textValue: movieDetail.release_date)
+                if !movieDetail.releaseDate.isEmpty {
+                    IconValueView(iconName: Config.Icon.calendar, textValue: movieDetail.releaseDate)
                 }
 
                 Text(movieDetail.overview)
@@ -93,7 +93,7 @@ private extension MovieDetailView {
                     IconValueView(iconName: Config.Icon.banknote, textValue: movieDetail.budget.addDollar())
                 }
 
-                IconValueView(iconName: Config.Icon.speaker, textValue: movieDetail.spoken_languages)
+                IconValueView(iconName: Config.Icon.speaker, textValue: movieDetail.spokenLanguages)
 
                 OverlayTextView(stringArray: movieDetail.genres)
             }

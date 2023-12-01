@@ -13,7 +13,15 @@ struct Movies: Hashable, Codable {
 struct Movie: Hashable, Codable, Identifiable {
     var id: Int
     var title: String
-    var poster_path: String
-    var vote_average: Double
-    var vote_count: Int
+    var posterPath: String
+    var voteAverage: Double
+    var voteCount: Int
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case title
+        case posterPath = "poster_path"
+        case voteAverage = "vote_average"
+        case voteCount = "vote_count"
+    }
 }

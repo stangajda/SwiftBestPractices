@@ -70,15 +70,15 @@ extension MoviesListViewModel {
     struct MovieItem: Identifiable, Hashable {
         let id: Int
         let title: String
-        let poster_path: String
-        let vote_average: Double
-        let vote_count: Int
+        let posterPath: String
+        let voteAverage: Double
+        let voteCount: Int
         init(_ movie: Movie) {
             id = movie.id
             title = movie.title
-            poster_path = movie.poster_path
-            vote_average = movie.vote_average.halfDivide()
-            vote_count = movie.vote_count
+            posterPath = movie.posterPath
+            voteAverage = movie.voteAverage.halfDivide()
+            voteCount = movie.voteCount
         }
     }
 }
