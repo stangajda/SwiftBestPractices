@@ -8,13 +8,13 @@
 import SwiftUI
 import PreviewSnapshots
 
-//MARK:- Main
+// MARK: - Main
 struct MoviesListView<ViewModel>: View where ViewModel: AnyMoviesListViewModelProtocol {
     @ObservedObject var viewModel: ViewModel
     @Environment(\.scenePhase) var scenePhase
-    
+
     var body: some View {
-            NavigationStack(){
+            NavigationStack {
                 switch viewModel.state {
                 case .start:
                     startView
@@ -35,17 +35,16 @@ struct MoviesListView<ViewModel>: View where ViewModel: AnyMoviesListViewModelPr
                     viewModel.onBackground()
                 }
             }
-            .onDisappear{
+            .onDisappear {
                 viewModel.onDisappear()
             }
     }
-    
 }
 
-//MARK:- States
+// MARK: - States
 extension MoviesListView {
     typealias MovieDetailViewWrapper = MovieDetailView<AnyMovieDetailViewModelProtocol>
-    
+
     @ViewBuilder
     private var startView: some View {
         Color.clear
@@ -53,27 +52,27 @@ extension MoviesListView {
                 viewModel.send(action: .onAppear)
             }
     }
-    
+
     @ViewBuilder
     var loadingView: some View {
         ActivityIndicator(isAnimating: .constant(true), style: .large)
     }
-    
+
     @ViewBuilder
-    func loadedView(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
+    func loadedView(_ movies: [MoviesListViewModel.MovieItem]) -> some View {
         listMovies(movies)
             .navigationDestination(for: MoviesListViewModel.MovieItem.self) { movie in
                 makeMovieDetailView(for: movie)
             }
     }
-    
+
     @ViewBuilder
     func failedView(_ error: Error) -> some View {
         ErrorView(error: error)
     }
-    
-    func listMovies(_ movies: Array<MoviesListViewModel.MovieItem>) -> some View {
-        List(movies){ movie in
+
+    func listMovies(_ movies: [MoviesListViewModel.MovieItem]) -> some View {
+        List(movies) { movie in
             NavigationLink(value: movie) {
                 MovieRowView(movie: movie)
             }
@@ -86,10 +85,10 @@ extension MoviesListView {
     }
 }
 
-//MARK:- Preview
+// MARK: - Preview
 #if DEBUG
 struct MoviesListView_Previews: PreviewProvider {
-    
+
     static var previews: some View {
         snapshots.previews.previewLayout(.sizeThatFits)
     }

@@ -8,53 +8,54 @@
 import Foundation
 import Combine
 
-protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol where T == Array<MoviesListViewModel.MovieItem>, U == Int {
+protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
+    where T == [MoviesListViewModel.MovieItem], U == Int {
     func onActive()
     func onBackground()
 }
 
-//MARK:- MoviesViewModel
+// MARK: - MoviesViewModel
 final class MoviesListViewModel: MoviesListViewModelProtocol {
     @Published fileprivate(set) var state = State.start()
     @Injected fileprivate var service: MovieListServiceProtocol
-    
+
     fileprivate(set) var statePublisher: Published<State>.Publisher
-    
-    typealias T = Array<MovieItem>
+
+    typealias T = [MovieItem]
     typealias U = Int
-    
+
     var input = PassthroughSubject<Action, Never>()
-    
+
     fileprivate var cancellable: AnyCancellable?
-    
+
     init() {
         statePublisher = _state.projectedValue
         onAppear()
     }
-    
+
     func onAppear() {
         cancellable = self.assignNoRetain(self, to: \.state)
         send(action: .onAppear)
     }
-    
+
     func onDisappear() {
         send(action: .onReset)
         cancellable?.cancel()
     }
-    
+
     func onActive() {
         onAppear()
     }
-    
+
     func onBackground() {
         onDisappear()
     }
-    
+
 }
 
-//MARK:- Fetch
+// MARK: - Fetch
 extension MoviesListViewModel {
-    func fetch() -> AnyPublisher<Array<MovieItem>, Error>{
+    func fetch() -> AnyPublisher<[MovieItem], Error> {
         let url = APIUrlBuilder[TrendingPath()]
         let urlRequest = URLRequest(url: url).get()
         return self.service.fetchMovies(urlRequest)
@@ -81,7 +82,3 @@ extension MoviesListViewModel {
         }
     }
 }
-
-
-
-

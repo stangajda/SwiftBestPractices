@@ -5,7 +5,7 @@
 //  Created by Stan Gajda on 21/06/2021.
 //
 
-struct MovieDetail: Equatable, Codable{
+struct MovieDetail: Equatable, Codable {
     var id: Int
     var title: String
     var overview: String
@@ -14,9 +14,9 @@ struct MovieDetail: Equatable, Codable{
     var vote_count: Int
     var budget: Int
     var release_date: String
-    var genres: Array<MoviesSubItem>
-    var spoken_languages: Array<MoviesSubLanguages>
-    
+    var genres: [MoviesSubItem]
+    var spoken_languages: [MoviesSubLanguages]
+
     static func == (lhs: MovieDetail, rhs: MovieDetail) -> Bool {
         return lhs.id == rhs.id &&
             lhs.title == rhs.title &&
@@ -31,11 +31,11 @@ struct MovieDetail: Equatable, Codable{
     }
 }
 
-struct MoviesSubItem: Equatable, Codable{
+struct MoviesSubItem: Equatable, Codable {
     var id: Int
     var name: String
 }
 
-struct MoviesSubLanguages: Equatable, Codable{
+struct MoviesSubLanguages: Equatable, Codable {
     var name: String
 }

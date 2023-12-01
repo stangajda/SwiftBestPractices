@@ -14,7 +14,6 @@ protocol URLSessionProtocol {
 }
 
 extension URLSession: URLSessionProtocol {
-    
 }
 
 protocol ServiceProtocol {
@@ -22,15 +21,15 @@ protocol ServiceProtocol {
     func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error>
 }
 
-struct Service: ServiceProtocol{
+struct Service: ServiceProtocol {
     @Injected var session: URLSessionProtocol
-    
+
     func fetchData<T: Decodable>(_ request: URLRequest) -> AnyPublisher<T, Error> {
         fetchData(request)
             .decode(type: T.self, decoder: JSONDecoder())
             .eraseToAnyPublisher()
     }
-    
+
     func fetchData(_ request: URLRequest) -> AnyPublisher<Data, Error> {
         return self.session.dataTaskPublisher(for: request)
             .tryMap { data, response in

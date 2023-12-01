@@ -5,8 +5,8 @@
 //  Created by Stan Gajda on 21/06/2021.
 //
 
-struct Movies: Hashable, Codable{
-    var results: Array<Movie>
+struct Movies: Hashable, Codable {
+    var results: [Movie]
     var page: Int
 }
 

@@ -8,24 +8,24 @@
 import SwiftUI
 import PreviewSnapshots
 
-//MARK:- MovieRowView
+// MARK: - MovieRowView
 struct MovieRowView: View {
     typealias AsyncImage = AsyncImageCached<AnyImageViewModelProtocol, ActivityIndicator, ErrorView>
     @State var movie: MoviesListViewModel.MovieItem
-    
+
     var body: some View {
-        HStack{
+        HStack {
             let imageSizePath = W200Path() as ImagePathProtocol
             let imageURL = movie.poster_path
-            
+
             AsyncImage(imageURL: imageURL, imageSizePath: imageSizePath) {
                 ActivityIndicator(isAnimating: .constant(true), style: .medium)
             } placeholderError: { error in
                 ErrorView(error: error)
             }
             .withAsyncImageStyle(MovieRowImageStyle())
-            
-            VStack(alignment:.leading){
+
+            VStack(alignment: .leading) {
                 Text(movie.title)
                     .withTextStyle(MoviewRowTitleStyle())
                 StarsVotedView(rating: movie.vote_average, voteCount: movie.vote_count)

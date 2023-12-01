@@ -7,25 +7,26 @@
 import Foundation
 import Combine
 
-protocol MovieDetailViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol where T == MovieDetailViewModel.MovieDetailItem, U == Int {
+protocol MovieDetailViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
+    where T == MovieDetailViewModel.MovieDetailItem, U == Int {
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
-//MARK:- ViewDetailViewModel
-final class MovieDetailViewModel: MovieDetailViewModelProtocol{
+// MARK: - ViewDetailViewModel
+final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     @Published fileprivate(set) var state: State
     @Injected fileprivate var service: MovieDetailServiceProtocol
     var statePublisher: Published<State>.Publisher
-    
+
     typealias T = MovieDetailItem
     typealias U = Int
-    
+
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem
 
     fileprivate var cancellable: AnyCancellable?
     fileprivate static var movieListId: Int = 0
-    
+
     static var instances: [Int: MovieDetailViewModel] = [:]
 
     static func instance(_ movieList: MoviesListViewModel.MovieItem) -> MovieDetailViewModel {
@@ -42,34 +43,34 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol{
     static func deallocateCurrentInstances() {
         instances.removeValue(forKey: movieListId)
     }
-    
+
     fileprivate init(_ movieList: MoviesListViewModel.MovieItem){
         self.movieList = movieList
         state = State.start(movieList.id)
         statePublisher = _state.projectedValue
         self.onAppear()
     }
-    
+
     deinit {
         reset()
     }
-    
+
     func onAppear() {
         cancellable = self.assignNoRetain(self, to: \.state)
         send(action: .onAppear)
     }
-    
+
     func onDisappear() {
         reset()
     }
-    
+
     fileprivate func reset(){
         cancellable?.cancel()
         Self.deallocateCurrentInstances()
     }
 }
 
-//MARK:- Fetch
+// MARK: - Fetch
 extension MovieDetailViewModel {
     func fetch() -> AnyPublisher<MovieDetailItem, Error> {
         let url = APIUrlBuilder[MoviePath(movieList.id)]
@@ -82,7 +83,7 @@ extension MovieDetailViewModel {
     }
 }
 
-extension MovieDetailViewModel{
+extension MovieDetailViewModel {
     struct MovieDetailItem: Identifiable, Hashable {
         let id: Int
         let title: String
@@ -92,7 +93,7 @@ extension MovieDetailViewModel{
         let vote_count: Int
         var budget: String
         var release_date: String
-        var genres: Array<String>
+        var genres: [String]
         var spoken_languages: String
         init(_ movie: MovieDetail) {
             id = movie.id
