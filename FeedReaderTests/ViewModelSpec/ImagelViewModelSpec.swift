@@ -34,7 +34,7 @@ class ImageViewModelSpec: QuickSpec {
 
             context("when send on appear action") {
                 beforeEach {
-                    let testImage: UIImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)!
+                    let testImage: UIImage = UIImage(named: Config.MockImage.stubImageMovieMedium)!
                     let result: Result<UIImage, Error> = .success(testImage)
                     @Injected(result) var service: ImageServiceProtocol
                     viewModel?.onAppear()

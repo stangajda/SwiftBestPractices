@@ -19,54 +19,31 @@ struct Config {
         static let key = "babcada8d42a5fd4857231c42240debd"
         static let trendingPath = "trending/movie/day"
         static let moviePath = "movie"
-
-        struct Image {
-            static let url = "https://image.tmdb.org/t/p/"
-            static let originalPath = "original"
-            static let w200Path = "w200"
-        }
     }
 
-    struct DI {
-        static let movieList = "movieList"
-        static let imagePath = "imagePath"
-        static let imageSizePath = "imageSizePath"
-        static let imageCache = "imageCache"
-    }
-
-    struct View {
-        struct MovieList {
-            static let loaded = "Movies list loaded"
-            static let loading = "Movies list loading"
-            static let failed = "Movies list failed"
-        }
-
-        struct MovieDetail {
-            static let loaded = "Movie detail loaded"
-            static let loading = "Movie detail loading"
-            static let failed = "Movie detail failed"
-        }
+    struct APIImage {
+        static let url = "https://image.tmdb.org/t/p/"
+        static let originalPath = "original"
+        static let w200Path = "w200"
     }
 
     struct ImageCache {
         static let totalCostLimit = 50_000_000
     }
 
-    struct Queue {
-        struct MovieList {
-            static let label = "com.feedReader.MovieListQueue"
-            static let qos = DispatchQoS.userInitiated
-        }
+    struct QueueMovieList {
+        static let label = "com.feedReader.MovieListQueue"
+        static let qos = DispatchQoS.userInitiated
+    }
 
-        struct MovieDetail {
-            static let label = "com.feedReader.MovieDetailQueue"
-            static let qos = DispatchQoS.userInteractive
-        }
+    struct QueueMovieDetail {
+        static let label = "com.feedReader.MovieDetailQueue"
+        static let qos = DispatchQoS.userInteractive
+    }
 
-        struct Image {
-            static let label = "com.feedReader.ImageQueue"
-            static let qos = DispatchQoS.background
-        }
+    struct QueueImage {
+        static let label = "com.feedReader.ImageQueue"
+        static let qos = DispatchQoS.background
     }
 
     struct Icon {
@@ -76,23 +53,22 @@ struct Config {
         static let speaker = "speaker"
     }
 
-    struct Mock {
-        struct MovieList {
-            static let movieListResponseResult = "MockMovieListResponseResult.json"
-            static let anotherMovieListResponseResult = "MockAnotherMovieListResponseResult.json"
+    struct MockMovieList {
+        static let movieListResponseResult = "MockMovieListResponseResult.json"
+        static let anotherMovieListResponseResult = "MockAnotherMovieListResponseResult.json"
 
-        }
-
-        struct MovieDetail {
-            static let movieDetailResponseResult = "MockMovieDetailResponseResult.json"
-            static let anotherMovieDetailResponseResult = "MockAnotherMovieDetailResponseResult.json"
-        }
-
-        struct Image {
-            static let stubImageMovieMedium = "stubImageMovieMedium"
-            static let stubImageMoviedetailsBig = "stubImageMovieDetailsBig"
-        }
     }
+
+    struct MockMovieDetail {
+        static let movieDetailResponseResult = "MockMovieDetailResponseResult.json"
+        static let anotherMovieDetailResponseResult = "MockAnotherMovieDetailResponseResult.json"
+    }
+
+    struct MockImage {
+        static let stubImageMovieMedium = "stubImageMovieMedium"
+        static let stubImageMoviedetailsBig = "stubImageMovieDetailsBig"
+    }
+
 }
 
 // MARK: - URLSession

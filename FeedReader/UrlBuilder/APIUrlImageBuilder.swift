@@ -8,7 +8,7 @@
 import Foundation
 
 struct APIUrlImageBuilder: APIUrlImageBuilderProtocol {
-    static var imageURL: URL { URL(string: Config.API.Image.url) ?? URL(fileURLWithPath: String()) }
+    static var imageURL: URL { URL(string: Config.APIImage.url) ?? URL(fileURLWithPath: String()) }
 }
 
 protocol ImagePathProtocol {
@@ -17,12 +17,12 @@ protocol ImagePathProtocol {
 
 struct OriginalPath: ImagePathProtocol {
     func stringPath() -> String {
-        Config.API.Image.originalPath
+        Config.APIImage.originalPath
     }
 }
 
 struct W200Path: ImagePathProtocol {
     func stringPath() -> String {
-        Config.API.Image.w200Path
+        Config.APIImage.w200Path
     }
 }

@@ -15,7 +15,7 @@ protocol ImageServiceProtocol {
 
 struct ImageService: ImageServiceProtocol {
     @Injected var service: ServiceProtocol
-    fileprivate let queue = DispatchQueue(label: Config.Queue.Image.label, qos: Config.Queue.Image.qos)
+    fileprivate let queue = DispatchQueue(label: Config.QueueImage.label, qos: Config.QueueImage.qos)
     fileprivate var cancellable: AnyCancellable?
 
     func fetchImage(_ request: URLRequest) -> AnyPublisher<UIImage, Error> {

@@ -37,9 +37,9 @@ class MovieDetailServiceSpec: QuickSpec {
 
             context("when successful json data") {
                 beforeEach {
-                    moviesFromData = Data.jsonDataToObject(Config.Mock.MovieDetail.movieDetailResponseResult)
+                    moviesFromData = Data.jsonDataToObject(Config.MockMovieDetail.movieDetailResponseResult)
                     anotherMoviesFromData = Data.jsonDataToObject(
-                        Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
+                        Config.MockMovieDetail.anotherMovieDetailResponseResult)
                     let result: Result<MovieDetail, Swift.Error> = .success(moviesFromData)
                     @Injected(result) var networkResponse: NetworkResponseProtocol
                 }

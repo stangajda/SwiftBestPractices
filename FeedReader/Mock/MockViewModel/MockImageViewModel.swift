@@ -48,19 +48,19 @@ class BaseMockImageViewModel: ImageViewModelProtocol {
 
 final class MockImageViewModel: BaseMockImageViewModel {
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
-        super.init(imageName: Config.Mock.Image.stubImageMovieMedium)
+        super.init(imageName: Config.MockImage.stubImageMovieMedium)
     }
 }
 
 final class MockImageViewModelDetail: BaseMockImageViewModel {
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
-        super.init(imageName: Config.Mock.Image.stubImageMoviedetailsBig)
+        super.init(imageName: Config.MockImage.stubImageMoviedetailsBig)
     }
 }
 
 final class MockFailedImageViewModel: BaseMockImageViewModel {
     init(imagePath: String, imageSizePath: ImagePathProtocol, cache: ImageCacheProtocol? = nil) {
-        super.init(imageName: Config.Mock.Image.stubImageMovieMedium)
+        super.init(imageName: Config.MockImage.stubImageMovieMedium)
     }
 
     override func fetch() -> AnyPublisher<ImageViewModel.ImageItem, Error> {

@@ -36,9 +36,9 @@ class MovieDetailViewModelSpec: QuickSpec {
             context("when send on appear action") {
                 beforeEach {
                     let moviesFromData: MovieDetail = Data.jsonDataToObject(
-                        Config.Mock.MovieDetail.movieDetailResponseResult)
+                        Config.MockMovieDetail.movieDetailResponseResult)
                     let anotherMoviesFromData: MovieDetail = Data.jsonDataToObject(
-                        Config.Mock.MovieDetail.anotherMovieDetailResponseResult)
+                        Config.MockMovieDetail.anotherMovieDetailResponseResult)
                     let result: Result<MovieDetail, Error> = .success(moviesFromData)
                     @Injected(result) var service: MovieDetailServiceProtocol
                     movieItem = MovieDetailViewModel.MovieDetailItem(moviesFromData)

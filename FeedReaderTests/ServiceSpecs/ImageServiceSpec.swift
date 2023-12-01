@@ -34,7 +34,7 @@ class ImageServiceSpec: QuickSpec {
 
             context("when succesful image") {
                 beforeEach {
-                    let testImage = UIImage(named: Config.Mock.Image.stubImageMovieMedium)
+                    let testImage = UIImage(named: Config.MockImage.stubImageMovieMedium)
                     let imageData = convertImageToData(testImage)
                     let result: Result<Data, Swift.Error> = .success(imageData)
                     @Injected(result) var networkResponse: NetworkResponseProtocol
