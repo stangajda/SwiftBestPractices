@@ -142,7 +142,7 @@ extension MoviesListViewModelProtocol {
 }
 
 extension ImageViewModelProtocol {
-    func eraseToAnyViewModelProtocol() -> AnyImageViewModelProtocol{
+    func eraseToAnyViewModelProtocol() -> AnyImageViewModelProtocol {
         return AnyImageViewModelProtocol(self)
     }
 }

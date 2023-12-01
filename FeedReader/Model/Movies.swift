@@ -17,5 +17,3 @@ struct Movie: Hashable, Codable, Identifiable {
     var vote_average: Double
     var vote_count: Int
 }
-
-

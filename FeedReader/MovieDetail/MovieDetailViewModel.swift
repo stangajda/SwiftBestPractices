@@ -44,7 +44,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         instances.removeValue(forKey: movieListId)
     }
 
-    fileprivate init(_ movieList: MoviesListViewModel.MovieItem){
+    fileprivate init(_ movieList: MoviesListViewModel.MovieItem) {
         self.movieList = movieList
         state = State.start(movieList.id)
         statePublisher = _state.projectedValue
@@ -64,7 +64,7 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
         reset()
     }
 
-    fileprivate func reset(){
+    fileprivate func reset() {
         cancellable?.cancel()
         Self.deallocateCurrentInstances()
     }
