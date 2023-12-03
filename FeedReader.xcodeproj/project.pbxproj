@@ -239,8 +239,8 @@
 		F65AAB132A6EDB5A00B65A84 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F65AAB232A725ED600B65A84 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		F65AAB262A726C8200B65A84 /* HelperViewsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewsSpec.swift; sourceTree = "<group>"; };
-		F65D9A712B1CE3EB00750E70 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FeedReader.app; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReader.app"; sourceTree = "<absolute>"; };
-		F65D9A722B1CE3EB00750E70 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FeedReaderTests.xctest; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReaderTests.xctest"; sourceTree = "<absolute>"; };
+		F65D9A732B1CE6FE00750E70 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F65D9A742B1CE73F00750E70 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocolWrappers.swift; sourceTree = "<group>"; };
 		F672138D2A310C9E0059E397 /* MovieListViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelSpec.swift; sourceTree = "<group>"; };
@@ -447,6 +447,8 @@
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
 				CC35562D26AA4012002D0B07 /* Frameworks */,
+				F65D9A732B1CE6FE00750E70 /* FeedReaderTests.xctest */,
+				F65D9A742B1CE73F00750E70 /* FeedReader.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -604,7 +606,7 @@
 				F65AAB192A70A98E00B65A84 /* PreviewSnapshots */,
 			);
 			productName = FeedReader;
-			productReference = F65D9A712B1CE3EB00750E70 /* FeedReader.app */;
+			productReference = F65D9A742B1CE73F00750E70 /* FeedReader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CCF3A8C5267A8ED300CB5765 /* FeedReaderTests */ = {
@@ -630,7 +632,7 @@
 				F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */,
 			);
 			productName = FeedReaderTests;
-			productReference = F65D9A722B1CE3EB00750E70 /* FeedReaderTests.xctest */;
+			productReference = F65D9A732B1CE6FE00750E70 /* FeedReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -1003,6 +1005,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1027,6 +1032,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1048,8 +1056,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReaderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FeedReader.app/FeedReader";
 			};
 			name = Debug;
@@ -1070,8 +1081,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReaderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FeedReader.app/FeedReader";
 			};
 			name = Release;
@@ -1158,6 +1172,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReader";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1179,8 +1196,11 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Stan-Gajda.FeedReaderTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FeedReader.app/FeedReader";
 			};
 			name = Mock;
