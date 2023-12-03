@@ -224,12 +224,12 @@
 		CCC199F426B1A77C00134803 /* OverlayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTextView.swift; sourceTree = "<group>"; };
 		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
 		CCCA022126A9740A0056D018 /* LoadableReduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableReduce.swift; sourceTree = "<group>"; };
-		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FeedReader.app; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReader.app"; sourceTree = "<absolute>"; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCF3A8C1267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FeedReaderTests.xctest; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReaderTests.xctest"; sourceTree = "<absolute>"; };
 		CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		CCF3A8CC267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8E3267BE02B00CB5765 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -446,18 +446,8 @@
 				F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */,
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
-				CCF3A8B6267A8ED100CB5765 /* Products */,
 				CC35562D26AA4012002D0B07 /* Frameworks */,
 			);
-			sourceTree = "<group>";
-		};
-		CCF3A8B6267A8ED100CB5765 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				CCF3A8B5267A8ED100CB5765 /* FeedReader.app */,
-				CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */,
-			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 		CCF3A8B7267A8ED100CB5765 /* FeedReader */ = {
@@ -680,7 +670,7 @@
 				F6AC12542A576E2A003A55F9 /* XCRemoteSwiftPackageReference "Nimble-SnapshotTesting" */,
 				F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */,
 			);
-			productRefGroup = CCF3A8B6267A8ED100CB5765 /* Products */;
+			productRefGroup = CCF3A8AC267A8ED100CB5765;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
