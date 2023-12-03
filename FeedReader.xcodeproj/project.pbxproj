@@ -224,12 +224,10 @@
 		CCC199F426B1A77C00134803 /* OverlayTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverlayTextView.swift; sourceTree = "<group>"; };
 		CCCA021F26A953B90056D018 /* LoadableEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableEnums.swift; sourceTree = "<group>"; };
 		CCCA022126A9740A0056D018 /* LoadableReduce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableReduce.swift; sourceTree = "<group>"; };
-		CCF3A8B5267A8ED100CB5765 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FeedReader.app; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReader.app"; sourceTree = "<absolute>"; };
 		CCF3A8B8267A8ED100CB5765 /* FeedReaderApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedReaderApp.swift; sourceTree = "<group>"; };
 		CCF3A8BA267A8ED100CB5765 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CCF3A8C1267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FeedReaderTests.xctest; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReaderTests.xctest"; sourceTree = "<absolute>"; };
 		CCF3A8CA267A8ED300CB5765 /* ServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSpec.swift; sourceTree = "<group>"; };
 		CCF3A8CC267A8ED300CB5765 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CCF3A8E3267BE02B00CB5765 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
@@ -241,6 +239,8 @@
 		F65AAB132A6EDB5A00B65A84 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F65AAB232A725ED600B65A84 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		F65AAB262A726C8200B65A84 /* HelperViewsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewsSpec.swift; sourceTree = "<group>"; };
+		F65D9A712B1CE3EB00750E70 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FeedReader.app; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReader.app"; sourceTree = "<absolute>"; };
+		F65D9A722B1CE3EB00750E70 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FeedReaderTests.xctest; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReaderTests.xctest"; sourceTree = "<absolute>"; };
 		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocolWrappers.swift; sourceTree = "<group>"; };
 		F672138D2A310C9E0059E397 /* MovieListViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelSpec.swift; sourceTree = "<group>"; };
@@ -604,7 +604,7 @@
 				F65AAB192A70A98E00B65A84 /* PreviewSnapshots */,
 			);
 			productName = FeedReader;
-			productReference = CCF3A8B5267A8ED100CB5765 /* FeedReader.app */;
+			productReference = F65D9A712B1CE3EB00750E70 /* FeedReader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CCF3A8C5267A8ED300CB5765 /* FeedReaderTests */ = {
@@ -630,7 +630,7 @@
 				F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */,
 			);
 			productName = FeedReaderTests;
-			productReference = CCF3A8C6267A8ED300CB5765 /* FeedReaderTests.xctest */;
+			productReference = F65D9A722B1CE3EB00750E70 /* FeedReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
