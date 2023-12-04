@@ -25,7 +25,9 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
 
     func onAppear() {
         cancellable = self.assignNoRetain(self, to: \.state)
-        send(action: .onAppear)
+        if mockState != .start {
+            send(action: .onAppear)
+        }
     }
 
     func onDisappear() {
@@ -43,7 +45,7 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
 
     func fetch() -> AnyPublisher<[MoviesListViewModel.MovieItem], Error> {
         switch mockState {
-        case .loading:
+        case .start, .loading:
             return Empty()
                 .eraseToAnyPublisher()
         case .loaded:
@@ -54,9 +56,6 @@ class MockMoviesListViewModel: MoviesListViewModelProtocol, MockStateProtocol {
                 .eraseToAnyPublisher()
         case .failedLoaded:
             return Fail(error: APIError.apiCode(404))
-                .eraseToAnyPublisher()
-        case .start:
-            return Empty()
                 .eraseToAnyPublisher()
         }
     }

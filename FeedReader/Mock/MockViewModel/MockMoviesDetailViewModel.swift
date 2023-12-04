@@ -24,10 +24,22 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         self.statePublisher = _state.projectedValue
         onAppear()
     }
+    
+    func onAppear() {
+        cancellable = self.assignNoRetain(self, to: \.state)
+        if mockState != .start {
+            send(action: .onAppear)
+        }
+    }
+
+    func onDisappear() {
+        send(action: .onReset)
+        cancellable?.cancel()
+    }
 
     func fetch() -> AnyPublisher<MovieDetailViewModel.MovieDetailItem, Error> {
         switch mockState {
-        case .loading:
+        case .start, .loading:
             return Empty()
                 .eraseToAnyPublisher()
         case .loaded:
@@ -38,19 +50,7 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         case .failedLoaded:
             return Fail(error: APIError.apiCode(404))
                 .eraseToAnyPublisher()
-        case .start:
-            return Empty()
-                .eraseToAnyPublisher()
         }
     }
 
-    func onAppear() {
-        cancellable = self.assignNoRetain(self, to: \.state)
-        send(action: .onAppear)
-    }
-
-    func onDisappear() {
-        send(action: .onReset)
-        cancellable?.cancel()
-    }
 }
