@@ -6,6 +6,7 @@
 //
 
 import Foundation
+@testable import FeedReader
 import Nimble
 import UIKit
 import PreviewSnapshotsTesting
