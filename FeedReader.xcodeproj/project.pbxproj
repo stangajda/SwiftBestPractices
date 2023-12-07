@@ -79,7 +79,6 @@
 		F65AAB0E2A6E5A8200B65A84 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */; };
 		F65AAB142A6EDB5A00B65A84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F65AAB132A6EDB5A00B65A84 /* README.md */; };
 		F65AAB1A2A70A98E00B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB192A70A98E00B65A84 /* PreviewSnapshots */; };
-		F65AAB1E2A70AA4600B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */; };
 		F65AAB202A70AA5000B65A84 /* PreviewSnapshotsTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */; };
 		F65AAB252A725F4500B65A84 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB232A725ED600B65A84 /* ExtensionView.swift */; };
 		F65AAB272A726C8200B65A84 /* HelperViewsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB262A726C8200B65A84 /* HelperViewsSpec.swift */; };
@@ -282,7 +281,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F65AAB1E2A70AA4600B65A84 /* PreviewSnapshots in Frameworks */,
 				F6AC12582A577039003A55F9 /* Nimble-SnapshotTesting in Frameworks */,
 				F6AC12462A5708AC003A55F9 /* SnapshotTesting in Frameworks */,
 				CC45F75126B32A3F0050B77C /* Quick in Frameworks */,
@@ -628,7 +626,6 @@
 				CC45F75226B32C3B0050B77C /* Nimble */,
 				F6AC12452A5708AC003A55F9 /* SnapshotTesting */,
 				F6AC12572A577039003A55F9 /* Nimble-SnapshotTesting */,
-				F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */,
 				F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */,
 			);
 			productName = FeedReaderTests;
@@ -1303,11 +1300,6 @@
 			productName = Nimble;
 		};
 		F65AAB192A70A98E00B65A84 /* PreviewSnapshots */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
-			productName = PreviewSnapshots;
-		};
-		F65AAB1D2A70AA4600B65A84 /* PreviewSnapshots */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F65AAB182A70A98E00B65A84 /* XCRemoteSwiftPackageReference "swiftui-preview-snapshots" */;
 			productName = PreviewSnapshots;
