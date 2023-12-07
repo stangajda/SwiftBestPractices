@@ -41,3 +41,13 @@ extension PreviewSnapshots {
         return UIHostingController(rootView: view)
     }
 }
+
+extension AnyView {
+    static func errorNoViewFound(function: String = #function, file: String = #file, line: Int = #line) -> AnyView {
+        let errorMessage = "Snapshot error: No view found (function: \(function) file: \(file), line: \(line))"
+        return AnyView(Text(errorMessage)
+            .padding()
+            .background(Color.red)
+            .foregroundColor(Color.black))
+    }
+}
