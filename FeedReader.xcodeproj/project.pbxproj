@@ -83,6 +83,7 @@
 		F65AAB252A725F4500B65A84 /* ExtensionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB232A725ED600B65A84 /* ExtensionView.swift */; };
 		F65AAB272A726C8200B65A84 /* HelperViewsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB262A726C8200B65A84 /* HelperViewsSpec.swift */; };
 		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
+		F667DF6E2B21EA1E007723EB /* PreviewSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */; };
 		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
 		F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
 		F66999972A1B37C8006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
@@ -238,8 +239,9 @@
 		F65AAB132A6EDB5A00B65A84 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F65AAB232A725ED600B65A84 /* ExtensionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionView.swift; sourceTree = "<group>"; };
 		F65AAB262A726C8200B65A84 /* HelperViewsSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperViewsSpec.swift; sourceTree = "<group>"; };
-		F65D9A732B1CE6FE00750E70 /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; name = FeedReaderTests.xctest; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReaderTests.xctest"; sourceTree = "<absolute>"; };
-		F65D9A742B1CE73F00750E70 /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = FeedReader.app; path = "/Users/stan/Documents/FeedReader/build/Debug-iphoneos/FeedReader.app"; sourceTree = "<absolute>"; };
+		F667DF692B21E8DB007723EB /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F667DF6A2B21E8DB007723EB /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSnapshot.swift; sourceTree = "<group>"; };
 		F66999952A1B23AF006AF593 /* App+Injection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Injection.swift"; sourceTree = "<group>"; };
 		F67213892A30C70F0059E397 /* ViewModelProtocolWrappers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelProtocolWrappers.swift; sourceTree = "<group>"; };
 		F672138D2A310C9E0059E397 /* MovieListViewModelSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieListViewModelSpec.swift; sourceTree = "<group>"; };
@@ -437,6 +439,8 @@
 				F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */,
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
+				F667DF692B21E8DB007723EB /* FeedReader.app */,
+				F667DF6A2B21E8DB007723EB /* FeedReaderTests.xctest */,
 			);
 			sourceTree = "<group>";
 		};
@@ -460,6 +464,7 @@
 				CC351E2F269DC3E80037DB34 /* Extensions */,
 				CC351E29269DC25A0037DB34 /* Helper */,
 				CC3EC7B026A189E3005D71A9 /* HelperView */,
+				F667DF6C2B21E9A8007723EB /* HelperPreview */,
 				CC3EC7B126A238AD005D71A9 /* Feedback */,
 				CC351E30269DC49E0037DB34 /* Mock */,
 				CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */,
@@ -488,6 +493,14 @@
 				CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */,
 			);
 			path = MockNetworkRequest;
+			sourceTree = "<group>";
+		};
+		F667DF6C2B21E9A8007723EB /* HelperPreview */ = {
+			isa = PBXGroup;
+			children = (
+				F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */,
+			);
+			path = HelperPreview;
 			sourceTree = "<group>";
 		};
 		F67213882A30C6BD0059E397 /* Protocols */ = {
@@ -594,7 +607,7 @@
 				F65AAB192A70A98E00B65A84 /* PreviewSnapshots */,
 			);
 			productName = FeedReader;
-			productReference = F65D9A742B1CE73F00750E70 /* FeedReader.app */;
+			productReference = F667DF692B21E8DB007723EB /* FeedReader.app */;
 			productType = "com.apple.product-type.application";
 		};
 		CCF3A8C5267A8ED300CB5765 /* FeedReaderTests */ = {
@@ -619,7 +632,7 @@
 				F65AAB1F2A70AA5000B65A84 /* PreviewSnapshotsTesting */,
 			);
 			productName = FeedReaderTests;
-			productReference = F65D9A732B1CE6FE00750E70 /* FeedReaderTests.xctest */;
+			productReference = F667DF6A2B21E8DB007723EB /* FeedReaderTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -772,6 +785,7 @@
 			files = (
 				F69F15022A6330A700873639 /* InjectionName.swift in Sources */,
 				F67876562A1D0F6800A4FD54 /* APIUrlImageBuilderProtocol.swift in Sources */,
+				F667DF6E2B21EA1E007723EB /* PreviewSnapshot.swift in Sources */,
 				F6ECD0E82A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
 				F6AC12522A573DE0003A55F9 /* OverlayTextView.swift in Sources */,
 				F678764F2A1D0F1B00A4FD54 /* LoadableEnums.swift in Sources */,
