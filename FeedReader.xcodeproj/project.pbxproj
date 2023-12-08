@@ -533,9 +533,9 @@
 			children = (
 				F6F036662B2321ED003E72B8 /* HelperViewsSpec.swift */,
 				F6F036682B2321ED003E72B8 /* ImageViewSpec.swift */,
-				F6F036672B2321ED003E72B8 /* Info.plist */,
 				F6F0366A2B2321ED003E72B8 /* MovieDetailViewSpec.swift */,
 				F6F036692B2321ED003E72B8 /* MoviesListlViewSpec.swift */,
+				F6F036672B2321ED003E72B8 /* Info.plist */,
 			);
 			name = FeedReaderSnapshotTests;
 			sourceTree = "<group>";
