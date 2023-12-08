@@ -96,11 +96,6 @@
 		F6ECD0EA2A606A3A0008441E /* MockImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E92A606A3A0008441E /* MockImageService.swift */; };
 		F6F036892B23230E003E72B8 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = F6F036732B23230E003E72B8 /* Quick */; };
 		F6F0368B2B23230E003E72B8 /* Nimble in Frameworks */ = {isa = PBXBuildFile; productRef = F6F036752B23230E003E72B8 /* Nimble */; };
-		F6F0368D2B23230E003E72B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
-		F6F0368E2B23230E003E72B8 /* MockAnotherMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */; };
-		F6F0368F2B23230E003E72B8 /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
-		F6F036902B23230E003E72B8 /* MockMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */; };
-		F6F036912B23230E003E72B8 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
 		F6F036982B2323BD003E72B8 /* HelperViewsSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F036662B2321ED003E72B8 /* HelperViewsSpec.swift */; };
 		F6F036992B2323BD003E72B8 /* ImageViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F036682B2321ED003E72B8 /* ImageViewSpec.swift */; };
 		F6F0369A2B2323BD003E72B8 /* MovieDetailViewSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6F0366A2B2321ED003E72B8 /* MovieDetailViewSpec.swift */; };
@@ -703,11 +698,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6F0368D2B23230E003E72B8 /* Assets.xcassets in Resources */,
-				F6F0368E2B23230E003E72B8 /* MockAnotherMovieDetailResponseResult.json in Resources */,
-				F6F0368F2B23230E003E72B8 /* MockMovieListResponseResult.json in Resources */,
-				F6F036902B23230E003E72B8 /* MockMovieDetailResponseResult.json in Resources */,
-				F6F036912B23230E003E72B8 /* MockAnotherMovieListResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
