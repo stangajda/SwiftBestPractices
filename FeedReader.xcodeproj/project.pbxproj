@@ -66,7 +66,6 @@
 		F65AAB0D2A6E5A8200B65A84 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */; };
 		F65AAB142A6EDB5A00B65A84 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = F65AAB132A6EDB5A00B65A84 /* README.md */; };
 		F65AAB1A2A70A98E00B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB192A70A98E00B65A84 /* PreviewSnapshots */; };
-		F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CCF3A8BC267A8ED200CB5765 /* Assets.xcassets */; };
 		F667DF6F2B21EB2C007723EB /* PreviewSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */; };
 		F669997D2A1A6604006AF593 /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = F669997C2A1A6604006AF593 /* Swinject */; };
 		F66999962A1B23B0006AF593 /* App+Injection.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66999952A1B23AF006AF593 /* App+Injection.swift */; };
@@ -686,7 +685,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F65EBA1929F900D0006BE2F4 /* Assets.xcassets in Resources */,
 				F655B2E62A305AF80009146E /* MockAnotherMovieDetailResponseResult.json in Resources */,
 				CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */,
 				F655B2E72A305E620009146E /* MockMovieDetailResponseResult.json in Resources */,
