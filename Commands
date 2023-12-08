@@ -1,8 +1,4 @@
 /Applications/sonarqube/bin/macosx-universal-64/ sh sonar.sh console
-  
-slather coverage --sonarqube-xml --scheme FeedReader-Debug FeedReader.xcodeproj
-
-slather coverage --html --scheme FeedReader-Debug FeedReader.xcodeproj
 
 xcodebuild -project FeedReader.xcodeproj/ -scheme FeedReader-Debug -derivedDataPath Build/ -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 
