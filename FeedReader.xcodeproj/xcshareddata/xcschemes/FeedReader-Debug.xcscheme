@@ -49,6 +49,16 @@
                ReferencedContainer = "container:FeedReader.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "F6F036702B23230E003E72B8"
+               BuildableName = "FeedReaderSnapshotTests.xctest"
+               BlueprintName = "FeedReaderSnapshotTests"
+               ReferencedContainer = "container:FeedReader.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
