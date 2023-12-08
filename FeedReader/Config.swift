@@ -71,6 +71,16 @@ struct Config {
 
 }
 
+// MARK: - Checking if running tests
+
+extension Config {
+    struct Testing {
+        static var isRunningTests: Bool {
+            return NSClassFromString("XCTest") != nil
+        }
+    }
+}
+
 // MARK: - URLSession
 extension URLSession {
     static var `default`: URLSession {

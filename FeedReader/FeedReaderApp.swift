@@ -21,6 +21,12 @@ struct FeedReaderApp: App {
     }
 
     func injectDependency() {
+
+        if Config.Testing.isRunningTests {
+            Injection.main.mockViewModel()
+            return
+        }
+
 #if MOCK
         Injection.main.mockViewModel()
 #else
