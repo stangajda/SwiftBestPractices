@@ -1,0 +1,14 @@
+/Applications/sonarqube/bin/macosx-universal-64/ sh sonar.sh console
+
+xcodebuild -project FeedReader.xcodeproj/ -scheme FeedReader-Debug -derivedDataPath Build/ -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+
+bash xccov-to-sonarqube-generic.sh Build/Logs/Test/Run-FeedReader-Debug-*.xcresult/ > Coverage.xml
+
+sonar-scanner \
+  -Dsonar.projectKey=FeedReader \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_e89b7a09a1015c15a01a7eb5bc66b4d365ed64bf \
+  -Dsonar.coverageReportPaths=Coverage.xml \
+  -Dsonar.exclusions=Coverage.xml
+

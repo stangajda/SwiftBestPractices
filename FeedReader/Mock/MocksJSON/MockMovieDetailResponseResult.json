@@ -1,0 +1,36 @@
+{
+  "backdrop_path": "/AsqUSUqXrK8JfH8WEQnCXVbIAv6.jpg",
+  "budget": 61000000,
+  "genres": [
+    {
+      "id": 878,
+      "name": "Science Fiction"
+    },
+    {
+      "id": 53,
+      "name": "Thriller"
+    },
+    {
+      "id": 27,
+      "name": "Horror"
+    }
+  ],
+  "id": 520763,
+  "overview": "Following the events at home, the Abbott family now face the terrors of the outside world. Forced to venture into the unknown, they realize that the creatures that hunt by sound are not the only threats that lurk beyond the sand path.",
+  "release_date": "2021-05-21",
+  "spoken_languages": [
+    {
+      "english_name": "English",
+      "iso_639_1": "en",
+      "name": "English"
+    },
+    {
+      "english_name": "German",
+      "iso_639_1": "de",
+      "name": "Deutch"
+    }
+  ],
+  "title": "A Quiet Place Part II",
+  "vote_average": 7.7,
+  "vote_count": 2352
+}

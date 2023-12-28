@@ -8,18 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    
-    var viewModel = ViewModel()
+    @Injected var viewModel: AnyMoviesListViewModelProtocol
     var body: some View {
-        
-        Text("Hello, world!")
-            .padding()
-    }
-    
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
+        MoviesListView(viewModel: viewModel)
     }
 }

@@ -1,0 +1,159 @@
+{
+  "results": [
+    {
+      "id": 1,
+      "title": "mock-0-title",
+      "poster_path": "0-poster_path",
+      "vote_average": 6.1,
+      "vote_count": 1724
+    },
+    {
+        "id": 2,
+        "title": "mock-1-title",
+        "poster_path": "1-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 3,
+        "title": "mock-2-title",
+        "poster_path": "2-poster_path",
+        "vote_average": 6.9,
+        "vote_count": 711
+    },
+    {
+        "id": 4,
+        "title": "mock-3-title",
+        "poster_path": "3-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 1724
+    },
+    {
+        "id": 5,
+        "title": "mock-4-title",
+        "poster_path": "4-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 1724
+    },
+    {
+        "id": 6,
+        "title": "mock-5-title",
+        "poster_path": "5-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 7,
+        "title": "mock-6-title",
+        "poster_path": "6-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 1724
+    },
+    {
+        "id": 8,
+        "title": "mock-7-title",
+        "poster_path": "7-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 9,
+        "title": "mock-8-title",
+        "poster_path": "8-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 10,
+        "title": "mock-9-title",
+        "poster_path": "9-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 11,
+        "title": "mock-10-title",
+        "poster_path": "10-poster_path",
+        "vote_average": 7.1,
+        "vote_count": 711
+    },
+    {
+        "id": 12,
+        "title": "mock-11-title",
+        "poster_path": "11-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 13,
+        "title": "mock-12-title",
+        "poster_path": "12-poster_path",
+        "vote_average": 7.2,
+        "vote_count": 711
+    },
+    {
+        "id": 14,
+        "title": "mock-13-title",
+        "poster_path": "13-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 15,
+        "title": "mock-14-title",
+        "poster_path": "14-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 16,
+        "title": "mock-15-title",
+        "poster_path": "15-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 675
+    },
+    {
+        "id": 17,
+        "title": "mock-16-title",
+        "poster_path": "16-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 18,
+        "title": "mock-17-title",
+        "poster_path": "17-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 654
+    },
+    {
+        "id": 19,
+        "title": "mock-18-title",
+        "poster_path": "18-poster_path",
+        "vote_average": 6.2,
+        "vote_count": 711
+    },
+    {
+        "id": 20,
+        "title": "mock-19-title",
+        "poster_path": "19-poster_path",
+        "vote_average": 6.5,
+        "vote_count": 711
+    },
+    {
+        "id": 21,
+        "title": "mock-20-title",
+        "poster_path": "20-poster_path",
+        "vote_average": 4.4,
+        "vote_count": 3212
+    },
+    {
+        "id": 22,
+        "title": "mock-21-title",
+        "poster_path": "21-poster_path",
+        "vote_average": 9.1,
+        "vote_count": 765
+    }
+  ],
+  "page": 1
+}
