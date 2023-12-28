@@ -206,7 +206,7 @@
 		F6C52A9D2B3CA0230044B0FB /* FeedReaderSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9E2B3CD13F0044B0FB /* Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diagram.png; sourceTree = "<group>"; };
 		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
-		F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2023-12-03 at 15.20.30.png"; sourceTree = "<group>"; };
+		F6D7C1562B1CC66C00809D0F /* CodeQualityScreenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CodeQualityScreenshot.png; sourceTree = "<group>"; };
 		F6E93AEF2A8AC33A0048A5C4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieDetailService.swift; sourceTree = "<group>"; };
 		F6ECD0E92A606A3A0008441E /* MockImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageService.swift; sourceTree = "<group>"; };
@@ -394,7 +394,7 @@
 				F65AAB132A6EDB5A00B65A84 /* README.md */,
 				F6E93AEF2A8AC33A0048A5C4 /* LICENSE */,
 				F6C52A9E2B3CD13F0044B0FB /* Diagram.png */,
-				F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */,
+				F6D7C1562B1CC66C00809D0F /* CodeQualityScreenshot.png */,
 				F672BE2F2B1BF053006795D3 /* Commands */,
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
