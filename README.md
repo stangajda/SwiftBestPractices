@@ -52,6 +52,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 21. Used swiftlint in vscode IDE to perform code formatting
 22. Uses sonarqube for code quality analysis
 
+![Diagram](Diagram.png)
 
 ## 3rd party Libraries
 
