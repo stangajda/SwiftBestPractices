@@ -54,19 +54,19 @@ struct Config {
     }
 
     struct MockMovieList {
-        static let movieListResponseResult = "MockMovieListResponseResult.json"
-        static let anotherMovieListResponseResult = "MockAnotherMovieListResponseResult.json"
+        static let movieListResponseResult = "StubMovieListResponseResult.json"
+        static let anotherMovieListResponseResult = "StubAnotherMovieListResponseResult.json"
 
     }
 
     struct MockMovieDetail {
-        static let movieDetailResponseResult = "MockMovieDetailResponseResult.json"
-        static let anotherMovieDetailResponseResult = "MockAnotherMovieDetailResponseResult.json"
+        static let movieDetailResponseResult = "StubMovieDetailResponseResult.json"
+        static let anotherMovieDetailResponseResult = "StubAnotherMovieDetailResponseResult.json"
     }
 
     struct MockImage {
-        static let stubImageMovieMedium = "stubImageMovieMedium"
-        static let stubImageMoviedetailsBig = "stubImageMovieDetailsBig"
+        static let stubImageMovieMedium = "StubImageMovieMedium"
+        static let stubImageMoviedetailsBig = "StubImageMovieDetailsBig"
     }
 
 }
