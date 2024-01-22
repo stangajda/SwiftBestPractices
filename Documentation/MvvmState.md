@@ -1,8 +1,6 @@
 # MVVM Architecture with States
 
-## When to Use MVVM with States
-
-### Good Use Cases for MVVM with States:
+## Good uses:
 
 1. **Complex User Interfaces:** MVVM is excellent for applications with complex UIs where you need to manage multiple UI states based on the data model.
 2. **Data Binding:** It works well in scenarios where data binding is used extensively since the ViewModel can expose data and command objects that the View can bind to.
@@ -10,9 +8,7 @@
 4. **Decoupled Code:** When you want a clear separation of concerns, making it easier to maintain and extend the codebase.
 5. **Reactive Programming:** MVVM with states fits well with reactive programming patterns and frameworks, which can help manage state changes and UI updates more smoothly.
 
-## When Not to Use MVVM with States
-
-### Not Good Use Cases for MVVM with States:
+## Less ideal uses:
 
 1. **Simple UIs:** For simple applications with a straightforward UI and minimal interaction, MVVM can be overkill and add unnecessary complexity.
 2. **Learning Curve:** If the development team is not familiar with MVVM or state management, the learning curve might slow down the development process.

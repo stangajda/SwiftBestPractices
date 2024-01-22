@@ -1,6 +1,6 @@
 # Jasmine
 
-##Good Use Cases for Jasmine
+## Good uses:
 
 1. **Behavior-Driven Development (BDD)**: Ideal for teams practicing BDD and needing a framework aligned with this approach.
 2. **Testing**: Well-suited for projects, including handling of asynchronous operations.
@@ -9,7 +9,7 @@
 5. **No DOM Dependency**: Can run tests in a JavaScript runtime without a browser, which is great for CI/CD pipelines.
 6. **Test-Driven Development (TDD)**: Fits well into TDD workflows, where tests guide the development process.
 
-##When Not to Use Jasmine
+## Less ideal uses:
 
 1. **Integration with Other Systems**: Not the best choice when extensive integration with other systems is required without additional tools.
 2. **Performance Overhead**: Might not be ideal for large-scale projects where the overhead from a testing framework is a concern.
