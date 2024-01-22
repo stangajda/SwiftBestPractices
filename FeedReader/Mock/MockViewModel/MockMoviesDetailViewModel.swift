@@ -24,7 +24,7 @@ class MockMovieDetailViewModel: MovieDetailViewModelProtocol {
         self.statePublisher = _state.projectedValue
         onAppear()
     }
-    
+
     func onAppear() {
         cancellable = self.assignNoRetain(self, to: \.state)
         if mockState != .start {
