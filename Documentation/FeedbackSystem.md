@@ -18,3 +18,45 @@
 3. **Learning Curve:** If the development team is not well-versed in reactive programming concepts, these patterns might introduce unnecessary complexity and can have a steep learning curve.
 4. **Performance Considerations:** In performance-sensitive parts of the code, the overhead introduced by reactive programming and the use of these patterns might not be justified.
 
+
+## Implementing System and Feedback
+
+1. **Define the State and Action types**
+2. **Provide the initial state**
+3. **Implement the reduce function** that handles state transitions
+4. **Specify the scheduler**
+5. **Create Feedback loops**
+
+### System
+
+```swift
+extension Publishers {
+  static func system<State, Action, Scheduler: Combine.Scheduler>(
+      initial: State,
+      reduce: @escaping (State, Action) -> State,
+      scheduler: Scheduler,
+      feedbacks: [Feedback<State, Action>]
+  ) -> AnyPublisher<State, Never> {
+    // Implementation
+  }
+}
+```
+
+### Feedback
+
+The Feedback loop listens for state changes and maps them to effects that return actions.
+
+1. **Define a Feedback struct** with a run function
+2. **Implement run** to map state to effects, flatten, and return actions
+3. **Add Feedback loops to System**
+
+### Example
+
+```swift
+struct Feedback<State, Action> {
+  let run: (AnyPublisher<State, Never>) -> AnyPublisher<Action, Never>
+}
+```
+
+
+

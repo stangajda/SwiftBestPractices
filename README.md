@@ -57,7 +57,8 @@ If you still encounter access errors after deleting the snapshot folder, you may
 ![Diagram](Diagram.png)
 
 ## Patterns
-[MVVM State](documentation/mvvmState)
+[MVVM State](documentation/mvvmState)  
+[FeedBack System](documentation/FeedbackSystem)
 
 
 ## 3rd party Libraries
@@ -70,14 +71,14 @@ Nimble-snapshot-testing 4.0.3
 swiftui-preview-snapshots 1.1.0 
 
 ## Sources
-https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/
-https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/
-https://github.com/hmlongco/Resolver
-https://github.com/Swinject/Swinject
-https://github.com/Quick/Quick
-https://github.com/Quick/Nimble
-https://www.browserstack.com/guide/snapshot-testing-ios
-https://github.com/pointfreeco/swift-snapshot-testing
-https://github.com/tahirmt/Nimble-SnapshotTesting/
-https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots
-https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8
+https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/  
+https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/  
+https://github.com/hmlongco/Resolver  
+https://github.com/Swinject/Swinject  
+https://github.com/Quick/Quick  
+https://github.com/Quick/Nimble  
+https://www.browserstack.com/guide/snapshot-testing-ios  
+https://github.com/pointfreeco/swift-snapshot-testing  
+https://github.com/tahirmt/Nimble-SnapshotTesting/  
+https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots  
+https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8  
