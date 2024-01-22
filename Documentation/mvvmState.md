@@ -55,37 +55,28 @@ func reduce(_ state: State, _ action: Action) -> State {
 
 ### ViewModel
 
-The `ViewModel` is designed to conform to `LoadableProtocol` and `ObservableLoadableProtocol`, providing an observable state that can be reacted to by the views.
+The ViewModel should conform to protocols that enable:
 
-Here's an example implementation of `MoviesListViewModel`:
+- **Observable state** - `ObservableObject` allows SwiftUI to observe and update when state changes
+- **Lifecycle handling** - `onAppear`, `onDisappear` etc to react to View lifecycles
+- **Input actions** - `PassthroughSubject` allows the View to send actions to the ViewModel
+
+For example:
 
 ```swift
-// MoviesListViewModel.swift
+class ViewModel: ObservableObject, LifecycleProtocol {
 
-import Combine
-import SwiftUI
+  // @Published state
+  @Published var movies = [Movie]()
 
-class MoviesListViewModel: ObservableLoadableProtocol {
-
-  @Published var state: State = .start()
-  
+  // Input from View
   var input = PassthroughSubject<Action, Never>()
 
+  // Lifecycle methods
   func onAppear() {
-    send(action: .onAppear)
+    // Load data
   }
 
-  // Implement loadable protocol
-  func reduce(state: State, action: Action) -> State {
-    // Transition logic
-    // ...
-  }
-  
-  // Fetch data
-  func fetch() -> AnyPublisher<[Movie], Error> {
-    // Network call
-    // ...
-  }
 }
 ```
 

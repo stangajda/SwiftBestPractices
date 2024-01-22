@@ -56,6 +56,10 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 ![Diagram](Diagram.png)
 
+## Patterns
+[MVVM State](documentation/mvvmState)
+
+
 ## 3rd party Libraries
 
 Nimble 13.0.0
