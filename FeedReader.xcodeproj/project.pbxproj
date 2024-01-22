@@ -200,6 +200,7 @@
 		F69F15002A6330A700873639 /* InjectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionName.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
+		F6BD47FD2B5EF14C00C7528A /* mvvmState.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = mvvmState.md; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6C52A9B2B3CA0230044B0FB /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9C2B3CA0230044B0FB /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -396,6 +397,7 @@
 				F6C52A9E2B3CD13F0044B0FB /* Diagram.png */,
 				F6D7C1562B1CC66C00809D0F /* CodeQualityScreenshot.png */,
 				F672BE2F2B1BF053006795D3 /* Commands */,
+				F6BD47FC2B5EEF4800C7528A /* Documentation */,
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
 				F6F036652B2321AF003E72B8 /* FeedReaderSnapshotTests */,
@@ -531,6 +533,14 @@
 				F6944BE42A75771E00798968 /* Protocols.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		F6BD47FC2B5EEF4800C7528A /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				F6BD47FD2B5EF14C00C7528A /* mvvmState.md */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		F6F036652B2321AF003E72B8 /* FeedReaderSnapshotTests */ = {
