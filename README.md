@@ -56,6 +56,22 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 ![Diagram](Diagram.png)
 
+**View:** SwiftUI views like `MoviesListView` and `MovieDetailView` that display UI and react to state changes.  
+
+**ViewModel:** Mediate between the Views and Models by managing UI state, transforming data, and handling view logic specific to each screen.  
+
+**State:** State enums defined in ViewModels that represent different UI states like `.loaded`, `.loading`, etc.  
+
+**Reduce:** Reduce functions in ViewModels that handle state transitions based on actions.  
+
+**Feedback:** Protocols like `LoadableProtocol` that enable ViewModels to provide feedback on state changes.  
+
+**Service:** Services like `MovieService` that encapsulate backend API logic and networking.  
+
+**Model:** Model objects like `Movie` that represent domain data.  
+
+
+
 ## Patterns
 [MVVM State](documentation/MvvmState)  
 [FeedBack System](documentation/FeedbackSystem)  
@@ -65,12 +81,12 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 ## 3rd party Libraries
 
-Nimble 13.0.0
-Quick 7.3.0
-Swinject 2.8.4
-swift-snapshot-testing 1.15.0
-Nimble-snapshot-testing 4.0.3
-swiftui-preview-snapshots 1.1.0 
+Nimble 13.0.0  
+Quick 7.3.0  
+Swinject 2.8.4  
+swift-snapshot-testing 1.15.0  
+Nimble-snapshot-testing 4.0.3  
+swiftui-preview-snapshots 1.1.0   
 
 ## Sources
 https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/  
