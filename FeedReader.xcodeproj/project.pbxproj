@@ -203,6 +203,7 @@
 		F6BD47FD2B5EF14C00C7528A /* MvvmState.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MvvmState.md; sourceTree = "<group>"; };
 		F6BD47FE2B5F0C5A00C7528A /* FeedbackSystem.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FeedbackSystem.md; sourceTree = "<group>"; };
 		F6BD47FF2B5F169700C7528A /* Jasmin.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Jasmin.md; sourceTree = "<group>"; };
+		F6BD48002B5F39AC00C7528A /* DependencyInjection.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DependencyInjection.md; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6C52A9B2B3CA0230044B0FB /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9C2B3CA0230044B0FB /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -543,6 +544,7 @@
 				F6BD47FD2B5EF14C00C7528A /* MvvmState.md */,
 				F6BD47FE2B5F0C5A00C7528A /* FeedbackSystem.md */,
 				F6BD47FF2B5F169700C7528A /* Jasmin.md */,
+				F6BD48002B5F39AC00C7528A /* DependencyInjection.md */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
