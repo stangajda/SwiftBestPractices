@@ -1,5 +1,7 @@
 # Feedback and System Patterns in Combine
 
+## In the context of Apple's Combine framework, feedback and system patterns are used to model and manage state and side effects in a reactive programming style. The feedback loop pattern allows the system to react to state changes and user actions by emitting events that are then handled in a way that may affect the state again, creating a controlled loop of interactions.
+
 ## Good uses:
 
 

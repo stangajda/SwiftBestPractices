@@ -1,4 +1,6 @@
-# Jasmine
+# Jasmine (Quick and Nimble)
+
+## Quick is a behavior-driven development framework for Swift and Objective-C, which, along with its matcher framework Nimble, provides a way to write clear and expressive tests. Jasmine is a behavior-driven development framework for testing JavaScript code, and it uses a similar syntax and structure to Quick/Nimble, focusing on readable test descriptions and expectations.
 
 ## Good uses:
 

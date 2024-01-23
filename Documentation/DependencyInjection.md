@@ -1,4 +1,6 @@
-# Dependency Injection
+# Dependency Injection (swinject)
+
+## Dependency injection is a design pattern that allows a program to remove hard-coded dependencies and makes it possible to change them, whether at runtime or compile time, thus making the system more modular and testable. Swinject is an open-source dependency injection framework for Swift applications, which offers a concise API to configure dependencies and inject them into classes, thus promoting loose coupling and easier unit testing.
 
 ## Good Uses
 
