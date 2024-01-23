@@ -18,49 +18,57 @@
 
 ## Implementing Dependency Injection
 
-This project uses the **Swinject** library for dependency injection.
+### Define protocols for the services/classes you want to inject.
 
-### Registering Dependencies
-
-Dependencies are registered in the Assembler files (e.g. `NetworkAssembly.swift`). Each Assembler registers a specific type of dependencies.
-
-### Initializing Dependency Injection
-
-The `AppDelegate` calls the `injectDependency()` method during app launch, which initializes the dependency injection container and calls the assemblers to register all dependencies.
-
-### Accessing the Dependency Injection Container
-
-The `Injection` class provides access to the dependency injection container via its static `resolver` property.
-
-### Injecting Dependencies
-
-Dependencies are injected into classes using the `@Injected` property wrapper. For example:
-
-```swift
-@Injected var networkService: NetworkService
+```protocol MovieServiceProtocol {
+  func fetchMovies() -> [Movie]
+}
 ```
 
-### Resolving Dependencies
+### Create concrete implementation classes of these protocols.
 
-This will resolve the `NetworkService` from the container and inject it.
+```class MovieService: MovieServiceProtocol {
+  func fetchMovies() -> [Movie] {
+    // implementation
+  }
+}
+```
 
-### Overriding Dependencies for Testing
+### Register these implementations in the Injection class.
 
-Dependencies can be overridden for testing using the mock assemblers (e.g. `MockNetworkAssembly`).
+```Injection.main.register(MovieServiceProtocol.self) { _ in 
+  MovieService()
+}
+```
 
-### Passing Arguments During Resolution
+###  Wherever you need to use these services, inject them using the @Injected property wrapper:
 
-Additional arguments can be passed during resolution using the `Injected` initializer.
+```@Injected var movieService: MovieServiceProtocol
 
-### Summary
+func loadMovies() {
+  let movies = movieService.fetchMovies() 
+}
+```
 
-- Register dependencies in Assembler files
-- Initialize dependency injection in `AppDelegate`
-- Use `@Injected` property wrapper to inject dependencies
-- Override with mock dependencies for testing
-- Pass arguments to customize resolution
+### The @Injected wrapper will resolve the correct implementation of MovieServiceProtocol from the Injection container.
 
-This provides a clean way to manage dependencies and makes testing easier by allowing overrides.
+
+The @Injected property wrapper allows injecting dependencies and passing arguments to them.
+
+
+```let result: Result<Movies, Swift.Error> = .failure(APIError.invalidURL) 
+@Injected(result) var networkResponse: NetworkResponseProtocol
+```
+
+Result<Movies, Swift.Error> is the type of the dependency we want to inject
+networkResponse is the property that will hold the injected dependency
+APIError.invalidURL creates a Result representing a failure with an invalid URL error
+This Result is passed to the @Injected initializer as the argument
+When @Injected is initialized with an argument like this, it will resolve the dependency (NetworkResponseProtocol) from the Injection container and call it with this argument.
+
+So in this case, it will resolve an instance of NetworkResponseProtocol, and call it with the .failure(APIError.invalidURL) Result that we passed to @Injected.
+
+This allows the mock or real NetworkResponseProtocol implementation to receive this error Result and use it in its logic.
 
 
 

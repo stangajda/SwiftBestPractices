@@ -1,4 +1,4 @@
-# WRITING HIGH-QUALITY CODE: A STANDALONE PROJECT DEMONSTRATING ADVANCED SOLUTIONS, PRACTICALITY AND EXPERIMENTATION - 93%! code coverage
+# "Swift Development Best Practices Demo - SOLID, DI, Testing, and Beyond" - 93%! code coverage
 
 ![Code Quality Screenshot](CodeQualityScreenshot.png)
 

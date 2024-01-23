@@ -55,7 +55,6 @@ override func spec() {
 }
 ```
 
-### Swift Unit Testing  
 ### Contexts and Before Each
 
 Use `context` blocks to set up different contexts for tests. Use `beforeEach` to configure common setup before each test.
@@ -69,8 +68,7 @@ context("when successful response") {
   // tests
 }
 ```
-
-### Swift Unit Testing  
+  
 ### Writing Test Cases
 
 In Swift, we use `it` blocks to define individual test cases. Nimble matchers like `expect(…).to()` are used to assert expected outcomes.
