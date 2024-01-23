@@ -35,7 +35,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 2. Uses MVVM architecture
 3. Achieves a code coverage of 93%
 4. Implement functionality to cancel the download of images and feeds when the back button is tapped.
-5. implement the dark theme 
+5. Implement the dark theme 
 6. Includes snapshot tests and unit tests
 7. Implements error handling
 8. Uses dependency injection with the @Injected wrapper for easier finding
