@@ -138,8 +138,6 @@ extension Feedback {
 - **send(action:) utility function** to send actions to input subject
 
 
-
-
 ```swift
 import Combine
 

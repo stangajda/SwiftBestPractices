@@ -36,8 +36,12 @@
 
 ### Register these implementations in the Injection class.
 
-```Injection.main.register(MovieServiceProtocol.self) { _ in 
-  MovieService()
+```class ServiceAssembly: AssemblyProtocol {
+    func assemble(container: Container) {
+        container.register(ServiceProtocol.self) { _ in
+            Service()
+        }
+    }
 }
 ```
 
