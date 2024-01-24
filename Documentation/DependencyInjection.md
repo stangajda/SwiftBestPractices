@@ -34,7 +34,7 @@
 }
 ```
 
-### Register these implementations in the Injection class.
+### Register these implementations in the assembly.
 
 ```class ServiceAssembly: AssemblyProtocol {
     func assemble(container: Container) {
@@ -43,6 +43,21 @@
         }
     }
 }
+```
+
+### Add assembly into container.
+
+```func initialRegistration() {
+    assembler = Assembler([
+        ServiceAssembly(),
+        ViewModelAssembly()
+    ], container: container)
+}
+```
+
+### Call container to implement Dependency Injection
+
+```Injection.main.initialRegistration()
 ```
 
 ###  Wherever you need to use these services, inject them using the @Injected property wrapper:

@@ -40,7 +40,34 @@ enum State {
 }
 ```
 
-## ViewModel and View Implementation
+## Model, ViewModel and View Implementation
+
+### Model
+
+- It conforms to Identifiable and Hashable which allows it to be used in SwiftUI views like List.
+
+- The properties like id, title, etc mirror the data we need to display a movie row.
+
+- It takes in a Movie model from the API response and maps it to this view model
+
+- By converting the API model to a dedicated view model, we decouple the view layer from the API response structure. This allows us to shape the data as needed for display purposes.
+
+-To use this, the view model would fetch movies, map them to MovieItem models, and pass an array of MovieItem to the SwiftUI view.
+
+```swift
+extension MoviesListViewModel {
+    struct MovieItem: Identifiable, Hashable {
+        let id: Int
+        let title: String
+        ...
+        init(_ movie: Movie) {
+            id = movie.id
+            title = movie.title
+            ...
+        }
+    }
+}
+```
 
 ### ViewModel
 
