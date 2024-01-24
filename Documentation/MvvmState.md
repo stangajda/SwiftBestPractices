@@ -53,30 +53,117 @@ func reduce(_ state: State, _ action: Action) -> State {
 
 ### ViewModel
 
-The ViewModel should conform to protocols that enable:
-
-- **Observable state** - `ObservableObject` allows SwiftUI to observe and update when state changes
-- **Lifecycle handling** - `onAppear`, `onDisappear` etc to react to View lifecycles
-- **Input actions** - `PassthroughSubject` allows the View to send actions to the ViewModel
-
-For example:
+Understanding the Protocol
+First, let's understand the MoviesListViewModelProtocol:
 
 ```swift
-class ViewModel: ObservableObject, LifecycleProtocol {
-
-  // @Published state
-  @Published var movies = [Movie]()
-
-  // Input from View
-  var input = PassthroughSubject<Action, Never>()
-
-  // Lifecycle methods
-  func onAppear() {
-    // Load data
-  }
-
+protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
+  where TP1 == [MoviesListViewModel.MovieItem], TP2 == Int {
+  func onActive()
+  func onBackground()
 }
 ```
+
+This protocol inherits from two other protocols: LifecycleProtocol and ObservableLoadableProtocol. Additionally, it specifies two associated types (TP1 and TP2) with specific types: TP1 is an array of MovieItem, and TP2 is an Int. The protocol also requires conforming types to implement two functions: onActive() and onBackground().
+
+Implementing the ViewModel Class
+To implement a class that conforms to MoviesListViewModelProtocol, you need to follow these steps:
+
+Step 1: Define State and Service
+The MoviesListViewModel holds a state property which is marked with @Published to enable SwiftUI's data flow mechanism. It also has a service property to handle data fetching, which is injected into the view model.
+
+```swift
+final class MoviesListViewModel: MoviesListViewModelProtocol {
+  @Published fileprivate(set) var state = State.start()
+  @Injected fileprivate var service: MovieListServiceProtocol
+  // ...
+}
+```
+
+Step 2: Define Typealiases
+Define the typealiases TP1 and TP2 as specified in the protocol to be used within the class:
+
+```swift
+typealias TP1 = [MovieItem]
+typealias TP2 = Int
+```
+
+Step 3: Handle Actions with a Subject
+The input property is a PassthroughSubject that can be used to send actions to the view model.
+
+```swift
+var input = PassthroughSubject<Action, Never>()
+```
+
+Step 4: Manage Subscriptions
+The cancellable property is used to hold a reference to the subscription so it can be canceled later.
+
+```swift
+fileprivate var cancellable: AnyCancellable?
+```
+
+Step 5: Initialize State Publisher
+The init() function initializes the statePublisher and triggers the onAppear() function.
+
+```swift
+init() {
+  statePublisher = _state.projectedValue
+  onAppear()
+}
+```
+
+Step 6: Implement Lifecycle Functions
+Implement the onAppear, onDisappear, onActive, and onBackground functions to handle view lifecycle events. These methods are used to start and stop any processes or subscriptions when the view appears or disappears.
+
+```swift
+func onAppear() {
+  cancellable = self.assignNoRetain(self, to: \.state)
+  send(action: .onAppear)
+}
+
+func onDisappear() {
+  send(action: .onReset)
+  cancellable?.cancel()
+}
+
+func onActive() {
+  onAppear()
+}
+
+func onBackground() {
+  onDisappear()
+}
+```
+
+Additional Details
+statePublisher is used to publish changes to state so that the UI can be updated reactively.
+assignNoRetain is a custom function (not shown in the snippet) that presumably assigns the output of a publisher to a property without retaining the self.
+send(action:) is another custom function (also not shown) that is used to handle actions sent to the view model.
+
+Step 7: Implement fetch Data
+In View Model you implement `fetchData` in extension ViewModel
+
+
+```swift
+extension ViewModel {
+
+  // Fetch data from API
+  func fetchData() -> AnyPublisher<[ViewModelItem], Error> {
+    
+    // Call service to get data
+    return self.service.fetch(urlRequest)
+  
+      // Map API models to view model items
+      .map { apiModels in
+        apiModels.map { ViewModelItem.init }  
+      }
+      
+      // Erase publisher type to AnyPublisher
+      .eraseToAnyPublisher()
+  }
+}
+```
+
 
 ### View
 
