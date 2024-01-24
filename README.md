@@ -77,7 +77,9 @@ If you still encounter access errors after deleting the snapshot folder, you may
 [FeedBack System](documentation/FeedbackSystem)  
 [Jasmin](documentation/Jasmin)  
 [Dependency Injection](documentation/DependencyInjection)  
-[Visual Regression Testing](documentation/VisualRegressionTesting)
+[Visual Regression Testing](documentation/VisualRegressionTesting)  
+[Any Protocol](documentation/AnyProtocol)  
+[Factory Instance](documentation/FactoryInstance)  
 
 
 ## 3rd party Libraries

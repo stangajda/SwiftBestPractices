@@ -200,6 +200,8 @@
 		F69F15002A6330A700873639 /* InjectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionName.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
+		F6B3A46C2B61C63600B2C639 /* AnyProtocol.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AnyProtocol.md; sourceTree = "<group>"; };
+		F6B3A46D2B61CE3A00B2C639 /* FactoryInstance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FactoryInstance.md; sourceTree = "<group>"; };
 		F6B9C9092B5FC1CB00FCEA4D /* VisualRegressionTesting.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VisualRegressionTesting.md; sourceTree = "<group>"; };
 		F6BD47FD2B5EF14C00C7528A /* MvvmState.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MvvmState.md; sourceTree = "<group>"; };
 		F6BD47FE2B5F0C5A00C7528A /* FeedbackSystem.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FeedbackSystem.md; sourceTree = "<group>"; };
@@ -547,6 +549,8 @@
 				F6BD47FF2B5F169700C7528A /* Jasmin.md */,
 				F6BD48002B5F39AC00C7528A /* DependencyInjection.md */,
 				F6B9C9092B5FC1CB00FCEA4D /* VisualRegressionTesting.md */,
+				F6B3A46C2B61C63600B2C639 /* AnyProtocol.md */,
+				F6B3A46D2B61CE3A00B2C639 /* FactoryInstance.md */,
 			);
 			path = Documentation;
 			sourceTree = "<group>";
