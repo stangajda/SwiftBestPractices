@@ -1,4 +1,4 @@
-# "Swift Development Best Practices Demo - SOLID, DI, Testing, and Beyond" - 93%! code coverage
+# "Swift Development Best Practices Demo - SOLID, DI, Reactive Programming, Testing, and Beyond" - 93%! code coverage
 
 ![Code Quality Screenshot](CodeQualityScreenshot.png)
 
