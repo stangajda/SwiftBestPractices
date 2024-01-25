@@ -139,15 +139,14 @@ extension Feedback {
 
 
 ```swift
+
 import Combine
 
 protocol LoadableProtocol {
 
-  // ...
-
   func fetch() -> AnyPublisher<Data, Error>
 
-  // MARK: - Feedback
+  // Feedback
 
   // Create feedback to start fetch on loading state
   private func onStateChanged() -> Feedback<State, Action> {
