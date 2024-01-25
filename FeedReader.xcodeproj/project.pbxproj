@@ -40,8 +40,8 @@
 		CC4E707326B8478A00B3288D /* ImageServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707226B8478A00B3288D /* ImageServiceSpec.swift */; };
 		CC4E707526BACCEC00B3288D /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707426BACCEC00B3288D /* APIError.swift */; };
 		CC4E707A26BB3D7200B3288D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC4E707926BB3D7100B3288D /* Extensions.swift */; };
-		CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
-		CC569508268135E70055C07C /* MockMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* MockMovieListResponseResult.json */; };
+		CC56950726812DE70055C07C /* StubMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* StubMovieListResponseResult.json */; };
+		CC569508268135E70055C07C /* StubMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC5695012680ED070055C07C /* StubMovieListResponseResult.json */; };
 		CC56950B2682069A0055C07C /* HelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC569509268205B00055C07C /* HelperTests.swift */; };
 		CC6114E226C53E1900ECFB63 /* APIUrlImageBuilderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E126C53E1900ECFB63 /* APIUrlImageBuilderProtocol.swift */; };
 		CC6114E626C5BD1A00ECFB63 /* APIUrlBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC6114E526C5BD1A00ECFB63 /* APIUrlBuilder.swift */; };
@@ -59,10 +59,10 @@
 		CCF3A8E4267BE02B00CB5765 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCF3A8E3267BE02B00CB5765 /* Service.swift */; };
 		F64CEBF02A43AB9A00C4C175 /* MovieDetailViewModelSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64CEBEF2A43AB9A00C4C175 /* MovieDetailViewModelSpec.swift */; };
 		F655B2E22A3058C00009146E /* MovieDetailServiceSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655B2E12A3058C00009146E /* MovieDetailServiceSpec.swift */; };
-		F655B2E62A305AF80009146E /* MockAnotherMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */; };
-		F655B2E72A305E620009146E /* MockMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */; };
-		F655B2E82A305E620009146E /* MockMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */; };
-		F655B2E92A305E9A0009146E /* MockAnotherMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */; };
+		F655B2E62A305AF80009146E /* StubAnotherMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F655B2E52A305AF80009146E /* StubAnotherMovieDetailResponseResult.json */; };
+		F655B2E72A305E620009146E /* StubMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* StubMovieDetailResponseResult.json */; };
+		F655B2E82A305E620009146E /* StubMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = CC4E707E26BBEE0500B3288D /* StubMovieDetailResponseResult.json */; };
+		F655B2E92A305E9A0009146E /* StubAnotherMovieDetailResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F655B2E52A305AF80009146E /* StubAnotherMovieDetailResponseResult.json */; };
 		F65AAB0D2A6E5A8200B65A84 /* MockNetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */; };
 		F65AAB1A2A70A98E00B65A84 /* PreviewSnapshots in Frameworks */ = {isa = PBXBuildFile; productRef = F65AAB192A70A98E00B65A84 /* PreviewSnapshots */; };
 		F667DF6F2B21EB2C007723EB /* PreviewSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */; };
@@ -85,8 +85,8 @@
 		F6A8F7352B2326E6006C5F93 /* Nimble-SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6A8F7342B2326E6006C5F93 /* Nimble-SnapshotTesting */; };
 		F6A8F7372B2326E6006C5F93 /* PreviewSnapshotsTesting in Frameworks */ = {isa = PBXBuildFile; productRef = F6A8F7362B2326E6006C5F93 /* PreviewSnapshotsTesting */; };
 		F6C24E9D2A12AD9F0017D081 /* MockStateProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */; };
-		F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
-		F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */; };
+		F6CDE12329F9622E00BF1339 /* StubAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* StubAnotherMovieListResponseResult.json */; };
+		F6CDE12429F9655800BF1339 /* StubAnotherMovieListResponseResult.json in Resources */ = {isa = PBXBuildFile; fileRef = F6CDE12229F9622E00BF1339 /* StubAnotherMovieListResponseResult.json */; };
 		F6ECD0E72A6069ED0008441E /* MockMovieDetailService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */; };
 		F6ECD0EA2A606A3A0008441E /* MockImageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6ECD0E92A606A3A0008441E /* MockImageService.swift */; };
 		F6F036892B23230E003E72B8 /* Quick in Frameworks */ = {isa = PBXBuildFile; productRef = F6F036732B23230E003E72B8 /* Quick */; };
@@ -159,8 +159,8 @@
 		CC4E707226B8478A00B3288D /* ImageServiceSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageServiceSpec.swift; sourceTree = "<group>"; };
 		CC4E707426BACCEC00B3288D /* APIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
 		CC4E707926BB3D7100B3288D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMovieDetailResponseResult.json; sourceTree = "<group>"; };
-		CC5695012680ED070055C07C /* MockMovieListResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = MockMovieListResponseResult.json; sourceTree = "<group>"; };
+		CC4E707E26BBEE0500B3288D /* StubMovieDetailResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StubMovieDetailResponseResult.json; sourceTree = "<group>"; };
+		CC5695012680ED070055C07C /* StubMovieListResponseResult.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = StubMovieListResponseResult.json; sourceTree = "<group>"; };
 		CC569509268205B00055C07C /* HelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelperTests.swift; sourceTree = "<group>"; };
 		CC6114E126C53E1900ECFB63 /* APIUrlImageBuilderProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrlImageBuilderProtocol.swift; sourceTree = "<group>"; };
 		CC6114E526C5BD1A00ECFB63 /* APIUrlBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIUrlBuilder.swift; sourceTree = "<group>"; };
@@ -181,7 +181,7 @@
 		CCF3A8EC267C1B5000CB5765 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		F64CEBEF2A43AB9A00C4C175 /* MovieDetailViewModelSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailViewModelSpec.swift; sourceTree = "<group>"; };
 		F655B2E12A3058C00009146E /* MovieDetailServiceSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieDetailServiceSpec.swift; sourceTree = "<group>"; };
-		F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieDetailResponseResult.json; sourceTree = "<group>"; };
+		F655B2E52A305AF80009146E /* StubAnotherMovieDetailResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StubAnotherMovieDetailResponseResult.json; sourceTree = "<group>"; };
 		F65AAB0C2A6E5A8200B65A84 /* MockNetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockNetworkRequest.swift; sourceTree = "<group>"; };
 		F65AAB132A6EDB5A00B65A84 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		F667DF6D2B21EA1E007723EB /* PreviewSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSnapshot.swift; sourceTree = "<group>"; };
@@ -200,13 +200,20 @@
 		F69F15002A6330A700873639 /* InjectionName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InjectionName.swift; sourceTree = "<group>"; };
 		F6A5CF1A2A0292FE003745D1 /* ObservableLoadableProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservableLoadableProtocol.swift; sourceTree = "<group>"; };
 		F6A686CE2A55E97E004D583F /* LifecycleProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifecycleProtocol.swift; sourceTree = "<group>"; };
+		F6B3A46C2B61C63600B2C639 /* AnyProtocol.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = AnyProtocol.md; sourceTree = "<group>"; };
+		F6B3A46D2B61CE3A00B2C639 /* FactoryInstance.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FactoryInstance.md; sourceTree = "<group>"; };
+		F6B9C9092B5FC1CB00FCEA4D /* VisualRegressionTesting.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = VisualRegressionTesting.md; sourceTree = "<group>"; };
+		F6BD47FD2B5EF14C00C7528A /* MvvmState.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = MvvmState.md; sourceTree = "<group>"; };
+		F6BD47FE2B5F0C5A00C7528A /* FeedbackSystem.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = FeedbackSystem.md; sourceTree = "<group>"; };
+		F6BD47FF2B5F169700C7528A /* Jasmin.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = Jasmin.md; sourceTree = "<group>"; };
+		F6BD48002B5F39AC00C7528A /* DependencyInjection.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = DependencyInjection.md; sourceTree = "<group>"; };
 		F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockStateProtocol.swift; sourceTree = "<group>"; };
 		F6C52A9B2B3CA0230044B0FB /* FeedReader.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FeedReader.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9C2B3CA0230044B0FB /* FeedReaderTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9D2B3CA0230044B0FB /* FeedReaderSnapshotTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FeedReaderSnapshotTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6C52A9E2B3CD13F0044B0FB /* Diagram.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Diagram.png; sourceTree = "<group>"; };
-		F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = MockAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
-		F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Screenshot 2023-12-03 at 15.20.30.png"; sourceTree = "<group>"; };
+		F6CDE12229F9622E00BF1339 /* StubAnotherMovieListResponseResult.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = StubAnotherMovieListResponseResult.json; sourceTree = "<group>"; };
+		F6D7C1562B1CC66C00809D0F /* CodeQualityScreenshot.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CodeQualityScreenshot.png; sourceTree = "<group>"; };
 		F6E93AEF2A8AC33A0048A5C4 /* LICENSE */ = {isa = PBXFileReference; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		F6ECD0E62A6069ED0008441E /* MockMovieDetailService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovieDetailService.swift; sourceTree = "<group>"; };
 		F6ECD0E92A606A3A0008441E /* MockImageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockImageService.swift; sourceTree = "<group>"; };
@@ -325,7 +332,7 @@
 				F67B45D42A5F216E00ECC9D5 /* MockViewModel */,
 				F67B45D72A5F35F000ECC9D5 /* MockService */,
 				F65AAB0B2A6E5A3F00B65A84 /* MockNetworkRequest */,
-				CC4E708026BBF00700B3288D /* MocksJSON */,
+				CC4E708026BBF00700B3288D /* StubJSON */,
 				CC351E1C269BA7B80037DB34 /* MockMovie.swift */,
 				F6C24E9C2A12AD9F0017D081 /* MockStateProtocol.swift */,
 			);
@@ -366,15 +373,15 @@
 			path = Loadable;
 			sourceTree = "<group>";
 		};
-		CC4E708026BBF00700B3288D /* MocksJSON */ = {
+		CC4E708026BBF00700B3288D /* StubJSON */ = {
 			isa = PBXGroup;
 			children = (
-				F655B2E52A305AF80009146E /* MockAnotherMovieDetailResponseResult.json */,
-				F6CDE12229F9622E00BF1339 /* MockAnotherMovieListResponseResult.json */,
-				CC5695012680ED070055C07C /* MockMovieListResponseResult.json */,
-				CC4E707E26BBEE0500B3288D /* MockMovieDetailResponseResult.json */,
+				F655B2E52A305AF80009146E /* StubAnotherMovieDetailResponseResult.json */,
+				F6CDE12229F9622E00BF1339 /* StubAnotherMovieListResponseResult.json */,
+				CC5695012680ED070055C07C /* StubMovieListResponseResult.json */,
+				CC4E707E26BBEE0500B3288D /* StubMovieDetailResponseResult.json */,
 			);
-			path = MocksJSON;
+			path = StubJSON;
 			sourceTree = "<group>";
 		};
 		CC6114E426C5BCDC00ECFB63 /* UrlBuilder */ = {
@@ -394,8 +401,9 @@
 				F65AAB132A6EDB5A00B65A84 /* README.md */,
 				F6E93AEF2A8AC33A0048A5C4 /* LICENSE */,
 				F6C52A9E2B3CD13F0044B0FB /* Diagram.png */,
-				F6D7C1562B1CC66C00809D0F /* Screenshot 2023-12-03 at 15.20.30.png */,
+				F6D7C1562B1CC66C00809D0F /* CodeQualityScreenshot.png */,
 				F672BE2F2B1BF053006795D3 /* Commands */,
+				F6BD47FC2B5EEF4800C7528A /* Documentation */,
 				CCF3A8B7267A8ED100CB5765 /* FeedReader */,
 				CCF3A8C9267A8ED300CB5765 /* FeedReaderTests */,
 				F6F036652B2321AF003E72B8 /* FeedReaderSnapshotTests */,
@@ -531,6 +539,20 @@
 				F6944BE42A75771E00798968 /* Protocols.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		F6BD47FC2B5EEF4800C7528A /* Documentation */ = {
+			isa = PBXGroup;
+			children = (
+				F6BD47FD2B5EF14C00C7528A /* MvvmState.md */,
+				F6BD47FE2B5F0C5A00C7528A /* FeedbackSystem.md */,
+				F6BD47FF2B5F169700C7528A /* Jasmin.md */,
+				F6BD48002B5F39AC00C7528A /* DependencyInjection.md */,
+				F6B9C9092B5FC1CB00FCEA4D /* VisualRegressionTesting.md */,
+				F6B3A46C2B61C63600B2C639 /* AnyProtocol.md */,
+				F6B3A46D2B61CE3A00B2C639 /* FactoryInstance.md */,
+			);
+			path = Documentation;
 			sourceTree = "<group>";
 		};
 		F6F036652B2321AF003E72B8 /* FeedReaderSnapshotTests */ = {
@@ -670,11 +692,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CC569508268135E70055C07C /* MockMovieListResponseResult.json in Resources */,
-				F655B2E82A305E620009146E /* MockMovieDetailResponseResult.json in Resources */,
+				CC569508268135E70055C07C /* StubMovieListResponseResult.json in Resources */,
+				F655B2E82A305E620009146E /* StubMovieDetailResponseResult.json in Resources */,
 				CCF3A8BD267A8ED200CB5765 /* Assets.xcassets in Resources */,
-				F6CDE12429F9655800BF1339 /* MockAnotherMovieListResponseResult.json in Resources */,
-				F655B2E92A305E9A0009146E /* MockAnotherMovieDetailResponseResult.json in Resources */,
+				F6CDE12429F9655800BF1339 /* StubAnotherMovieListResponseResult.json in Resources */,
+				F655B2E92A305E9A0009146E /* StubAnotherMovieDetailResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -682,10 +704,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F655B2E62A305AF80009146E /* MockAnotherMovieDetailResponseResult.json in Resources */,
-				CC56950726812DE70055C07C /* MockMovieListResponseResult.json in Resources */,
-				F655B2E72A305E620009146E /* MockMovieDetailResponseResult.json in Resources */,
-				F6CDE12329F9622E00BF1339 /* MockAnotherMovieListResponseResult.json in Resources */,
+				F655B2E62A305AF80009146E /* StubAnotherMovieDetailResponseResult.json in Resources */,
+				CC56950726812DE70055C07C /* StubMovieListResponseResult.json in Resources */,
+				F655B2E72A305E620009146E /* StubMovieDetailResponseResult.json in Resources */,
+				F6CDE12329F9622E00BF1339 /* StubAnotherMovieListResponseResult.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

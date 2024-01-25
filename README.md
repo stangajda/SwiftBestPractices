@@ -1,4 +1,6 @@
-# WRITING HIGH-QUALITY CODE: A STANDALONE PROJECT DEMONSTRATING ADVANCED SOLUTIONS, PRACTICALITY AND EXPERIMENTATION - 93%! code coverage
+# "Swift Development Best Practices Demo - SOLID, DI, Reactive Programming, Testing, and Beyond" - 93%! code coverage
+
+![Code Quality Screenshot](CodeQualityScreenshot.png)
 
 ## This project is not over-engineered or excessive in its complexity. Rather, it is intended to showcase my skills to potential employers or clients in writing high-quality code and implementing advanced solutions that can be used in larger projects. However, before using these solutions in a larger project, it is important to experiment with them on a smaller, standalone project to ensure their effectiveness and suitability.
 
@@ -33,7 +35,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 2. Uses MVVM architecture
 3. Achieves a code coverage of 93%
 4. Implement functionality to cancel the download of images and feeds when the back button is tapped.
-5. implement the dark theme 
+5. Implement the dark theme 
 6. Includes snapshot tests and unit tests
 7. Implements error handling
 8. Uses dependency injection with the @Injected wrapper for easier finding
@@ -52,25 +54,52 @@ If you still encounter access errors after deleting the snapshot folder, you may
 21. Used swiftlint in vscode IDE to perform code formatting
 22. Uses sonarqube for code quality analysis
 
+![Diagram](Diagram.png)
+
+**View:** SwiftUI views like `MoviesListView` and `MovieDetailView` that display UI and react to state changes.  
+
+**ViewModel:** Mediate between the Views and Models by managing UI state, transforming data, and handling view logic specific to each screen.  
+
+**State:** State enums defined in ViewModels that represent different UI states like `.loaded`, `.loading`, etc.  
+
+**Reduce:** Reduce functions in ViewModels that handle state transitions based on actions.  
+
+**Feedback:** Protocols like `LoadableProtocol` that enable ViewModels to provide feedback on state changes.  
+
+**Service:** Services like `MovieService` that encapsulate backend API logic and networking.  
+
+**Model:** Model objects like `Movie` that represent domain data.  
+
+
+
+## Patterns
+[MVVM State](documentation/MvvmState)  
+[FeedBack System](documentation/FeedbackSystem)  
+[Jasmin](documentation/Jasmin)  
+[Dependency Injection](documentation/DependencyInjection)  
+[Visual Regression Testing](documentation/VisualRegressionTesting)  
+[Any Protocol](documentation/AnyProtocol)  
+[Factory Instance](documentation/FactoryInstance)  
+
 
 ## 3rd party Libraries
 
-Nimble 13.0.0
-Quick 7.3.0
-Swinject 2.8.4
-swift-snapshot-testing 1.15.0
-Nimble-snapshot-testing 4.0.3
-swiftui-preview-snapshots 1.1.0 
+Nimble 13.0.0  
+Quick 7.3.0  
+Swinject 2.8.4  
+swift-snapshot-testing 1.15.0  
+Nimble-snapshot-testing 4.0.3  
+swiftui-preview-snapshots 1.1.0   
 
 ## Sources
-https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/
-https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/
-https://github.com/hmlongco/Resolver
-https://github.com/Swinject/Swinject
-https://github.com/Quick/Quick
-https://github.com/Quick/Nimble
-https://www.browserstack.com/guide/snapshot-testing-ios
-https://github.com/pointfreeco/swift-snapshot-testing
-https://github.com/tahirmt/Nimble-SnapshotTesting/
-https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots
-https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8
+https://www.swiftbysundell.com/articles/encapsulating-swiftui-view-styles/  
+https://www.vadimbulavin.com/modern-mvvm-ios-app-architecture-with-combine-and-swiftui/  
+https://github.com/hmlongco/Resolver  
+https://github.com/Swinject/Swinject  
+https://github.com/Quick/Quick  
+https://github.com/Quick/Nimble  
+https://www.browserstack.com/guide/snapshot-testing-ios  
+https://github.com/pointfreeco/swift-snapshot-testing  
+https://github.com/tahirmt/Nimble-SnapshotTesting/  
+https://swiftpackageindex.com/doordash-oss/swiftui-preview-snapshots  
+https://blog.devgenius.io/unit-test-networking-code-in-swift-without-making-loads-of-mock-classes-74489d0b12a8  
