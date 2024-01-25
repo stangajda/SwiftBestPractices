@@ -73,13 +73,13 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 
 ## Patterns
-[MVVM State](documentation/MvvmState)  
-[FeedBack System](documentation/FeedbackSystem)  
-[Jasmin](documentation/Jasmin)  
-[Dependency Injection](documentation/DependencyInjection)  
-[Visual Regression Testing](documentation/VisualRegressionTesting)  
-[Any Protocol](documentation/AnyProtocol)  
-[Factory Instance](documentation/FactoryInstance)  
+[MVVM State](Documentation/MvvmState)  
+[FeedBack System](Documentation/FeedbackSystem)  
+[Jasmin](Documentation/Jasmin)  
+[Dependency Injection](Documentation/DependencyInjection)  
+[Visual Regression Testing](Documentation/VisualRegressionTesting)  
+[Any Protocol](Documentation/AnyProtocol)  
+[Factory Instance](Documentation/FactoryInstance)  
 
 
 ## 3rd party Libraries
