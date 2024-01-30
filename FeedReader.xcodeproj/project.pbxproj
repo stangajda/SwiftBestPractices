@@ -70,7 +70,7 @@
 		F66EA86E2B6939BF008936C3 /* Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA86D2B6939BF008936C3 /* Double.swift */; };
 		F66EA8702B6939E4008936C3 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA86F2B6939E4008936C3 /* String.swift */; };
 		F66EA8722B693A17008936C3 /* Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8712B693A17008936C3 /* Int.swift */; };
-		F66EA8742B693A76008936C3 /* PreviewSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8732B693A76008936C3 /* PreviewSnapshot.swift */; };
+		F66EA8742B693A76008936C3 /* PreviewSnapshotExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8732B693A76008936C3 /* PreviewSnapshotExt.swift */; };
 		F66EA8762B693BC5008936C3 /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8752B693BC5008936C3 /* Publisher.swift */; };
 		F66EA8782B693C6D008936C3 /* URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8772B693C6D008936C3 /* URLRequest.swift */; };
 		F66EA87A2B693CA6008936C3 /* URLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66EA8792B693CA6008936C3 /* URLResponse.swift */; };
@@ -196,7 +196,7 @@
 		F66EA86D2B6939BF008936C3 /* Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Double.swift; sourceTree = "<group>"; };
 		F66EA86F2B6939E4008936C3 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		F66EA8712B693A17008936C3 /* Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.swift; sourceTree = "<group>"; };
-		F66EA8732B693A76008936C3 /* PreviewSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSnapshot.swift; sourceTree = "<group>"; };
+		F66EA8732B693A76008936C3 /* PreviewSnapshotExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewSnapshotExt.swift; sourceTree = "<group>"; };
 		F66EA8752B693BC5008936C3 /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 		F66EA8772B693C6D008936C3 /* URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLRequest.swift; sourceTree = "<group>"; };
 		F66EA8792B693CA6008936C3 /* URLResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.swift; sourceTree = "<group>"; };
@@ -336,7 +336,7 @@
 		CC351E2F269DC3E80037DB34 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F66EA8732B693A76008936C3 /* PreviewSnapshot.swift */,
+				F66EA8732B693A76008936C3 /* PreviewSnapshotExt.swift */,
 				F66EA8712B693A17008936C3 /* Int.swift */,
 				F66EA87D2B693D37008936C3 /* Result.swift */,
 				F66EA87B2B693CDF008936C3 /* Data.swift */,
@@ -787,7 +787,7 @@
 				CC4E706C26B83BFE00B3288D /* MovieDetailService.swift in Sources */,
 				F66EA8782B693C6D008936C3 /* URLRequest.swift in Sources */,
 				F6A686CF2A55E97E004D583F /* LifecycleProtocol.swift in Sources */,
-				F66EA8742B693A76008936C3 /* PreviewSnapshot.swift in Sources */,
+				F66EA8742B693A76008936C3 /* PreviewSnapshotExt.swift in Sources */,
 				CC351E2B269DC2940037DB34 /* Helper.swift in Sources */,
 				F67876612A1E06A600A4FD54 /* DIExtensions.swift in Sources */,
 				F6ECD0E72A6069ED0008441E /* MockMovieDetailService.swift in Sources */,
