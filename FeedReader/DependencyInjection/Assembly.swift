@@ -23,15 +23,12 @@ class ServiceAssembly: AssemblyProtocol {
         container.register(ServiceProtocol.self) { _ in
             Service()
         }
-
         container.register(MovieListServiceProtocol.self) { _ in
             MovieListService()
         }
-
         container.register(MovieDetailServiceProtocol.self) { _ in
             MovieDetailService()
         }
-
         container.register(ImageServiceProtocol.self) { _ in
             ImageService()
         }
@@ -53,11 +50,9 @@ class MockServiceAssembly: AssemblyProtocol {
         container.register(MovieDetailServiceProtocol.self) { _, argument in
             MockMovieDetailService(argument)
         }
-
         container.register(ImageServiceProtocol.self) { _ in
             MockImageService()
         }
-
         container.register(ImageServiceProtocol.self) { _, argument in
             MockImageService(argument)
         }

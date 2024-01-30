@@ -7,13 +7,28 @@
 ## While it's important to showcase our skills and demonstrate our ability to implement advanced solutions, it's also crucial to find a balance between complexity and practicality in real-world projects. Ultimately, we need to adhere to the requirements and guidelines set by the organization and ensure that our code is maintainable, scalable, and efficient. Additionally, we need to consider the team dynamics and ensure that our code is easy to understand, modify, and maintain by other team members. By finding this balance, we can create high-quality code that meets the needs of the project, the organization, and the team.
 
 
-## Instalation
+## Installation
 
 ### To run the project after downloading it, open the .xcodeproj file in Xcode, choose the FeedReader-Debug scheme, select a simulator or connected device, and click the "Run" button or press Command + R.
 
 ### This standalone project has been confirmed to be working on Xcode 15.0.1 and simulators for the following devices: iPhone 15 Pro and iPhone 15 Pro Max, running iOS 17.0.1 The project has also been tested on a real device, iPhone 11 Pro Max, running iOS 16.1.1.
 
-### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 15 Pro simulator.
+## Running Unit Tests
+
+1. Open your `.xcodeproj` file with Xcode.
+2. Select the `FeedReader-Debug` scheme.
+3. Press `Command + 6` or click on the `Test navigator` icon to view all test cases.
+4. Run all unit tests by selecting `Product` > `Test` from the menu bar or by pressing `Command + U`.
+5. To run a specific test, click the play button next to the test name in the test navigator.
+
+## Running Snapshot Tests
+
+1. Select the appropriate simulator for the snapshot tests, such as the iPhone 15 Pro.
+2. Select the `FeedReader-Debug` scheme.
+3. Press `Command + 6` or click on the `Test navigator` icon to view all test cases and locate the snapshot tests in `FeedReaderSnapshotTests`
+4. Click the play button next to the snapshot test to run it individually, or run all tests with `Command + U`.
+5. To run a specific test, click the play button next to the test name in the test navigator.
+6. To see generated images navigate to to the project directory in Finder and open directory `FeedReaderSnapshotTests/__Snapshots__`. Generated file names match filename and test descriptions. `{filename}-{describe}-{context}-{it}`
 
 
 ## Troubleshooting Snapshot Access Errors
@@ -27,6 +42,34 @@
 5. To re-run the tests that use snapshot images, you can choose "Test" from the "Product" menu in Xcode or press Command + U. This will rebuild the project and run all the tests, including the ones that use snapshot images.
 
 If you still encounter access errors after deleting the snapshot folder, you may need to check the file permissions for the snapshot folder and ensure that you have read and write access to it. You can also try resetting the simulator or cleaning the build folder in Xcode.
+
+## Project Schemes
+
+The project includes different schemes for various purposes. Here's a brief description of each:
+
+### `FeedReader-Release`
+This is the release scheme intended for production. It is configured with optimizations for performance and is used for deploying the app to the App Store or other distribution methods.
+
+- Optimizations: Enabled
+- Debugging: Disabled
+- Configuration: Release
+
+### `FeedReader-Debug`
+The debug scheme is meant for development and testing. It includes debugging symbols and is configured without optimizations to facilitate stepping through code and diagnosing issues.
+
+- Optimizations: Disabled
+- Debugging: Enabled
+- Configuration: Debug
+- Additional: Unit Tests and Snapshot Tests are available and can be run through this scheme.
+
+### `FeedReader-Mock`
+This scheme is set up to use mock data and services for testing purposes. It is useful when the development or testing does not require real API calls, or when the API is unavailable or unreliable.
+
+- API Endpoints: Mock Services
+- Configuration: Debug
+- Additional: Ideal for offline development or continuous integration setups where tests need to run without external dependencies.
+
+Each scheme is tailored for specific development and deployment scenarios, so make sure to select the appropriate one based on your current task.
 
 
 ## Technical Features
@@ -73,7 +116,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 
 ## Patterns
-[MVVM State](Documentation/MvvmState.md)  
+[MVVM State](Documentation/MVVMState.md)  
 [FeedBack System](Documentation/FeedbackSystem.md)  
 [Jasmin](Documentation/Jasmin)  
 [Dependency Injection](Documentation/DependencyInjection.md)  

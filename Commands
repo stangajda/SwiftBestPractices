@@ -1,14 +1,31 @@
-/Applications/sonarqube/bin/macosx-universal-64/ sh sonar.sh console
+# This command starts the SonarQube server using the sonar.sh script located in the bin directory for macOS.
+/Applications/sonarqube/bin/macosx-universal-64/sonar.sh console
 
-xcodebuild -project FeedReader.xcodeproj/ -scheme FeedReader-Debug -derivedDataPath Build/ -enableCodeCoverage YES clean build test CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO  -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
+# This command uses xcodebuild to build and test an Xcode project.
+# It specifies the project, scheme, output path for derived data,
+# enables code coverage, and sets code signing properties.
+# It also specifies the destination simulator for testing.
+xcodebuild -project FeedReader.xcodeproj/ \
+           -scheme FeedReader-Debug \
+           -derivedDataPath Build/ \
+           -enableCodeCoverage YES \
+           clean build test \
+           CODE_SIGN_IDENTITY="" \
+           CODE_SIGNING_REQUIRED=NO \
+           -destination 'platform=iOS Simulator,name=iPhone 15 Pro'
 
+# This script converts the coverage data from the Xcode format to a generic format
+# that can be recognized by SonarQube and outputs it to a file named Coverage.xml.
 bash xccov-to-sonarqube-generic.sh Build/Logs/Test/Run-FeedReader-Debug-*.xcresult/ > Coverage.xml
 
+# This command runs the sonar-scanner tool to perform the static code analysis.
+# It sets several parameters such as the project key, source directory, server URL,
+# authentication token, path to the coverage report, and exclusions.
 sonar-scanner \
-  -Dsonar.projectKey=FeedReader \
-  -Dsonar.sources=. \
-  -Dsonar.host.url=http://localhost:9000 \
-  -Dsonar.token=sqp_e89b7a09a1015c15a01a7eb5bc66b4d365ed64bf \
-  -Dsonar.coverageReportPaths=Coverage.xml \
-  -Dsonar.exclusions=Coverage.xml
+  -Dsonar.projectKey=FeedReader \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.login={token} \
+  -Dsonar.coverageReportPaths=Coverage.xml \
+  -Dsonar.exclusions=**/Coverage.xml
 

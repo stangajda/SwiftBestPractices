@@ -5,7 +5,6 @@
 //  Created by Stan Gajda on 22/06/2021.
 //
 
-import Foundation
 @testable import FeedReader
 import Nimble
 import UIKit
@@ -65,7 +64,7 @@ func beLoadedStateMoviesCount(_ expectedCount: Int) ->
 func beLoadedState<Loaded, Start>(
     test: ((Loaded) -> Void)? = nil
 ) -> Matcher<LoadableEnums<Loaded, Start>.State> {
-    return Predicate.define { expression in
+    return Matcher.define { expression in
         var rawMessage = "be <loaded State value>"
         if test != nil {
             rawMessage += " that satisfies block"

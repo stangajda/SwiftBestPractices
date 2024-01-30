@@ -18,18 +18,19 @@ public final class Injection: InjectionRegistering {
     private let container = Container()
     private lazy var assembler = Assembler()
 
-    public static var resolver: Container {
+    static var resolver: Container {
         Injection.main.container
     }
 
-    public func initialRegistration() {
+    func initialRegistration() {
         assembler = Assembler([
             NetworkAssembly(),
             ServiceAssembly(),
             ViewModelAssembly()
         ], container: container)
     }
-
+    
+    // mocks are in the same file because are used in FeedReader-Mock scheme as well
     func mockNetwork() {
         assembler = Assembler([
             MockNetworkAssembly(),
