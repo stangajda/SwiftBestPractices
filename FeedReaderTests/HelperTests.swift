@@ -65,7 +65,7 @@ func beLoadedStateMoviesCount(_ expectedCount: Int) ->
 func beLoadedState<Loaded, Start>(
     test: ((Loaded) -> Void)? = nil
 ) -> Matcher<LoadableEnums<Loaded, Start>.State> {
-    return Predicate.define { expression in
+    return Matcher.define { expression in
         var rawMessage = "be <loaded State value>"
         if test != nil {
             rawMessage += " that satisfies block"

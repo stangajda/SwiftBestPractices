@@ -7,7 +7,7 @@
 ## While it's important to showcase our skills and demonstrate our ability to implement advanced solutions, it's also crucial to find a balance between complexity and practicality in real-world projects. Ultimately, we need to adhere to the requirements and guidelines set by the organization and ensure that our code is maintainable, scalable, and efficient. Additionally, we need to consider the team dynamics and ensure that our code is easy to understand, modify, and maintain by other team members. By finding this balance, we can create high-quality code that meets the needs of the project, the organization, and the team.
 
 
-## Instalation
+## Installation
 
 ### To run the project after downloading it, open the .xcodeproj file in Xcode, choose the FeedReader-Debug scheme, select a simulator or connected device, and click the "Run" button or press Command + R.
 
@@ -73,7 +73,7 @@ If you still encounter access errors after deleting the snapshot folder, you may
 
 
 ## Patterns
-[MVVM State](Documentation/MvvmState.md)  
+[MVVM State](Documentation/MVVMState.md)  
 [FeedBack System](Documentation/FeedbackSystem.md)  
 [Jasmin](Documentation/Jasmin)  
 [Dependency Injection](Documentation/DependencyInjection.md)  
