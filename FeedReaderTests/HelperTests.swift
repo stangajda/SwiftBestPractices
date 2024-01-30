@@ -5,7 +5,6 @@
 //  Created by Stan Gajda on 22/06/2021.
 //
 
-import Foundation
 @testable import FeedReader
 import Nimble
 import UIKit
