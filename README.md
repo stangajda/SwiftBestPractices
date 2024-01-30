@@ -13,7 +13,22 @@
 
 ### This standalone project has been confirmed to be working on Xcode 15.0.1 and simulators for the following devices: iPhone 15 Pro and iPhone 15 Pro Max, running iOS 17.0.1 The project has also been tested on a real device, iPhone 11 Pro Max, running iOS 16.1.1.
 
-### Please note that both unit tests and snapshot tests are only available when using the FeedReader-Debug scheme. The snapshot test working for the iPhone 15 Pro simulator.
+## Running Unit Tests
+
+1. Open your `.xcodeproj` file with Xcode.
+2. Select the `FeedReader-Debug` scheme.
+3. Press `Command + 6` or click on the `Test navigator` icon to view all test cases.
+4. Run all unit tests by selecting `Product` > `Test` from the menu bar or by pressing `Command + U`.
+5. To run a specific test, click the play button next to the test name in the test navigator.
+
+## Running Snapshot Tests
+
+1. Select the appropriate simulator for the snapshot tests, such as the iPhone 15 Pro.
+2. Select the `FeedReader-Debug` scheme.
+3. Press `Command + 6` or click on the `Test navigator` icon to view all test cases and locate the snapshot tests in `FeedReaderSnapshotTests`
+4. Click the play button next to the snapshot test to run it individually, or run all tests with `Command + U`.
+5. To run a specific test, click the play button next to the test name in the test navigator.
+6. To see generated images navigate to to the project directory in Finder and open directory `FeedReaderSnapshotTests/__Snapshots__`. Generated file names match filename and test descriptions. `{filename}-{describe}-{context}-{it}`
 
 
 ## Troubleshooting Snapshot Access Errors
