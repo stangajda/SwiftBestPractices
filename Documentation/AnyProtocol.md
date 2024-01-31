@@ -22,7 +22,7 @@
 ## Implementing Any Protocol
 
 - **Inheritance**: It inherits from BaseViewModelWrapper which contains common logic for wrapping view model state, input, and publishers.
-- **Associated Type Requirements**: It declares the associated type requirements from MoviesListViewModelProtocol like TP1.
+- **Associated Type Requirements**: It declares the associated type requirements from MoviesListViewModelProtocol like GENERIC_RES_TYPE.
 - **Fileprivate Property**: It has a fileprivate property to store the concrete view model being wrapped.
 - **Initialization**: The init takes a concrete view model and passes it to the parent BaseViewModelWrapper init.
 - **Function Implementation**: It implements all the required functions from MoviesListViewModelProtocol by simply calling through to the wrapped view model.
@@ -35,7 +35,7 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
 
   // Declare associated types required by protocol
   typealias ViewModel = MoviesListViewModel
-  typealias TP1 = [ViewModel.MovieItem]
+  typealias GENERIC_RES_TYPE = [ViewModel.MovieItem]
 
   // Property to store actual view model being wrapped
   fileprivate var viewModel: any MoviesListViewModelProtocol

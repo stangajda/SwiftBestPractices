@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct LoadableEnums<Loaded, Start> where Loaded: Equatable, Start: Equatable {
+struct LoadableEnums<Start, Loaded> where Start: Equatable, Loaded: Equatable {
     enum State: Equatable {
         case start(Start? = nil)
         case loading(Start? = nil)
         case loaded(Loaded)
         case failedLoaded(Error)
 
-        static func == (lhs: LoadableEnums<Loaded, Start>.State, rhs: LoadableEnums<Loaded, Start>.State) -> Bool {
+        static func == (lhs: LoadableEnums<Start, Loaded>.State, rhs: LoadableEnums<Start, Loaded>.State) -> Bool {
             switch (lhs, rhs) {
             case (.start(let lhsValue), .start(let rhsValue)):
                 return lhsValue == rhsValue

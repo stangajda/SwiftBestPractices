@@ -55,14 +55,14 @@ func beFailureAndNotMatchError(_ expected: APIError) -> Matcher<Result<Data, Err
 }
 
 func beLoadedStateMoviesCount(_ expectedCount: Int) ->
-    Matcher<LoadableEnums<[MoviesListViewModel.MovieItem], Int>.State> {
+    Matcher<LoadableEnums<Int, [MoviesListViewModel.MovieItem]>.State> {
     beLoadedState { movies in
         expect(movies.count).to(equal(expectedCount))
     }
 }
 
-func beLoadedState<Loaded, Start>(
-    test: ((Loaded) -> Void)? = nil
+func beLoadedState<Start, Loaded>(
+    test: ((Start) -> Void)? = nil
 ) -> Matcher<LoadableEnums<Loaded, Start>.State> {
     return Matcher.define { expression in
         var rawMessage = "be <loaded State value>"

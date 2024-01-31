@@ -9,7 +9,7 @@ import Foundation
 import Combine
 
 protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-    where TP1 == [MoviesListViewModel.MovieItem], TP2 == Int {
+    where GENERIC_REQ_TYPE == Int, GENERIC_RES_TYPE == [MoviesListViewModel.MovieItem] {
     func onActive()
     func onBackground()
 }
@@ -21,8 +21,8 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 
     fileprivate(set) var statePublisher: Published<State>.Publisher
 
-    typealias TP1 = [MovieItem]
-    typealias TP2 = Int
+    typealias GENERIC_REQ_TYPE = Int
+    typealias GENERIC_RES_TYPE = [MovieItem]
 
     var input = PassthroughSubject<Action, Never>()
 
