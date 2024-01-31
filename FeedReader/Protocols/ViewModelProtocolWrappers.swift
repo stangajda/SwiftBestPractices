@@ -102,8 +102,8 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
 class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, ImageViewModel.Action>,
     ImageViewModelProtocol {
     typealias ViewModel = ImageViewModel
-    typealias GENERIC_RES_TYPE = ViewModel.ImageItem
     typealias GENERIC_REQ_TYPE = String
+    typealias GENERIC_RES_TYPE = ViewModel.ImageItem
 
     fileprivate var viewModel: any ImageViewModelProtocol
 
