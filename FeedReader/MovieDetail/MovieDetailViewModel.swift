@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 protocol MovieDetailViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-    where TP1 == MovieDetailViewModel.MovieDetailItem, TP2 == Int {
+    where GENERIC_RES_TYPE == MovieDetailViewModel.MovieDetailItem, GENERIC_REQ_TYPE == Int {
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 
@@ -18,8 +18,8 @@ final class MovieDetailViewModel: MovieDetailViewModelProtocol {
     @Injected fileprivate var service: MovieDetailServiceProtocol
     var statePublisher: Published<State>.Publisher
 
-    typealias TP1 = MovieDetailItem
-    typealias TP2 = Int
+    typealias GENERIC_RES_TYPE = MovieDetailItem
+    typealias GENERIC_REQ_TYPE = Int
 
     var input = PassthroughSubject<Action, Never>()
     var movieList: MoviesListViewModel.MovieItem

@@ -9,15 +9,15 @@ import Foundation
 import Combine
 
 protocol LoadableProtocol {
-    associatedtype TP1: Equatable
-    associatedtype TP2: Equatable
+    associatedtype GENERIC_RES_TYPE: Equatable
+    associatedtype GENERIC_REQ_TYPE: Equatable
     var input: PassthroughSubject<Action, Never> { get }
-    func fetch() -> AnyPublisher<TP1, Error>
+    func fetch() -> AnyPublisher<GENERIC_RES_TYPE, Error>
 }
 
 extension LoadableProtocol {
-    typealias State = LoadableEnums<TP1, TP2>.State
-    typealias Action = LoadableEnums<TP1, TP2>.Action
+    typealias State = LoadableEnums<GENERIC_RES_TYPE, GENERIC_REQ_TYPE>.State
+    typealias Action = LoadableEnums<GENERIC_RES_TYPE, GENERIC_REQ_TYPE>.Action
 
     func publishersSystem(_ state: State) -> AnyPublisher<State, Never> {
         Publishers.system(
