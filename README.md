@@ -118,7 +118,7 @@ Each scheme is tailored for specific development and deployment scenarios, so ma
 ## Patterns
 [MVVM State](Documentation/MVVMState.md)  
 [FeedBack System](Documentation/FeedbackSystem.md)  
-[Jasmin](Documentation/Jasmin)  
+[Jasmin](Documentation/Jasmin.md)  
 [Dependency Injection](Documentation/DependencyInjection.md)  
 [Visual Regression Testing](Documentation/VisualRegressionTesting.md)  
 [Any Protocol](Documentation/AnyProtocol.md)  
