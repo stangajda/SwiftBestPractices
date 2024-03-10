@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 
 protocol ImageViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-    where GENERIC_REQ_TYPE == String, GENERIC_RES_TYPE == ImageViewModel.ImageItem {
+    where REQUESTTYPE == String, RESPONSETYPE == ImageViewModel.ImageItem {
 }
 
 // MARK: - ImageViewModel
@@ -19,9 +19,9 @@ final class ImageViewModel: ImageViewModelProtocol {
 
     fileprivate(set) var statePublisher: Published<State>.Publisher
 
-    typealias State = LoadableEnums<GENERIC_REQ_TYPE, GENERIC_RES_TYPE>.State
-    typealias GENERIC_REQ_TYPE = String
-    typealias GENERIC_RES_TYPE = ImageViewModel.ImageItem
+    typealias State = LoadableEnums<REQUESTTYPE, RESPONSETYPE>.State
+    typealias REQUESTTYPE = String
+    typealias RESPONSETYPE = ImageViewModel.ImageItem
 
     var input = PassthroughSubject<Action, Never>()
     fileprivate var cache: ImageCacheProtocol?

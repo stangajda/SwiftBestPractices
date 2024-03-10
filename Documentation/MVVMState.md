@@ -77,13 +77,13 @@ First, let's understand the MoviesListViewModelProtocol:
 
 ```swift
 protocol MoviesListViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-  where GENERIC_REQ_TYPE == Int, GENERIC_RES_TYPE == [MoviesListViewModel.MovieItem] {
+  where REQESTTYPE == Int, RESPONSETYPE == [MoviesListViewModel.MovieItem] {
   func onActive()
   func onBackground()
 }
 ```
 
-This protocol inherits from two other protocols: LifecycleProtocol and ObservableLoadableProtocol. Additionally, it specifies two associated types (GENERIC_REQ_TYPE and GENERIC_RES_TYPE) with specific types: GENERIC_REQ_TYPE is an Int and GENERIC_RES_TYPE is an array of MovieItem.  The protocol also requires conforming types to implement two functions: onActive() and onBackground().
+This protocol inherits from two other protocols: LifecycleProtocol and ObservableLoadableProtocol. Additionally, it specifies two associated types (REQESTTYPE and RESPONSETYPE) with specific types: REQUESTTYPE is an Int and RESPONSETYPE is an array of MovieItem.  The protocol also requires conforming types to implement two functions: onActive() and onBackground().
 
 Implementing the ViewModel Class
 To implement a class that conforms to MoviesListViewModelProtocol, you need to follow these steps:
@@ -102,11 +102,11 @@ final class MoviesListViewModel: MoviesListViewModelProtocol {
 
 ### Define Typealiases
 
-Define the typealiases GENERIC_REQ_TYPE and GENERIC_RES_TYPE as specified in the protocol to be used within the class:
+Define the typealiases REQESTTYPE and RESPONSETYPE as specified in the protocol to be used within the class:
 
 ```swift
-typealias GENERIC_REQ_TYPE = Int
-typealias GENERIC_RES_TYPE = [MovieItem]
+typealias REQESTTYPE = Int
+typealias RESPONSETYPE = [MovieItem]
 ```
 
 ### Handle Actions with a Subject
