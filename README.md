@@ -113,6 +113,20 @@ Each scheme is tailored for specific development and deployment scenarios, so ma
 
 **Model:** Model objects like `Movie` that represent domain data.  
 
+## Optimisation
+
+- **Image Caching:** An image cache is used to store downloaded images in memory, avoiding duplicate network requests and providing a smoother user experience. The most recently used images are kept in the cache while older images are evicted as needed.
+
+- **Request caching:** API requests are cached to avoid duplicate requests. The cache policy can be configured based on requirements. This improves performance and reduces network usage.
+
+- **Back button pressed cancelation** When the user presses the back button, the download of images and feeds is cancelled.
+
+- **One instance view** Views are singletons to avoid creating multiple instances of the same view and call unnecessary requests.
+
+- **Reactive Programming** The reactive programming with Combine framework is tightly integrated to update the UI in response to data changes, further simplifying the codebase and performance.
+
+[See more with code examples ...](Documentation/Optimisation.md)
+
 
 
 ## Patterns
