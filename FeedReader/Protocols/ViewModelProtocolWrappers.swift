@@ -34,7 +34,7 @@ class BaseViewModelWrapper<StateType, ActionType> {
 class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.State, MoviesListViewModel.Action>,
     MoviesListViewModelProtocol {
     typealias ViewModel = MoviesListViewModel
-    typealias GENERIC_RES_TYPE = [ViewModel.MovieItem]
+    typealias RESPONSETYPE = [ViewModel.MovieItem]
 
     fileprivate var viewModel: any MoviesListViewModelProtocol
 
@@ -61,7 +61,7 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
         viewModel.onBackground()
     }
 
-    func fetch() -> AnyPublisher<GENERIC_RES_TYPE, Error> {
+    func fetch() -> AnyPublisher<RESPONSETYPE, Error> {
         viewModel.fetch()
     }
 }
@@ -70,7 +70,7 @@ class AnyMoviesListViewModelProtocol: BaseViewModelWrapper<MoviesListViewModel.S
 class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel.State, MovieDetailViewModel.Action>,
     MovieDetailViewModelProtocol {
     typealias ViewModel = MovieDetailViewModel
-    typealias GENERIC_RES_TYPE = ViewModel.MovieDetailItem
+    typealias RESPONSETYPE = ViewModel.MovieDetailItem
 
     fileprivate var viewModel: any MovieDetailViewModelProtocol
 
@@ -93,7 +93,7 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
         viewModel.movieList
     }
 
-    func fetch() -> AnyPublisher<GENERIC_RES_TYPE, Error> {
+    func fetch() -> AnyPublisher<RESPONSETYPE, Error> {
         viewModel.fetch()
     }
 }
@@ -102,8 +102,8 @@ class AnyMovieDetailViewModelProtocol: BaseViewModelWrapper<MovieDetailViewModel
 class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, ImageViewModel.Action>,
     ImageViewModelProtocol {
     typealias ViewModel = ImageViewModel
-    typealias GENERIC_REQ_TYPE = String
-    typealias GENERIC_RES_TYPE = ViewModel.ImageItem
+    typealias REQUESTTYPE = String
+    typealias RESPONSETYPE = ViewModel.ImageItem
 
     fileprivate var viewModel: any ImageViewModelProtocol
 
@@ -122,7 +122,7 @@ class AnyImageViewModelProtocol: BaseViewModelWrapper<ImageViewModel.State, Imag
         viewModel.onDisappear()
     }
 
-    func fetch() -> AnyPublisher<GENERIC_RES_TYPE, Error> {
+    func fetch() -> AnyPublisher<RESPONSETYPE, Error> {
         viewModel.fetch()
     }
 

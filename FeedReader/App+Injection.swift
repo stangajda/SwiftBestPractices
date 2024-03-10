@@ -29,7 +29,7 @@ public final class Injection: InjectionRegistering {
             ViewModelAssembly()
         ], container: container)
     }
-    
+
     // mocks are in the same file because are used in FeedReader-Mock scheme as well
     func mockNetwork() {
         assembler = Assembler([

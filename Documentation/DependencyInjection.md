@@ -20,14 +20,16 @@
 
 ### Define protocols for the services/classes you want to inject.
 
-```protocol MovieServiceProtocol {
+```swift
+protocol MovieServiceProtocol {
   func fetchMovies() -> [Movie]
 }
 ```
 
 ### Create concrete implementation classes of these protocols.
 
-```class MovieService: MovieServiceProtocol {
+```swift
+class MovieService: MovieServiceProtocol {
   func fetchMovies() -> [Movie] {
     // implementation
   }
@@ -36,7 +38,8 @@
 
 ### Register these implementations in the assembly.
 
-```class ServiceAssembly: AssemblyProtocol {
+```swift
+class ServiceAssembly: AssemblyProtocol {
     func assemble(container: Container) {
         container.register(ServiceProtocol.self) { _ in
             Service()
@@ -47,7 +50,8 @@
 
 ### Add assembly into container.
 
-```func initialRegistration() {
+```swift
+func initialRegistration() {
     assembler = Assembler([
         ServiceAssembly(),
         ViewModelAssembly()
@@ -57,12 +61,14 @@
 
 ### Call container to implement Dependency Injection
 
-```Injection.main.initialRegistration()
+```swift
+Injection.main.initialRegistration()
 ```
 
 ###  Wherever you need to use these services, inject them using the @Injected property wrapper:
 
-```@Injected var movieService: MovieServiceProtocol
+```swift
+@Injected var movieService: MovieServiceProtocol
 
 func loadMovies() {
   let movies = movieService.fetchMovies() 
@@ -75,7 +81,8 @@ func loadMovies() {
 The @Injected property wrapper allows injecting dependencies and passing arguments to them.
 
 
-```let result: Result<Movies, Swift.Error> = .failure(APIError.invalidURL) 
+```swift
+let result: Result<Movies, Swift.Error> = .failure(APIError.invalidURL) 
 @Injected(result) var networkResponse: NetworkResponseProtocol
 ```
 

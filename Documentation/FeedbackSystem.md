@@ -115,7 +115,7 @@ extension Feedback {
 
 - **It is a protocol** that view models can conform to in order to implement loading state functionality
 
-- **It has associated types GENERIC_REQ_TYPE and GENERIC_RES_TYPE** which are the loaded data result type and loading identifier type
+- **It has associated types REQESTTYPE and RESPONSETYPE** which are the loaded data result type and loading identifier type
 
 - **It defines a State enum using LoadableEnums** to represent loading states like start, loading, loaded, failed
 
