@@ -8,7 +8,7 @@ import Foundation
 import Combine
 
 protocol MovieDetailViewModelProtocol: LifecycleProtocol, ObservableLoadableProtocol
-    where REQUESTTYPE == Int, RESPONSETYPE == MovieDetailViewModel.MovieDetailItem  {
+    where REQUESTTYPE == Int, RESPONSETYPE == MovieDetailViewModel.MovieDetailItem {
     var movieList: MoviesListViewModel.MovieItem { get }
 }
 

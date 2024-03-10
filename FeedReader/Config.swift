@@ -16,7 +16,10 @@ struct Config {
         static let baseURL = "https://api.themoviedb.org/"
         static let prefix = "3"
         static let apiKey = "api_key"
-        // The API key included in this context does not require obfuscation or special security measures. This is because the data accessed using this key is publicly available, and the key is solely used for user identification purposes rather than for authentication or access to sensitive information.
+        // The API key included in this context does not require obfuscation or special security measures. 
+        // This is because the data accessed using this key is publicly available, and the key is solely used 
+        // for user identification purposes rather than for authentication
+        // or access to sensitive information.
         static let key = "babcada8d42a5fd4857231c42240debd"
         static let trendingPath = "trending/movie/day"
         static let moviePath = "movie"
@@ -57,7 +60,6 @@ struct Config {
     struct MockMovieList {
         static let movieListResponseResult = "StubMovieListResponseResult.json"
         static let anotherMovieListResponseResult = "StubAnotherMovieListResponseResult.json"
-
     }
 
     struct MockMovieDetail {

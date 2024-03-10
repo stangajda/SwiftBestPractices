@@ -21,16 +21,13 @@ struct MoviesListView<ViewModel>: View where ViewModel: AnyMoviesListViewModelPr
                 case .loading:
                     loadingView
                 case .loaded(let movies):
-                    loadedView(movies)
-                        .navigationTitle(Config.MovieList.title)
-                        .navigationBarTitleDisplayMode(.inline)
+                    loadedView(movies).navigationTitle(Config.MovieList.title).navigationBarTitleDisplayMode(.inline)
                 case .failedLoaded(let error):
                     failedView(error)
                 }
             }
-            .onChange(of: scenePhase) { newPhase in
-                if newPhase == .active {
-                    viewModel.onActive()
+            .onChange(of: scenePhase) { newPhase in if newPhase == .active {
+                        viewModel.onActive()
                 } else if newPhase == .background {
                     viewModel.onBackground()
                 }
@@ -48,8 +45,7 @@ extension MoviesListView {
     @ViewBuilder
     private var startView: some View {
         Color.clear
-            .onAppear {
-                viewModel.onAppear()
+            .onAppear {      viewModel.onAppear()
             }
     }
 
